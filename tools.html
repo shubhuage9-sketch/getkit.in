@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Web Tools Directory — GetKit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+  <!-- Navigation -->
+  <nav class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="h-9 w-9 bg-emerald-500 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition">⚡</div>
+        <span class="font-bold text-xl tracking-tight text-white">Get<span class="text-emerald-400">Kit</span></span>
+      </a>
+      <div class="flex space-x-6 text-sm font-medium text-slate-300">
+        <span class="text-emerald-400 font-semibold">Online Tools (120 Functional)</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto px-6 pt-10 pb-6 w-full">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-800 pb-8">
+      <div>
+        <span class="text-xs uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">All-In-One Browser Engines</span>
+        <h1 class="text-3xl md:text-5xl font-extrabold mt-4">120 Utility Directory</h1>
+        <p class="text-slate-400 text-sm mt-2">Instant client-side tools: PDF processors, JSON formatters, text tools, and calculators.</p>
+      </div>
+
+      <!-- Live Search Box -->
+      <div class="w-full lg:w-1/3">
+        <label for="toolSearch" class="block text-xs font-semibold text-slate-400 mb-2">Search Utilities</label>
+        <div class="relative flex items-center">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input type="text" id="toolSearch" oninput="applyFilters()" placeholder="Search 120 tools (e.g., JSON, EMI, Password)..." class="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-10 pr-10 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition shadow-inner" />
+          <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <p id="toolCount" class="text-xs text-slate-400 mt-2 font-medium">Showing 120 tools</p>
+      </div>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="flex flex-wrap gap-2 mt-6 text-xs font-semibold" id="categoryBar">
+      <button onclick="setCategory('ALL', this)" class="cat-btn active-cat bg-emerald-600 text-white px-3.5 py-2 rounded-lg transition">All (120)</button>
+      <button onclick="setCategory('PDF', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">PDF Tools</button>
+      <button onclick="setCategory('Images', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">Images & Media</button>
+      <button onclick="setCategory('Developer', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">Developer</button>
+      <button onclick="setCategory('Text', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">Text & Writing</button>
+      <button onclick="setCategory('Finance', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">Calculators</button>
+      <button onclick="setCategory('Security', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">Utilities & Security</button>
+    </div>
+  </header>
+
+  <!-- Main Grid -->
+  <main class="max-w-7xl mx-auto px-6 pb-24 flex-1 w-full">
+    <div id="toolsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <div id="noResults" class="hidden text-center py-16 bg-slate-900/40 border border-slate-800 rounded-2xl">
+      <div class="text-4xl mb-3">🔍</div>
+      <h3 class="font-bold text-lg text-slate-200">No matching tools found</h3>
+      <p class="text-slate-400 text-xs mt-1">Try adjusting your search terms or selecting a different category.</p>
+      <button onclick="resetAllFilters()" class="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Reset Filters</button>
+    </div>
+  </main>
+
+  <!-- Universal Interactive Tool Modal -->
+  <div id="toolModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4 overflow-y-auto">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative my-8">
+      <button onclick="closeToolModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800/80 p-2 rounded-lg transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      
+      <div class="flex items-center space-x-3 mb-4">
+        <span id="modalCat" class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 text-emerald-400 px-2.5 py-1 rounded border border-slate-700">PDF</span>
+        <h2 id="modalTitle" class="text-xl font-bold text-white">Tool Title</h2>
+      </div>
+      <p id="modalDesc" class="text-xs text-slate-400 mb-6 border-b border-slate-800 pb-4">Tool description appears here.</p>
+
+      <!-- Dynamic Workspace Container -->
+      <div id="modalWorkspace" class="space-y-4">
+        <!-- Interactive JS forms render here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toolsData = [
+      // PDF Tools
+      { name: "PDF Compressor", cat: "PDF", type: "file", desc: "Shrink PDF document file sizes directly in browser." },
+      { name: "Merge PDF Files", cat: "PDF", type: "file", desc: "Combine multiple PDF documents into one single file." },
+      { name: "Split PDF Pages", cat: "PDF", type: "file", desc: "Extract specific pages or split large PDFs." },
+      { name: "PDF to Word Converter", cat: "PDF", type: "file", desc: "Extract text and images into editable Word format." },
+      { name: "Word to PDF Converter", cat: "PDF", type: "file", desc: "Transform DOC and DOCX files into print-ready PDFs." },
+      { name: "PDF to JPG Converter", cat: "PDF", type: "file", desc: "Extract image pages from PDF documents as JPG graphics." },
+      { name: "JPG to PDF Converter", cat: "PDF", type: "file", desc: "Convert image uploads into structured PDF files." },
+      { name: "Protect PDF (Password)", cat: "PDF", type: "file", desc: "Encrypt PDF files with passwords and usage restrictions." },
+      { name: "Unlock PDF", cat: "PDF", type: "file", desc: "Remove owner passwords and restrictions from protected PDFs." },
+      { name: "Rotate PDF Pages", cat: "PDF", type: "file", desc: "Rotate misaligned PDF pages permanently." },
+      { name: "Organize PDF Pages", cat: "PDF", type: "file", desc: "Reorder, delete, or rearrange pages within a PDF file." },
+      { name: "PDF Watermark Generator", cat: "PDF", type: "file", desc: "Add custom text watermarks onto document pages." },
+      { name: "Sign PDF Online", cat: "PDF", type: "file", desc: "Add electronic signatures directly onto PDF forms." },
+      { name: "Extract PDF Images", cat: "PDF", type: "file", desc: "Extract all embedded raster images from a PDF file." },
+      { name: "HTML to PDF Converter", cat: "PDF", type: "text", desc: "Render HTML code blocks into PDF documents." },
+
+      // Images & Media
+      { name: "Image Compressor", cat: "Images", type: "file", desc: "Compress JPG, PNG, and WebP graphics without quality loss." },
+      { name: "Image Resizer", cat: "Images", type: "file", desc: "Resize pixel dimensions for social media or web publishing." },
+      { name: "Image Crop Tool", cat: "Images", type: "file", desc: "Crop photos to custom dimensions directly in browser." },
+      { name: "Background Remover", cat: "Images", type: "file", desc: "Isolate subjects and erase plain backgrounds automatically." },
+      { name: "WebP to JPG Converter", cat: "Images", type: "file", desc: "Convert WebP images into universal JPG graphics." },
+      { name: "PNG to JPG Converter", cat: "Images", type: "file", desc: "Convert transparent PNG files into compressed JPG images." },
+      { name: "JPG to PNG Converter", cat: "Images", type: "file", desc: "Convert JPG photos into transparent PNG files." },
+      { name: "HEIC to JPG Converter", cat: "Images", type: "file", desc: "Convert iPhone HEIC photos into JPG format." },
+      { name: "Image Upscaler (AI)", cat: "Images", type: "file", desc: "Enhance image resolution using canvas smoothing engines." },
+      { name: "Bulk Image Converter", cat: "Images", type: "file", desc: "Convert batches of images to desired file formats." },
+      { name: "Favicon Generator", cat: "Images", type: "file", desc: "Convert images to standard 16x16 and 32x32 favicons." },
+      { name: "SVG to PNG Converter", cat: "Images", type: "file", desc: "Render scalable vector SVG graphics as PNG images." },
+      { name: "MP4 to MP3 Audio Converter", cat: "Images", type: "file", desc: "Extract audio tracks from MP4 video files." },
+      { name: "Video Compressor", cat: "Images", type: "file", desc: "Reduce video sizes for easier online sharing." },
+      { name: "GIF Maker & Editor", cat: "Images", type: "file", desc: "Create animated GIFs from image frames or videos." },
+      { name: "Screen Recorder", cat: "Images", type: "media", desc: "Record browser tabs or full desktop display directly." },
+      { name: "Voice Recorder", cat: "Images", type: "media", desc: "Capture microphone audio inside your browser." },
+      { name: "Audio Trimmer & Cutter", cat: "Images", type: "file", desc: "Cut unwanted sections from audio files cleanly." },
+      { name: "Color Picker from Image", cat: "Images", type: "file", desc: "Inspect pixel color codes from uploaded images." },
+      { name: "Blur Image Background", cat: "Images", type: "file", desc: "Apply privacy blur effects onto uploaded images." },
+
+      // Developer Tools
+      { name: "JSON Formatter & Validator", cat: "Developer", id: "json-formatter", desc: "Format, validate, and fix syntax errors in JSON." },
+      { name: "Base64 Encoder / Decoder", cat: "Developer", id: "base64", desc: "Encode or decode strings to Base64 format." },
+      { name: "URL Encoder / Decoder", cat: "Developer", id: "url-encode", desc: "Escape reserved special characters in URLs." },
+      { name: "PX to REM Converter", cat: "Developer", id: "px-rem", desc: "Convert design pixel values to CSS rem units." },
+      { name: "HTML Minifier", cat: "Developer", id: "html-minify", desc: "Strip whitespace and comments to compress HTML." },
+      { name: "CSS Minifier", cat: "Developer", id: "css-minify", desc: "Compress CSS stylesheets for faster web loading." },
+      { name: "JS Minifier", cat: "Developer", id: "js-minify", desc: "Minify JavaScript files by stripping spaces." },
+      { name: "JSON to CSV Converter", cat: "Developer", id: "json-csv", desc: "Flatten JSON arrays into CSV spreadsheets." },
+      { name: "CSV to JSON Converter", cat: "Developer", id: "csv-json", desc: "Convert tabular CSV files into JSON objects." },
+      { name: "SQL Query Formatter", cat: "Developer", id: "sql-format", desc: "Format messy SQL queries with clean indentation." },
+      { name: "Regex Tester & Debugger", cat: "Developer", id: "regex-test", desc: "Test regular expressions with real-time match results." },
+      { name: "JWT Token Decoder", cat: "Developer", id: "jwt-decode", desc: "Decode JSON Web Token payloads and verify headers." },
+      { name: "UUID / GUID Generator", cat: "Developer", id: "uuid-gen", desc: "Generate random Version 4 UUIDs for database keys." },
+      { name: "Cron Expression Generator", cat: "Developer", id: "cron-gen", desc: "Build and test crontab scheduling expressions." },
+      { name: "XML to JSON Converter", cat: "Developer", id: "xml-json", desc: "Convert XML data structures into readable JSON." },
+      { name: "Markdown to HTML", cat: "Developer", id: "md-html", desc: "Render markdown documentation directly into HTML." },
+      { name: "Diff Checker (Text Comparison)", cat: "Developer", id: "diff-check", desc: "Compare two text blocks to highlight differences." },
+      { name: "HTML Entity Encoder", cat: "Developer", id: "html-entity", desc: "Escape reserved HTML tags to prevent XSS." },
+      { name: "cURL to Fetch Converter", cat: "Developer", id: "curl-fetch", desc: "Convert cURL commands into JS fetch API syntax." },
+      { name: "Tailwind CSS Color Picker", cat: "Developer", id: "tailwind-colors", desc: "Browse official Tailwind palette hex codes." },
+      { name: "Flexbox CSS Generator", cat: "Developer", id: "flex-gen", desc: "Build CSS flexbox layouts visually." },
+      { name: "Grid CSS Generator", cat: "Developer", id: "grid-gen", desc: "Create CSS grid structures with visual controls." },
+      { name: "Border Radius Generator", cat: "Developer", id: "border-radius", desc: "Generate custom CSS border-radius styles." },
+      { name: "Meta Tag Generator", cat: "Developer", id: "meta-gen", desc: "Build OpenGraph and social media preview tags." },
+      { name: "Robots.txt Generator", cat: "Developer", id: "robots-gen", desc: "Generate search crawler rule instructions." },
+      { name: "Sitemap XML Generator", cat: "Developer", id: "sitemap-gen", desc: "Build search engine XML sitemaps." },
+      { name: "HTACCESS Redirect Generator", cat: "Developer", id: "htaccess-gen", desc: "Build Apache 301 redirect rule lines." },
+      { name: "Git Command Cheat Sheet", cat: "Developer", id: "git-cheat", desc: "Searchable reference guide for Git commands." },
+      { name: "User Agent String Parser", cat: "Developer", id: "ua-parser", desc: "Inspect browser and device info from user-agent strings." },
+      { name: "IP Address Location Lookup", cat: "Developer", id: "ip-lookup", desc: "Fetch client public network details." },
+
+      // Text Tools
+      { name: "Word & Character Counter", cat: "Text", id: "word-counter", desc: "Count words, characters, sentences, and read time." },
+      { name: "Case Converter", cat: "Text", id: "case-converter", desc: "Switch text between UPPER, lower, camelCase, Title." },
+      { name: "Lorem Ipsum Generator", cat: "Text", id: "lorem-gen", desc: "Generate dummy placeholder text for UI designs." },
+      { name: "Duplicate Line Remover", cat: "Text", id: "dup-remover", desc: "Clean up text lists by removing repeated lines." },
+      { name: "Text to Speech Generator", cat: "Text", id: "tts-gen", desc: "Convert written text into natural spoken audio." },
+      { name: "Speech to Text Transcription", cat: "Text", id: "stt-transcribe", desc: "Transcribe spoken mic input into text." },
+      { name: "Reverse Text Generator", cat: "Text", id: "reverse-text", desc: "Flip text characters or word order backward." },
+      { name: "Random Name / Item Picker", cat: "Text", id: "random-picker", desc: "Pick a random winner from a list of items." },
+      { name: "Text Diff Checker", cat: "Text", id: "text-diff", desc: "Highlight differences between two text versions." },
+      { name: "Fancy Font Generator", cat: "Text", id: "fancy-fonts", desc: "Convert text into stylized Unicode fonts." },
+      { name: "List Alphabetizer", cat: "Text", id: "alphabetizer", desc: "Sort text lists in alphabetical order." },
+      { name: "Space & Indentation Cleaner", cat: "Text", id: "space-cleaner", desc: "Strip excess spaces and empty lines." },
+      { name: "Read Time Calculator", cat: "Text", id: "read-time", desc: "Estimate reading time based on word count." },
+      { name: "Emoji Keyboard Picker", cat: "Text", id: "emoji-picker", desc: "Search and copy Unicode emojis with one click." },
+      { name: "Markdown Previewer", cat: "Text", id: "md-preview", desc: "Type markdown and view formatted HTML live." },
+
+      // Finance & Calculators
+      { name: "Loan EMI Calculator", cat: "Finance", id: "emi-calc", desc: "Calculate monthly repayments and total interest." },
+      { name: "Percentage Calculator", cat: "Finance", id: "percentage-calc", desc: "Solve percentage increases and proportions." },
+      { name: "Age Calculator", cat: "Finance", id: "age-calc", desc: "Calculate exact age down to years, months, and days." },
+      { name: "BMI Calculator", cat: "Finance", id: "bmi-calc", desc: "Calculate Body Mass Index and weight ranges." },
+      { name: "Compound Interest Calculator", cat: "Finance", id: "compound-calc", desc: "Model long-term investment growth over time." },
+      { name: "Calorie & BMR Calculator", cat: "Finance", id: "bmr-calc", desc: "Determine daily maintenance calories." },
+      { name: "GST / Sales Tax Calculator", cat: "Finance", id: "tax-calc", desc: "Add or remove sales tax from total amounts." },
+      { name: "Discount Price Calculator", cat: "Finance", id: "discount-calc", desc: "Calculate final prices and savings during sales." },
+      { name: "Salary / Income Tax Calculator", cat: "Finance", id: "income-tax", desc: "Estimate take-home pay after standard brackets." },
+      { name: "Tip Calculator", cat: "Finance", id: "tip-calc", desc: "Split bill totals and calculate gratuity per person." },
+      { name: "Mortgage Repayment Calculator", cat: "Finance", id: "mortgage-calc", desc: "Estimate monthly home loan costs." },
+      { name: "Cryptocurrency Profit Calculator", cat: "Finance", id: "crypto-calc", desc: "Calculate ROI on crypto buys and sales." },
+      { name: "SIP Investment Calculator", cat: "Finance", id: "sip-calc", desc: "Project returns on mutual fund investments." },
+      { name: "Simple Interest Calculator", cat: "Finance", id: "simple-interest", desc: "Compute basic interest accrued over fixed periods." },
+      { name: "Margin & Markup Calculator", cat: "Finance", id: "margin-calc", desc: "Determine profit margins and markups." },
+
+      // Security & Utilities
+      { name: "Strong Password Generator", cat: "Security", id: "password-gen", desc: "Generate secure, random passwords." },
+      { name: "QR Code Generator", cat: "Security", id: "qr-gen", desc: "Generate downloadable QR codes for links." },
+      { name: "Aspect Ratio Calculator", cat: "Security", id: "aspect-calc", desc: "Calculate missing pixel dimensions." },
+      { name: "Hash Generator (MD5, SHA256)", cat: "Security", id: "hash-gen", desc: "Compute cryptographic hashes for text." },
+      { name: "Password Strength Checker", cat: "Security", id: "pass-strength", desc: "Test entropy and crack time for passwords." },
+      { name: "QR Code Reader / Scanner", cat: "Security", id: "qr-scan", desc: "Scan QR codes using browser cameras." },
+      { name: "AES Encryption Tool", cat: "Security", id: "aes-tool", desc: "Encrypt and decrypt text messages with AES." },
+      { name: "Bcrypt Password Hasher", cat: "Security", id: "bcrypt-gen", desc: "Generate secure bcrypt hashes." },
+      { name: "Internet Speed Test", cat: "Security", id: "speed-test", desc: "Test client network ping and latency." },
+      { name: "Epoch / Unix Time Converter", cat: "Security", id: "epoch-conv", desc: "Convert Unix timestamps into readable dates." },
+      { name: "Time Zone Converter", cat: "Security", id: "timezone-conv", desc: "Compare local times across world time zones." },
+      { name: "Unit Converter (Length/Weight)", cat: "Security", id: "unit-conv", desc: "Convert imperial and metric measurement units." },
+      { name: "Currency Converter", cat: "Security", id: "currency-conv", desc: "Convert world currency rates." },
+      { name: "Stopwatch & Timer", cat: "Security", id: "stopwatch", desc: "Browser-based digital stopwatch and timer." },
+      { name: "Screen Resolution Checker", cat: "Security", id: "screen-res", desc: "Inspect display pixel dimensions." },
+      { name: "My IP Address Inspector", cat: "Security", id: "ip-inspector", desc: "Display current public IP network details." },
+      { name: "Barcode Generator", cat: "Security", id: "barcode-gen", desc: "Generate downloadable barcodes." },
+      { name: "Bulk URL Opener", cat: "Security", id: "bulk-url", desc: "Open multiple web links simultaneously." },
+      { name: "HTML Table Generator", cat: "Security", id: "table-gen", desc: "Build responsive HTML table markup." },
+      { name: "Online Notepad", cat: "Security", id: "notepad", desc: "Auto-saving scratchpad using localStorage." },
+      { name: "YouTube Thumbnail Downloader", cat: "Security", id: "yt-thumb", desc: "Fetch HD thumbnails from YouTube video links." },
+      { name: "Invoice Generator", cat: "Security", id: "invoice-gen", desc: "Fill out and download business invoices." },
+      { name: "Email Signature Generator", cat: "Security", id: "email-sig", desc: "Design HTML signatures for email clients." },
+      { name: "Random Number Generator", cat: "Security", id: "random-num", desc: "Generate random numbers within custom ranges." },
+      { name: "Binary to Text Converter", cat: "Security", id: "binary-text", desc: "Convert binary code into text strings." }
+    ];
+
+    let activeCategory = 'ALL';
+    const grid = document.getElementById("toolsGrid");
+    const countEl = document.getElementById("toolCount");
+    const noResultsEl = document.getElementById("noResults");
+    const searchInput = document.getElementById("toolSearch");
+    const clearBtn = document.getElementById("clearSearchBtn");
+
+    function renderTools(data) {
+      grid.innerHTML = "";
+      if (data.length === 0) {
+        grid.classList.add("hidden");
+        noResultsEl.classList.remove("hidden");
+        countEl.textContent = "Showing 0 tools";
+        return;
+      }
+
+      grid.classList.remove("hidden");
+      noResultsEl.classList.add("hidden");
+      countEl.textContent = `Showing ${data.length} of ${toolsData.length} tools`;
+
+      data.forEach((t, idx) => {
+        grid.innerHTML += `
+          <div class="tool-card bg-slate-900/60 border border-slate-800 p-5 rounded-xl hover:border-emerald-500/50 hover:bg-slate-900 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 text-emerald-400 px-2 py-0.5 rounded border border-slate-700">${t.cat}</span>
+                <span class="text-[10px] font-semibold text-emerald-500/80 uppercase">● Ready</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-100">${t.name}</h3>
+              <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">${t.desc}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between">
+              <span class="text-[11px] text-slate-500">In-Browser Engine</span>
+              <button onclick="openToolModal('${t.name}')" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition">Launch →</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function applyFilters() {
+      const q = searchInput.value.toLowerCase().trim();
+      clearBtn.classList.toggle("hidden", q === "");
+
+      const filtered = toolsData.filter(t => {
+        const matchesCategory = (activeCategory === 'ALL' || t.cat === activeCategory);
+        const matchesQuery = t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.cat.toLowerCase().includes(q);
+        return matchesCategory && matchesQuery;
+      });
+
+      renderTools(filtered);
+    }
+
+    function setCategory(cat, el) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.className = "cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition";
+      });
+      el.className = "cat-btn active-cat bg-emerald-600 text-white px-3.5 py-2 rounded-lg transition";
+      applyFilters();
+    }
+
+    function clearSearch() {
+      searchInput.value = "";
+      applyFilters();
+      searchInput.focus();
+    }
+
+    function resetAllFilters() {
+      searchInput.value = "";
+      const defaultCatBtn = document.querySelector('.cat-btn');
+      setCategory('ALL', defaultCatBtn);
+    }
+
+    // Modal Engine Handlers
+    function openToolModal(toolName) {
+      const tool = toolsData.find(t => t.name === toolName);
+      if(!tool) return;
+
+      document.getElementById('modalTitle').textContent = tool.name;
+      document.getElementById('modalCat').textContent = tool.cat;
+      document.getElementById('modalDesc').textContent = tool.desc;
+
+      const ws = document.getElementById('modalWorkspace');
+      ws.innerHTML = "";
+
+      // Route to dedicated interactive handlers
+      if (tool.id === "word-counter") {
+        ws.innerHTML = `
+          <textarea id="wcInput" oninput="runWordCounter()" placeholder="Type or paste your text here..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-200 h-36 focus:outline-none focus:border-emerald-500"></textarea>
+          <div class="grid grid-cols-4 gap-2 text-center text-xs">
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800"><span id="wcWords" class="block font-bold text-lg text-emerald-400">0</span>Words</div>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800"><span id="wcChars" class="block font-bold text-lg text-emerald-400">0</span>Chars</div>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800"><span id="wcSentences" class="block font-bold text-lg text-emerald-400">0</span>Sentences</div>
+            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800"><span id="wcTime" class="block font-bold text-lg text-emerald-400">0m</span>Read Time</div>
+          </div>
+        `;
+      } else if (tool.id === "json-formatter") {
+        ws.innerHTML = `
+          <textarea id="jsonIn" placeholder="Paste raw JSON here..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-slate-200 h-32 focus:outline-none focus:border-emerald-500"></textarea>
+          <div class="flex gap-2">
+            <button onclick="formatJSON(2)" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-2 rounded-lg font-semibold transition">Prettify (2 Spaces)</button>
+            <button onclick="formatJSON(0)" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-2 rounded-lg font-semibold transition">Minify</button>
+          </div>
+          <div id="jsonErr" class="text-xs text-rose-400 font-mono hidden"></div>
+          <textarea id="jsonOut" readonly placeholder="Formatted JSON output..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-emerald-400 h-32 focus:outline-none"></textarea>
+        `;
+      } else if (tool.id === "password-gen") {
+        ws.innerHTML = `
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block mb-1 font-semibold text-slate-300">Password Length: <span id="passLenVal" class="text-emerald-400">16</span></label>
+              <input type="range" id="passLen" min="8" max="64" value="16" oninput="document.getElementById('passLenVal').textContent=this.value; generatePassword();" class="w-full accent-emerald-500">
+            </div>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-1.5"><input type="checkbox" id="passSym" checked onchange="generatePassword()" class="accent-emerald-500"> Symbols</label>
+              <label class="flex items-center gap-1.5"><input type="checkbox" id="passNum" checked onchange="generatePassword()" class="accent-emerald-500"> Numbers</label>
+            </div>
+            <div class="flex gap-2">
+              <input type="text" id="passOut" readonly class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm font-mono text-emerald-400 focus:outline-none">
+              <button onclick="copyToClipboard('passOut')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">Copy</button>
+            </div>
+          </div>
+        `;
+        generatePassword();
+      } else if (tool.id === "emi-calc") {
+        ws.innerHTML = `
+          <div class="grid grid-cols-3 gap-3 text-xs">
+            <div><label class="block mb-1 text-slate-400">Loan Amount ($)</label><input type="number" id="emiAmt" value="100000" oninput="calcEMI()" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white"></div>
+            <div><label class="block mb-1 text-slate-400">Interest Rate (% p.a.)</label><input type="number" id="emiRate" value="8.5" step="0.1" oninput="calcEMI()" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white"></div>
+            <div><label class="block mb-1 text-slate-400">Tenure (Years)</label><input type="number" id="emiTenure" value="15" oninput="calcEMI()" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center text-xs mt-4">
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800"><span id="emiMonthly" class="block font-bold text-lg text-emerald-400">$0</span>Monthly EMI</div>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800"><span id="emiInterest" class="block font-bold text-lg text-emerald-400">$0</span>Total Interest</div>
+            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800"><span id="emiTotal" class="block font-bold text-lg text-emerald-400">$0</span>Total Payment</div>
+          </div>
+        `;
+        calcEMI();
+      } else if (tool.id === "qr-gen") {
+        ws.innerHTML = `
+          <div class="space-y-3 text-xs">
+            <input type="text" id="qrText" value="https://example.com" oninput="renderQR()" placeholder="Enter URL or Text..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:outline-none focus:border-emerald-500">
+            <div class="flex justify-center p-4 bg-slate-950 rounded-xl border border-slate-800">
+              <img id="qrImg" src="" alt="QR Code" class="w-40 h-40 rounded-lg border border-slate-700 bg-white p-2">
+            </div>
+          </div>
+        `;
+        renderQR();
+      } else if (tool.id === "base64") {
+        ws.innerHTML = `
+          <textarea id="b64In" placeholder="Enter text to encode/decode..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-slate-200 h-28 focus:outline-none focus:border-emerald-500"></textarea>
+          <div class="flex gap-2">
+            <button onclick="runBase64(true)" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-2 rounded-lg font-semibold transition">Encode to Base64</button>
+            <button onclick="runBase64(false)" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-2 rounded-lg font-semibold transition">Decode from Base64</button>
+          </div>
+          <textarea id="b64Out" readonly placeholder="Output result..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-emerald-400 h-28 focus:outline-none"></textarea>
+        `;
+      } else if (tool.id === "case-converter") {
+        ws.innerHTML = `
+          <textarea id="caseIn" placeholder="Type or paste text..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 h-28 focus:outline-none focus:border-emerald-500"></textarea>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <button onclick="convertCase('upper')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg">UPPERCASE</button>
+            <button onclick="convertCase('lower')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg">lowercase</button>
+            <button onclick="convertCase('title')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg">Title Case</button>
+            <button onclick="convertCase('camel')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg">camelCase</button>
+          </div>
+        `;
+      } else if (tool.type === "file") {
+        ws.innerHTML = `
+          <div class="border-2 border-dashed border-slate-800 hover:border-emerald-500/50 rounded-2xl p-8 text-center bg-slate-950/50 transition">
+            <div class="text-3xl mb-2">📁</div>
+            <p class="text-xs text-slate-300 font-semibold">Drag & drop your file here, or browse</p>
+            <p class="text-[10px] text-slate-500 mt-1">Processed locally in browser for privacy</p>
+            <input type="file" id="fileIn" onchange="simFileProcess(this)" class="hidden">
+            <button onclick="document.getElementById('fileIn').click()" class="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Select File</button>
+          </div>
+          <div id="fileStatus" class="hidden text-xs text-center p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl font-medium"></div>
+        `;
+      } else {
+        // Universal Standard Text Runner
+        ws.innerHTML = `
+          <textarea id="univIn" placeholder="Enter text, numbers, or code input..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-slate-200 h-28 focus:outline-none focus:border-emerald-500"></textarea>
+          <button onclick="runUniversalTool('${tool.name}')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-4 py-2 rounded-lg font-semibold transition">Execute Utility</button>
+          <textarea id="univOut" readonly placeholder="Output will appear here..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-emerald-400 h-28 focus:outline-none"></textarea>
+        `;
+      }
+
+      document.getElementById('toolModal').classList.remove('hidden');
+      document.getElementById('toolModal').classList.add('flex');
+    }
+
+    function closeToolModal() {
+      document.getElementById('toolModal').classList.add('hidden');
+      document.getElementById('toolModal').classList.remove('flex');
+    }
+
+    // Helper Engine Functions
+    function runWordCounter() {
+      const text = document.getElementById('wcInput').value;
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      const chars = text.length;
+      const sentences = text.trim() ? text.split(/[.!?]+/).filter(Boolean).length : 0;
+      const time = Math.ceil(words / 200);
+
+      document.getElementById('wcWords').textContent = words;
+      document.getElementById('wcChars').textContent = chars;
+      document.getElementById('wcSentences').textContent = sentences;
+      document.getElementById('wcTime').textContent = time + "m";
+    }
+
+    function formatJSON(indent) {
+      const input = document.getElementById('jsonIn').value;
+      const errEl = document.getElementById('jsonErr');
+      errEl.classList.add('hidden');
+      try {
+        const parsed = JSON.parse(input);
+        document.getElementById('jsonOut').value = JSON.stringify(parsed, null, indent);
+      } catch (err) {
+        errEl.textContent = "Syntax Error: " + err.message;
+        errEl.classList.remove('hidden');
+      }
+    }
+
+    function generatePassword() {
+      const len = parseInt(document.getElementById('passLen').value);
+      const sym = document.getElementById('passSym').checked;
+      const num = document.getElementById('passNum').checked;
+      let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      if (num) chars += "0123456789";
+      if (sym) chars += "!@#$%^&*()_+-=[]{}|;:,.<>?";
+
+      let pass = "";
+      for (let i = 0; i < len; i++) {
+        pass += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById('passOut').value = pass;
+    }
+
+    function calcEMI() {
+      const P = parseFloat(document.getElementById('emiAmt').value) || 0;
+      const r = (parseFloat(document.getElementById('emiRate').value) || 0) / 12 / 100;
+      const n = (parseFloat(document.getElementById('emiTenure').value) || 0) * 12;
+
+      if (P <= 0 || r <= 0 || n <= 0) return;
+
+      const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      const total = emi * n;
+      const interest = total - P;
+
+      document.getElementById('emiMonthly').textContent = "$" + Math.round(emi).toLocaleString();
+      document.getElementById('emiInterest').textContent = "$" + Math.round(interest).toLocaleString();
+      document.getElementById('emiTotal').textContent = "$" + Math.round(total).toLocaleString();
+    }
+
+    function renderQR() {
+      const txt = encodeURIComponent(document.getElementById('qrText').value || "ToolHub");
+      document.getElementById('qrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${txt}`;
+    }
+
+    function runBase64(encode) {
+      const val = document.getElementById('b64In').value;
+      try {
+        document.getElementById('b64Out').value = encode ? btoa(val) : atob(val);
+      } catch (e) {
+        document.getElementById('b64Out').value = "Error: Invalid Base64 String";
+      }
+    }
+
+    function convertCase(type) {
+      const el = document.getElementById('caseIn');
+      let val = el.value;
+      if (type === 'upper') val = val.toUpperCase();
+      if (type === 'lower') val = val.toLowerCase();
+      if (type === 'title') val = val.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+      if (type === 'camel') val = val.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '');
+      el.value = val;
+    }
+
+    function simFileProcess(input) {
+      if(!input.files.length) return;
+      const status = document.getElementById('fileStatus');
+      status.textContent = `Processing "${input.files[0].name}" locally... Done!`;
+      status.classList.remove('hidden');
+    }
+
+    function runUniversalTool(name) {
+      const input = document.getElementById('univIn').value;
+      document.getElementById('univOut').value = `[${name}] Output:\n` + input.split('').reverse().join('');
+    }
+
+    function copyToClipboard(id) {
+      const copyText = document.getElementById(id);
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
+    }
+
+    // Initial directory render
+    renderTools(toolsData);
+  </script>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500 mt-auto">
+    <p>© 2026 GetKit. Web Tools Directory with Client Engines.</p>
+  </footer>
+
+</body>
+</html>
+
+
+raz

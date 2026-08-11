@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GetKit — High-Value Tech Deals Under $300</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .deal-card:hover { transform: translateY(-4px); }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-white">
+
+  <!-- Navigation -->
+  <nav class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="h-9 w-9 bg-amber-500 rounded-xl flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
+          🔥
+        </div>
+        <span class="font-bold text-xl tracking-tight text-white">GET<span class="text-amber-400">KIt</span> <span class="text-xs uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">Deals</span></span>
+      </a>
+      <div class="flex space-x-6 text-sm font-medium text-slate-300">
+        <a href="index.html" class="hover:text-amber-400 transition">← Home</a>
+        <a href="tools.html" class="hover:text-emerald-400 transition">Tools</a>
+        <a href="games.html" class="hover:text-purple-400 transition">Games</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="max-w-7xl mx-auto text-center px-6 pt-12 pb-8 w-full">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-amber-400 font-semibold bg-amber-500/10 px-3.5 py-1.5 rounded-full border border-amber-500/20 mb-4">
+      <span>💰 High-Quality Tech & Desk Upgrades Under $300</span>
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">
+      Budget-Friendly Tech Deals
+    </h1>
+    <p class="text-slate-400 text-sm md:text-base mt-3 max-w-xl mx-auto">
+      Tested developer gear, ergonomic accessories, and top software subscriptions all priced under $300.
+    </p>
+
+    <!-- FTC Disclosure -->
+    <div class="mt-4 inline-block text-xs text-slate-500 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800">
+      ℹ️ <strong>Disclosure:</strong> As an affiliate, we earn from qualifying purchases at no extra cost to you.
+    </div>
+
+    <!-- Category Filters -->
+    <div class="mt-8 flex flex-wrap justify-center gap-2">
+      <button onclick="filterCategory('all')" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-xs font-bold transition">All Under $300</button>
+      <button onclick="filterCategory('peripherals')" class="px-4 py-2 bg-slate-900 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-bold border border-slate-800 transition">Keyboards & Mice</button>
+      <button onclick="filterCategory('audio')" class="px-4 py-2 bg-slate-900 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-bold border border-slate-800 transition">Audio & Mics</button>
+      <button onclick="filterCategory('desk')" class="px-4 py-2 bg-slate-900 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-bold border border-slate-800 transition">Desk & Storage</button>
+      <button onclick="filterCategory('software')" class="px-4 py-2 bg-slate-900 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-bold border border-slate-800 transition">Software & Hosting</button>
+    </div>
+  </header>
+
+  <!-- Products Grid -->
+  <main class="max-w-7xl mx-auto px-6 pb-24 flex-1 w-full">
+    <div id="dealsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- JavaScript populates high-margin products -->
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500 mt-auto">
+    <p>© 2026 GetKit Deals. Product prices and availability subject to change.</p>
+  </footer>
+
+  <!-- Product Dataset Script -->
+  <script>
+    const deals = [
+      // Keyboards & Mice (High Amazon Commission)
+      { title: "Keychron K2 Wireless Mechanical Keyboard", cat: "peripherals", badge: "Top Seller", price: "$79.99", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&q=80", link: "https://www.amazon.com/dp/B07QBPD325?tag=YOUR_AMAZON_TAG" },
+      { title: "Logitech MX Master 3S Ergonomic Mouse", cat: "peripherals", badge: "Best Ergonomic", price: "$99.99", img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&q=80", link: "https://www.amazon.com/dp/B09HM94VDS?tag=YOUR_AMAZON_TAG" },
+      { title: "Razer DeathAdder V3 Pro Wireless", cat: "peripherals", badge: "Ultra Light", price: "$149.99", img: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&q=80", link: "https://www.amazon.com/dp/B0B6Y9MDC5?tag=YOUR_AMAZON_TAG" },
+      { title: "Epomaker TH80 Pro Gasket Keyboard", cat: "peripherals", badge: "Hot-Swappable", price: "$89.99", img: "https://images.unsplash.com/photo-1595225476474-87563907a212?w=500&q=80", link: "https://www.amazon.com/dp/B09WF7398V?tag=YOUR_AMAZON_TAG" },
+
+      // Audio, Mics & Cams (High Margin & High Demand)
+      { title: "HyperX QuadCast S RGB USB Mic", cat: "audio", badge: "Streamer Pick", price: "$129.99", img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&q=80", link: "https://www.amazon.com/dp/B08G8WH435?tag=YOUR_AMAZON_TAG" },
+      { title: "Logitech Brio 4K Webcam", cat: "audio", badge: "4K Video", price: "$169.99", img: "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=500&q=80", link: "https://www.amazon.com/dp/B01N5NYRES?tag=YOUR_AMAZON_TAG" },
+      { title: "Audio-Technica ATH-M50x Studio Headphones", cat: "audio", badge: "Pro Audio", price: "$149.00", img: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&q=80", link: "https://www.amazon.com/dp/B00HVLUR86?tag=YOUR_AMAZON_TAG" },
+      { title: "Elgato Wave:3 USB Microphone", cat: "audio", badge: "Anti-Clip Tech", price: "$149.99", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80", link: "https://www.amazon.com/dp/B088HHWC47?tag=YOUR_AMAZON_TAG" },
+
+      // Desk Setup & Storage (Fast Impulse Buying)
+      { title: "Samsung T7 Shield 1TB Portable SSD", cat: "desk", badge: "1050 MB/s", price: "$109.99", img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=500&q=80", link: "https://www.amazon.com/dp/B09VLK9W3S?tag=YOUR_AMAZON_TAG" },
+      { title: "BenQ WiT e-Reading Screenbar Lamp", cat: "desk", badge: "Eye Care Light", price: "$229.00", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80", link: "https://www.amazon.com/dp/B013H3LVKY?tag=YOUR_AMAZON_TAG" },
+      { title: "Anker 10-in-1 USB-C Docking Station", cat: "desk", badge: "Dual 4K", price: "$59.99", img: "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=500&q=80", link: "https://www.amazon.com/dp/B088F7LW6S?tag=YOUR_AMAZON_TAG" },
+      { title: "Orbitkey Nest Portable Desk Organizer", cat: "desk", badge: "Wireless Charging", price: "$109.00", img: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=500&q=80", link: "https://www.amazon.com/dp/B08BL48YJ8?tag=YOUR_AMAZON_TAG" },
+
+      // Software & Cloud Services (Highest % Payouts)
+      { title: "Hostinger Web Hosting", cat: "software", badge: "$50+ Payout", price: "$2.99/mo", img: "https://images.unsplash.com/photo-1542744094-3a31216914fc?w=500&q=80", link: "https://hostinger.com?REFERRALCODE=YOUR_HOSTINGER_ID" },
+      { title: "DigitalOcean Cloud Hosting", cat: "software", badge: "$200 Free Credit", price: "Free Credit", img: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=500&q=80", link: "https://m.do.co/c/YOUR_DIGITALOCEAN_ID" },
+      { title: "NordVPN 2-Year Plan", cat: "software", badge: "40% Commission", price: "$3.49/mo", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&q=80", link: "https://nordvpn.com/YOUR_NORDVPN_ID" },
+      { title: "CleanMyMac X Utility", cat: "software", badge: "High Converting", price: "$39.95/yr", img: "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=500&q=80", link: "https://macpaw.com/YOUR_MACPAW_ID" }
+    ];
+
+    function renderDeals(data) {
+      const grid = document.getElementById("dealsGrid");
+      grid.innerHTML = "";
+
+      data.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "deal-card bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500/50 hover:bg-slate-900 transition duration-300 flex flex-col justify-between group shadow-lg";
+
+        card.innerHTML = `
+          <div>
+            <div class="relative w-full h-44 overflow-hidden bg-slate-950">
+              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+              <span class="absolute top-3 right-3 text-[10px] bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded-full shadow">${item.badge}</span>
+            </div>
+            <div class="p-4">
+              <h2 class="text-sm font-bold text-white group-hover:text-amber-400 transition line-clamp-2 leading-snug">${item.title}</h2>
+              <p class="text-xs font-bold text-amber-400 mt-2">${item.price}</p>
+            </div>
+          </div>
+          <div class="p-4 pt-0">
+            <a href="${item.link}" target="_blank" rel="nofollow sponsored" 
+              class="w-full flex items-center justify-between font-bold text-xs bg-slate-800 group-hover:bg-amber-500 text-slate-300 group-hover:text-slate-950 px-3 py-2 rounded-xl transition">
+              <span>View Deal</span>
+              <span>→</span>
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCategory(category) {
+      if (category === 'all') {
+        renderDeals(deals);
+      } else {
+        const filtered = deals.filter(item => item.cat === category);
+        renderDeals(filtered);
+      }
+    }
+
+    // Initial Load
+    renderDeals(deals);
+  </script>
+</body>
+</html>

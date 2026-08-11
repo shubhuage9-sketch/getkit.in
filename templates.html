@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code & UI Templates Hub — GetKit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scrollbar styling for snippet previews */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0d9488;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-teal-500 selection:text-white">
+
+  <!-- ========================================== -->
+  <!-- NAVIGATION BAR                             -->
+  <!-- ========================================== -->
+  <nav class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="h-9 w-9 bg-teal-500 rounded-xl flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-teal-500/20 group-hover:scale-105 transition">
+          🎨
+        </div>
+        <span class="font-bold text-xl tracking-tight text-white">Get<span class="text-teal-400">Kit</span></span>
+      </a>
+
+      <!-- Quick Action Navigation -->
+      <div class="flex items-center space-x-6 text-sm font-medium text-slate-300">
+        <a href="index.html" class="hover:text-teal-400 transition hidden sm:inline-block">← Back to Main Hub</a>
+        <span class="text-teal-400 font-semibold bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20">
+          🔥 Limited Time Discounts Active
+        </span>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ========================================== -->
+  <!-- MAIN HEADER & FILTER SECTION               -->
+  <!-- ========================================== -->
+  <header class="max-w-7xl mx-auto px-6 pt-10 pb-6 w-full">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-800 pb-8">
+      
+      <!-- Headline & Intro -->
+      <div>
+        <span class="text-xs uppercase tracking-widest text-teal-400 font-semibold bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20">
+          Production-Ready Code Kits
+        </span>
+        <h1 class="text-3xl md:text-5xl font-extrabold mt-4">UI & Code Templates Hub</h1>
+        <p class="text-slate-400 text-sm mt-2 max-w-2xl">
+          Download clean HTML5, Tailwind CSS, and React starter kits for SaaS platforms, dashboards, e-commerce storefronts, and mobile web apps.
+        </p>
+      </div>
+
+      <!-- Search Control Input -->
+      <div class="w-full lg:w-1/3">
+        <label for="templateSearch" class="block text-xs font-semibold text-slate-400 mb-2">Search Templates Catalog</label>
+        <div class="relative flex items-center">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input 
+            type="text" 
+            id="templateSearch" 
+            oninput="applyTemplateFilters()" 
+            placeholder="Search templates (e.g., SaaS, Dashboard, LMS)..."
+            class="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-10 pr-10 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-teal-500 transition shadow-inner" 
+          />
+          <button 
+            id="clearSearchBtn" 
+            onclick="clearTemplateSearch()"
+            class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <p id="templateCount" class="text-xs text-slate-400 mt-2 font-medium">Showing 20 templates</p>
+      </div>
+
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="flex flex-wrap gap-2 mt-6 text-xs font-semibold" id="categoryBar">
+      <button onclick="setTemplateCategory('ALL', this)" class="cat-btn active-cat bg-teal-600 text-white px-3.5 py-2 rounded-lg transition">All Categories (20)</button>
+      <button onclick="setTemplateCategory('SaaS', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">SaaS & Landing</button>
+      <button onclick="setTemplateCategory('Dashboard', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">Dashboards</button>
+      <button onclick="setTemplateCategory('E-Commerce', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">E-Commerce</button>
+      <button onclick="setTemplateCategory('Portfolio', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">Portfolios</button>
+      <button onclick="setTemplateCategory('Mobile & Web App', this)" class="cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition">Apps & Web Kits</button>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN TEMPLATES GRID CONTAINER              -->
+  <!-- ========================================== -->
+  <main class="max-w-7xl mx-auto px-6 pb-24 flex-1 w-full">
+    
+    <!-- Active Grid -->
+    <div id="templatesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    <!-- Empty State Container -->
+    <div id="noResults" class="hidden text-center py-16 bg-slate-900/40 border border-slate-800 rounded-2xl">
+      <div class="text-4xl mb-3">🔍</div>
+      <h3 class="font-bold text-lg text-slate-200">No matching templates found</h3>
+      <p class="text-slate-400 text-xs mt-1">Try adjusting your search terms or selecting another category.</p>
+      <button onclick="resetTemplateFilters()" class="mt-4 bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">
+        Reset All Filters
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- PREVIEW & PURCHASE MODAL WINDOW            -->
+  <!-- ========================================== -->
+  <div id="templateModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4 overflow-y-auto">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full p-6 shadow-2xl relative my-8">
+      
+      <!-- Close Button -->
+      <button onclick="closeTemplateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800/80 p-2 rounded-lg transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Modal Header Info -->
+      <div class="flex items-center space-x-3 mb-2">
+        <span id="modalCat" class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 text-teal-400 px-2.5 py-1 rounded border border-slate-700">Category</span>
+        <div class="flex items-center space-x-2">
+          <span id="modalOriginalPrice" class="text-xs text-slate-500 line-through">₹0</span>
+          <span id="modalPrice" class="text-xs font-extrabold text-teal-300 bg-teal-950/80 px-2.5 py-1 rounded-full border border-teal-500/30">₹0</span>
+        </div>
+      </div>
+      <h2 id="modalTitle" class="text-2xl font-bold text-white mb-2">Template Title</h2>
+      <p id="modalDesc" class="text-xs text-slate-400 mb-6 border-b border-slate-800 pb-4 leading-relaxed">Description text goes here.</p>
+
+      <!-- Workspace Features -->
+      <div class="space-y-4">
+        
+        <!-- Tech Stack Tags -->
+        <div class="bg-slate-950 rounded-xl p-4 border border-slate-800">
+          <h4 class="text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">Included Files & Technologies</h4>
+          <div id="modalTags" class="flex flex-wrap gap-2 text-xs"></div>
+        </div>
+
+        <!-- Code Snippet Box -->
+        <div class="bg-slate-950 rounded-xl p-4 border border-slate-800">
+          <h4 class="text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">Live Sample Starter Snippet</h4>
+          <pre id="modalCodeSnippet" class="bg-slate-900 p-3 rounded-lg text-[11px] font-mono text-teal-400 overflow-x-auto border border-slate-800 leading-relaxed"></pre>
+        </div>
+
+        <!-- Checkout Action Row -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center space-x-2 text-xs text-slate-400">
+            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Instant Zip Access via Razorpay Secure Payment</span>
+          </div>
+          <button id="modalBuyBtn" onclick="" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-teal-500/20">
+            <span>Pay & Complete Purchase</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT APP LOGIC                       -->
+  <!-- ========================================== -->
+  <script>
+    // Updated Razorpay Payment URL
+    const razorpayBaseUrl = "https://razorpay.me/@getkit";
+
+    // Complete Database with Original and Discounted Prices
+    const templatesData = [
+      { 
+        id: "apex-saas", 
+        name: "Apex SaaS Landing Kit", 
+        cat: "SaaS", 
+        originalPrice: "₹499",
+        price: "₹299", 
+        file: "downloads/apex-saas-kit.zip", 
+        desc: "High-converting dark mode Tailwind CSS landing page template with hero section, pricing matrix, FAQ accordion, and feature grids.", 
+        tags: ["Tailwind CSS", "HTML5", "Responsive", "Dark Theme"], 
+        snippet: `<header class="bg-slate-950 text-white p-8">\n  <h1 class="text-4xl font-bold">Build Faster with Apex</h1>\n  <button class="bg-teal-500 text-black font-bold px-4 py-2 rounded-lg mt-4">Get Started</button>\n</header>` 
+      },
+      { 
+        id: "nova-admin", 
+        name: "Nova Admin Dashboard UI", 
+        cat: "Dashboard", 
+        originalPrice: "₹999",
+        price: "₹499", 
+        file: "downloads/nova-admin-ui.zip", 
+        desc: "Comprehensive admin portal theme with real-time stats cards, interactive analytics charts, user management tables, and collapsible sidebar.", 
+        tags: ["Tailwind", "Chart.js", "Dashboard", "Admin"], 
+        snippet: `<div class="grid grid-cols-3 gap-4">\n  <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">\n    <span class="text-slate-400">Revenue</span>\n    <h3 class="text-2xl font-bold text-teal-400">$24,500</h3>\n  </div>\n</div>` 
+      },
+      { 
+        id: "dev-portfolio", 
+        name: "Modern Developer Portfolio", 
+        cat: "Portfolio", 
+        originalPrice: "₹299",
+        price: "₹199", 
+        file: "downloads/dev-portfolio.zip", 
+        desc: "Sleek portfolio layout featuring interactive project cards, technical skill badges, social links, and working contact forms.", 
+        tags: ["Portfolio", "Clean Code", "Minimal", "SEO Ready"], 
+        snippet: `<section class="max-w-4xl mx-auto py-12">\n  <h2 class="text-2xl font-bold">Featured Projects</h2>\n  <div class="grid grid-cols-2 gap-4 mt-6"></div>\n</section>` 
+      },
+      { 
+        id: "storefront-pro", 
+        name: "Storefront Pro E-Commerce", 
+        cat: "E-Commerce", 
+        originalPrice: "₹799",
+        price: "₹399", 
+        file: "downloads/storefront-pro.zip", 
+        desc: "Full online store theme with product grids, interactive shopping cart drawer, category filter sidebar, and multi-step checkout UI.", 
+        tags: ["E-Commerce", "Cart UI", "Tailwind", "Shopify Compatible"], 
+        snippet: `<div class="group relative bg-slate-900 p-4 rounded-2xl">\n  <img src="product.jpg" class="rounded-xl w-full" />\n  <button class="w-full bg-teal-500 font-bold py-2 rounded-lg mt-2">Add to Cart</button>\n</div>` 
+      },
+      { 
+        id: "ai-launchpad", 
+        name: "AI Startup Launchpad Kit", 
+        cat: "SaaS", 
+        originalPrice: "₹599",
+        price: "₹299", 
+        file: "downloads/ai-launchpad.zip", 
+        desc: "Tailored template for modern AI tools and micro-SaaS startups featuring interactive prompt embeds, ROI calculators, and feature highlights.", 
+        tags: ["AI SaaS", "Landing Page", "Tailwind", "Prompt UI"], 
+        snippet: `<div class="bg-slate-900 p-6 rounded-2xl border border-teal-500/30">\n  <span class="text-xs text-teal-400">AI Powered</span>\n  <h3 class="text-xl font-bold">Generate Code Instantly</h3>\n</div>` 
+      },
+      { 
+        id: "crypto-dash", 
+        name: "Crypto & Web3 Dashboard", 
+        cat: "Dashboard", 
+        originalPrice: "₹899",
+        price: "₹399", 
+        file: "downloads/crypto-dashboard.zip", 
+        desc: "Web3 wallet interface and crypto portfolio tracking dashboard UI with candlestick price charts and transaction history tables.", 
+        tags: ["Web3", "Crypto UI", "Dashboard", "Tailwind"], 
+        snippet: `<div class="flex items-center justify-between bg-slate-900 p-4 rounded-xl">\n  <div class="flex items-center space-x-3">\n    <div class="w-8 h-8 bg-amber-500 rounded-full"></div>\n    <span>Bitcoin</span>\n  </div>\n  <span class="font-mono text-emerald-400">$64,200</span>\n</div>` 
+      },
+      { 
+        id: "minimal-blog", 
+        name: "Minimalist Blog & Magazine", 
+        cat: "Portfolio", 
+        originalPrice: "₹199",
+        price: "₹100", 
+        file: "downloads/minimalist-blog.zip", 
+        desc: "SEO-optimized clean editorial layout built for tech writers, developers, software engineers, and micro-publications.", 
+        tags: ["Blog", "Markdown", "SEO Ready", "Typography"], 
+        snippet: `<article class="prose prose-invert max-w-2xl mx-auto">\n  <h1>Understanding Clean Architecture</h1>\n  <p class="text-slate-400">Published on August 11, 2026</p>\n</article>` 
+      },
+      { 
+        id: "app-showcase", 
+        name: "Mobile App Showcasing Page", 
+        cat: "Mobile & Web App", 
+        originalPrice: "₹399",
+        price: "₹249", 
+        file: "downloads/app-showcase.zip", 
+        desc: "Sleek landing page designed to highlight mobile iOS and Android applications with device mockup frames and app store buttons.", 
+        tags: ["App Showcase", "Mobile First", "Tailwind", "Mockups"], 
+        snippet: `<div class="flex justify-center">\n  <div class="w-64 h-[500px] border-8 border-slate-800 rounded-[40px] bg-slate-900 p-4"></div>\n</div>` 
+      },
+      { 
+        id: "agency-portal", 
+        name: "Freelancer Agency Portal", 
+        cat: "SaaS", 
+        originalPrice: "₹699",
+        price: "₹349", 
+        file: "downloads/agency-portal.zip", 
+        desc: "Complete digital agency template with service showcases, case studies, interactive project quote form, and client testimonial sliders.", 
+        tags: ["Agency", "Services", "Tailwind", "Forms"], 
+        snippet: `<form class="space-y-4 bg-slate-900 p-6 rounded-2xl">\n  <input type="text" placeholder="Project Budget" class="w-full bg-slate-950 p-3 rounded-xl border border-slate-800" />\n</form>` 
+      },
+      { 
+        id: "digital-menu", 
+        name: "Restaurant & Cafe Digital Menu", 
+        cat: "E-Commerce", 
+        originalPrice: "₹349",
+        price: "₹249", 
+        file: "downloads/digital-menu.zip", 
+        desc: "Mobile-optimized QR code digital menu interface with category quick-scrolls, dietary tags, and live instant item search.", 
+        tags: ["QR Menu", "Food & Beverage", "Mobile", "Fast"], 
+        snippet: `<div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl">\n  <div>\n    <h4 class="font-bold">Truffle Pasta</h4>\n    <p class="text-xs text-slate-400">Fresh creamy sauce</p>\n  </div>\n  <span class="text-teal-400 font-bold">$18</span>\n</div>` 
+      },
+      { 
+        id: "saas-boilerplate", 
+        name: "SaaS Boilerplate License Kit", 
+        cat: "SaaS", 
+        originalPrice: "₹1,499",
+        price: "₹699", 
+        file: "downloads/saas-boilerplate.zip", 
+        desc: "Complete SaaS starter architecture featuring auth UI, subscription billing tables, settings panel, and multi-tenant layout.", 
+        tags: ["SaaS Boilerplate", "Full UI", "Auth Ready", "Tailwind"], 
+        snippet: `<div class="min-h-screen flex">\n  <aside class="w-64 bg-slate-900 p-4 border-r border-slate-800">Sidebar</aside>\n  <main class="flex-1 p-8">Workspace Content</main>\n</div>` 
+      },
+      { 
+        id: "fintech-app", 
+        name: "Fintech Banking App UI Kit", 
+        cat: "Mobile & Web App", 
+        originalPrice: "₹1,199",
+        price: "₹599", 
+        file: "downloads/fintech-app.zip", 
+        desc: "Modern banking & payment web application template with wallet balance cards, transaction history, and instant transfer modals.", 
+        tags: ["Fintech", "Web App", "Tailwind", "Financial"], 
+        snippet: `<div class="bg-gradient-to-r from-teal-500 to-emerald-600 p-6 rounded-2xl text-slate-950 font-bold">\n  <span>Virtual Card</span>\n  <div class="mt-8 font-mono">**** **** **** 4829</div>\n</div>` 
+      },
+      { 
+        id: "job-board", 
+        name: "Job Board & Career Portal", 
+        cat: "SaaS", 
+        originalPrice: "₹799",
+        price: "₹399", 
+        file: "downloads/job-board.zip", 
+        desc: "Full job listing website kit complete with search filters, salary tags, application upload forms, and employer badges.", 
+        tags: ["Job Board", "Listings", "Filterable", "Tailwind"], 
+        snippet: `<div class="p-4 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center">\n  <div>\n    <h3 class="font-bold">Senior Frontend Engineer</h3>\n    <span class="text-xs text-slate-400">Remote • $120k - $150k</span>\n  </div>\n</div>` 
+      },
+      { 
+        id: "real-estate", 
+        name: "Real Estate Housing Listings", 
+        cat: "E-Commerce", 
+        originalPrice: "₹899",
+        price: "₹449", 
+        file: "downloads/real-estate.zip", 
+        desc: "Property showcase website with map integration mockups, filterable photo galleries, agent contact cards, and booking enquiry forms.", 
+        tags: ["Real Estate", "Listings", "Property", "Gallery"], 
+        snippet: `<div class="bg-slate-900 rounded-2xl overflow-hidden">\n  <div class="h-48 bg-slate-800"></div>\n  <div class="p-4">\n    <h4 class="font-bold text-lg">$450,000</h4>\n    <p class="text-xs text-slate-400">3 Beds • 2 Baths • 1,800 sqft</p>\n  </div>\n</div>` 
+      },
+      { 
+        id: "lms-platform", 
+        name: "LMS Online Course Platform", 
+        cat: "SaaS", 
+        originalPrice: "₹999",
+        price: "₹499", 
+        file: "downloads/lms-platform.zip", 
+        desc: "Online learning management UI with video player view, module progress sidebar, quiz components, and downloadable resource links.", 
+        tags: ["LMS", "Education", "Video UI", "Tailwind"], 
+        snippet: `<div class="flex gap-4">\n  <div class="flex-1 bg-black aspect-video rounded-xl">Video Player</div>\n  <div class="w-72 bg-slate-900 p-4 rounded-xl">Course Modules</div>\n</div>` 
+      },
+      { 
+        id: "digital-marketplace", 
+        name: "Digital Product Marketplace", 
+        cat: "E-Commerce", 
+        originalPrice: "₹1,299",
+        price: "₹599", 
+        file: "downloads/digital-marketplace.zip", 
+        desc: "Marketplace UI built to sell digital goods, eBooks, code scripts, and design assets with quick preview modals.", 
+        tags: ["Marketplace", "Digital Downloads", "Multi-Vendor", "Store"], 
+        snippet: `<div class="bg-slate-900 p-4 rounded-2xl border border-slate-800">\n  <span class="text-xs text-teal-400">Digital Download</span>\n  <h4 class="font-bold mt-1">Icon Pack Vol. 2</h4>\n</div>` 
+      },
+      { 
+        id: "table-booking", 
+        name: "Restaurant Table Booking System", 
+        cat: "Mobile & Web App", 
+        originalPrice: "₹499",
+        price: "₹249", 
+        file: "downloads/table-booking.zip", 
+        desc: "Interactive table reservation UI with date picker, guest selection, time slot grid, and instant confirmation interface.", 
+        tags: ["Booking System", "Reservation", "Web App", "Interactive"], 
+        snippet: `<div class="grid grid-cols-4 gap-2">\n  <button class="bg-teal-500/20 text-teal-400 border border-teal-500/40 p-2 rounded-lg text-xs font-bold">07:00 PM</button>\n</div>` 
+      },
+      { 
+        id: "clinic-booking", 
+        name: "Medical Clinic Booking System", 
+        cat: "SaaS", 
+        originalPrice: "₹699",
+        price: "₹349", 
+        file: "downloads/clinic-booking.zip", 
+        desc: "Healthcare clinic interface featuring doctor availability schedules, patient appointment booking form, and service pricing.", 
+        tags: ["Clinic", "Healthcare", "Appointments", "Clean UI"], 
+        snippet: `<div class="flex items-center space-x-4 bg-slate-900 p-4 rounded-2xl">\n  <div class="w-12 h-12 bg-slate-800 rounded-full"></div>\n  <div>\n    <h4 class="font-bold">Dr. Sarah Jenkins</h4>\n    <span class="text-xs text-teal-400">Cardiologist</span>\n  </div>\n</div>` 
+      },
+      { 
+        id: "notion-wiki", 
+        name: "Dark Mode Notion-Style Wiki", 
+        cat: "Portfolio", 
+        originalPrice: "₹399",
+        price: "₹199", 
+        file: "downloads/notion-wiki.zip", 
+        desc: "Knowledge-base and documentation theme inspired by Notion with multi-level sidebar tree navigation and quick search.", 
+        tags: ["Documentation", "Wiki", "Clean UI", "Minimal"], 
+        snippet: `<div class="flex">\n  <nav class="w-60 border-r border-slate-800 p-4 text-xs space-y-2">\n    <div class="font-bold text-slate-300">Getting Started</div>\n  </nav>\n</div>` 
+      },
+      { 
+        id: "podcast-hub", 
+        name: "Podcast & Audio Streaming Hub", 
+        cat: "Mobile & Web App", 
+        originalPrice: "₹599",
+        price: "₹299", 
+        file: "downloads/podcast-hub.zip", 
+        desc: "Audio web app interface with custom HTML audio player controls, episode playlists, duration badges, and show notes section.", 
+        tags: ["Audio Player", "Podcast", "Media", "Tailwind"], 
+        snippet: `<div class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 p-4 flex items-center justify-between">\n  <span class="font-bold text-xs">Episode 42: Building SaaS</span>\n</div>` 
+      }
+    ];
+
+    // State Variables
+    let activeCategory = 'ALL';
+    const grid = document.getElementById("templatesGrid");
+    const countEl = document.getElementById("templateCount");
+    const noResultsEl = document.getElementById("noResults");
+    const searchInput = document.getElementById("templateSearch");
+    const clearBtn = document.getElementById("clearSearchBtn");
+
+    // Unified Payment & Download Router Function
+    function processOrder(price, filePath) {
+      const cleanPrice = price.replace(/[^0-9]/g, '');
+      const paymentUrl = `${razorpayBaseUrl}?amount=${encodeURIComponent(cleanPrice)}`;
+      
+      // Open Razorpay portal in a new browser tab
+      window.open(paymentUrl, '_blank');
+
+      // Alert user with purchase instructions
+      alert(`Opening secure Razorpay payment window for ${price}.\n\nOnce completed, your template file (${filePath.split('/').pop()}) will be available for instant download.`);
+    }
+
+    // Dynamic Template Card Renderer
+    function renderTemplates(data) {
+      grid.innerHTML = "";
+      
+      if (data.length === 0) {
+        grid.classList.add("hidden");
+        noResultsEl.classList.remove("hidden");
+        countEl.textContent = "Showing 0 templates";
+        return;
+      }
+
+      grid.classList.remove("hidden");
+      noResultsEl.classList.add("hidden");
+      countEl.textContent = `Showing ${data.length} of ${templatesData.length} templates`;
+
+      data.forEach(t => {
+        const tagsHtml = t.tags.map(tag => 
+          `<span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full border border-slate-700/60">${tag}</span>`
+        ).join(' ');
+
+        grid.innerHTML += `
+          <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 hover:border-teal-500/50 hover:bg-slate-900 transition duration-300 flex flex-col justify-between shadow-xl group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-800 text-teal-400 px-2.5 py-1 rounded border border-slate-700">${t.cat}</span>
+                <div class="flex items-center space-x-2">
+                  <span class="text-xs text-slate-500 line-through">${t.originalPrice}</span>
+                  <span class="text-xs font-extrabold text-teal-300 bg-teal-950/80 px-2.5 py-1 rounded-full border border-teal-500/30">${t.price}</span>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-teal-400 transition">${t.name}</h3>
+              <p class="text-slate-400 text-xs mt-2.5 leading-relaxed">${t.desc}</p>
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                ${tagsHtml}
+              </div>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-2">
+              <button onclick="openTemplateModal('${t.id}')" class="text-xs font-semibold text-slate-400 hover:text-teal-300 transition">
+                Preview Code →
+              </button>
+              <button onclick="processOrder('${t.price}', '${t.file}')" class="inline-flex items-center gap-1.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition shadow-md shadow-teal-500/10">
+                <span>Buy Template</span>
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Dynamic Search & Filter Logic
+    function applyTemplateFilters() {
+      const query = searchInput.value.toLowerCase().trim();
+      clearBtn.classList.toggle("hidden", query === "");
+
+      const filtered = templatesData.filter(t => {
+        const matchesCategory = (activeCategory === 'ALL' || t.cat === activeCategory);
+        const matchesQuery = t.name.toLowerCase().includes(query) ||
+          t.desc.toLowerCase().includes(query) ||
+          t.cat.toLowerCase().includes(query) ||
+          t.tags.some(tag => tag.toLowerCase().includes(query));
+        return matchesCategory && matchesQuery;
+      });
+
+      renderTemplates(filtered);
+    }
+
+    // Category Selector
+    function setTemplateCategory(cat, el) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.className = "cat-btn bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 px-3.5 py-2 rounded-lg transition";
+      });
+      el.className = "cat-btn active-cat bg-teal-600 text-white px-3.5 py-2 rounded-lg transition";
+      applyTemplateFilters();
+    }
+
+    // Clear Search Field
+    function clearTemplateSearch() {
+      searchInput.value = "";
+      applyTemplateFilters();
+      searchInput.focus();
+    }
+
+    // Reset All Active Filters
+    function resetTemplateFilters() {
+      searchInput.value = "";
+      const defaultCatBtn = document.querySelector('.cat-btn');
+      setTemplateCategory('ALL', defaultCatBtn);
+    }
+
+    // Modal Handler: Open Modal
+    function openTemplateModal(templateId) {
+      const template = templatesData.find(t => t.id === templateId);
+      if (!template) return;
+
+      document.getElementById('modalTitle').textContent = template.name;
+      document.getElementById('modalCat').textContent = template.cat;
+      document.getElementById('modalOriginalPrice').textContent = template.originalPrice;
+      document.getElementById('modalPrice').textContent = template.price;
+      document.getElementById('modalDesc').textContent = template.desc;
+      document.getElementById('modalCodeSnippet').textContent = template.snippet;
+
+      const tagsContainer = document.getElementById('modalTags');
+      tagsContainer.innerHTML = template.tags.map(tag => 
+        `<span class="bg-slate-800 text-teal-300 px-2.5 py-1 rounded-md text-[11px] border border-slate-700">${tag}</span>`
+      ).join(' ');
+
+      const modalBuyBtn = document.getElementById('modalBuyBtn');
+      modalBuyBtn.setAttribute('onclick', `processOrder('${template.price}', '${template.file}')`);
+
+      const modal = document.getElementById('templateModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    // Modal Handler: Close Modal
+    function closeTemplateModal() {
+      const modal = document.getElementById('templateModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Initial Directory Setup
+    renderTemplates(templatesData);
+  </script>
+
+  <!-- ========================================== -->
+  <!-- FOOTER                                     -->
+  <!-- ========================================== -->
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© 2026 GetKit. Production UI & Code Templates Hub.</p>
+      <div class="flex space-x-6 text-slate-400">
+        <a href="#" class="hover:text-teal-400 transition">Terms</a>
+        <a href="#" class="hover:text-teal-400 transition">Privacy</a>
+        <a href="#" class="hover:text-teal-400 transition">Support</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

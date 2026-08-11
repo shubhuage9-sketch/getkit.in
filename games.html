@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GetKit — Free Lite Web Games</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .game-card:hover { transform: translateY(-4px); }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-purple-500 selection:text-white">
+
+  <!-- Navigation -->
+  <nav class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div class="h-9 w-9 bg-purple-600 rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/20 group-hover:scale-105 transition">
+          🎮
+        </div>
+        <span class="font-bold text-xl tracking-tight text-white">GET<span class="text-purple-400">KIt</span> <span class="text-xs uppercase px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono">Games</span></span>
+      </a>
+      <div class="flex space-x-6 text-sm font-medium text-slate-300">
+        <a href="index.html" class="hover:text-purple-400 transition">← Home</a>
+        <a href="tools.html" class="hover:text-emerald-400 transition">Tools</a>
+        <a href="deals.html" class="hover:text-amber-400 transition">Deals</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="max-w-7xl mx-auto text-center px-6 pt-12 pb-8 w-full">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-purple-400 font-semibold bg-purple-500/10 px-3.5 py-1.5 rounded-full border border-purple-500/20 mb-4">
+      <span>🕹️ 28 Lite HTML5 Arcade Games</span>
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">
+      Lite Web Arcade Hub
+    </h1>
+    <p class="text-slate-400 text-sm md:text-base mt-3 max-w-xl mx-auto">
+      Lightweight HTML5 games optimized for smooth, lag-free performance directly in your browser.
+    </p>
+
+    <!-- Search Bar -->
+    <div class="mt-8 max-w-2xl mx-auto">
+      <input type="text" id="searchInput" onkeyup="filterGames()" placeholder="Search 28 games (e.g. 2048, Pac-Man, Tetris, Pong)..." 
+        class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-purple-500 transition text-slate-100 placeholder-slate-500">
+    </div>
+  </header>
+
+  <!-- Game Grid -->
+  <main class="max-w-7xl mx-auto px-6 pb-24 flex-1 w-full">
+    <div id="gameGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <!-- JavaScript populates game cards -->
+    </div>
+  </main>
+
+  <!-- Game Modal Launcher -->
+  <div id="gameModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 hidden flex-col justify-center items-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-4xl overflow-hidden flex flex-col shadow-2xl">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950/50">
+        <div class="flex items-center gap-3">
+          <span id="modalIcon" class="text-2xl">🎮</span>
+          <div>
+            <h3 id="modalTitle" class="font-bold text-white text-lg leading-tight">Game Title</h3>
+            <p id="modalCategory" class="text-xs text-purple-400 capitalize">Playable Arcade Game</p>
+          </div>
+        </div>
+        <button onclick="closeGame()" class="text-slate-400 hover:text-white bg-slate-800 hover:bg-purple-600 rounded-xl w-9 h-9 flex items-center justify-center transition">
+          ✕
+        </button>
+      </div>
+      <!-- Game Container -->
+      <div class="relative w-full bg-black aspect-video flex items-center justify-center overflow-hidden" id="modalContainer">
+        <iframe id="gameFrame" class="w-full h-full border-0" allowfullscreen allow="autoplay"></iframe>
+      </div>
+    </div>
+  </div
+
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500 mt-auto">
+    <p>© 2026 GetKit Games. Powered by open-source HTML5 engines.</p>
+  </footer>
+
+  <!-- Script for 28 Embed-Friendly Games -->
+  <script>
+    const games = [
+      // Original 8 Games
+      { id: 1, name: "2048 Game", icon: "🔢", url: "https://play2048.co/" },
+      { id: 2, name: "Hextris Arcade", icon: "🛑", url: "https://hextris.github.io/hextris/" },
+      { id: 3, name: "Lichess Chess", icon: "♟️", url: "https://lichess.org/tv/frame?theme=brown&bg=dark" },
+      { id: 4, name: "Pac-Man", icon: "🟡", url: "https://freepacman.org/" },
+      { id: 5, name: "Google Snake", icon: "🐍", url: "https://www.google.com/logos/2017/snake/snake17.html" },
+      { id: 6, name: "Google Solitaire", icon: "🃏", url: "https://www.google.com/logos/2016/solitaire/solitaire.html" },
+      { id: 7, name: "Tic-Tac-Toe AI", icon: "❌", url: "https://www.google.com/logos/2016/tictactoe/tictactoe.html" },
+      { id: 8, name: "Minesweeper", icon: "💣", url: "https://minesweeper.online/" },
+
+      // 20 New Embed-Friendly Games
+      { id: 9, name: "Classic Tetris", icon: "🧱", url: "https://chvin.github.io/react-tetris/" },
+      { id: 10, name: "Clumsy Bird", icon: "🐦", url: "https://ellisonleao.github.io/clumsy-bird/" },
+      { id: 11, name: "Tower Building", icon: "🏗️", url: "https://jh3y.github.io/tower-building/" },
+      { id: 12, name: "Canvas Breakout", icon: "🧱", url: "https://end3r.github.io/Gamedev-Canvas-workshop/lesson10.html" },
+      { id: 13, name: "HTML5 Pong", icon: "🏓", url: "https://vitor5.github.io/ping-pong-js/" },
+      { id: 14, name: "Google Pacman Doodle", icon: "👾", url: "https://www.google.com/logos/2010/pacman10-i.html" },
+      { id: 15, name: "Rubik's Cube 3D", icon: "🧊", url: "https://www.google.com/logos/2014/rubiks/rubiks.html" },
+      { id: 16, name: "Google Cricket Doodle", icon: "🏏", url: "https://www.google.com/logos/2017/cricket17/cricket17.html" },
+      { id: 17, name: "Google Basketball", icon: "🏀", url: "https://www.google.com/logos/2012/basketball-2012-hp.html" },
+      { id: 18, name: "Google Soccer", icon: "⚽", url: "https://www.google.com/logos/2012/soccer-2012-hp.html" },
+      { id: 19, name: "Google Slalom Canoe", icon: "🚣", url: "https://www.google.com/logos/2012/slalom_canoe-2012-hp.html" },
+      { id: 20, name: "Google Hurdle Doodle", icon: "🏃", url: "https://www.google.com/logos/2012/hurdles-2012-hp.html" },
+      { id: 21, name: "Google Pony Express", icon: "🐎", url: "https://www.google.com/logos/2015/ponyexpress/ponyexpress15.html" },
+      { id: 22, name: "Google Halloween Ghost", icon: "👻", url: "https://www.google.com/logos/2016/halloween16/halloween16.html" },
+      { id: 23, name: "Google Magic Cat Academy", icon: "🐱", url: "https://www.google.com/logos/2020/halloween20/rc3/halloween20.html" },
+      { id: 24, name: "Google Pangolin Love", icon: "🦔", url: "https://www.google.com/logos/2017/vday17/vday17.html" },
+      { id: 25, name: "Doctor Who Doodle", icon: "⏳", url: "https://www.google.com/logos/2013/drwho/drwho.html" },
+      { id: 26, name: "Doodle Champion Island", icon: "🏆", url: "https://www.google.com/logos/2021/tokyo2020/rc3/tokyo2020.html" },
+      { id: 27, name: "Memory Card Game", icon: "🧠", url: "https://marina-ferreira.github.io/projects/memory-game/" },
+      { id: 28, name: "3D Space Invaders", icon: "🚀", url: "https://mrdoob.github.io/three.js/examples/webgl_interactive_cubes.html" }
+    ];
+
+    function renderGames(data) {
+      const grid = document.getElementById("gameGrid");
+      grid.innerHTML = "";
+      
+      data.forEach(game => {
+        const card = document.createElement("div");
+        card.className = "game-card bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between hover:border-purple-500/50 hover:bg-slate-900 transition duration-300 cursor-pointer shadow-lg";
+        card.onclick = () => launchGame(game);
+        
+        card.innerHTML = `
+          <div>
+            <div class="w-10 h-10 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-xl mb-3">
+              ${game.icon}
+            </div>
+            <h3 class="font-bold text-white text-sm leading-snug group-hover:text-purple-400 transition">${game.name}</h3>
+            <span class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">HTML5 Game</span>
+          </div>
+          <button class="mt-4 w-full py-1.5 bg-slate-800 hover:bg-purple-600 text-slate-300 hover:text-white rounded-lg text-xs font-semibold transition">
+            Play Now
+          </button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterGames() {
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = games.filter(game => game.name.toLowerCase().includes(search));
+      renderGames(filtered);
+    }
+
+    function launchGame(game) {
+      document.getElementById("modalTitle").innerText = game.name;
+      document.getElementById("modalIcon").innerText = game.icon;
+
+      // Special fallback for 2048 to prevent connection refusal:
+      if (game.name === "2048 Game") {
+        const container = document.getElementById("modalContainer");
+        container.innerHTML = `
+          <iframe id="gameFrame" class="w-full h-full border-0" 
+            srcdoc="<!DOCTYPE html><html><head><style>body,html{margin:0;padding:0;height:100%;overflow:hidden;background:#17181c;}iframe{width:100%;height:100%;border:none;}</style></head><body><iframe src='https://play2048.co/' allowfullscreen></iframe></body></html>">
+          </iframe>`;
+      } else {
+        const container = document.getElementById("modalContainer");
+        container.innerHTML = `<iframe id="gameFrame" class="w-full h-full border-0" allowfullscreen allow="autoplay" src="${game.url}"></iframe>`;
+      }
+      
+      const modal = document.getElementById("gameModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeGame() {
+      const modal = document.getElementById("gameModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.getElementById("modalContainer").innerHTML = `<iframe id="gameFrame" class="w-full h-full border-0" allowfullscreen allow="autoplay"></iframe>`; 
+    }
+
+    // Initial Load
+    renderGames(games);
+  </script>
+</body>
+</html>
