@@ -1,199 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GetKit — Developer Tools, Templates, Games & Deals Hub</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-<head>
-  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GetKit — Free tools, templates & AI apps for students</title>
+<meta name="description" content="GetKit — free tools, best deals & offers, templates, AI apps, games and study guides, all in one place.">
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
-     crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#1C1917;
+    --surface:#262220;
+    --surface-hi:#302B28;
+    --text:#EDE8E3;
+    --muted:#9C948C;
+    --amber:#C9A15F;
+    --teal:#A8785A;
+    --border: rgba(237,232,227,0.08);
+    --radius: 14px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em; }
+
+  .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(18,23,43,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.15rem;
+  }
+  .logo-mark{
+    width:28px; height:28px; border-radius:8px;
+    background:linear-gradient(135deg, var(--amber), var(--teal));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-size:0.75rem; font-weight:700; color:#1C1917;
+  }
+  nav{ display:none; gap:28px; font-size:0.92rem; color:var(--muted); }
+  @media(min-width:820px){ nav{ display:flex; } }
+  nav a:hover{ color:var(--text); }
+
+  .hero{ padding:64px 0 40px; }
+  .hero .label{ margin-bottom:14px; }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    max-width:14ch;
+    margin-bottom:18px;
+  }
+  .hero h1 .accent{ color:var(--amber); }
+  .hero p{ color:var(--muted); font-size:1.05rem; max-width:46ch; margin-bottom:28px; }
+
+  .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    padding:12px 22px; border-radius:10px; font-weight:600; font-size:0.95rem;
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{ background:var(--amber); color:#1C1917; }
+  .btn-primary:hover{ filter:brightness(1.08); }
+  .btn-ghost{ border-color:var(--border); color:var(--text); }
+  .btn-ghost:hover{ background:var(--surface); }
+
+  .toolbelt-wrap{ padding:6px 0 8px; position:relative; }
+  .toolbelt{
+    display:flex; gap:14px;
+    overflow-x:auto;
+    padding:8px 24px 20px;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+  }
+  .toolbelt::-webkit-scrollbar{ height:6px; }
+  .toolbelt::-webkit-scrollbar-thumb{ background:var(--surface-hi); border-radius:10px; }
+
+  .pocket{
+    scroll-snap-align:start;
+    flex:0 0 auto;
+    width:168px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 16px;
+    transition:transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .pocket:hover{
+    transform:translateY(-4px);
+    border-color:rgba(201,161,95,0.4);
+    background:var(--surface-hi);
+  }
+  .pocket .num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem; color:var(--muted); margin-bottom:10px; display:block;
+  }
+  .pocket .icon{ font-size:1.5rem; margin-bottom:10px; display:block; }
+  .pocket .name{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:0.95rem; margin-bottom:4px; }
+  .pocket .desc{ font-size:0.8rem; color:var(--muted); line-height:1.4; }
+
+  .ad-slot{ max-width:1180px; margin:12px auto 0; padding:0 24px; }
+  .ad-slot-inner{
+    border:1px dashed var(--border);
+    border-radius:10px;
+    min-height:90px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted); font-family:'JetBrains Mono', monospace; font-size:0.75rem;
+  }
+
+  .deals-section{ padding:40px 0 8px; }
+  .deals-disclosure{
+    font-size:0.76rem; color:var(--muted); margin-top:-4px; margin-bottom:20px;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .deal-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px;
+    display:flex; flex-direction:column; gap:10px;
+    position:relative;
+    transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .deal-card:hover{ border-color:rgba(201,161,95,0.4); transform:translateY(-3px); }
+  .deal-badge{
+    position:absolute; top:16px; right:16px;
+    background:var(--amber); color:#1C1917;
+    font-size:0.72rem; font-weight:700;
+    padding:4px 10px; border-radius:20px;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .deal-card h3{ font-size:1rem; padding-right:60px; }
+  .deal-card p{ font-size:0.85rem; color:var(--muted); }
+  .deal-price-row{ display:flex; align-items:baseline; gap:8px; margin-top:2px; }
+  .deal-price-now{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.2rem; color:var(--amber); }
+  .deal-price-was{ font-size:0.85rem; color:var(--muted); text-decoration:line-through; }
+  .deal-link{
+    font-size:0.85rem; font-weight:600; color:var(--amber);
+    display:inline-flex; align-items:center; gap:4px; margin-top:6px;
+  }
+
+  .sections{ padding:56px 0; }
+  .section-head{ margin-bottom:32px; }
+  .section-head h2{ font-size:1.7rem; margin-bottom:8px; }
+  .section-head p{ color:var(--muted); font-size:0.95rem; }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:18px;
+  }
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px;
+    display:flex; flex-direction:column; gap:12px;
+    transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover{ border-color:rgba(168,120,90,0.4); transform:translateY(-3px); }
+
+  .card-icon{
+    width:40px; height:40px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem;
+    background:rgba(201,161,95,0.14);
+  }
+  .card:nth-child(even) .card-icon{ background:rgba(168,120,90,0.16); }
+
+  .card h3{ font-size:1.05rem; }
+  .card p{ font-size:0.87rem; color:var(--muted); flex:1; }
+  .card .tag-row{ display:flex; gap:6px; flex-wrap:wrap; }
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    padding:3px 8px;
+    border-radius:6px;
+    background:rgba(237,239,247,0.06);
+    color:var(--muted);
+  }
+  .tag.free{ color:var(--teal); background:rgba(168,120,90,0.14); }
+  .tag.paid{ color:var(--amber); background:rgba(201,161,95,0.14); }
+
+  .card-link{
+    font-size:0.85rem; font-weight:600; color:var(--amber);
+    display:inline-flex; align-items:center; gap:4px; margin-top:4px;
+  }
+
+  footer{
+    border-top:1px solid var(--border);
+    padding:40px 0 30px;
+    margin-top:40px;
+  }
+  .footer-inner{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px;
+    color:var(--muted); font-size:0.85rem;
+  }
+  .footer-links{ display:flex; gap:18px; flex-wrap:wrap; }
+  .footer-links a:hover{ color:var(--text); }
+
+  ::selection{ background:var(--amber); color:#1C1917; }
+</style>
 </head>
+<body>
 
-  <body>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+<header>
+  <div class="header-inner wrap" style="padding-left:0; padding-right:0;">
+    <a href="/" class="logo">
+      <span class="logo-mark">GK</span>
+      GetKit
+    </a>
+    <nav>
+      <a href="deals.html">Deals</a>
+      <a href="tools.html">Tools</a>
+      <a href="templates.html">Templates</a>
+      <a href="ai_apps.html">AI Apps</a>
+      <a href="games.html">Games</a>
+      <a href="learn.html">Learn</a>
+      <a href="downloads.html">Downloads</a>
+    </nav>
+    <a href="tools.html" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">Open a tool</a>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="label">// free digital toolkit</div>
+  <h1>Everything you need, <span class="accent">tools included.</span></h1>
+  <p>Tools, templates, AI apps, games and guides — built for students and job-seekers who want things done without paying for it.</p>
+  <div class="hero-ctas">
+    <a href="tools.html" class="btn btn-primary">Browse tools →</a>
+    <a href="ai-apps.html" class="btn btn-ghost">Try an AI app</a>
+  </div>
+</section>
+
+<div class="toolbelt-wrap wrap" style="padding-left:0; padding-right:0;">
+  <div class="toolbelt">
+    <a href="tools.html" class="pocket">
+      <span class="num">01</span>
+      <span class="icon">🛠️</span>
+      <span class="name">Tools</span>
+      <span class="desc">Quick utilities, zero signup</span>
+    </a>
+    <a href="templates.html" class="pocket">
+      <span class="num">02</span>
+      <span class="icon">🧩</span>
+      <span class="name">Templates</span>
+      <span class="desc">Free + premium designs</span>
+    </a>
+    <a href="#deals" class="pocket">
+      <span class="num">03</span>
+      <span class="icon">🏷️</span>
+      <span class="name">Deals</span>
+      <span class="desc">Best offers, updated often</span>
+    </a>
+    <a href="games.html" class="pocket">
+      <span class="num">04</span>
+      <span class="icon">🎮</span>
+      <span class="name">Games</span>
+      <span class="desc">Browser games, no install</span>
+    </a>
+    <a href="ai-apps.html" class="pocket">
+      <span class="num">05</span>
+      <span class="icon">✨</span>
+      <span class="name">AI Apps</span>
+      <span class="desc">Resume, study plans & more</span>
+    </a>
+    <a href="learn.html" class="pocket">
+      <span class="num">06</span>
+      <span class="icon">📘</span>
+      <span class="name">Learn</span>
+      <span class="desc">Short, useful guides</span>
+    </a>
+    <a href="downloads.html" class="pocket">
+      <span class="num">07</span>
+      <span class="icon">⬇️</span>
+      <span class="name">Downloads</span>
+      <span class="desc">Resume kits & assets</span>
+    </a>
+  </div>
+</div>
+
+<div class="ad-slot">
+  <div class="ad-slot-inner"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
      crossorigin="anonymous"></script>
-<!-- getkit_display -->
+<!-- getkit -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9695226920600935"
-     data-ad-slot="5244986143"
+     data-ad-slot="6759944455"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  </body>
-<body
-  class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+</script></div>
+</div>
 
-  <!-- Navigation -->
-  <nav class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center space-x-3 group">
-        <div
-          class="h-9 w-9 bg-emerald-500 rounded-xl flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition">
-          ⚡</div>
-        <span class="font-bold text-xl tracking-tight text-white">GET<span class="text-emerald-400">KIt</span></span>
-      </a>
-      <div class="flex space-x-6 text-sm font-medium text-slate-300">
-        <a href="tools.html" class="hover:text-emerald-400 transition">Tools</a>
-        <a href="templates.html" class="hover:text-teal-400 transition">Templates</a>
-        <a href="games.html" class="hover:text-purple-400 transition">Lite Games</a>
-        <a href="deals.html" class="hover:text-amber-400 transition">Tech Deals</a>
-      </div>
+<main class="wrap">
+
+  <section class="deals-section" id="deals">
+    <div class="section-head">
+      <h2>Best Deals & Offers</h2>
+      <p>Hand-picked discounts on tools, courses and tech — updated regularly.</p>
     </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="max-w-4xl mx-auto text-center px-6 pt-16 pb-8">
-    <div
-      class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-500/10 px-3.5 py-1.5 rounded-full border border-emerald-500/20 mb-6">
-      <span>🚀 Your Digital Utility & Entertainment Suite</span>
-    </div>
-    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-      Choose Your Workspace Section
-    </h1>
-    <p class="text-slate-400 text-lg mt-5 max-w-2xl mx-auto">
-      Select between our developer utilities, UI templates library, browser-based lite games, or handpicked affiliate gear deals.
-    </p>
-  </header>
-
-  <!-- High-Impact Retention Banner -->
-  <section class="max-w-7xl mx-auto px-6 pb-8 w-full">
-    <div class="bg-gradient-to-r from-emerald-950/50 via-slate-900 to-purple-950/40 border border-slate-800/80 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden">
-      <div class="absolute -top-12 -left-12 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="space-y-2 text-center md:text-left z-10">
-        <span class="text-xs uppercase tracking-widest font-bold text-emerald-400">The GetKit Promise</span>
-        <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight">
-          "Once you experience speed like ours, everywhere else feels like a compromise."
-        </h3>
-        <p class="text-slate-400 text-xs md:text-sm max-w-xl">
-          Zero-bloat tools, instant browser games, and handpicked deals. Built so well you'll bookmark us on day one.
-        </p>
+    <div class="deals-disclosure">Some links below are affiliate links — GetKit may earn a small commission at no extra cost to you.</div>
+    <div class="grid">
+      <div class="deal-card">
+        <span class="deal-badge">-40%</span>
+        <h3>Canva Pro — Annual Plan</h3>
+        <p>Design templates, background remover and premium stock, all in one.</p>
+        <div class="deal-price-row">
+          <span class="deal-price-now">₹799/yr</span>
+          <span class="deal-price-was">₹1,299/yr</span>
+        </div>
+        <a href="#" class="deal-link" rel="sponsored noopener" target="_blank">Get this deal →</a>
       </div>
-      <div class="flex-shrink-0 z-10">
-        <a href="tools.html" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
-          <span>Explore Workspace</span>
-          <span>→</span>
-        </a>
+      <div class="deal-card">
+        <span class="deal-badge">-30%</span>
+        <h3>NordVPN — 2 Year Plan</h3>
+        <p>Secure browsing for students working across public Wi-Fi and cafes.</p>
+        <div class="deal-price-row">
+          <span class="deal-price-now">₹259/mo</span>
+          <span class="deal-price-was">₹370/mo</span>
+        </div>
+        <a href="#" class="deal-link" rel="sponsored noopener" target="_blank">Get this deal →</a>
+      </div>
+      <div class="deal-card">
+        <span class="deal-badge">-50%</span>
+        <h3>Notion Student Bundle</h3>
+        <p>Free forever for students — verify your student email for full access.</p>
+        <div class="deal-price-row">
+          <span class="deal-price-now">Free</span>
+        </div>
+        <a href="#" class="deal-link" rel="sponsored noopener" target="_blank">Get this deal →</a>
       </div>
     </div>
   </section>
 
-  <!-- 4-Card Directory Grid -->
-  <main class="max-w-7xl mx-auto px-6 pb-24 flex-1 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  <section class="sections" id="tools">
+    <div class="section-head">
+      <h2>Tools</h2>
+      <p>No login, no fuss — just open and use.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <h3>Word Counter</h3>
+        <p>Live word, character and reading-time counter for essays and posts.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="word-counter.html" class="card-link">Open tool →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">🖼️</div>
+        <h3>Image Compressor</h3>
+        <p>Shrink image file size in-browser before uploading anywhere.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Open tool →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔗</div>
+        <h3>Link Shortener</h3>
+        <p>Turn long links into short, shareable ones instantly.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Open tool →</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Card 1: Web Tools -->
-    <a href="tools.html"
-      class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 hover:border-emerald-500/50 hover:bg-slate-900 transition duration-300 flex flex-col justify-between group shadow-xl">
-      <div>
-        <div
-          class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-xl font-bold mb-5 group-hover:scale-110 transition">
-          🛠️</div>
-        <h2 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">Web Utility Tools
-        </h2>
-        <p class="text-slate-400 text-xs mt-2.5 leading-relaxed">
-          Access 100+ client-side web tools including PDF compressors, JSON validators, and image tools running 100% locally.
-        </p>
-        <div class="mt-5 flex flex-wrap gap-1.5">
-          <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full">PDF Compressor</span>
-          <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full">JSON Validator</span>
-        </div>
+  <section class="sections" id="templates">
+    <div class="section-head">
+      <h2>Templates</h2>
+      <p>Ready-made designs — some free, some premium.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Portfolio Site</h3>
+        <p>A clean one-page template to showcase your work.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Preview →</a>
       </div>
-      <div class="mt-6 flex items-center font-semibold text-xs text-emerald-400 group-hover:translate-x-1 transition">
-        Browse 100+ Tools →
+      <div class="card">
+        <div class="card-icon">🏪</div>
+        <h3>Landing Page Pro</h3>
+        <p>Conversion-focused layout with built-in sections for pricing and FAQs.</p>
+        <div class="tag-row"><span class="tag paid">Premium</span></div>
+        <a href="#" class="card-link">Preview →</a>
       </div>
-    </a>
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <h3>Resume Template Pack</h3>
+        <p>Ten ATS-friendly resume layouts in editable format.</p>
+        <div class="tag-row"><span class="tag free">Free</span><span class="tag paid">Premium pack</span></div>
+        <a href="#" class="card-link">Preview →</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Card 2: UI Templates -->
-    <a href="templates.html"
-      class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 hover:border-teal-500/50 hover:bg-slate-900 transition duration-300 flex flex-col justify-between group shadow-xl">
-      <div>
-        <div
-          class="w-12 h-12 bg-teal-500/10 text-teal-400 rounded-2xl flex items-center justify-center text-xl font-bold mb-5 group-hover:scale-110 transition">
-          🎨</div>
-        <h2 class="text-xl font-bold text-white group-hover:text-teal-400 transition">Code & UI Templates
-        </h2>
-        <p class="text-slate-400 text-xs mt-2.5 leading-relaxed">
-          Production-ready starter templates built with Tailwind CSS, HTML5, and JS. Download landing pages and dashboards.
-        </p>
-        <div class="mt-5 flex flex-wrap gap-1.5">
-          <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full">Landing Pages</span>
-          <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full">Dashboards</span>
-        </div>
+  <section class="sections" id="ai-apps">
+    <div class="section-head">
+      <h2>AI Apps</h2>
+      <p>Small AI-powered helpers for real tasks.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Resume Builder</h3>
+        <p>Answer a few prompts, get a formatted resume ready to download.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Try it →</a>
       </div>
-      <div class="mt-6 flex items-center font-semibold text-xs text-teal-400 group-hover:translate-x-1 transition">
-        Explore Templates →
+      <div class="card">
+        <div class="card-icon">🗓️</div>
+        <h3>Study Plan Generator</h3>
+        <p>Set your exam date and syllabus, get a day-by-day plan.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Try it →</a>
       </div>
-    </a>
-<body>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+      <div class="card">
+        <div class="card-icon">✍️</div>
+        <h3>Paraphraser</h3>
+        <p>Rewrite text in a different tone while keeping the meaning.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Try it →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ad-slot" style="padding:0;">
+    <div class="ad-slot-inner"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
      crossorigin="anonymous"></script>
-<!-- getkit_display -->
+<!-- getkit -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9695226920600935"
-     data-ad-slot="5244986143"
+     data-ad-slot="6759944455"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+  </div>
+
+  <section class="sections" id="games">
+    <div class="section-head">
+      <h2>Games</h2>
+      <p>Quick browser games — no download, no signup.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Memory Match</h3>
+        <p>Classic flip-and-match card game to kill five minutes.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Play →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">🐍</div>
+        <h3>Snake</h3>
+        <p>The retro classic, rebuilt for the browser.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Play →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔢</div>
+        <h3>2048</h3>
+        <p>Merge tiles, chase the high score.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Play →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sections" id="learn">
+    <div class="section-head">
+      <h2>Learn</h2>
+      <p>Short, practical guides — read in five minutes.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>How to write a resume that passes ATS</h3>
+        <p>The formatting rules that actually matter, explained simply.</p>
+        <a href="#" class="card-link">Read guide →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>Picking a free website builder in 2026</h3>
+        <p>What to look for before you commit to a platform.</p>
+        <a href="#" class="card-link">Read guide →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>5 tools every student should bookmark</h3>
+        <p>A short list, no fluff.</p>
+        <a href="#" class="card-link">Read guide →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sections" id="downloads">
+    <div class="section-head">
+      <h2>Free Downloads</h2>
+      <p>Ready-to-use files — grab and go.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <h3>Resume Starter Kit</h3>
+        <p>Three editable resume formats: Word, Google Docs, and PDF.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Download →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Study Tracker Sheet</h3>
+        <p>A simple spreadsheet to log daily study hours and topics.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Download →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">🖇️</div>
+        <h3>Cover Letter Pack</h3>
+        <p>Five editable cover letter templates for common job types.</p>
+        <div class="tag-row"><span class="tag free">Free</span></div>
+        <a href="#" class="card-link">Download →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="ad-slot">
+  <div class="ad-slot-inner">
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+     crossorigin="anonymous"></script>
+<!-- getkit -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9695226920600935"
+     data-ad-slot="6759944455"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-</body>
-    <!-- Card 3: Lite Web Games -->
-    <a href="games.html"
-      class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 hover:border-purple-500/50 hover:bg-slate-900 transition duration-300 flex flex-col justify-between group shadow-xl">
-      <div>
-        <div
-          class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center text-xl font-bold mb-5 group-hover:scale-110 transition">
-          🎮</div>
-        <h2 class="text-xl font-bold text-white group-hover:text-purple-400 transition">Lite Web Games
-        </h2>
-        <p class="text-slate-400 text-xs mt-2.5 leading-relaxed">
-          Instant-play HTML5/JS browser games. Play 2048, Tic-Tac-Toe, Snake, Wordle clones, and memory match with zero downloads.
-        </p>
-        <div class="mt-5 flex flex-wrap gap-1.5">
-          <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full">Snake & 2048</span>
-          <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full">Puzzle Games</span>
-        </div>
-      </div>
-      <div class="mt-6 flex items-center font-semibold text-xs text-purple-400 group-hover:translate-x-1 transition">
-        Play Free Games →
-      </div>
-    </a>
+  </div>
+</div>
 
-    <!-- Card 4: Affiliate & Deals -->
-    <a href="deals.html"
-      class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 hover:border-amber-500/50 hover:bg-slate-900 transition duration-300 flex flex-col justify-between group shadow-xl">
-      <div>
-        <div
-          class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center text-xl font-bold mb-5 group-hover:scale-110 transition">
-          🔥</div>
-        <h2 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Tech & Gear Deals
-        </h2>
-        <p class="text-slate-400 text-xs mt-2.5 leading-relaxed">
-          Curated tech deals, developer hardware discounts, setup accessories, and exclusive SaaS promotional offers.
-        </p>
-        <div class="mt-5 flex flex-wrap gap-1.5">
-          <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full">Hardware</span>
-          <span class="text-[11px] bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full">SaaS Discounts</span>
-        </div>
-      </div>
-      <div class="mt-6 flex items-center font-semibold text-xs text-amber-400 group-hover:translate-x-1 transition">
-        Explore Top Deals →
-      </div>
-    </a>
-
-  </main>
-
-  <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500 mt-auto">
-    <p>© 2026 GetKit. All rights reserved.</p>
-  </footer>
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2026 GetKit. All tools, forever free to try.</div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
 
 </body>
-
 </html>
