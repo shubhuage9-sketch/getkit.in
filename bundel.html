@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <!-- == META & SEO == -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Solopreneur Launchpad | 4-in-1 AI Engine for a 1-Person Digital Business</title>
+  <meta name="description" content="A 4-in-1 production engine built to plan, construct, market, and scale a 1-person digital business using AI. Prompt vault, Next.js dashboard, cold email playbook and viral hooks engine in one ZIP.">
+  <meta name="theme-color" content="#0b0f19">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Solopreneur Launchpad">
+  <meta property="og:description" content="Plan, construct, market, and scale a 1-person digital business with AI. 4 modules, 1 ZIP, instant email delivery.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+
+  <!-- == FONTS == -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- == TAILWIND CSS (CDN) + DESIGN TOKENS == -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:   '#0b0f19', /* page background */
+            panel: '#111827', /* cards and sections */
+            line:  '#1f2937'  /* borders */
+          },
+          fontFamily: {
+            display: ['Sora', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans:    ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono:    ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace']
+          },
+          boxShadow: {
+            soft: '0 8px 32px -14px rgba(245, 158, 11, 0.14)',
+            glow: '0 0 0 1px rgba(245, 158, 11, 0.22), 0 16px 56px -14px rgba(245, 158, 11, 0.32)',
+            cta:  '0 10px 34px -8px rgba(245, 158, 11, 0.55)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- == CUSTOM STYLES (small extras Tailwind utilities don't cover) == -->
+  <style>
+    /* Subtle blueprint grid behind the hero, fading out toward the bottom */
+    .hero-grid {
+      background-image:
+        linear-gradient(to right, rgba(31, 41, 55, 0.55) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.55) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+              mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+    }
+
+    /* Visible keyboard focus everywhere */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #f59e0b;
+      outline-offset: 3px;
+      border-radius: 0.5rem;
+    }
+
+    /* Respect reduced-motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      .animate-ping { animation: none !important; }
+      * { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-ink font-sans text-slate-300 antialiased pb-28 lg:pb-0">
+
+  <!-- Skip link for keyboard and screen-reader users -->
+  <a href="#modules" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-amber-500 focus:px-4 focus:py-2 focus:font-semibold focus:text-ink">Skip to modules</a>
+
+  <!-- == TOP NAVIGATION == -->
+  <header class="relative z-20 mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
+    <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition hover:text-amber-400">
+      <span aria-hidden="true">←</span> Back to homepage
+    </a>
+    <a href="#checkout" class="hidden text-sm font-medium text-slate-400 transition hover:text-amber-400 sm:inline">Jump to checkout</a>
+  </header>
+
+  <!-- == HERO SECTION == -->
+  <section class="relative isolate overflow-hidden">
+    <!-- Decorative background layers -->
+    <div class="hero-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute left-1/2 top-[-120px] -z-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-amber-500/10 blur-3xl" aria-hidden="true"></div>
+
+    <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-6 sm:px-8 sm:pb-20 lg:grid-cols-5 lg:gap-14 lg:pt-10">
+
+      <!-- Hero copy -->
+      <div class="lg:col-span-3">
+        <h1 class="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white text-balance drop-shadow-[0_0_34px_rgba(245,158,11,0.22)] sm:text-5xl lg:text-6xl">
+          The Solopreneur Launchpad
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+          A 4-in-1 production engine built to plan, construct, market, and scale a 1-person digital business using AI.
+        </p>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a href="#checkout" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 px-6 py-3.5 font-display text-base font-bold text-ink shadow-cta transition hover:brightness-110">
+            Get the bundle for <span data-price class="ml-1.5">$39</span>
+          </a>
+          <a href="#modules" class="inline-flex items-center justify-center rounded-xl border border-line bg-panel px-6 py-3.5 font-medium text-slate-200 transition hover:border-amber-500/50 hover:text-white">
+            See what's inside
+          </a>
+        </div>
+
+        <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-400">
+          <li class="flex items-center gap-2"><span class="font-bold text-emerald-400" aria-hidden="true">✓</span> 4 modules in 1 ZIP</li>
+          <li class="flex items-center gap-2"><span class="font-bold text-emerald-400" aria-hidden="true">✓</span> Instant email delivery</li>
+          <li class="flex items-center gap-2"><span class="font-bold text-emerald-400" aria-hidden="true">✓</span> Optimized for Claude and ChatGPT</li>
+        </ul>
+      </div>
+
+      <!-- Hero visual: the ZIP, opened -->
+      <div class="lg:col-span-2">
+        <div class="overflow-hidden rounded-2xl border border-line bg-panel shadow-glow">
+          <div class="border-b border-line px-5 py-3 font-mono text-xs text-slate-400">solopreneur-launchpad.zip</div>
+          <pre class="overflow-x-auto px-5 py-5 font-mono text-[13px] leading-7 text-slate-300 sm:text-sm"><code><span class="text-slate-500">├─</span> <span class="text-amber-400">01-master-prompt-vault/</span>   <span class="text-slate-500"># plan</span>
+<span class="text-slate-500">├─</span> <span class="text-amber-400">02-nextjs-dashboard/</span>      <span class="text-slate-500"># build</span>
+<span class="text-slate-500">├─</span> <span class="text-amber-400">03-cold-email-playbook/</span>   <span class="text-slate-500"># market</span>
+<span class="text-slate-500">└─</span> <span class="text-amber-400">04-viral-hooks-engine/</span>    <span class="text-slate-500"># scale</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- == MAIN LAYOUT: MODULES (2/3) + CHECKOUT (1/3) == -->
+  <main class="mx-auto max-w-6xl px-5 pb-20 sm:px-8">
+    <div class="grid items-start gap-10 lg:grid-cols-3 lg:gap-12">
+
+      <!-- == BUNDLE CONTINUUM GRID (LEFT, 2/3 WIDTH) == -->
+      <section id="modules" class="scroll-mt-6 lg:col-span-2" aria-labelledby="modules-title">
+        <h2 id="modules-title" class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">What's inside the ZIP</h2>
+        <p class="mt-2 max-w-xl text-slate-400">Four modules that run in order: plan the business, build the product, win the clients, then scale the audience.</p>
+
+        <ol class="relative mt-8 space-y-6 pl-8 sm:pl-10">
+          <!-- Vertical rail connecting the modules -->
+          <span class="pointer-events-none absolute bottom-8 left-1.5 top-8 w-px bg-gradient-to-b from-amber-500/70 via-line to-line" aria-hidden="true"></span>
+
+          <!-- == MODULE 01 == -->
+          <li class="relative">
+            <span class="absolute -left-8 top-[26px] h-3 w-3 rounded-full bg-amber-500 shadow-[0_0_14px_rgba(245,158,11,0.85)] sm:-left-10 sm:top-[30px]" aria-hidden="true"></span>
+            <article class="rounded-2xl border border-line bg-panel p-6 shadow-soft transition hover:border-amber-500/40 sm:p-7">
+              <div class="flex items-center gap-3">
+                <span class="text-sm font-semibold text-amber-400">Module 01</span>
+                <span class="rounded-full border border-amber-500/30 px-2.5 py-0.5 text-xs font-medium text-amber-300">Plan</span>
+              </div>
+              <h3 class="mt-3 font-display text-xl font-semibold text-white sm:text-2xl">The Master Prompt Vault</h3>
+              <p class="mt-2 text-slate-400">Battle-tested prompts that turn Claude and ChatGPT into your strategist, marketer and product manager.</p>
+              <ul class="mt-5 space-y-3">
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Deep system prompts for B2B offer design, 30-day social content and AI SaaS MVP specs</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>XML-tagged structure so the model follows every instruction, in order</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Tuned for both Claude and ChatGPT</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Clean Markdown files: open in VS Code, copy, paste, run</span></li>
+              </ul>
+              <div class="mt-6 flex items-center gap-2 border-t border-line pt-4 text-sm font-semibold text-amber-400"><span aria-hidden="true">⏱️</span> Saves 15+ hours of prompt trial and error</div>
+            </article>
+          </li>
+
+          <!-- == MODULE 02 == -->
+          <li class="relative">
+            <span class="absolute -left-8 top-[26px] h-3 w-3 rounded-full bg-amber-500 shadow-[0_0_14px_rgba(245,158,11,0.85)] sm:-left-10 sm:top-[30px]" aria-hidden="true"></span>
+            <article class="rounded-2xl border border-line bg-panel p-6 shadow-soft transition hover:border-amber-500/40 sm:p-7">
+              <div class="flex items-center gap-3">
+                <span class="text-sm font-semibold text-amber-400">Module 02</span>
+                <span class="rounded-full border border-amber-500/30 px-2.5 py-0.5 text-xs font-medium text-amber-300">Build</span>
+              </div>
+              <h3 class="mt-3 font-display text-xl font-semibold text-white sm:text-2xl">Next.js Dashboard Boilerplate</h3>
+              <p class="mt-2 text-slate-400">Skip the setup week. Start from a dashboard that already looks and behaves like a real product.</p>
+              <ul class="mt-5 space-y-3">
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Full React app with Next.js routing already wired up</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Pre-configured Tailwind layouts: sidebar, top bar and responsive content areas</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Clean folder structure that stays tidy as your product grows</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Ready to push to Vercel</span></li>
+              </ul>
+              <div class="mt-6 flex items-center gap-2 border-t border-line pt-4 text-sm font-semibold text-amber-400"><span aria-hidden="true">⏱️</span> Saves 40+ hours of setup and layout work</div>
+            </article>
+          </li>
+
+          <!-- == MODULE 03 == -->
+          <li class="relative">
+            <span class="absolute -left-8 top-[26px] h-3 w-3 rounded-full bg-amber-500 shadow-[0_0_14px_rgba(245,158,11,0.85)] sm:-left-10 sm:top-[30px]" aria-hidden="true"></span>
+            <article class="rounded-2xl border border-line bg-panel p-6 shadow-soft transition hover:border-amber-500/40 sm:p-7">
+              <div class="flex items-center gap-3">
+                <span class="text-sm font-semibold text-amber-400">Module 03</span>
+                <span class="rounded-full border border-amber-500/30 px-2.5 py-0.5 text-xs font-medium text-amber-300">Market</span>
+              </div>
+              <h3 class="mt-3 font-display text-xl font-semibold text-white sm:text-2xl">The Cold Email Growth Playbook</h3>
+              <p class="mt-2 text-slate-400">Land your first B2B clients with outreach that leads with value instead of a pitch.</p>
+              <ul class="mt-5 space-y-3">
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>B2B client scripts you can adapt to any niche in minutes</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Value-first teardown templates that start real conversations</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Objection matrices for the replies you'll actually get</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Written for solo operators, not sales teams</span></li>
+              </ul>
+              <div class="mt-6 flex items-center gap-2 border-t border-line pt-4 text-sm font-semibold text-amber-400"><span aria-hidden="true">⏱️</span> Saves 20+ hours of writing and testing outreach</div>
+            </article>
+          </li>
+
+          <!-- == MODULE 04 == -->
+          <li class="relative">
+            <span class="absolute -left-8 top-[26px] h-3 w-3 rounded-full bg-amber-500 shadow-[0_0_14px_rgba(245,158,11,0.85)] sm:-left-10 sm:top-[30px]" aria-hidden="true"></span>
+            <article class="rounded-2xl border border-line bg-panel p-6 shadow-soft transition hover:border-amber-500/40 sm:p-7">
+              <div class="flex items-center gap-3">
+                <span class="text-sm font-semibold text-amber-400">Module 04</span>
+                <span class="rounded-full border border-amber-500/30 px-2.5 py-0.5 text-xs font-medium text-amber-300">Scale</span>
+              </div>
+              <h3 class="mt-3 font-display text-xl font-semibold text-white sm:text-2xl">The Viral Short-Form Hooks Engine</h3>
+              <p class="mt-2 text-slate-400">A hook database you can turn into a month of Reels and Shorts in a single sitting.</p>
+              <ul class="mt-5 space-y-3">
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>200 hook rows in a ready-to-import CSV database</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Psychological retention hooks, each paired with the mechanism that holds attention</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Step-by-step Canva and CapCut bulk-creation instructions</span></li>
+                <li class="flex gap-3"><span class="mt-0.5 font-bold text-emerald-400" aria-hidden="true">✓</span><span>Opens in Excel and Google Sheets</span></li>
+              </ul>
+              <div class="mt-6 flex items-center gap-2 border-t border-line pt-4 text-sm font-semibold text-amber-400"><span aria-hidden="true">⏱️</span> Saves 12+ hours of scripting and design</div>
+            </article>
+          </li>
+        </ol>
+      </section>
+
+      <!-- == STICKY INTERACTIVE CHECKOUT CARD (RIGHT, 1/3 WIDTH) == -->
+      <aside id="checkout" class="scroll-mt-6 self-start lg:sticky lg:top-6" aria-label="Checkout">
+        <div class="rounded-2xl border border-amber-500/30 bg-panel p-6 shadow-glow sm:p-7">
+
+          <!-- Animated pulse badge -->
+          <span class="inline-flex items-center gap-2.5 rounded-full border border-amber-500/40 bg-amber-500/10 px-3.5 py-1.5 text-xs font-bold tracking-wider text-amber-400">
+            <span class="relative flex h-2.5 w-2.5" aria-hidden="true">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
+              <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-amber-500"></span>
+            </span>
+            PREMIUM ACCELERATOR
+          </span>
+
+          <h2 class="mt-4 font-display text-xl font-bold text-white">The Solopreneur Launchpad</h2>
+          <p class="mt-1 text-sm text-slate-400">All 4 modules, delivered as one ZIP.</p>
+
+          <!-- Dynamic price comparison (values are filled from the config in the script below) -->
+          <div class="mt-6 rounded-xl border border-line bg-ink/60 p-5">
+            <div class="flex items-baseline justify-between text-sm">
+              <span class="text-slate-400">Value</span>
+              <span class="text-slate-400 line-through decoration-slate-500" data-value>$79</span>
+            </div>
+            <div class="mt-3 flex items-end justify-between">
+              <span class="pb-1.5 text-sm font-medium text-slate-200">Bundle Price</span>
+              <span class="font-display text-4xl font-extrabold text-amber-400 drop-shadow-[0_0_18px_rgba(245,158,11,0.35)]" data-price>$39</span>
+            </div>
+            <div class="mt-4 inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
+              You save&nbsp;<span data-save>$40</span>&nbsp;(<span data-pct>51%</span> off)
+            </div>
+          </div>
+
+          <!-- Quick recap -->
+          <ul class="mt-6 space-y-2.5 text-sm">
+            <li class="flex gap-3"><span class="font-bold text-emerald-400" aria-hidden="true">✓</span><span>Prompt Vault, Next.js Dashboard, Cold Email Playbook, Hooks Engine</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-400" aria-hidden="true">✓</span><span>85+ hours of work already done for you</span></li>
+          </ul>
+
+          <!-- Primary call to action -->
+          <a href="#" data-checkout rel="noopener"
+             class="mt-6 flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 px-6 py-4 font-display text-lg font-extrabold text-ink shadow-cta transition duration-200 hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0">
+            Claim Full Engine →
+          </a>
+
+          <!-- Micro-copy -->
+          <div class="mt-5 space-y-2 text-center text-xs leading-relaxed text-slate-400">
+            <p><span aria-hidden="true">🔒</span> Secure global checkout via Lemon Squeezy</p>
+            <p><span aria-hidden="true">📧</span> Instant email delivery of your ZIP file</p>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- == FOOTER == -->
+  <footer class="border-t border-line">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:px-8">
+      <p>© <span id="year">2026</span> The Solopreneur Launchpad. All rights reserved.</p>
+      <a href="index.html" class="transition hover:text-amber-400">Back to homepage</a>
+    </div>
+  </footer>
+
+  <!-- == MOBILE STICKY BUY BAR (hidden on desktop and when the checkout card is on screen) == -->
+  <div id="mobile-bar" class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink/90 px-4 pt-3 backdrop-blur transition-transform duration-300 lg:hidden" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));">
+    <div class="mx-auto flex max-w-md items-center justify-between gap-4">
+      <div class="leading-tight">
+        <div class="text-xs text-slate-400 line-through" data-value>$79</div>
+        <div class="font-display text-xl font-extrabold text-amber-400" data-price>$39</div>
+      </div>
+      <a href="#" data-checkout rel="noopener"
+         class="flex-1 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 px-5 py-3 text-center font-display text-base font-extrabold text-ink shadow-cta transition hover:brightness-110">
+        Claim Full Engine →
+      </a>
+    </div>
+  </div>
+
+  <!-- == PAGE SCRIPT: CONFIG, PRICING, CHECKOUT LINKS, MOBILE BAR == -->
+  <script>
+    (function () {
+      /* ---------- EDIT THESE THREE VALUES ---------- */
+      var CONFIG = {
+        checkoutUrl: 'https://getkittemplate.lemonsqueezy.com/checkout/buy/7bc0b7c2-d48d-428e-a0f1-42f6a3e743fb', // your Lemon Squeezy buy link
+        valuePrice: 79,     // crossed-out "Value" price ($)
+        bundlePrice: 39     // actual bundle price ($)
+      };
+      /* --------------------------------------------- */
+
+      var fmt = function (n) { return '$' + new Intl.NumberFormat('en-US').format(n); };
+      var setAll = function (selector, text) {
+        document.querySelectorAll(selector).forEach(function (el) { el.textContent = text; });
+      };
+
+      // Price comparison: everything is derived from the two numbers above
+      var saved = CONFIG.valuePrice - CONFIG.bundlePrice;
+      var pct = Math.round((saved / CONFIG.valuePrice) * 100);
+      setAll('[data-value]', fmt(CONFIG.valuePrice));
+      setAll('[data-price]', fmt(CONFIG.bundlePrice));
+      setAll('[data-save]', fmt(saved));
+      setAll('[data-pct]', pct + '%');
+
+      // Point every "Claim Full Engine" button at the checkout
+      document.querySelectorAll('[data-checkout]').forEach(function (a) { a.setAttribute('href', CONFIG.checkoutUrl); });
+      if (CONFIG.checkoutUrl.indexOf('YOUR-STORE') !== -1) {
+        console.warn('bundle.html: replace CONFIG.checkoutUrl with your real Lemon Squeezy checkout link.');
+      }
+
+      // Footer year
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+
+      // Mobile buy bar: slide away while the main checkout card is visible
+      var bar = document.getElementById('mobile-bar');
+      var card = document.getElementById('checkout');
+      if (bar && card && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          bar.style.transform = entries[0].isIntersecting ? 'translateY(100%)' : 'translateY(0)';
+        }, { threshold: 0.25 }).observe(card);
+      }
+    })();
+  </script>
+</body>
+</html>
