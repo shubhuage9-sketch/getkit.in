@@ -3,11 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GetKit — Free tools, templates & AI apps for students</title>
-<meta name="description" content="GetKit — free tools, best deals & offers, templates, AI apps, games and study guides, all in one place.">
+<title>GetKit — Free tools, deals, templates, games & guides for students</title>
+<meta name="description" content="GetKit — free tools, best deals, templates, games and practical study guides, all in one place.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<head> 
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+     crossorigin="anonymous"></script>
+</head>
 
 <style>
   :root{
@@ -44,7 +49,7 @@
 
   a{ color:inherit; text-decoration:none; }
 
-  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
 
   header{
     position:sticky; top:0; z-index:50;
@@ -52,9 +57,9 @@
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--border);
   }
-  .header-inner{
+    .header-inner{
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 24px;
+    padding:14px 28px;
   }
   .logo{
     display:flex; align-items:center; gap:8px;
@@ -70,12 +75,13 @@
   @media(min-width:820px){ nav{ display:flex; } }
   nav a:hover{ color:var(--text); }
 
-  .hero{ padding:64px 0 40px; }
+  .hero{ padding:52px 0 34px; }
   .hero .label{ margin-bottom:14px; }
   .hero h1{
     font-size:clamp(2.1rem, 5vw, 3.4rem);
-    max-width:14ch;
+    max-width:16ch;
     margin-bottom:18px;
+    line-height:1.04;
   }
   .hero h1 .accent{ color:var(--amber); }
   .hero p{ color:var(--muted); font-size:1.05rem; max-width:46ch; margin-bottom:28px; }
@@ -125,7 +131,28 @@
   .pocket .name{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:0.95rem; margin-bottom:4px; }
   .pocket .desc{ font-size:0.8rem; color:var(--muted); line-height:1.4; }
 
-  .ad-slot{ max-width:1180px; margin:12px auto 0; padding:0 24px; }
+
+  .featured-pocket{
+    border-color:rgba(201,161,95,0.35);
+    background:linear-gradient(145deg, rgba(201,161,95,0.12), var(--surface));
+  }
+  .featured-pocket .name{ color:var(--amber); }
+  .ad-slot-inner{
+    background:rgba(255,255,255,0.012);
+    position:relative;
+    overflow:hidden;
+  }
+  .ad-slot-inner::before{
+    content:"ADVERTISEMENT";
+    position:absolute;
+    top:8px;
+    left:12px;
+    font-size:.58rem;
+    letter-spacing:.16em;
+    color:rgba(156,148,140,.55);
+  }
+
+  .ad-slot{ max-width:1120px; margin:14px auto 0; padding:0 28px; }
   .ad-slot-inner{
     border:1px dashed var(--border);
     border-radius:10px;
@@ -187,6 +214,26 @@
   }
   .card:hover{ border-color:rgba(168,120,90,0.4); transform:translateY(-3px); }
 
+  .card.featured{ border-color:rgba(201,161,95,0.45); }
+  .card.featured:hover{ border-color:rgba(201,161,95,0.7); }
+
+  .bundle-banner{
+    display:block;
+    background: linear-gradient(135deg, rgba(201,161,95,0.16), rgba(168,120,90,0.10));
+    border:1px solid rgba(201,161,95,0.4);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+    margin: 0 0 6px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .bundle-banner:hover{ border-color: rgba(201,161,95,0.65); transform: translateY(-2px); }
+  .bundle-banner-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .bundle-banner h2{ font-size:1.35rem; margin:6px 0 6px; }
+  .bundle-banner p{ color:var(--muted); font-size:0.9rem; max-width:50ch; }
+  .bundle-banner .btn{ flex-shrink:0; }
+
   .card-icon{
     width:40px; height:40px; border-radius:10px;
     display:flex; align-items:center; justify-content:center;
@@ -208,6 +255,7 @@
   }
   .tag.free{ color:var(--teal); background:rgba(168,120,90,0.14); }
   .tag.paid{ color:var(--amber); background:rgba(201,161,95,0.14); }
+  .tag.bundle{ color:#1C1917; background:var(--amber); font-weight:700; }
 
   .card-link{
     font-size:0.85rem; font-weight:600; color:var(--amber);
@@ -232,7 +280,7 @@
 <body>
 
 <header>
-  <div class="header-inner wrap" style="padding-left:0; padding-right:0;">
+  <div class="header-inner wrap">
     <a href="/" class="logo">
       <span class="logo-mark">GK</span>
       GetKit
@@ -241,10 +289,8 @@
       <a href="deals.html">Deals</a>
       <a href="tools.html">Tools</a>
       <a href="templates.html">Templates</a>
-      <a href="ai_apps.html">AI Apps</a>
       <a href="games.html">Games</a>
       <a href="learn.html">Learn</a>
-      <a href="downloads.html">Downloads</a>
     </nav>
     <a href="tools.html" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">Open a tool</a>
   </div>
@@ -253,32 +299,44 @@
 <section class="hero wrap">
   <div class="label">// free digital toolkit</div>
   <h1>Everything you need, <span class="accent">tools included.</span></h1>
-  <p>Tools, templates, AI apps, games and guides — built for students and job-seekers who want things done without paying for it.</p>
+  <p>Deals, tools, templates, games and practical guides — built for students, creators and job-seekers who want useful resources in one place.</p>
   <div class="hero-ctas">
     <a href="tools.html" class="btn btn-primary">Browse tools →</a>
-    <a href="ai-apps.html" class="btn btn-ghost">Try an AI app</a>
   </div>
+</section>
+
+<section class="wrap" style="padding: 0 24px 8px;">
+  <a href="bundel.html" class="bundle-banner">
+    <div class="bundle-banner-inner">
+      <div>
+        <span class="tag bundle">Bundle • Best Value</span>
+        <h2>Creator & Professional Dashboard Kit</h2>
+        <p>Dashboard, portfolio and tracker templates — everything a creator or working professional needs, in one pack.</p>
+      </div>
+      <span class="btn btn-primary">Get the bundle →</span>
+    </div>
+  </a>
 </section>
 
 <div class="toolbelt-wrap wrap" style="padding-left:0; padding-right:0;">
   <div class="toolbelt">
-    <a href="tools.html" class="pocket">
+    <a href="#deals" class="pocket featured-pocket">
       <span class="num">01</span>
+      <span class="icon">🏷️</span>
+      <span class="name">Deals</span>
+      <span class="desc">Best offers, updated often</span>
+    </a>
+    <a href="tools.html" class="pocket">
+      <span class="num">02</span>
       <span class="icon">🛠️</span>
       <span class="name">Tools</span>
       <span class="desc">Quick utilities, zero signup</span>
     </a>
     <a href="templates.html" class="pocket">
-      <span class="num">02</span>
+      <span class="num">03</span>
       <span class="icon">🧩</span>
       <span class="name">Templates</span>
       <span class="desc">Free + premium designs</span>
-    </a>
-    <a href="#deals" class="pocket">
-      <span class="num">03</span>
-      <span class="icon">🏷️</span>
-      <span class="name">Deals</span>
-      <span class="desc">Best offers, updated often</span>
     </a>
     <a href="games.html" class="pocket">
       <span class="num">04</span>
@@ -286,40 +344,38 @@
       <span class="name">Games</span>
       <span class="desc">Browser games, no install</span>
     </a>
-    <a href="ai-apps.html" class="pocket">
-      <span class="num">05</span>
-      <span class="icon">✨</span>
-      <span class="name">AI Apps</span>
-      <span class="desc">Resume, study plans & more</span>
-    </a>
     <a href="learn.html" class="pocket">
-      <span class="num">06</span>
+      <span class="num">05</span>
       <span class="icon">📘</span>
       <span class="name">Learn</span>
       <span class="desc">Short, useful guides</span>
-    </a>
-    <a href="downloads.html" class="pocket">
-      <span class="num">07</span>
-      <span class="icon">⬇️</span>
-      <span class="name">Downloads</span>
-      <span class="desc">Resume kits & assets</span>
     </a>
   </div>
 </div>
 
 <div class="ad-slot">
-  <div class="ad-slot-inner"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+  <div class="ad-slot-inner"><!-- =====================================================
+     PASTE YOUR AD CODE HERE
+     Example: Google AdSense / affiliate banner / direct ad
+     ===================================================== -->
+    <div style="width:100%; min-height:90px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:.72rem;">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
      crossorigin="anonymous"></script>
-<!-- getkit -->
+<!-- getkit_content_infeed -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9695226920600935"
-     data-ad-slot="6759944455"
+     data-ad-slot="3167975347"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+</script>
+    </div>
+    <!-- =====================================================
+         END AD CODE
+         ===================================================== -->
+</div>
 </div>
 
 <main class="wrap">
@@ -399,6 +455,13 @@
       <p>Ready-made designs — some free, some premium.</p>
     </div>
     <div class="grid">
+      <div class="card featured">
+        <div class="card-icon">🗂️</div>
+        <h3>Creator & Professional Dashboard Kit</h3>
+        <p>A bundle of dashboard, portfolio and tracker templates built for creators and working professionals — everything in one pack, one price.</p>
+        <div class="tag-row"><span class="tag bundle">Bundle</span></div>
+        <a href="#" class="card-link">Preview bundle →</a>
+      </div>
       <div class="card">
         <div class="card-icon">🌐</div>
         <h3>Portfolio Site</h3>
@@ -423,49 +486,31 @@
     </div>
   </section>
 
-  <section class="sections" id="ai-apps">
-    <div class="section-head">
-      <h2>AI Apps</h2>
-      <p>Small AI-powered helpers for real tasks.</p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <h3>Resume Builder</h3>
-        <p>Answer a few prompts, get a formatted resume ready to download.</p>
-        <div class="tag-row"><span class="tag free">Free</span></div>
-        <a href="#" class="card-link">Try it →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">🗓️</div>
-        <h3>Study Plan Generator</h3>
-        <p>Set your exam date and syllabus, get a day-by-day plan.</p>
-        <div class="tag-row"><span class="tag free">Free</span></div>
-        <a href="#" class="card-link">Try it →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">✍️</div>
-        <h3>Paraphraser</h3>
-        <p>Rewrite text in a different tone while keeping the meaning.</p>
-        <div class="tag-row"><span class="tag free">Free</span></div>
-        <a href="#" class="card-link">Try it →</a>
-      </div>
-    </div>
-  </section>
+
 
   <div class="ad-slot" style="padding:0;">
-    <div class="ad-slot-inner"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+    <div class="ad-slot-inner"><!-- =====================================================
+     PASTE YOUR AD CODE HERE
+     Example: Google AdSense / affiliate banner / direct ad
+     ===================================================== -->
+    <div style="width:100%; min-height:90px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:.72rem;">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
      crossorigin="anonymous"></script>
-<!-- getkit -->
+<!-- getkit_content_infeed -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9695226920600935"
-     data-ad-slot="6759944455"
+     data-ad-slot="3167975347"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+</script>
+    </div>
+    <!-- =====================================================
+         END AD CODE
+         ===================================================== -->
+</div>
   </div>
 
   <section class="sections" id="games">
@@ -525,52 +570,32 @@
     </div>
   </section>
 
-  <section class="sections" id="downloads">
-    <div class="section-head">
-      <h2>Free Downloads</h2>
-      <p>Ready-to-use files — grab and go.</p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="card-icon">📄</div>
-        <h3>Resume Starter Kit</h3>
-        <p>Three editable resume formats: Word, Google Docs, and PDF.</p>
-        <div class="tag-row"><span class="tag free">Free</span></div>
-        <a href="#" class="card-link">Download →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <h3>Study Tracker Sheet</h3>
-        <p>A simple spreadsheet to log daily study hours and topics.</p>
-        <div class="tag-row"><span class="tag free">Free</span></div>
-        <a href="#" class="card-link">Download →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">🖇️</div>
-        <h3>Cover Letter Pack</h3>
-        <p>Five editable cover letter templates for common job types.</p>
-        <div class="tag-row"><span class="tag free">Free</span></div>
-        <a href="#" class="card-link">Download →</a>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <div class="ad-slot">
   <div class="ad-slot-inner">
-   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+   <!-- =====================================================
+     PASTE YOUR AD CODE HERE
+     Example: Google AdSense / affiliate banner / direct ad
+     ===================================================== -->
+    <div style="width:100%; min-height:90px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:.72rem;">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
      crossorigin="anonymous"></script>
-<!-- getkit -->
+<!-- getkit_content_infeed -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9695226920600935"
-     data-ad-slot="6759944455"
+     data-ad-slot="3167975347"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+    </div>
+    <!-- =====================================================
+         END AD CODE
+         ===================================================== -->
+
   </div>
 </div>
 
