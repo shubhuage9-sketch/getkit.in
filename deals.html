@@ -1,147 +1,1215 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Executive Vault — Curated Digital Stack & Exclusive Deals</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GetKit — High-Value Tech Deals Under $300</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .deal-card:hover { transform: translateY(-4px); }
-  </style>
-<head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+<!-- 
+==============================================================================
+👉 PASTE YOUR CUELINKS CODE HERE 👈
+==============================================================================
+1. Replace 'YOUR_CUELINKS_PUBLISHER_ID' below with your actual Cuelinks ID.
+2. The script will automatically detect any plain merchant link on this 
+   page (e.g. hostinger.com) and convert it into your affiliate link on click.
+==============================================================================
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
      crossorigin="anonymous"></script>
-</head>
+<!-- getkit_content_infeed -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9695226920600935"
+     data-ad-slot="3167975347"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<script type="text/javascript">
+  var cuelinksPublisherId = "YOUR_CUELINKS_PUBLISHER_ID";
+</script>
+<script type="text/javascript" src="//cdn.cuelinks.com/js/cuelinks_v2.js" async></script>
+<!-- ================= END CUELINKS CODE ================= -->
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<a class="nav-link" href="index.html" style="color: #ffffff; text-decoration: none; font-weight: 500;">
+  ← Back to homepage
+</a>
+
+
+<style>
+  :root {
+    --obsidian-950: #08080A;
+    --obsidian-900: #0B0F17;
+    --obsidian-850: #10141D;
+    --gold: #D4AF37;
+    --gold-soft: #E8CE7A;
+    --violet: #6366F1;
+    --emerald: #10B981;
+    --ink-1: #ECEDF1;
+    --ink-2: #98A0AE;
+    --ink-3: #5C6472;
+    --hairline: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--obsidian-950);
+    color: var(--ink-1);
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  .font-display { font-family: 'Fraunces', serif; }
+
+  ::selection { background: rgba(212,175,55,0.25); color: #fff; }
+
+  /* Ambient background glows */
+  .ambient-field {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  }
+  .ambient-field::before, .ambient-field::after {
+    content: ""; position: absolute; border-radius: 9999px; filter: blur(120px);
+  }
+  .ambient-field::before {
+    width: 640px; height: 640px; top: -220px; left: -160px;
+    background: radial-gradient(circle, rgba(212,175,55,0.10), transparent 70%);
+  }
+  .ambient-field::after {
+    width: 720px; height: 720px; bottom: -280px; right: -200px;
+    background: radial-gradient(circle, rgba(99,102,241,0.10), transparent 70%);
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.04); }
+  }
+  .hero-glow { animation: glow-pulse 6s ease-in-out infinite; }
+
+  .glass-card {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--hairline);
+  }
+
+  .card-hover {
+    transition: transform 320ms cubic-bezier(.2,.8,.2,1), border-color 320ms ease, box-shadow 320ms ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212,175,55,0.32);
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.65), 0 0 40px -12px rgba(212,175,55,0.18);
+  }
+
+  .cta-metallic {
+    background: linear-gradient(135deg, #F4E4A6 0%, #D4AF37 32%, #9C7A25 68%, #E8CE7A 100%);
+    background-size: 200% 200%;
+    color: #1A1400;
+    transition: background-position 500ms ease, transform 200ms ease, box-shadow 200ms ease;
+  }
+  .cta-metallic:hover {
+    background-position: 100% 50%;
+    box-shadow: 0 10px 30px -8px rgba(212,175,55,0.55);
+  }
+
+  .pill {
+    border: 1px solid var(--hairline);
+    color: var(--ink-2);
+    transition: all 220ms ease;
+    white-space: nowrap;
+  }
+  .pill[data-active="true"] {
+    background: rgba(212,175,55,0.12);
+    border-color: rgba(212,175,55,0.5);
+    color: var(--gold-soft);
+  }
+  .pill:hover:not([data-active="true"]) {
+    border-color: rgba(255,255,255,0.22);
+    color: var(--ink-1);
+  }
+
+  input::placeholder { color: var(--ink-3); }
+  input:focus { outline: none; }
+
+  .search-wrap:focus-within {
+    border-color: rgba(212,175,55,0.4);
+    box-shadow: 0 0 0 3px rgba(212,175,55,0.08);
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .badge-emerald { color: #6EE7B7; background: rgba(16,185,129,0.10); border: 1px solid rgba(16,185,129,0.28); }
+  .badge-gold { color: var(--gold-soft); background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.22); }
+  .badge-blue { color: #93C5FD; background: rgba(59,130,246,0.10); border: 1px solid rgba(59,130,246,0.28); }
+
+  .logo-box {
+    background: linear-gradient(155deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));
+    border: 1px solid var(--hairline);
+  }
+
+  .divider-fade {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hairline), transparent);
+  }
+
+  /* Expandable Drawer Animation */
+  .detail-drawer {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease, margin-top 300ms ease;
+  }
+  .detail-drawer.open {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 1rem;
+  }
+
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+
+  .fade-in { animation: fadeIn 350ms ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+</style>
 </head>
 
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-white">
+<body class="min-h-screen relative">
+<div class="ambient-field" aria-hidden="true"></div>
 
-  <!-- Navigation -->
-  <nav class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center space-x-3 group">
-        <div class="h-9 w-9 bg-amber-500 rounded-xl flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
-          🔥
-        </div>
-        <span class="font-bold text-xl tracking-tight text-white">GET<span class="text-amber-400">KIt</span> <span class="text-xs uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">Deals</span></span>
-      </a>
-      <div class="flex space-x-6 text-sm font-medium text-slate-300">
-        <a href="index.html" class="hover:text-amber-400 transition">← Home</a>
-        <a href="tools.html" class="hover:text-emerald-400 transition">Tools</a>
-        <a href="games.html" class="hover:text-purple-400 transition">Games</a>
+<!-- ============================= HERO ============================= -->
+<header class="relative z-10 px-6 pt-5 pb-6 sm:pt-5 sm:pb-6">
+  <div class="max-w-3xl mx-auto text-center">
+
+    <div class="hero-glow inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card mb-7">
+      <span class="text-[var(--gold)] text-xs">✦</span>
+      <span class="text-[11px] tracking-[0.22em] uppercase text-[var(--gold-soft)] font-semibold">40 Verified Production Tools</span>
+      <span class="text-[var(--gold)] text-xs">✦</span>
+    </div>
+
+    <h1 class="font-display text-[2.4rem] leading-[1.12] sm:text-6xl sm:leading-[1.08] font-medium text-[var(--ink-1)]">
+      The full 40-tool stack for
+      <span class="italic" style="color: var(--gold-soft);">high-velocity</span>
+      creators &amp; builders
+    </h1>
+
+    <p class="mt-6 text-base sm:text-lg text-[var(--ink-2)] max-w-xl mx-auto leading-relaxed">
+      Exactly 10 deeply evaluated tools across 4 core domains. Complete with technical specs, architecture breakdowns, and direct access links.
+    </p>
+  </div>
+
+  <!-- Search & Category Filters -->
+  <div class="max-w-4xl mx-auto mt-12 space-y-5">
+    <div class="search-wrap flex items-center gap-3 glass-card rounded-2xl px-5 py-3.5 transition-all duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[var(--ink-3)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input id="searchInput" type="text" placeholder="Search by tool name, spec, feature, or keyword (e.g. LiteSpeed, Next.js, SEO, 3D)..."
+        class="bg-transparent w-full text-sm text-[var(--ink-1)]" />
+      <button id="clearSearch" class="hidden text-xs text-[var(--ink-3)] hover:text-[var(--ink-1)] shrink-0 font-bold px-1">✕ Clear</button>
+      <span id="resultCount" class="text-xs text-[var(--ink-3)] shrink-0 font-medium hidden sm:inline">Showing 40 of 40 tools</span>
+    </div>
+
+    <div id="filterBar" class="flex flex-wrap justify-center gap-2.5">
+      <!-- Filter pills injected by JS -->
+    </div>
+  </div>
+</header>
+
+<div class="max-w-6xl mx-auto px-6"><div class="divider-fade"></div></div>
+
+<!-- Top Ad Banner Slot -->
+<div class="max-w-6xl mx-auto px-6 pt-10">
+  <div class="glass-card rounded-2xl h-24 sm:h-28 flex items-center justify-center overflow-hidden">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9695226920600935"
+         data-ad-slot="3167975347"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
+<!-- ============================= MAIN GRID ============================= -->
+<main class="relative z-10 max-w-6xl mx-auto px-6 py-12">
+  <div id="grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  <div id="emptyState" class="hidden text-center py-24">
+    <p class="font-display text-xl text-[var(--ink-2)]">No matching tools found.</p>
+    <p class="text-sm text-[var(--ink-3)] mt-2">Try clearing your search query or choosing another category tab.</p>
+  </div>
+</main>
+
+<!-- Bottom Ad Banner Slot -->
+<div class="max-w-6xl mx-auto px-6">
+  <div class="glass-card rounded-2xl h-24 sm:h-28 flex items-center justify-center overflow-hidden">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9695226920600935"
+         data-ad-slot="3167975347"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="relative z-10 border-t border-[var(--hairline)] mt-12">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="glass-card rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row gap-4 sm:items-start">
+      <div class="shrink-0 w-9 h-9 rounded-full logo-box flex items-center justify-center">
+        <span class="text-[var(--gold)] text-sm">✦</span>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-[var(--ink-1)] tracking-wide">Excellence &amp; Transparency Guarantee</p>
+        <p class="text-sm text-[var(--ink-2)] mt-1.5 leading-relaxed max-w-3xl">
+          Certain links on this portal automatically convert to verified partner destinations.
+          We may earn affiliate commission at absolute zero extra cost to you — every single product listed
+          here is selected strictly on engineering merit and strategic utility.
+        </p>
       </div>
     </div>
-  </nav>
+    <p class="text-xs text-[var(--ink-3)] text-center mt-8">© <span id="year"></span> — Built for engineers &amp; digital operators. All rights reserved.</p>
+  </div>
+</footer>
 
-  <!-- Hero Section -->
-  <header class="max-w-7xl mx-auto text-center px-6 pt-12 pb-8 w-full">
-    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-amber-400 font-semibold bg-amber-500/10 px-3.5 py-1.5 rounded-full border border-amber-500/20 mb-4">
-      <span>💰 High-Quality Tech & Desk Upgrades Under $300</span>
-    </div>
-    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight">
-      Budget-Friendly Tech Deals
-    </h1>
-    <p class="text-slate-400 text-sm md:text-base mt-3 max-w-xl mx-auto">
-      Tested developer gear, ergonomic accessories, and top software subscriptions all priced under $300.
-    </p>
+<script>
+/* =============================================================
+   PRODUCT DATA — EXACTLY 10 PRODUCTS PER CATEGORY (40 TOTAL)
+   Categories: Hosting (10), AI (10), Design (10), SEO (10)
+   ============================================================= */
+const PRODUCTS = [
+  // ==================== HOSTING & INFRASTRUCTURE (10) ====================
+  { 
+    id: 1,  
+    name: "Hostinger",       
+    tagline: "High-performance NVMe shared & cloud infrastructure",        
+    category: "Hosting", 
+    pricing: "PAID",
+    pricingDetail: "From $2.99/mo | 30-Day Money-Back Guarantee",     
+    features: [
+      "LiteSpeed Enterprise web server with LSWS caching",
+      "Free SSL certificates, daily backups & Cloudflare protection",
+      "hPanel control suite with 1-click WordPress acceleration",
+      "Global datacenters across US, EU, UK, Asia, & South America"
+    ], 
+    bestFor: "Bloggers, portfolio owners, & small business sites", 
+    deepDive: "Hostinger provides NVMe-powered storage options coupled with LiteSpeed Web Server, delivering high TTFB performance at minimal cost. Includes object caching, automated malware scanning, and staging environments built right into hPanel.",
+    directUrl: "https://hostinger.com", 
+    initials: "HS" 
+  },
+  { 
+    id: 2,  
+    name: "Vercel",          
+    tagline: "The frontend cloud for Next.js, React, & modern web apps",          
+    category: "Hosting", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free hobby plan | Pro from $20/user/mo",
+    features: [
+      "Zero-configuration deployment pipelines from GitHub/GitLab",
+      "Global Edge Network with automatic SSR & ISR caching",
+      "Instant preview deployments for every push & pull request",
+      "Built-in web analytics, speed insights & serverless functions"
+    ], 
+    bestFor: "Frontend & full-stack engineers building modern JS web apps", 
+    deepDive: "Vercel is purpose-built for React, Next.js, Svelte, and Vue ecosystems. It provides automatic edge caching, instantaneous immutable deployments, dynamic route optimization, and serverless node environments without infrastructure overhead.",
+    directUrl: "https://vercel.com", 
+    initials: "VC" 
+  },
+  { 
+    id: 3,  
+    name: "DigitalOcean",   
+    tagline: "Developer-first cloud Droplets & Kubernetes infrastructure",     
+    category: "Hosting", 
+    pricing: "PAID",     
+    pricingDetail: "Droplets start at $4/mo | $200 free credit available",
+    features: [
+      "Predictable flat-rate pricing with zero surprise bandwidth charges",
+      "1-Click Marketplace apps (Docker, Node, Ghost, LAMP, WireGuard)",
+      "Fully managed PostgreSQL, MySQL, and Redis database clusters",
+      "DigitalOcean Kubernetes (DOKS) with automated control planes"
+    ], 
+    bestFor: "Developers & startups scaling custom backends & microservices", 
+    deepDive: "DigitalOcean delivers high-performance compute instances (Droplets) with simple pricing models. Features block storage, managed DBs, VPC networking, load balancers, and a comprehensive API for infrastructure automation.",
+    directUrl: "https://digitalocean.com", 
+    initials: "DO" 
+  },
+  { 
+    id: 4,  
+    name: "Cloudflare",     
+    tagline: "Global edge CDN, DNS, serverless Workers & web security",          
+    category: "Hosting", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Generous free plan | Pro from $20/mo",
+    features: [
+      "Sub-millisecond global DNS resolution with unmetered DDoS mitigation",
+      "Cloudflare Workers for v8-powered serverless edge execution",
+      "R2 object storage with zero egress fee bandwidth",
+      "Automatic web optimization (Brotli, Early Hints, HTTP/3)"
+    ], 
+    bestFor: "Anyone needing world-class speed, security, & edge computing", 
+    deepDive: "Operating across 300+ cities globally, Cloudflare acts as an edge shield and acceleration layer. Cloudflare Pages and Workers let you run full dynamic web applications directly at the network edge with minimal latency.",
+    directUrl: "https://cloudflare.com", 
+    initials: "CF" 
+  },
+  { 
+    id: 5,  
+    name: "Netlify",        
+    tagline: "Git-integrated platform for modern web architecture",         
+    category: "Hosting", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free Starter plan | Pro from $19/member/mo",
+    features: [
+      "Continuous deployment triggers from Git repo pushes",
+      "Serverless forms handling, user authentication, & edge functions",
+      "Branch deploys, split testing, & dynamic preview URLs",
+      "High-speed multi-cloud CDN network with automatic SSL"
+    ], 
+    bestFor: "JAMstack developers & static site architecture builders", 
+    deepDive: "Netlify simplifies the workflow for static sites and headless CMS architectures. Features atomic deploys (zero downtime updates), instant rollbacks, serverless backend connectors, and environment variable management across build pipelines.",
+    directUrl: "https://netlify.com", 
+    initials: "NF" 
+  },
+  { 
+    id: 6,  
+    name: "Namecheap",      
+    tagline: "Affordable domain registration & reliable cPanel web hosting",     
+    category: "Hosting", 
+    pricing: "PAID",     
+    pricingDetail: "Domains from $0.99 | Hosting from $1.98/mo",
+    features: [
+      "Free domain privacy protection forever on eligible domain extensions",
+      "Stellar shared hosting with unmetered bandwidth & cPanel access",
+      "Easy DNS management with custom nameserver configuration",
+      "Bundled SSL certificates & professional business email accounts"
+    ], 
+    bestFor: "First-time website builders & domain portfolio investors", 
+    deepDive: "Namecheap offers low domain renewal rates paired with cPanel hosting services. Ideal for setting up custom domains, DNS routing, email forwarding, and lightweight web platforms without complex setup steps.",
+    directUrl: "https://namecheap.com", 
+    initials: "NC" 
+  },
+  { 
+    id: 7,  
+    name: "Railway",        
+    tagline: "Instant infrastructure for backends, APIs, & databases",         
+    category: "Hosting", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "$5/mo hobby plan included credit | Pay-as-you-go usage",
+    features: [
+      "1-Click provisioning for PostgreSQL, Redis, MongoDB, & MySQL",
+      "Automatic Dockerfile & buildpack detection from GitHub repositories",
+      "Zero-downtime auto-scaling containers with isolated environments",
+      "Granular real-time metric dashboards & persistent volume disks"
+    ], 
+    bestFor: "Backend developers, API creators, & microservice operators", 
+    deepDive: "Railway takes the pain out of cloud deployments. Connect a GitHub repository or drop in a container, and Railway handles builds, HTTPS domain provisioning, environment variables, and scaling automatically.",
+    directUrl: "https://railway.app", 
+    initials: "RW" 
+  },
+  { 
+    id: 8,  
+    name: "AWS Lightsail",  
+    tagline: "Simplified VPS compute power with full Amazon ecosystem access",       
+    category: "Hosting", 
+    pricing: "PAID",     
+    pricingDetail: "3 months free trial | Plans start at $3.50/mo",
+    features: [
+      "Pre-configured application stacks (WordPress, Node, LAMP, Nginx)",
+      "Predictable monthly pricing with attached SSD block storage",
+      "Built-in managed databases and cloud load balancers",
+      "Seamless upgrade path into advanced AWS services (S3, CloudFront)"
+    ], 
+    bestFor: "Developers wanting AWS reliability without cloud complexity", 
+    deepDive: "Lightsail provides straightforward compute instances, storage, and databases backed by Amazon Web Services infrastructure. Perfect for running lightweight servers with clear cost bounds while staying within the AWS ecosystem.",
+    directUrl: "https://aws.amazon.com/lightsail", 
+    initials: "AL" 
+  },
+  { 
+    id: 9,  
+    name: "Bluehost",       
+    tagline: "Official WordPress-recommended hosting with staging environments",              
+    category: "Hosting", 
+    pricing: "PAID",     
+    pricingDetail: "From $2.95/mo | Includes free domain year one",
+    features: [
+      "Automated WordPress installation & core software updates",
+      "Customized WP control dashboard with performance tuning controls",
+      "Built-in staging environment to test design & plugin edits safely",
+      "24/7 dedicated technical phone & live chat support team"
+    ], 
+    bestFor: "WordPress site managers, agencies, & ecommerce storefronts", 
+    deepDive: "Endorsed by WordPress.org since 2005, Bluehost integrates seamless site setups, automated backups, and WooCommerce tools. Features built-in CDN management and guided setup wizards for fast site launches.",
+    directUrl: "https://bluehost.com", 
+    initials: "BH" 
+  },
+  { 
+    id: 10, 
+    name: "Render",         
+    tagline: "Unified cloud platform for web services, cron jobs, & static sites",           
+    category: "Hosting", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free tier for static sites & DBs | Services from $7/mo",
+    features: [
+      "Native support for Node.js, Python, Go, Ruby, Rust, & Docker",
+      "Fully managed PostgreSQL with automated daily backups & point-in-time recovery",
+      "Automatic free SSL TLS certificates with custom domain binding",
+      "Native private networking between web services & databases"
+    ], 
+    bestFor: "Developers seeking a modern alternative to Heroku", 
+    deepDive: "Render automates web service builds directly from code commits. It offers isolated internal networks, background worker queues, persistent storage disks, and automatic rollbacks in a developer-focused platform.",
+    directUrl: "https://render.com", 
+    initials: "RD" 
+  },
 
-    <!-- FTC Disclosure -->
-    <div class="mt-4 inline-block text-xs text-slate-500 bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-800">
-      ℹ️ <strong>Disclosure:</strong> As an affiliate, we earn from qualifying purchases at no extra cost to you.
-    </div>
+  // ==================== AI & AUTOMATION (10) ====================
+  { 
+    id: 11, 
+    name: "ChatGPT Plus",   
+    tagline: "Frontier conversational AI powered by GPT-4o & reasoning models",     
+    category: "AI", 
+    pricing: "PAID",     
+    pricingDetail: "$20/month subscription",
+    features: [
+      "Access to advanced reasoning models (GPT-4o, OpenAI o1)",
+      "Custom GPT creator with dedicated custom knowledge base uploads",
+      "Real-time Python code sandbox execution & data analytics",
+      "Multimodal vision understanding & advanced real-time voice mode"
+    ], 
+    bestFor: "Software engineers, researchers, writers, & productivity hackers", 
+    deepDive: "ChatGPT Plus provides top-tier LLM capabilities for code generation, mathematical analysis, document review, and research. Includes access to DALL-E 3 image generation and dynamic web browsing capabilities.",
+    directUrl: "https://chat.openai.com", 
+    initials: "GP" 
+  },
+  { 
+    id: 12, 
+    name: "Claude",         
+    tagline: "Anthropic's thoughtful AI for complex reasoning & coding",              
+    category: "AI", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free plan available | Claude Pro at $20/mo",
+    features: [
+      "Industry-leading 200,000 token context window capacity",
+      "Artifacts workspace feature for real-time live code & UI render preview",
+      "Exceptional nuanced writing tone and technical code generation",
+      "PDF and image parsing for deep structured document analysis"
+    ], 
+    bestFor: "Coders, policy analysts, long-form authors, & product managers", 
+    deepDive: "Powered by Claude 3.5 Sonnet, Anthropic's platform excels in coding precision, architectural analysis, and long-context processing. The Artifacts side-by-side workspace allows live interactive web code execution.",
+    directUrl: "https://claude.ai", 
+    initials: "CL" 
+  },
+  { 
+    id: 13, 
+    name: "Zapier",         
+    tagline: "The industry standard no-code workflow integration network",   
+    category: "AI", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free plan with 100 tasks | Paid plans from $19.99/mo",
+    features: [
+      "Native connectivity across 6,000+ web applications & APIs",
+      "Multi-step automated Zaps with custom conditional logic filters",
+      "Zapier Central & AI Copilot for natural language workflow building",
+      "Built-in webhooks, code steps (JS/Python), & table data stores"
+    ], 
+    bestFor: "Solopreneurs & operations teams automating business tasks", 
+    deepDive: "Zapier connects isolated SaaS platforms without coding. Build automated triggers and multi-branch actions, pass dynamic payload data, format text strings, and run conditional paths seamlessly.",
+    directUrl: "https://zapier.com", 
+    initials: "ZP" 
+  },
+  { 
+    id: 14, 
+    name: "Perplexity",     
+    tagline: "AI-powered research engine with live cited web sources",            
+    category: "AI", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free search engine | Pro subscription at $20/mo",
+    features: [
+      "Real-time web browsing with inline verifiable citation links",
+      "Pro search mode executing multi-step reasoning & query decomposition",
+      "Focus search parameters (Academic, YouTube, Reddit, Writing, Web)",
+      "Model switching between GPT-4o, Claude 3.5 Sonnet, & Sonar models"
+    ], 
+    bestFor: "Students, academic researchers, journalists, & tech analysts", 
+    deepDive: "Perplexity replaces traditional search engines with synthesized answers backed by direct citations. Pro Search breaks complex research queries into sub-questions to pull synthesized intelligence from live sources.",
+    directUrl: "https://perplexity.ai", 
+    initials: "PX" 
+  },
+  { 
+    id: 15, 
+    name: "Make",           
+    tagline: "Visual flow designer for advanced enterprise automation pipelines",      
+    category: "AI", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "1,000 free operations/mo | Core from $9/mo",
+    features: [
+      "Infinite visual drag-and-drop scenario builder canvas",
+      "Advanced data transformation functions, array aggregators, & JSON parsers",
+      "Real-time scenario testing with step-by-step visual payload inspection",
+      "Error-handling route directives (Resume, Ignore, Break, Rollback)"
+    ], 
+    bestFor: "Power users & developers building complex data pipelines", 
+    deepDive: "Make (formerly Integromat) provides granular control over visual workflow scenarios. Visually map data structures, manipulate raw JSON outputs, run complex math calculations, and branch execution dynamically.",
+    directUrl: "https://make.com", 
+    initials: "MK" 
+  },
+  { 
+    id: 16, 
+    name: "ElevenLabs",     
+    tagline: "Ultra-realistic AI voice synthesis & expressive voice cloning",          
+    category: "AI", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "10,000 free characters/mo | Starter from $5/mo",
+    features: [
+      "Human-grade text-to-speech with natural inflection & emotion control",
+      "Instant & high-fidelity voice cloning from brief audio recordings",
+      "Automated multilingual video dubbing in 29+ languages",
+      "Developer API with low-latency streaming audio endpoints"
+    ], 
+    bestFor: "Video creators, podcasters, game developers, & audiobook authors", 
+    deepDive: "ElevenLabs leads in synthetic AI voice production. Fine-tune voice stability, clarity, and style exaggeration parameters to generate natural audio suitable for YouTube channels, game characters, and audiobooks.",
+    directUrl: "https://elevenlabs.io", 
+    initials: "EL" 
+  },
+  { 
+    id: 17, 
+    name: "Notion AI",      
+    tagline: "Integrated AI writing assistant & knowledge base search",     
+    category: "AI", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Add-on at $8-$10/user/mo",
+    features: [
+      "Q&A intelligence searching across all team Notion pages & databases",
+      "In-line document generation, text expansion, tone adjustment, & summaries",
+      "Automated action item extraction from raw meeting transcriptions",
+      "Database property auto-filling driven by custom AI prompts"
+    ], 
+    bestFor: "Teams & individuals using Notion as their central knowledge hub", 
+    deepDive: "Notion AI brings generative model intelligence directly into your workspace notes and database items. Ask questions to find connected details across company wikis, draft documents, or summarize notes automatically.",
+    directUrl: "https://notion.so", 
+    initials: "NA" 
+  },
+  { 
+    id: 18, 
+    name: "Gamma",          
+    tagline: "Generative AI platform for slides, docs, & dynamic web pages",     
+    category: "AI", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "400 free AI credits | Plus plan at $8/mo",
+    features: [
+      "Prompt-to-presentation generation with styled themes & layouts",
+      "Interactive content embeds (forms, videos, Figma frames, 3D models)",
+      "One-click visual re-formatting without breaking text layout balance",
+      "Analytics tracking viewer engagement and slide completion metrics"
+    ], 
+    bestFor: "Founders crafting pitch decks, educators, & product leads", 
+    deepDive: "Gamma transforms prompt ideas into modern slide decks and web documents. It eliminates manual alignment tasks by auto-formatting dynamic cards with clean layouts, typography hierarchy, and interactive elements.",
+    directUrl: "https://gamma.app", 
+    initials: "GM" 
+  },
+  { 
+    id: 19, 
+    name: "Synthesia",      
+    tagline: "Enterprise AI avatar video generation platform",               
+    category: "AI", 
+    pricing: "PAID",     
+    pricingDetail: "Starter plan from $18/mo | Custom enterprise pricing",
+    features: [
+      "140+ diverse photorealistic AI presenter avatars with natural gestures",
+      "Text-to-video generation supporting 130+ global voice languages",
+      "Custom avatar creation from studio camera recordings",
+      "Built-in video templates, screen recorder, & closed captions"
+    ], 
+    bestFor: "Corporate trainers, L&D departments, & video marketers", 
+    deepDive: "Synthesia converts raw text scripts into professional presenter videos without cameras or actors. Ideal for creating employee training modules, product explainers, and localized international video content.",
+    directUrl: "https://synthesia.io", 
+    initials: "SY" 
+  },
+  { 
+    id: 20, 
+    name: "n8n",            
+    tagline: "Fair-code open-source workflow automation engine",          
+    category: "AI", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free self-hosted community edition | Cloud from €20/mo",
+    features: [
+      "Self-hostable via Docker with total data privacy & zero execution caps",
+      "400+ native app integration nodes with full custom JavaScript/Python steps",
+      "Advanced AI agent orchestration nodes with LangChain integration",
+      "Visual workflow debug view with granular execution stack history"
+    ], 
+    bestFor: "Engineers & security-conscious teams who prefer self-hosted tools", 
+    deepDive: "n8n provides an open-source alternative to Zapier. Run complex workflow automation on your own cloud infrastructure, connect native AI agent chains, manipulate custom payloads, and keep data entirely in-house.",
+    directUrl: "https://n8n.io", 
+    initials: "N8" 
+  },
 
-    <!-- Category Filters -->
-    <div class="mt-8 flex flex-wrap justify-center gap-2">
-      <button onclick="filterCategory('all')" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-xs font-bold transition">All Under $300</button>
-      <button onclick="filterCategory('peripherals')" class="px-4 py-2 bg-slate-900 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-bold border border-slate-800 transition">Keyboards & Mice</button>
-      <button onclick="filterCategory('audio')" class="px-4 py-2 bg-slate-900 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-bold border border-slate-800 transition">Audio & Mics</button>
-      <button onclick="filterCategory('desk')" class="px-4 py-2 bg-slate-900 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-bold border border-slate-800 transition">Desk & Storage</button>
-      <button onclick="filterCategory('software')" class="px-4 py-2 bg-slate-900 text-slate-300 hover:bg-slate-800 rounded-xl text-xs font-bold border border-slate-800 transition">Software & Hosting</button>
-    </div>
-  </header>
+  // ==================== DESIGN & CREATIVE (10) ====================
+  { 
+    id: 21, 
+    name: "Figma",          
+    tagline: "The gold standard collaborative cloud interface design tool",      
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free starter tier | Professional at $12/editor/mo",
+    features: [
+      "Real-time multiplayer vector canvas & component design systems",
+      "Advanced Auto-Layout engine with responsive flex-box behavior",
+      "Interactive prototyping with smart animate micro-interactions",
+      "Dev Mode with inspect tokens, CSS properties, & asset export"
+    ], 
+    bestFor: "UI/UX designers, product teams, & web developers", 
+    deepDive: "Figma is the industry standard for web and mobile interface design. Build scalable component libraries with auto-layout variables, collaborate live with team members, and bridge the gap between design and production code.",
+    directUrl: "https://figma.com", 
+    initials: "FG" 
+  },
+  { 
+    id: 22, 
+    name: "Canva Pro",      
+    tagline: "Drag-and-drop graphic design suite with Magic Studio AI",        
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free plan available | Pro at $14.99/mo",
+    features: [
+      "Library of 100M+ premium stock photos, vectors, videos, & fonts",
+      "One-click background removal & Magic Resize across all aspect ratios",
+      "Brand Kit management (color palettes, custom logos, corporate fonts)",
+      "Social media content planner with direct automated publishing"
+    ], 
+    bestFor: "Content creators, social marketers, & non-designers", 
+    deepDive: "Canva Pro empowers anyone to create professional graphics quickly. Features extensive template libraries for social media posts, presentations, print marketing, and short video clips with simple drag-and-drop editing.",
+    directUrl: "https://canva.com", 
+    initials: "CV" 
+  },
+  { 
+    id: 23, 
+    name: "Adobe Express",  
+    tagline: "Fast social content creation backed by Adobe Firefly AI", 
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free plan available | Premium at $9.99/mo",
+    features: [
+      "Generative AI fill & text-to-image creation powered by Adobe Firefly",
+      "Seamless asset sync with Adobe Photoshop & Illustrator cloud files",
+      "1-Click PDF editing, background erase, & quick video trimming",
+      "Commercial-safe Adobe Fonts library & stock asset collections"
+    ], 
+    bestFor: "Small business owners & Adobe Creative Cloud subscribers", 
+    deepDive: "Adobe Express combines rapid template editing with generative AI capabilities. Connect directly with your Creative Cloud assets to create branded social assets, flyers, banners, and video clips quickly.",
+    directUrl: "https://adobe.com/express", 
+    initials: "AE" 
+  },
+  { 
+    id: 24, 
+    name: "Framer",         
+    tagline: "Design-to-production web builder with React performance",     
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free site hosting | Mini/Basic plan from $5/mo",
+    features: [
+      "Freeform canvas design auto-converting to clean production code",
+      "Built-in lightweight CMS for blogs, job boards, & portfolios",
+      "High-performance scroll animations, spring physics, & effects",
+      "Instant global deployment with custom domain SSL support"
+    ], 
+    bestFor: "Designers who want to build & publish sites without writing code", 
+    deepDive: "Framer brings Figma-like design tools straight to web publishing. Build visual layouts with dynamic break points, add fluid micro-interactions, plug in a flexible CMS, and deploy high-speed marketing websites.",
+    directUrl: "https://framer.com", 
+    initials: "FR" 
+  },
+  { 
+    id: 25, 
+    name: "LottieFiles",    
+    tagline: "Lightweight vector animation platform for modern web & apps",       
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free tier | Paid plans from $19/mo",
+    features: [
+      "Tiny Lottie JSON animation files (up to 600% smaller than GIFs)",
+      "Web player integrations for React, Vue, Webflow, & mobile apps",
+      "In-browser editor to customize color schemes and speed settings",
+      "Plugins for Adobe After Effects, Figma, & Lottie Creator"
+    ], 
+    bestFor: "UI motion designers & web creators boosting site engagement", 
+    deepDive: "LottieFiles replaces heavy GIF files and video embeds with interactive vector animations. Scalable to any screen resolution without quality loss, Lottie animations keep website loading times fast.",
+    directUrl: "https://lottiefiles.com", 
+    initials: "LF" 
+  },
+  { 
+    id: 26, 
+    name: "CapCut",         
+    tagline: "Feature-packed video editor with AI auto-captions & effects",      
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free desktop/mobile version | Pro at $7.99/mo",
+    features: [
+      "Automated speech-to-text auto-captions with styled text templates",
+      "AI background removal, smart tracking, & video stabilization",
+      "Extensive audio sound effect library, trending filters, & transitions",
+      "Multi-track timeline editing with speed curves & keyframe control"
+    ], 
+    bestFor: "Reels, TikTok, Shorts, & social video creators", 
+    deepDive: "CapCut provides powerful video editing capabilities across desktop and mobile. Its automated subtitle generation, trendy text effects, speed ramps, and seamless video transitions speed up vertical video editing workflows.",
+    directUrl: "https://capcut.com", 
+    initials: "CC" 
+  },
+  { 
+    id: 27, 
+    name: "Unsplash+",      
+    tagline: "Curated premium royalty-free photography for commercial projects",        
+    category: "Design", 
+    pricing: "PAID",     
+    pricingDetail: "Unsplash+ subscription from $7/mo",
+    features: [
+      "Expanded commercial licensing with model and property releases",
+      "Exclusive high-resolution photo releases refreshed every week",
+      "Zero ad interruptions with unlimited high-resolution asset downloads",
+      "Direct integration into Figma, Notion, & popular design suites"
+    ], 
+    bestFor: "Marketing agencies, editorial teams, & brand builders", 
+    deepDive: "Unsplash+ expands on the popular photography platform by offering commercial-ready visual assets. Includes explicit legal protection and model releases for ad campaigns, client deliverables, and commercial web apps.",
+    directUrl: "https://unsplash.com/plus", 
+    initials: "UN" 
+  },
+  { 
+    id: 28, 
+    name: "Coolors",        
+    tagline: "Lightning-fast color palette generator & accessibility checker",             
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free web version | Pro at $3/mo",
+    features: [
+      "Instant color palette generator matching target hex codes",
+      "Contrast ratio evaluation adhering to WCAG accessibility guidelines",
+      "Color blindness simulation filters (protanopia, deuteranopia, etc.)",
+      "Export palettes to CSS, SCSS, SVG, PDF, ASE, & Tailwind config"
+    ], 
+    bestFor: "Brand designers, frontend devs, & digital artists", 
+    deepDive: "Coolors simplifies palette creation. Hit spacebar to generate harmonious color combinations, extract color schemes from uploaded photos, verify text readability contrast, and export code directly into project styling.",
+    directUrl: "https://coolors.co", 
+    initials: "CO" 
+  },
+  { 
+    id: 29, 
+    name: "Spline 3D",      
+    tagline: "Browser-based 3D design & real-time web interaction platform",             
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free plan | Super plan from $9/mo",
+    features: [
+      "Browser 3D modeling with lighting, materials, physics, & animation",
+      "Interactive event triggers (hover, click, scroll-follow micro-interactions)",
+      "Embed interactive 3D directly in web apps via standard React or HTML web components",
+      "Real-time multiplayer collaboration canvas"
+    ], 
+    bestFor: "Creative web designers & landing page creators building 3D experiences", 
+    deepDive: "Spline democratizes web 3D. Create 3D objects, configure camera angles and lighting, attach physics triggers, and embed interactive scenes straight onto web pages using lightweight runtime engines.",
+    directUrl: "https://spline.design", 
+    initials: "SP" 
+  },
+  { 
+    id: 30, 
+    name: "FigJam",         
+    tagline: "Online collaborative whiteboard for product teams & brain-storming",        
+    category: "Design", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free up to 3 files | Paid from $3/editor/mo",
+    features: [
+      "Sticky notes, live voting widgets, timers, & mind-mapping shapes",
+      "Seamless conversion of whiteboard sticky notes into Figma design components",
+      "Live audio chat, cursor emotes, & interactive team stamps",
+      "Pre-built templates for sprint retros, wireframes, & user journey maps"
+    ], 
+    bestFor: "Remote product teams, agile coaches, & UX researchers", 
+    deepDive: "FigJam offers a flexible whiteboarding space connected directly to Figma. Map user journeys, lead sprint planning sessions, brainstorm wireframe concepts, and turn whiteboard ideas into Figma UI designs.",
+    directUrl: "https://figma.com/figjam", 
+    initials: "FJ" 
+  },
 
-  <!-- Products Grid -->
-  <main class="max-w-7xl mx-auto px-6 pb-24 flex-1 w-full">
-    <div id="dealsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      <!-- JavaScript populates high-margin products -->
-    </div>
-  </main>
+  // ==================== SEO & GROWTH (10) ====================
+  { 
+    id: 31, 
+    name: "Ahrefs",         
+    tagline: "Industry-leading SEO suite for backlinks & keyword research",            
+    category: "SEO", 
+    pricing: "PAID",     
+    pricingDetail: "Lite plan from $99/mo",
+    features: [
+      "Site Explorer with web crawler data indexing backlinks globally",
+      "Keywords Explorer covering 17+ search engine databases with traffic potential metric",
+      "Content Gap tool identifying keywords competitors rank for that you miss",
+      "Site Audit crawling JavaScript pages to detect technical SEO errors"
+    ], 
+    bestFor: "SEO specialists, content teams, & digital growth agencies", 
+    deepDive: "Ahrefs maintains a massive search database and web crawler network. Gain deep insights into organic search traffic, evaluate backlink quality, uncover keyword search volume, and audit technical health issues.",
+    directUrl: "https://ahrefs.com", 
+    initials: "AH" 
+  },
+  { 
+    id: 32, 
+    name: "Semrush",        
+    tagline: "All-in-one digital marketing suite for SEO, PPC, & competitive research",    
+    category: "SEO", 
+    pricing: "PAID",     
+    pricingDetail: "Pro plan starts at $129.95/mo | 7-day free trial",
+    features: [
+      "Domain Overview tracking organic traffic trends, paid ad keywords, & backlinks",
+      "Keyword Magic Tool generating over 20 billion keyword variations",
+      "On-Page SEO Checker delivering structural content optimization suggestions",
+      "Position Tracking monitoring daily SERP rank changes across geographic locations"
+    ], 
+    bestFor: "Full-service digital agencies, PPC managers, & e-commerce brands", 
+    deepDive: "Semrush combines search engine optimization, paid ad intelligence, social media tools, and content marketing insights into a single unified platform. Uncover competitor strategies, run site audits, and monitor rankings.",
+    directUrl: "https://semrush.com", 
+    initials: "SM" 
+  },
+  { 
+    id: 33, 
+    name: "Google Search Console", 
+    tagline: "Official Google search index diagnostic & performance data engine",         
+    category: "SEO", 
+    pricing: "FREE",     
+    pricingDetail: "100% Free tool provided directly by Google",
+    features: [
+      "Real organic search impression, click, CTR, & query ranking position data",
+      "URL Inspection tool for real-time indexing requests & canonical checks",
+      "Core Web Vitals & mobile usability performance validation reporting",
+      "Security warnings, manual action notices, & sitemap submit portal"
+    ], 
+    bestFor: "Every website owner, webmaster, & SEO consultant", 
+    deepDive: "Google Search Console provides primary performance metrics straight from Google's search index. Monitor index coverage, submit XML sitemaps, resolve canonical URL issues, and address Core Web Vitals bottlenecks.",
+    directUrl: "https://search.google.com/search-console", 
+    initials: "GS" 
+  },
+  { 
+    id: 34, 
+    name: "Ubersuggest",    
+    tagline: "Budget-friendly keyword discovery & competitor audit platform",         
+    category: "SEO", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free daily queries | Individual plan from $12/mo or lifetime options",
+    features: [
+      "Keyword search volume, difficulty rating, & seasonal CPC trends",
+      "Domain backlink profile breakdown & top performing page metrics",
+      "AI writer assistant generating headline ideas & content outlines",
+      "Automated weekly site audit alerts highlighting broken links & meta tag errors"
+    ], 
+    bestFor: "Solopreneurs, small business owners, & entry-level marketers", 
+    deepDive: "Ubersuggest delivers accessible SEO metrics without high monthly agency costs. Get actionable keyword ideas, track ranking metrics, analyze competitor content performance, and fix common site technical errors.",
+    directUrl: "https://neilpatel.com/ubersuggest", 
+    initials: "UB" 
+  },
+  { 
+    id: 35, 
+    name: "Surfer SEO",     
+    tagline: "Data-driven content editor optimizing on-page search rankings",         
+    category: "SEO", 
+    pricing: "PAID",     
+    pricingDetail: "Essential plan from $89/mo",
+    features: [
+      "Real-time Content Editor scoring text quality against top 20 ranking SERP results",
+      "NLP (Natural Language Processing) keyword recommendations & frequency metrics",
+      "Content Audit analyzing live URLs against target query competitor benchmarks",
+      "Direct document integration into Google Docs, WordPress, & Jasper AI"
+    ], 
+    bestFor: "Content writers, blog managers, & copywriters aiming for page #1 rankings", 
+    deepDive: "Surfer SEO analyzes top-ranking web pages for your target search queries. It calculates word count recommendations, optimal heading structures, and necessary semantic terms to help your content rank higher.",
+    directUrl: "https://surferseo.com", 
+    initials: "SF" 
+  },
+  { 
+    id: 36, 
+    name: "Mailchimp",      
+    tagline: "Omnichannel email marketing & audience growth automation",        
+    category: "SEO", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free tier for 500 contacts | Essentials from $13/mo",
+    features: [
+      "Intuitive drag-and-drop email builder with responsive newsletter templates",
+      "Customer Journey Builder configuring automated drip email sequences",
+      "Audience segmentation based on purchase behavior, tags, & engagement",
+      "Built-in signup forms, landing pages, & custom domain integration"
+    ], 
+    bestFor: "E-commerce stores, newsletter publishers, & local businesses", 
+    deepDive: "Mailchimp remains a leading platform for building and engaging email audiences. Create automated welcome sequences, segment subscriber bases, run A/B subject line tests, and measure conversion performance.",
+    directUrl: "https://mailchimp.com", 
+    initials: "MC" 
+  },
+  { 
+    id: 37, 
+    name: "PageSpeed Insights", 
+    tagline: "Official Google performance analyzer for Core Web Vitals",          
+    category: "SEO", 
+    pricing: "FREE",     
+    pricingDetail: "100% Free diagnostic tool from Google",
+    features: [
+      "Field & Lab performance diagnostic metrics powered by Lighthouse engine",
+      "Core Web Vitals evaluation (LCP, INP, CLS scores)",
+      "Actionable diagnostic suggestions (unminified JS/CSS, image compression)",
+      "Detailed side-by-side Mobile & Desktop performance audits"
+    ], 
+    bestFor: "Frontend developers, site speed optimizers, & technical SEOs", 
+    deepDive: "PageSpeed Insights measures real-world user performance using Chrome User Experience Report (CrUX) data. Identifies slow rendering Javascript scripts, unoptimized images, layout shifts, and server response issues.",
+    directUrl: "https://pagespeed.web.dev", 
+    initials: "PS" 
+  },
+  { 
+    id: 38, 
+    name: "AnswerThePublic",
+    tagline: "Visual search intent mapping tool uncovering real customer queries",        
+    category: "SEO", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "3 free daily searches | Individual plan from $9/mo",
+    features: [
+      "Search intent query mapping (Who, What, Where, Why, How, Which)",
+      "Preposition & comparison search terms breakdown (versus, like, with, or)",
+      "Search volume & CPC data overlays on visual question wheels",
+      "Export raw search data reports directly to CSV spreadsheets"
+    ], 
+    bestFor: "Content strategists, blog brainstormers, & PR campaign managers", 
+    deepDive: "AnswerThePublic taps into autocomplete search engine queries to visualize what real users are searching for. Excellent for building topic clusters, answering target customer questions, and planning blog posts.",
+    directUrl: "https://answerthepublic.com", 
+    initials: "AP" 
+  },
+  { 
+    id: 39, 
+    name: "Buffer",         
+    tagline: "Streamlined social media post scheduling & audience engagement",        
+    category: "SEO", 
+    pricing: "FREEMIUM",     
+    pricingDetail: "Free plan for 3 channels | Essentials from $6/channel/mo",
+    features: [
+      "Multi-platform queue scheduling (X/Twitter, LinkedIn, IG, Threads, Mastodon)",
+      "Visual social media content calendar planner with drag-and-drop slots",
+      "Analytics reporting performance engagement metrics & optimal posting times",
+      "AI Assistant generating post variations, hashtags, & thread ideas"
+    ], 
+    bestFor: "Solo creators, community builders, & social managers", 
+    deepDive: "Buffer simplifies organic social media management. Draft content, schedule posts across multiple networks from a single queue, review post engagement analytics, and maintain a consistent social presence easily.",
+    directUrl: "https://buffer.com", 
+    initials: "BF" 
+  },
+  { 
+    id: 40, 
+    name: "Google Analytics 4",
+    tagline: "Enterprise web & app cross-platform conversion tracking engine",        
+    category: "SEO", 
+    pricing: "FREE",     
+    pricingDetail: "100% Free standard edition",
+    features: [
+      "Event-based user interaction tracking model across web & mobile apps",
+      "Predictive audience metrics & automated machine-learning insight alerts",
+      "Exploration reports for dynamic funnels, pathing analysis, & cohorts",
+      "Native zero-cost integration with Google Ads & Google Looker Studio"
+    ], 
+    bestFor: "Digital marketers, e-commerce managers, & web analysts", 
+    deepDive: "GA4 provides an event-based measurement model for tracking user journeys. Monitor traffic sources, analyze conversion funnels, understand user retention paths, and build custom audience segments for ad campaigns.",
+    directUrl: "https://analytics.google.com", 
+    initials: "GA" 
+  }
+];
 
-  <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500 mt-auto">
-    <p>© 2026 GetKit Deals. Product prices and availability subject to change.</p>
-  </footer>
+const CATEGORIES = ["All", "Hosting", "AI", "Design", "SEO"];
 
-  <!-- Product Dataset Script -->
-  <script>
-    const deals = [
-      // Keyboards & Mice (High Amazon Commission)
-      { title: "Keychron K2 Wireless Mechanical Keyboard", cat: "peripherals", badge: "Top Seller", price: "$79.99", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&q=80", link: "https://www.amazon.com/dp/B07QBPD325?tag=YOUR_AMAZON_TAG" },
-      { title: "Logitech MX Master 3S Ergonomic Mouse", cat: "peripherals", badge: "Best Ergonomic", price: "$99.99", img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&q=80", link: "https://www.amazon.com/dp/B09HM94VDS?tag=YOUR_AMAZON_TAG" },
-      { title: "Razer DeathAdder V3 Pro Wireless", cat: "peripherals", badge: "Ultra Light", price: "$149.99", img: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&q=80", link: "https://www.amazon.com/dp/B0B6Y9MDC5?tag=YOUR_AMAZON_TAG" },
-      { title: "Epomaker TH80 Pro Gasket Keyboard", cat: "peripherals", badge: "Hot-Swappable", price: "$89.99", img: "https://images.unsplash.com/photo-1595225476474-87563907a212?w=500&q=80", link: "https://www.amazon.com/dp/B09WF7398V?tag=YOUR_AMAZON_TAG" },
+let activeCategory = "All";
+let searchTerm = "";
 
-      // Audio, Mics & Cams (High Margin & High Demand)
-      { title: "HyperX QuadCast S RGB USB Mic", cat: "audio", badge: "Streamer Pick", price: "$129.99", img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&q=80", link: "https://www.amazon.com/dp/B08G8WH435?tag=YOUR_AMAZON_TAG" },
-      { title: "Logitech Brio 4K Webcam", cat: "audio", badge: "4K Video", price: "$169.99", img: "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=500&q=80", link: "https://www.amazon.com/dp/B01N5NYRES?tag=YOUR_AMAZON_TAG" },
-      { title: "Audio-Technica ATH-M50x Studio Headphones", cat: "audio", badge: "Pro Audio", price: "$149.00", img: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&q=80", link: "https://www.amazon.com/dp/B00HVLUR86?tag=YOUR_AMAZON_TAG" },
-      { title: "Elgato Wave:3 USB Microphone", cat: "audio", badge: "Anti-Clip Tech", price: "$149.99", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80", link: "https://www.amazon.com/dp/B088HHWC47?tag=YOUR_AMAZON_TAG" },
+const grid = document.getElementById("grid");
+const filterBar = document.getElementById("filterBar");
+const searchInput = document.getElementById("searchInput");
+const clearSearchBtn = document.getElementById("clearSearch");
+const resultCount = document.getElementById("resultCount");
+const emptyState = document.getElementById("emptyState");
 
-      // Desk Setup & Storage (Fast Impulse Buying)
-      { title: "Samsung T7 Shield 1TB Portable SSD", cat: "desk", badge: "1050 MB/s", price: "$109.99", img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=500&q=80", link: "https://www.amazon.com/dp/B09VLK9W3S?tag=YOUR_AMAZON_TAG" },
-      { title: "BenQ WiT e-Reading Screenbar Lamp", cat: "desk", badge: "Eye Care Light", price: "$229.00", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80", link: "https://www.amazon.com/dp/B013H3LVKY?tag=YOUR_AMAZON_TAG" },
-      { title: "Anker 10-in-1 USB-C Docking Station", cat: "desk", badge: "Dual 4K", price: "$59.99", img: "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=500&q=80", link: "https://www.amazon.com/dp/B088F7LW6S?tag=YOUR_AMAZON_TAG" },
-      { title: "Orbitkey Nest Portable Desk Organizer", cat: "desk", badge: "Wireless Charging", price: "$109.00", img: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=500&q=80", link: "https://www.amazon.com/dp/B08BL48YJ8?tag=YOUR_AMAZON_TAG" },
+function pricingBadgeClass(p) {
+  if (p === "FREE") return "badge-emerald";
+  if (p === "FREEMIUM") return "badge-blue";
+  return "badge-gold";
+}
 
-      // Software & Cloud Services (Highest % Payouts)
-      { title: "Hostinger Web Hosting", cat: "software", badge: "$50+ Payout", price: "$2.99/mo", img: "https://images.unsplash.com/photo-1542744094-3a31216914fc?w=500&q=80", link: "https://hostinger.com?REFERRALCODE=YOUR_HOSTINGER_ID" },
-      { title: "DigitalOcean Cloud Hosting", cat: "software", badge: "$200 Free Credit", price: "Free Credit", img: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=500&q=80", link: "https://m.do.co/c/YOUR_DIGITALOCEAN_ID" },
-      { title: "NordVPN 2-Year Plan", cat: "software", badge: "40% Commission", price: "$3.49/mo", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&q=80", link: "https://nordvpn.com/YOUR_NORDVPN_ID" },
-      { title: "CleanMyMac X Utility", cat: "software", badge: "High Converting", price: "$39.95/yr", img: "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=500&q=80", link: "https://macpaw.com/YOUR_MACPAW_ID" }
-    ];
+function renderFilters() {
+  filterBar.innerHTML = CATEGORIES.map(cat => {
+    let count = cat === "All" ? PRODUCTS.length : PRODUCTS.filter(p => p.category === cat).length;
+    return `
+      <button
+        class="pill px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide"
+        data-cat="${cat}"
+        data-active="${cat === activeCategory}"
+      >${cat === "All" ? "All Stack" : cat} (${count})</button>
+    `;
+  }).join("");
 
-    function renderDeals(data) {
-      const grid = document.getElementById("dealsGrid");
-      grid.innerHTML = "";
+  filterBar.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeCategory = btn.dataset.cat;
+      renderFilters();
+      renderGrid();
+    });
+  });
+}
 
-      data.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "deal-card bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500/50 hover:bg-slate-900 transition duration-300 flex flex-col justify-between group shadow-lg";
-
-        card.innerHTML = `
-          <div>
-            <div class="relative w-full h-44 overflow-hidden bg-slate-950">
-              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
-              <span class="absolute top-3 right-3 text-[10px] bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded-full shadow">${item.badge}</span>
-            </div>
-            <div class="p-4">
-              <h2 class="text-sm font-bold text-white group-hover:text-amber-400 transition line-clamp-2 leading-snug">${item.title}</h2>
-              <p class="text-xs font-bold text-amber-400 mt-2">${item.price}</p>
-            </div>
+function cardHTML(p) {
+  return `
+    <div class="glass-card card-hover fade-in rounded-2xl p-6 flex flex-col justify-between" id="card-${p.id}">
+      <div>
+        <!-- Top Metadata Row -->
+        <div class="flex items-center justify-between gap-2 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] tracking-[0.16em] uppercase font-bold text-[var(--gold-soft)]">${p.category}</span>
+            <span class="text-[var(--ink-3)] text-xs">•</span>
+            <span class="text-[11px] text-[var(--ink-3)] font-mono">${p.pricingDetail}</span>
           </div>
-          <div class="p-4 pt-0">
-            <a href="${item.link}" target="_blank" rel="nofollow sponsored" 
-              class="w-full flex items-center justify-between font-bold text-xs bg-slate-800 group-hover:bg-amber-500 text-slate-300 group-hover:text-slate-950 px-3 py-2 rounded-xl transition">
-              <span>View Deal</span>
-              <span>→</span>
-            </a>
+          <span class="text-[10px] tracking-wide font-bold px-2.5 py-0.5 rounded-full shrink-0 ${pricingBadgeClass(p.pricing)}">${p.pricing}</span>
+        </div>
+
+        <!-- Header Row -->
+        <div class="flex items-start gap-3.5 mb-4">
+          <div class="logo-box w-11 h-11 rounded-xl flex items-center justify-center shrink-0">
+            <span class="font-display text-sm font-semibold text-[var(--ink-1)]">${p.initials}</span>
           </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
+          <div class="min-w-0">
+            <h3 class="font-display text-lg font-medium text-[var(--ink-1)] leading-tight truncate">${p.name}</h3>
+            <p class="text-xs text-[var(--ink-2)] mt-1 leading-snug">${p.tagline}</p>
+          </div>
+        </div>
 
-    function filterCategory(category) {
-      if (category === 'all') {
-        renderDeals(deals);
-      } else {
-        const filtered = deals.filter(item => item.cat === category);
-        renderDeals(filtered);
-      }
-    }
+        <!-- Core Features Bullet List -->
+        <ul class="space-y-2 mb-5">
+          ${p.features.map(f => `
+            <li class="flex items-start gap-2 text-[13px] text-[var(--ink-2)] leading-snug">
+              <span class="text-[var(--gold)] mt-0.5 shrink-0">✓</span>
+              <span>${f}</span>
+            </li>
+          `).join("")}
+        </ul>
 
-    // Initial Load
-    renderDeals(deals);
-  </script>
+        <!-- Expandable Deep Dive Section -->
+        <button 
+          onclick="toggleDrawer(${p.id})" 
+          class="text-xs font-semibold text-[var(--gold-soft)] hover:text-white flex items-center gap-1 mb-2 transition-colors duration-200"
+          id="btn-drawer-${p.id}">
+          <span>▼ Detailed Architecture & Specs</span>
+        </button>
+
+        <div id="drawer-${p.id}" class="detail-drawer">
+          <div class="p-3.5 rounded-xl bg-black/40 border border-[var(--hairline)] text-xs text-[var(--ink-2)] leading-relaxed space-y-2">
+            <p class="text-[var(--ink-1)] font-medium">Core Capabilities & Stack Value:</p>
+            <p>${p.deepDive}</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="divider-fade my-4"></div>
+
+        <!-- Footer / Action Row -->
+        <div class="flex items-center justify-between gap-3">
+          <p class="text-[11px] text-[var(--ink-3)] leading-snug max-w-[55%]">
+            <span class="block text-[10px] uppercase tracking-wide text-[var(--ink-3)] font-semibold">Best for</span>
+            <span class="text-[var(--ink-2)]">${p.bestFor}</span>
+          </p>
+          <a href="${p.directUrl}" target="_blank" rel="noopener sponsored"
+             class="cta-metallic text-xs font-bold px-4 py-2.5 rounded-xl shrink-0 whitespace-nowrap">
+            Access Tool ➔
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function toggleDrawer(id) {
+  const drawer = document.getElementById(`drawer-${id}`);
+  const btn = document.getElementById(`btn-drawer-${id}`);
+  if (!drawer) return;
+
+  if (drawer.classList.contains("open")) {
+    drawer.classList.remove("open");
+    btn.innerHTML = "<span>▼ Detailed Architecture & Specs</span>";
+  } else {
+    drawer.classList.add("open");
+    btn.innerHTML = "<span>▲ Hide Specs</span>";
+  }
+}
+
+/* =============================================================
+   DEEP SEARCH & FILTER ENGINE
+   Matches across name, tagline, category, features, bestFor, & deepDive
+   ============================================================= */
+function renderGrid() {
+  const queryWords = searchTerm.trim().toLowerCase().split(/\s+/).filter(Boolean);
+
+  const filtered = PRODUCTS.filter(p => {
+    // 1. Category filter
+    const matchesCat = activeCategory === "All" || p.category === activeCategory;
+    if (!matchesCat) return false;
+
+    // 2. Query filter
+    if (queryWords.length === 0) return true;
+
+    // Build comprehensive index string
+    const searchableContent = [
+      p.name,
+      p.tagline,
+      p.category,
+      p.pricing,
+      p.pricingDetail,
+      p.bestFor,
+      p.deepDive,
+      ...p.features
+    ].join(" ").toLowerCase();
+
+    return queryWords.every(word => searchableContent.includes(word));
+  });
+
+  resultCount.textContent = `Showing ${filtered.length} of ${PRODUCTS.length} tools`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = "";
+    emptyState.classList.remove("hidden");
+    return;
+  }
+
+  emptyState.classList.add("hidden");
+  grid.innerHTML = filtered.map(cardHTML).join("");
+}
+
+// Search Listeners
+searchInput.addEventListener("input", (e) => {
+  searchTerm = e.target.value;
+  if (searchTerm.trim().length > 0) {
+    clearSearchBtn.classList.remove("hidden");
+  } else {
+    clearSearchBtn.classList.add("hidden");
+  }
+  renderGrid();
+});
+
+clearSearchBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  searchTerm = "";
+  clearSearchBtn.classList.add("hidden");
+  renderGrid();
+  searchInput.focus();
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Initialize Page
+renderFilters();
+renderGrid();
+</script>
 </body>
 </html>
