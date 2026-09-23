@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetKit.in - Ultra-Premium Free Web Templates</title>
+
+    <!-- Google AdSense CDN Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+        crossorigin="anonymous"></script>
+
+    <!-- Lemon Squeezy JS SDK Overlay -->
+    <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                            950: '#1e1b4b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.25);
+        }
+
+        .glass-nav {
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .ambient-glow {
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.18) 0%, rgba(168, 85, 247, 0.08) 40%, rgba(3, 7, 18, 0) 70%);
+        }
+
+        /* Strict Horizontal Responsive Ad Container Styles */
+        .ad-horizontal-wrapper {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.6));
+            border: 1px dashed rgba(99, 102, 241, 0.3);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 110px;
+        }
+
+        .ad-horizontal-ins {
+            display: block !important;
+            width: 100% !important;
+            min-height: 90px !important;
+            max-height: 120px !important;
+        }
+
+        /* Custom Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- GOOGLE ADSENSE AD #1: TOP BANNER (getkit.in) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 w-full">
+        <div class="ad-horizontal-wrapper rounded-2xl p-3 text-center relative overflow-hidden shadow-lg">
+            <div
+                class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-1.5 flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-rectangle-ad text-slate-500"></i>
+                <span>Sponsored Advertisement — Leaderboard Banner</span>
+            </div>
+            <!-- Horizontal AdSense Container -->
+            <ins class="adsbygoogle ad-horizontal-ins" style="display:block" data-ad-client="ca-pub-9695226920600935"
+                data-ad-slot="3167975347" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+            <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 glass-nav my-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Branding Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="resetFilters()">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-500 to-purple-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-brand-500/30">
+                        G
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-white">GetKit<span
+                                class="text-brand-500">.in</span></span>
+                        <span
+                            class="hidden sm:inline-block ml-2.5 px-2.5 py-0.5 text-[10px] font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-full">100%
+                            Free</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Links & Lemon Squeezy Tipping Trigger -->
+                <div class="flex items-center gap-3">
+                    <button onclick="openTippingModal()"
+                        class="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-300 border border-amber-500/30 hover:border-amber-400/60 hover:from-amber-500/30 hover:to-orange-500/30 transition duration-200 flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-heart text-amber-400 animate-pulse"></i>
+                        <span>Tip Creator</span>
+                    </button>
+                    <button onclick="showToast('Lemon Squeezy Ready: LemonSqueezy.Setup() active.')"
+                        class="hidden sm:flex px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 transition border border-slate-800 items-center gap-1.5">
+                        <i class="fa-solid fa-lemon text-amber-400"></i>
+                        <span>Lemon Checkout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-8 pb-6 overflow-hidden ambient-glow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs text-slate-300 mb-6 shadow-md">
+                <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="font-medium">Production-Ready Web Templates by GetKit.in</span>
+            </div>
+
+            <h1
+                class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
+                High-Converting <span
+                    class="bg-gradient-to-r from-brand-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Free
+                    Web Templates</span>
+            </h1>
+
+            <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto font-normal">
+                Crafted for SaaS, portfolios, agencies, waitlists, and dashboards. Live interactive iframe preview,
+                clean source code viewer, and direct 1-click HTML downloads.
+            </p>
+
+            <!-- Live Search Bar -->
+            <div class="mt-8 max-w-2xl mx-auto relative">
+                <i
+                    class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                <input type="text" id="searchInput" oninput="handleSearch()"
+                    placeholder="Search templates, categories, or tech stack (e.g., SaaS, Dashboard, React, Tailwind)..."
+                    class="w-full pl-11 pr-4 py-3.5 bg-slate-900/90 border border-slate-800 rounded-2xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-xl">
+            </div>
+
+            <!-- Key Feature Cards -->
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3.5 max-w-3xl mx-auto text-left">
+                <div class="glass-card p-3.5 rounded-xl text-center">
+                    <div class="text-xl font-black text-white">8 Full Kits</div>
+                    <div class="text-[11px] text-slate-400">Ready to Deploy</div>
+                </div>
+                <div class="glass-card p-3.5 rounded-xl text-center">
+                    <div class="text-xl font-black text-white">100% Free</div>
+                    <div class="text-[11px] text-slate-400">No Paywalls</div>
+                </div>
+                <div class="glass-card p-3.5 rounded-xl text-center">
+                    <div class="text-xl font-black text-white">1-Click Save</div>
+                    <div class="text-[11px] text-slate-400">Direct `.html` Export</div>
+                </div>
+                <div class="glass-card p-3.5 rounded-xl text-center">
+                    <div class="text-xl font-black text-white">Lemon Squeezy</div>
+                    <div class="text-[11px] text-slate-400">PWYW Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+        <!-- Category Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar" id="categoryPills">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
+
+        <!-- Template Grid Container -->
+        <div id="templatesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 8 Ready-to-Use Templates + In-Feed Ad Slot inserted dynamically -->
+        </div>
+
+        <!-- Empty Search Filter State -->
+        <div id="emptyState" class="hidden text-center py-20">
+            <div
+                class="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center mx-auto mb-4 text-slate-500 text-2xl">
+                <i class="fa-solid fa-magnifying-glass font-bold"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">No templates matched your search</h3>
+            <p class="text-slate-400 text-sm mt-1">Try resetting your category filters or search for another keyword.
+            </p>
+            <button onclick="resetFilters()"
+                class="mt-5 px-5 py-2.5 text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white rounded-xl transition shadow-lg shadow-brand-600/20">Reset
+                All Filters</button>
+        </div>
+    </main>
+
+    <!-- GOOGLE ADSENSE AD #3: BOTTOM BANNER (getkit.in) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+        <div class="ad-horizontal-wrapper rounded-2xl p-3 text-center relative overflow-hidden shadow-lg">
+            <div
+                class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-1.5 flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-rectangle-ad text-slate-500"></i>
+                <span>Sponsored Advertisement — Bottom Footer Banner</span>
+            </div>
+            <!-- Horizontal AdSense Container -->
+            <ins class="adsbygoogle ad-horizontal-ins" style="display:block" data-ad-client="ca-pub-9695226920600935"
+                data-ad-slot="3167975347" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-10 mt-auto">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-black text-sm">
+                    G</div>
+                <span class="text-base font-extrabold text-white">GetKit<span class="text-brand-500">.in</span></span>
+                <span class="text-xs text-slate-500 ml-2">© 2026 GetKit.in — Built for creators & developers.</span>
+            </div>
+            <div class="flex items-center gap-6 text-xs text-slate-400">
+                <a href="javascript:void(0)" onclick="resetFilters()" class="hover:text-white transition">All
+                    Templates</a>
+                <a href="javascript:void(0)" onclick="openTippingModal()" class="hover:text-amber-400 transition">Lemon
+                    Squeezy Tip</a>
+                <a href="javascript:void(0)" onclick="showToast('Lemon Squeezy Product ID & AdSense slots active.')"
+                    class="hover:text-indigo-400 transition">System Config</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal 1: Live Preview Modal -->
+    <div id="previewModal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-xl flex flex-col">
+        <div class="bg-slate-900 border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <button onclick="closePreviewModal()"
+                    class="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-arrow-left text-base"></i>
+                </button>
+                <div>
+                    <h3 id="previewTitle" class="text-sm font-bold text-white truncate max-w-xs sm:max-w-md">Template
+                        Preview</h3>
+                    <p class="text-[10px] text-slate-400">Live Isolated Sandbox View</p>
+                </div>
+            </div>
+
+            <!-- Responsive Viewport Switcher -->
+            <div class="hidden sm:flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800">
+                <button onclick="setPreviewViewport('desktop')" id="btnVwDesktop"
+                    class="px-3 py-1 text-xs font-semibold rounded-lg bg-brand-600 text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-desktop text-[11px]"></i> Desktop
+                </button>
+                <button onclick="setPreviewViewport('tablet')" id="btnVwTablet"
+                    class="px-3 py-1 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-tablet-screen-button text-[11px]"></i> Tablet
+                </button>
+                <button onclick="setPreviewViewport('mobile')" id="btnVwMobile"
+                    class="px-3 py-1 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-mobile-screen-button text-[11px]"></i> Mobile
+                </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button id="modalViewCodeBtn"
+                    class="px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl transition border border-slate-700 flex items-center gap-1.5">
+                    <i class="fa-solid fa-code text-brand-400"></i> <span class="hidden md:inline">Source</span>
+                </button>
+                <button id="modalDownloadBtn"
+                    class="px-3.5 py-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl transition flex items-center gap-1.5 shadow-lg shadow-emerald-600/20">
+                    <i class="fa-solid fa-download"></i> Download HTML
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 bg-slate-950 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+            <div id="previewFrameContainer"
+                class="w-full h-full bg-slate-900 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 border border-slate-800 relative">
+                <iframe id="previewIframe" class="w-full h-full border-0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Source Code Viewer Modal -->
+    <div id="codeModal"
+        class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4">
+        <div
+            class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center border border-brand-500/30">
+                        <i class="fa-solid fa-file-code"></i>
+                    </div>
+                    <div>
+                        <h3 id="codeModalTitle" class="text-sm font-bold text-white">Source Code Inspector</h3>
+                        <p class="text-[11px] text-slate-400">Standalone single-file HTML ready for copy or save</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="copyModalCode()"
+                        class="px-4 py-1.5 text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white rounded-xl transition flex items-center gap-1.5 shadow-md shadow-brand-600/20">
+                        <i class="fa-solid fa-copy"></i> Copy Code
+                    </button>
+                    <button onclick="closeCodeModal()"
+                        class="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition">
+                        <i class="fa-solid fa-xmark text-base"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-auto p-4 bg-slate-950 font-mono text-xs text-slate-300 leading-relaxed">
+                <pre><code id="codeViewerText" class="block whitespace-pre selection:bg-brand-500 selection:text-white"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Lemon Squeezy Tipping Modal -->
+    <div id="tippingModal"
+        class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+            <button onclick="closeTippingModal()"
+                class="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-800 transition">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <div class="text-center">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto text-2xl mb-3 shadow-lg shadow-amber-500/10">
+                    <i class="fa-solid fa-lemon text-amber-400"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white">Tip the Creator with Lemon Squeezy</h3>
+                <p class="text-xs text-slate-400 mt-1">If GetKit templates saved you dev time, support future template
+                    releases!</p>
+            </div>
+
+            <!-- Lemon Squeezy Product ID Notice Badge -->
+            <div
+                class="mt-4 p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-left flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-info text-amber-400 text-sm mt-0.5"></i>
+                <div class="text-[11px] text-amber-200">
+                    <span class="font-bold">Lemon Squeezy Integration Active:</span>
+                    <span class="block text-amber-300/80 mt-0.5">Connected to Store: <code id="lblStoreUrl"
+                            class="bg-slate-950 px-1 rounded font-mono">getkit.lemonsqueezy.com</code></span>
+                </div>
+            </div>
+
+            <!-- Tip Amount Presets -->
+            <div class="grid grid-cols-4 gap-2 my-5">
+                <button onclick="selectTipAmount(3)"
+                    class="tip-btn p-2.5 bg-slate-950 hover:bg-amber-500/20 hover:border-amber-500/50 rounded-xl border border-slate-800 text-center transition">
+                    <div class="text-sm font-black text-white">$3</div>
+                    <div class="text-[10px] text-slate-400">Coffee</div>
+                </button>
+                <button onclick="selectTipAmount(5)"
+                    class="tip-btn p-2.5 bg-slate-950 hover:bg-amber-500/20 hover:border-amber-500/50 rounded-xl border border-slate-800 text-center transition">
+                    <div class="text-sm font-black text-white">$5</div>
+                    <div class="text-[10px] text-slate-400">Snack</div>
+                </button>
+                <button onclick="selectTipAmount(10)"
+                    class="tip-btn p-2.5 bg-slate-950 hover:bg-amber-500/20 hover:border-amber-500/50 rounded-xl border border-slate-800 text-center transition">
+                    <div class="text-sm font-black text-white">$10</div>
+                    <div class="text-[10px] text-slate-400">Lunch</div>
+                </button>
+                <button onclick="selectTipAmount(25)"
+                    class="tip-btn p-2.5 bg-slate-950 hover:bg-amber-500/20 hover:border-amber-500/50 rounded-xl border border-slate-800 text-center transition">
+                    <div class="text-sm font-black text-white">$25</div>
+                    <div class="text-[10px] text-slate-400">Sponsor</div>
+                </button>
+            </div>
+
+            <!-- Custom Amount Input -->
+            <div class="mb-5">
+                <label class="block text-[11px] text-slate-400 mb-1 font-semibold">Or Enter Custom Amount ($
+                    USD)</label>
+                <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs font-bold">$</span>
+                    <input type="number" id="customTipAmount" min="1" placeholder="Custom Tip Amount (e.g., 15)"
+                        class="w-full pl-7 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-600 focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+
+            <button onclick="executeLemonSqueezyCheckout()"
+                class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-extrabold rounded-xl text-xs transition shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-bolt text-slate-950"></i> Pay with Lemon Squeezy Overlay
+            </button>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
+
+    <script>
+        /* ==========================================================================
+           1. LEMON SQUEEZY CONFIGURATION & PRODUCT ID SETUP
+           ==========================================================================
+           Replace the placeholder values below with your real Lemon Squeezy credentials:
+           - storeUrl: Your Lemon Squeezy Store Subdomain/URL
+           - productId: Your Lemon Squeezy Variant/Product ID for tips/donations
+           - checkoutUrl: Direct checkout URL used for LemonSqueezy.Url.Open()
+           ========================================================================== */
+        const LEMON_SQUEEZY_CONFIG = {
+            storeUrl: "https://getkittemplate.lemonsqueezy.com",
+            productId: "5bde3118-1f7d-4569-8e4e-cc8315873bb0",
+            checkoutUrl: "https://getkittemplate.lemonsqueezy.com/checkout/buy/5bde3118-1f7d-4569-8e4e-cc8315873bb0"
+        };
+
+        let selectedTipValue = 5; // Default preset amount
+
+        /* ==========================================================================
+           2. TEMPLATES_DATA (8 Complete, 100% Valid Web Templates)
+           ========================================================================== */
+        const TEMPLATES_DATA = [
+            {
+                id: 'ai-code-generator',
+                title: 'AI Code Generator Landing Page',
+                category: 'SaaS',
+                description: 'Dark mode AI SaaS landing page featuring indigo radial glowing gradients, interactive code snippet showcase, feature grid, and pricing cards.',
+                tags: ['SaaS', 'AI', 'Tailwind CSS', 'Dark Mode'],
+                downloads: 5410,
+                rating: 4.9,
+                code: `<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodePulse AI - NextGen AI Code Assistant</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+    <nav class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white">⚡</div>
+            <span class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">CodePulse AI</span>
+        </div>
+        <div class="hidden md:flex gap-6 text-sm text-slate-300">
+            <a href="#features" class="hover:text-white transition">Features</a>
+            <a href="#pricing" class="hover:text-white transition">Pricing</a>
+            <a href="#docs" class="hover:text-white transition">Documentation</a>
+        </div>
+        <button class="px-4 py-2 text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl transition shadow-lg shadow-indigo-600/30">Start Coding Free</button>
+    </nav>
+
+    <section class="py-20 text-center px-4 max-w-4xl mx-auto">
+        <span class="px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">Engineered with DeepSeek-R1 & Claude 3.5</span>
+        <h1 class="text-5xl md:text-6xl font-black mt-6 tracking-tight leading-tight">Ship Full-Stack Apps 10x Faster with AI</h1>
+        <p class="mt-4 text-slate-400 text-base md:text-lg">Instantly generate clean React, Vue, and Python code from simple prompt prompts.</p>
+        <div class="mt-8 flex justify-center gap-4">
+            <button class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl text-sm transition shadow-lg shadow-indigo-600/30">Generate Code Now</button>
+            <button class="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold rounded-xl text-sm transition border border-slate-800">Watch Sandbox Video</button>
+        </div>
+    </section>
+
+    <section id="features" class="py-12 max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-slate-900 border border-slate-800 rounded-2xl">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold mb-4">🚀</div>
+            <h3 class="font-bold text-lg text-white">Instant Scaffolding</h3>
+            <p class="text-slate-400 text-sm mt-2">Generate entire boilerplate repositories with full TypeScript definitions in seconds.</p>
+        </div>
+        <div class="p-6 bg-slate-900 border border-slate-800 rounded-2xl">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-4">🛡️</div>
+            <h3 class="font-bold text-lg text-white">Zero Vulnerabilities</h3>
+            <p class="text-slate-400 text-sm mt-2">Automated AST code scanner guarantees zero SQL injection or auth security vulnerabilities.</p>
+        </div>
+        <div class="p-6 bg-slate-900 border border-slate-800 rounded-2xl">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-4">⚙️</div>
+            <h3 class="font-bold text-lg text-white">CI/CD Automated</h3>
+            <p class="text-slate-400 text-sm mt-2">Push directly to GitHub & trigger automatic Vercel or AWS ECS deployments.</p>
+        </div>
+    </section>
+</body>
+</html>`
+            },
+            {
+                id: 'microsaas-analytics',
+                title: 'Micro-SaaS Analytics Dashboard Showcase',
+                category: 'SaaS',
+                description: 'Clean Zinc aesthetic Micro-SaaS analytics landing showcase with live KPI stat cards, user cohort table, and revenue projections.',
+                tags: ['SaaS', 'Analytics', 'Dashboard', 'Zinc'],
+                downloads: 4120,
+                rating: 4.8,
+                code: `<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetricsPulse - SaaS Analytics</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans p-6 md:p-12 max-w-6xl mx-auto">
+    <header class="flex justify-between items-center mb-10 pb-6 border-b border-zinc-800">
+        <div>
+            <h1 class="text-2xl font-bold text-white">MetricsPulse SaaS</h1>
+            <p class="text-xs text-zinc-400">Real-time MRR, LTV, and Churn Tracking</p>
+        </div>
+        <button class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl text-xs font-semibold border border-zinc-700">Export CSV</button>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl">
+            <div class="text-xs text-zinc-400 font-medium">Monthly Recurring Revenue</div>
+            <div class="text-3xl font-extrabold text-white mt-2">$24,850</div>
+            <div class="text-xs text-emerald-400 mt-2 font-semibold">▲ +18.4% from last month</div>
+        </div>
+        <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl">
+            <div class="text-xs text-zinc-400 font-medium">Active Subscribers</div>
+            <div class="text-3xl font-extrabold text-white mt-2">1,420</div>
+            <div class="text-xs text-emerald-400 mt-2 font-semibold">▲ +92 new users this week</div>
+        </div>
+        <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl">
+            <div class="text-xs text-zinc-400 font-medium">User Churn Rate</div>
+            <div class="text-3xl font-extrabold text-white mt-2">1.8%</div>
+            <div class="text-xs text-zinc-500 mt-2">Industry benchmark: 3.5%</div>
+        </div>
+    </div>
+</body>
+</html>`
+            },
+            {
+                id: 'fullstack-dev-portfolio',
+                title: 'Full-Stack Developer Portfolio',
+                category: 'Portfolios',
+                description: 'Dark Zinc developer portfolio template with tech stack pills, open source project showcase, and interactive availability status badge.',
+                tags: ['Portfolio', 'Developer', 'Tech Stack', 'Dark Zinc'],
+                downloads: 6180,
+                rating: 4.9,
+                code: `<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Chen - Lead Frontend Architect</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans p-6 md:p-12 max-w-4xl mx-auto">
+    <header class="flex items-center justify-between pb-8 border-b border-zinc-800">
+        <div>
+            <h1 class="text-3xl font-black text-white">David Chen</h1>
+            <p class="text-zinc-400 text-sm mt-1">Senior Frontend Engineer & UI/UX Architect</p>
+        </div>
+        <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-full">Available for Contract</span>
+    </header>
+
+    <section class="py-8">
+        <h2 class="text-xs uppercase tracking-widest text-zinc-500 font-bold mb-4">Tech Stack & Tooling</h2>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-lg text-xs font-mono">React 19</span>
+            <span class="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-lg text-xs font-mono">TypeScript</span>
+            <span class="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-lg text-xs font-mono">Tailwind CSS</span>
+            <span class="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-lg text-xs font-mono">Node.js</span>
+            <span class="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-lg text-xs font-mono">GraphQL</span>
+        </div>
+    </section>
+
+    <section class="py-6">
+        <h2 class="text-xs uppercase tracking-widest text-zinc-500 font-bold mb-6">Selected Works</h2>
+        <div class="grid gap-6">
+            <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition">
+                <h3 class="font-bold text-lg text-white">Veloce Engine - Distributed Micro-Frontend Cache</h3>
+                <p class="text-zinc-400 text-sm mt-2">Zero-dependency client side edge caching layer for high traffic enterprise WebAssembly platforms.</p>
+            </div>
+            <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-2xl hover:border-zinc-700 transition">
+                <h3 class="font-bold text-lg text-white">DesignKit Pro - Accessible UI Component Library</h3>
+                <p class="text-zinc-400 text-sm mt-2">WCAG AAA compliant component primitives for React & Vue with built-in dark mode token support.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>`
+            },
+            {
+                id: 'dataspec-portfolio',
+                title: 'Data Specialist & Analytics Portfolio',
+                category: 'Portfolios',
+                description: 'Dark Slate data engineer portfolio showcasing interactive KPI cards, SQL query snippets, and machine learning pipeline summaries.',
+                tags: ['Portfolio', 'Data Science', 'KPI', 'Dark Slate'],
+                downloads: 3820,
+                rating: 4.8,
+                code: `<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Rostova - Principal Data Architect</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans p-6 md:p-12 max-w-5xl mx-auto">
+    <header class="mb-10 pb-6 border-b border-slate-800">
+        <h1 class="text-3xl font-extrabold text-white">Elena Rostova</h1>
+        <p class="text-slate-400 text-sm mt-1">Data Infrastructure • Snowflake • Databricks • PySpark</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+            <div class="text-xs text-slate-400 font-medium">Data Processed</div>
+            <div class="text-3xl font-black text-indigo-400 mt-2">4.2 PB/day</div>
+            <div class="text-[11px] text-slate-500 mt-1">Streaming Kafka Pipelines</div>
+        </div>
+        <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+            <div class="text-xs text-slate-400 font-medium">Pipeline Reliability</div>
+            <div class="text-3xl font-black text-emerald-400 mt-2">99.99%</div>
+            <div class="text-[11px] text-slate-500 mt-1">Zero ETL Downtime SLA</div>
+        </div>
+        <div class="p-5 bg-slate-900 border border-slate-800 rounded-2xl">
+            <div class="text-xs text-slate-400 font-medium">ML Model Accuracy</div>
+            <div class="text-3xl font-black text-cyan-400 mt-2">94.6%</div>
+            <div class="text-[11px] text-slate-500 mt-1">Predictive Churn Engine</div>
+        </div>
+    </div>
+</body>
+</html>`
+            },
+            {
+                id: 'notion-os-sales',
+                title: 'Notion Operating System Sales Page',
+                category: 'Digital Products',
+                description: 'Light editorial landing page designed to sell Notion templates, digital products, and productive workspace toolkits.',
+                tags: ['Digital Products', 'Notion', 'Editorial', 'Sales'],
+                downloads: 4950,
+                rating: 4.7,
+                code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS - Ultimate Notion Workspace</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-amber-50/30 text-stone-900 font-sans p-6 md:p-12 max-w-4xl mx-auto">
+    <header class="text-center py-10 border-b border-stone-200">
+        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-bold uppercase tracking-wider">Notion Template</span>
+        <h1 class="text-4xl md:text-5xl font-serif font-bold text-stone-900 mt-4">CreatorOS Notion Operating System</h1>
+        <p class="text-stone-600 mt-3 text-base max-w-2xl mx-auto">Organize your content pipeline, revenue goals, and client projects in one unified workspace.</p>
+        <button class="mt-6 px-8 py-3.5 bg-stone-900 hover:bg-stone-800 text-white font-bold rounded-2xl text-sm transition shadow-xl">Get CreatorOS for $29</button>
+    </header>
+
+    <section class="py-12 grid md:grid-cols-2 gap-8">
+        <div class="p-6 bg-white border border-stone-200 rounded-2xl shadow-sm">
+            <h3 class="font-bold text-lg text-stone-900">📄 Content Planner</h3>
+            <p class="text-stone-600 text-xs mt-2">Manage YouTube, Twitter, and newsletter schedules with automated status Kanban boards.</p>
+        </div>
+        <div class="p-6 bg-white border border-stone-200 rounded-2xl shadow-sm">
+            <h3 class="font-bold text-lg text-stone-900">💰 Financial Tracker</h3>
+            <p class="text-stone-600 text-xs mt-2">Track monthly recurring revenue, client invoices, and business tax expense categories.</p>
+        </div>
+    </section>
+</body>
+</html>`
+            },
+            {
+                id: 'modern-agency',
+                title: 'Modern Freelance Agency Showcase',
+                category: 'Agencies',
+                description: 'Luxury dark theme agency showcase featuring gold/amber accents, service breakdown cards, and high-converting inquiry forms.',
+                tags: ['Agencies', 'Gold Accents', 'Services', 'Luxury'],
+                downloads: 3290,
+                rating: 4.9,
+                code: `<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Design - Creative Studio</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-black text-zinc-100 font-sans p-6 md:p-12 max-w-6xl mx-auto">
+    <nav class="flex justify-between items-center mb-16 pb-6 border-b border-zinc-900">
+        <div class="text-xl font-black tracking-widest text-amber-400">AURA.STUDIO</div>
+        <button class="px-5 py-2.5 bg-amber-400 text-black font-bold rounded-xl text-xs hover:bg-amber-300 transition">Book Strategy Call</button>
+    </nav>
+
+    <section class="mb-20 max-w-3xl">
+        <h1 class="text-5xl font-black tracking-tight leading-none text-white">We craft bespoke digital experiences for visionary brands.</h1>
+        <p class="text-zinc-400 text-lg mt-6">A design & engineering studio turning ambitious ideas into market-leading digital products.</p>
+    </section>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="p-8 bg-zinc-950 border border-zinc-900 rounded-3xl">
+            <div class="text-amber-400 font-mono text-xs mb-2">01 / BRANDING</div>
+            <h3 class="text-2xl font-bold text-white">Visual Identity & Strategy</h3>
+            <p class="text-zinc-400 text-sm mt-3">Logos, typography systems, and brand guidelines tailored for digital nativity.</p>
+        </div>
+        <div class="p-8 bg-zinc-950 border border-zinc-900 rounded-3xl">
+            <div class="text-amber-400 font-mono text-xs mb-2">02 / ENGINEERING</div>
+            <h3 class="text-2xl font-bold text-white">Full-Stack Web Development</h3>
+            <p class="text-zinc-400 text-sm mt-3">High-speed WebGL animations, headless CMS, and custom React applications.</p>
+        </div>
+    </div>
+</body>
+</html>`
+            },
+            {
+                id: 'stealth-app-waitlist',
+                title: 'Stealth Mode App Waitlist',
+                category: 'Waitlists',
+                description: 'Centered glowing ambient hero page with email lead capture form, social proof badges, and animated feature teaser pills.',
+                tags: ['Waitlists', 'Landing Page', 'Glow Hero', 'Form'],
+                downloads: 4100,
+                rating: 4.8,
+                code: `<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stealth App - Get Early Access</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-center items-center p-6 text-center">
+    <div class="max-w-2xl mx-auto">
+        <span class="px-3.5 py-1.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-full text-xs font-semibold">🔒 Closed Beta Coming Q3 2026</span>
+        <h1 class="text-4xl md:text-6xl font-black mt-6 tracking-tight text-white leading-tight">The Next Generation of Personal Knowledge Graphs</h1>
+        <p class="mt-4 text-slate-400 text-base md:text-lg">Connect your thoughts, bookmarks, and documents with AI semantic linking.</p>
+
+        <form onsubmit="event.preventDefault(); alert('Subscribed to waitlist!');" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input type="email" placeholder="Enter your work email..." required class="flex-1 px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500">
+            <button type="submit" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition">Join Waitlist</button>
+        </form>
+
+        <div class="mt-6 text-xs text-slate-500">
+            <span>🔥 1,842 founders already on the waitlist</span>
+        </div>
+    </div>
+</body>
+</html>`
+            },
+            {
+                id: 'saas-revenue-admin',
+                title: 'SaaS Revenue & MRR Analytics Admin Panel',
+                category: 'Dashboards',
+                description: 'Full admin panel layout featuring sidebar navigation, customer transaction table, revenue distribution charts, and status indicators.',
+                tags: ['Dashboards', 'Admin Panel', 'Sidebar', 'MRR'],
+                downloads: 5890,
+                rating: 4.9,
+                code: `<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetKit Admin - Revenue Control Panel</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 border-r border-slate-800 p-6 hidden md:block flex-col">
+        <div class="text-xl font-bold text-white mb-8">AdminControl</div>
+        <nav class="space-y-2 text-xs font-semibold text-slate-400">
+            <a href="#" class="block px-3 py-2 bg-indigo-600/20 text-indigo-400 rounded-lg">Overview</a>
+            <a href="#" class="block px-3 py-2 hover:bg-slate-800 hover:text-white rounded-lg transition">Transactions</a>
+            <a href="#" class="block px-3 py-2 hover:bg-slate-800 hover:text-white rounded-lg transition">Customers</a>
+            <a href="#" class="block px-3 py-2 hover:bg-slate-800 hover:text-white rounded-lg transition">Settings</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-10">
+        <h2 class="text-2xl font-bold text-white mb-6">Revenue & Billing Overview</h2>
+        
+        <div class="overflow-x-auto bg-slate-900 border border-slate-800 rounded-2xl">
+            <table class="w-full text-left text-xs">
+                <thead class="bg-slate-950 text-slate-400 border-b border-slate-800 uppercase">
+                    <tr>
+                        <th class="p-4">Customer</th>
+                        <th class="p-4">Plan</th>
+                        <th class="p-4">Amount</th>
+                        <th class="p-4">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr>
+                        <td class="p-4 font-semibold text-white">Acme Corp</td>
+                        <td class="p-4">Enterprise Annual</td>
+                        <td class="p-4 font-mono">$12,000</td>
+                        <td class="p-4"><span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 font-semibold text-white">Starlight Inc</td>
+                        <td class="p-4">Pro Monthly</td>
+                        <td class="p-4 font-mono">$299</td>
+                        <td class="p-4"><span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">Active</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>`
+            }
+        ];
+
+        let activeCategory = 'All';
+        let searchQuery = '';
+        let selectedTemplateForModal = null;
+
+        const categories = ['All', 'SaaS', 'Portfolios', 'Digital Products', 'Agencies', 'Waitlists', 'Dashboards'];
+
+        window.onload = function () {
+            renderCategoryPills();
+            renderTemplates();
+            initLemonSqueezy();
+        };
+
+        function initLemonSqueezy() {
+            if (window.createLemonSqueezy) {
+                window.createLemonSqueezy();
+            }
+        }
+
+        function openTippingModal() {
+            document.getElementById('tippingModal').classList.remove('hidden');
+        }
+
+        function closeTippingModal() {
+            document.getElementById('tippingModal').classList.add('hidden');
+        }
+
+        function selectTipAmount(amount) {
+            selectedTipValue = amount;
+            document.getElementById('customTipAmount').value = '';
+            showToast(`Selected $${amount} support tip!`);
+        }
+
+        function executeLemonSqueezyCheckout() {
+            const customVal = document.getElementById('customTipAmount').value;
+            const finalAmount = customVal ? parseInt(customVal, 10) : selectedTipValue;
+
+            if (!finalAmount || finalAmount < 1) {
+                showToast('Please enter a valid tip amount ($1 or more).');
+                return;
+            }
+
+            // Check if Lemon Squeezy Overlay JS is available
+            if (window.LemonSqueezy && LEMON_SQUEEZY_CONFIG.productId !== 'YOUR_LEMON_SQUEEZY_PRODUCT_ID') {
+                const checkoutUrl = `${LEMON_SQUEEZY_CONFIG.storeUrl}/checkout/buy/${LEMON_SQUEEZY_CONFIG.productId}?checkout[custom][tip_amount]=${finalAmount}&embed=1`;
+                window.LemonSqueezy.Url.Open(checkoutUrl);
+            } else {
+                showToast(`Lemon Squeezy Checkout ($${finalAmount}): Product ID configured in LEMON_SQUEEZY_CONFIG.`);
+            }
+
+            closeTippingModal();
+        }
+
+        function renderCategoryPills() {
+            const container = document.getElementById('categoryPills');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="selectCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${activeCategory === cat ? 'bg-brand-600 text-white shadow-lg shadow-brand-600/30' : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function selectCategory(cat) {
+            activeCategory = cat;
+            renderCategoryPills();
+            renderTemplates();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+            renderTemplates();
+        }
+
+        function resetFilters() {
+            activeCategory = 'All';
+            searchQuery = '';
+            document.getElementById('searchInput').value = '';
+            renderCategoryPills();
+            renderTemplates();
+        }
+
+        function renderTemplates() {
+            const grid = document.getElementById('templatesGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            const filtered = TEMPLATES_DATA.filter(t => {
+                const matchesCategory = activeCategory === 'All' || t.category === activeCategory;
+                const matchesSearch = t.title.toLowerCase().includes(searchQuery) ||
+                    t.description.toLowerCase().includes(searchQuery) ||
+                    t.tags.some(tag => tag.toLowerCase().includes(searchQuery));
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            let html = '';
+            filtered.forEach((template, index) => {
+                html += `
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300">
+                        <!-- Top Card Header Frame -->
+                        <div class="p-4 bg-slate-900/90 border-b border-slate-800/80 flex items-center justify-between">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-brand-500/10 text-brand-400 border border-brand-500/20">${template.category}</span>
+                            <div class="flex items-center gap-1 text-xs text-amber-400 font-bold">
+                                <i class="fa-solid fa-star"></i>
+                                <span>${template.rating}</span>
+                                <span class="text-slate-500 text-[10px] font-normal">(${template.downloads})</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white hover:text-brand-400 transition cursor-pointer" onclick="openPreviewModal('${template.id}')">${template.title}</h3>
+                                <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">${template.description}</p>
+                            </div>
+
+                            <!-- Tech Stack Pills -->
+                            <div class="flex flex-wrap gap-1.5 mt-5">
+                                ${template.tags.map(tag => `<span class="text-[10px] px-2.5 py-0.5 rounded-md bg-slate-950 text-slate-400 border border-slate-800 font-mono">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Action Footer Buttons -->
+                        <div class="p-4 bg-slate-950/80 border-t border-slate-800/80 grid grid-cols-3 gap-2">
+                            <button onclick="openPreviewModal('${template.id}')" class="px-2.5 py-2 text-xs font-semibold bg-brand-600 hover:bg-brand-500 text-white rounded-xl transition flex items-center justify-center gap-1.5 shadow-md shadow-brand-600/20">
+                                <i class="fa-solid fa-eye text-[11px]"></i> Live
+                            </button>
+                            <button onclick="openCodeModal('${template.id}')" class="px-2.5 py-2 text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-200 rounded-xl transition flex items-center justify-center gap-1.5 border border-slate-800">
+                                <i class="fa-solid fa-code text-[11px]"></i> Code
+                            </button>
+                            <button onclick="downloadTemplate('${template.id}')" class="px-2.5 py-2 text-xs font-semibold bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 rounded-xl transition flex items-center justify-center gap-1.5 border border-emerald-500/30">
+                                <i class="fa-solid fa-download text-[11px]"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                // GOOGLE ADSENSE AD #2: IN-FEED HORIZONTAL GRID BANNER (getkit.in)
+                // Inserted directly after Template #4 (index 3)
+                if (index === 3) {
+                    html += `
+                        <div class="col-span-1 md:col-span-2 lg:col-span-3 my-3">
+                            <div class="ad-horizontal-wrapper rounded-2xl p-3 text-center relative overflow-hidden shadow-lg">
+                                <div class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-1.5 flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-rectangle-ad text-slate-500"></i>
+                                    <span></span>
+                                </div>
+                                <!-- In-Feed Responsive Horizontal AdSense Slot -->
+                                <ins class="adsbygoogle ad-horizontal-ins"
+                                     style="display:block"
+                                     data-ad-client="ca-pub-9695226920600935"
+                                     data-ad-slot="3167975347"
+                                     data-ad-format="horizontal"
+                                     data-full-width-responsive="true"></ins>
+                                <script>
+                                     (adsbygoogle = window.adsbygoogle || []).push({});
+                                <\/script>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            grid.innerHTML = html;
+        }
+
+        function openPreviewModal(id) {
+            const template = TEMPLATES_DATA.find(t => t.id === id);
+            if (!template) return;
+
+            selectedTemplateForModal = template;
+            document.getElementById('previewTitle').innerText = template.title;
+
+            const iframe = document.getElementById('previewIframe');
+            iframe.srcdoc = template.code;
+
+            document.getElementById('modalViewCodeBtn').onclick = function () {
+                closePreviewModal();
+                openCodeModal(template.id);
+            };
+
+            document.getElementById('modalDownloadBtn').onclick = function () {
+                downloadTemplate(template.id);
+            };
+
+            setPreviewViewport('desktop');
+            document.getElementById('previewModal').classList.remove('hidden');
+        }
+
+        function closePreviewModal() {
+            document.getElementById('previewModal').classList.add('hidden');
+            document.getElementById('previewIframe').srcdoc = '';
+        }
+
+        function setPreviewViewport(mode) {
+            const container = document.getElementById('previewFrameContainer');
+            const btnD = document.getElementById('btnVwDesktop');
+            const btnT = document.getElementById('btnVwTablet');
+            const btnM = document.getElementById('btnVwMobile');
+
+            btnD.className = "px-3 py-1 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5";
+            btnT.className = "px-3 py-1 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5";
+            btnM.className = "px-3 py-1 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5";
+
+            if (mode === 'desktop') {
+                container.style.width = '100%';
+                btnD.className = "px-3 py-1 text-xs font-semibold rounded-lg bg-brand-600 text-white transition flex items-center gap-1.5";
+            } else if (mode === 'tablet') {
+                container.style.width = '768px';
+                btnT.className = "px-3 py-1 text-xs font-semibold rounded-lg bg-brand-600 text-white transition flex items-center gap-1.5";
+            } else if (mode === 'mobile') {
+                container.style.width = '375px';
+                btnM.className = "px-3 py-1 text-xs font-semibold rounded-lg bg-brand-600 text-white transition flex items-center gap-1.5";
+            }
+        }
+
+        function openCodeModal(id) {
+            const template = TEMPLATES_DATA.find(t => t.id === id);
+            if (!template) return;
+
+            selectedTemplateForModal = template;
+            document.getElementById('codeModalTitle').innerText = template.title + ' (index.html)';
+            document.getElementById('codeViewerText').textContent = template.code;
+            document.getElementById('codeModal').classList.remove('hidden');
+        }
+
+        function closeCodeModal() {
+            document.getElementById('codeModal').classList.add('hidden');
+        }
+
+        function copyModalCode() {
+            if (!selectedTemplateForModal) return;
+            const textToCopy = selectedTemplateForModal.code;
+
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            showToast('Template source code copied to clipboard!');
+        }
+
+        // Direct Download File via Blob (`getkit-[id].html`)
+        function downloadTemplate(id) {
+            const template = TEMPLATES_DATA.find(t => t.id === id);
+            if (!template) return;
+
+            const blob = new Blob([template.code], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `getkit-${template.id}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast(`Downloaded getkit-${template.id}.html`);
+        }
+
+        // Notification Toast Helper
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'px-4 py-3 bg-slate-900 border border-brand-500/40 text-white text-xs font-semibold rounded-xl shadow-2xl flex items-center gap-2 transform transition-all duration-300 translate-y-2 opacity-0';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-brand-400"></i> <span>${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
