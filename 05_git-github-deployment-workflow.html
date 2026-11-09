@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Git, GitHub & CI/CD Deployment Workflow | GetKit</title>
+    <meta name="description"
+        content="A practical production guide to Git workflows, GitHub branch protection, CI/CD, Cloudflare Pages, Vercel, HTTP security headers, caching, and deployment recovery.">
+    <meta name="theme-color" content="#090d16">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Git, GitHub & Automated CI/CD Deployment Workflow">
+    <meta property="og:description"
+        content="Build a safer Git workflow with pull requests, automated deployment, security headers, and reliable production recovery.">
+    <meta property="og:url" content="https://getkit.in/05_git-github-deployment-workflow.html">
+    <link rel="canonical" href="https://getkit.in/05_git-github-deployment-workflow.html">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: "#eef2ff",
+                            100: "#e0e7ff",
+                            400: "#818cf8",
+                            500: "#6366f1",
+                            600: "#4f46e5",
+                            700: "#4338ca",
+                            800: "#3730a3",
+                            900: "#312e81",
+                            950: "#1e1b4b"
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --page: #090d16;
+            --panel: #111827;
+            --border: rgba(99, 102, 241, .19);
+            --muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--page);
+        }
+
+        pre,
+        code,
+        .font-mono {
+            font-family: "Fira Code", monospace;
+            font-variant-ligatures: none;
+        }
+
+        pre {
+            tab-size: 4;
+        }
+
+        ::selection {
+            background: #4f46e5;
+            color: white;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #263247;
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        .glass {
+            background: rgba(17, 24, 39, .68);
+            backdrop-filter: blur(16px);
+        }
+
+        .glow {
+            background: radial-gradient(circle, rgba(99, 102, 241, .16), transparent 70%);
+        }
+
+        .section-anchor {
+            scroll-margin-top: 100px;
+        }
+
+        .code-panel {
+            background: #070b12;
+            border: 1px solid rgba(148, 163, 184, .15);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .code-panel pre {
+            padding: 16px;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.8;
+        }
+
+        .tab-button[aria-selected="true"] {
+            background: #4f46e5;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .tab-button[aria-selected="false"] {
+            background: #111827;
+            color: #94a3b8;
+            border-color: #263247;
+        }
+
+        .copy-button:focus-visible,
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #818cf8;
+            outline-offset: 3px;
+        }
+
+        .prose-link {
+            color: #a5b4fc;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .prose-link:hover {
+            color: white;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-slate-100 antialiased">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 border-b border-indigo-950/70 bg-slate-950/85 backdrop-blur-xl">
+        <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+            <a href="https://getkit.in" class="group flex items-center gap-2.5" aria-label="GetKit homepage">
+                <span
+                    class="rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 px-2.5 py-1 text-xl font-black tracking-wider text-white shadow-lg shadow-indigo-950/30 transition group-hover:shadow-indigo-500/20">GETKIT</span>
+                <span
+                    class="hidden rounded border border-indigo-500/20 bg-indigo-500/10 px-2 py-0.5 text-xs font-semibold text-indigo-300 sm:inline">RESOURCES</span>
+            </a>
+
+            <nav class="hidden items-center gap-5 text-sm text-slate-300 lg:flex" aria-label="Main navigation">
+                <a href="#overview" class="transition hover:text-indigo-300">Architecture</a>
+                <a href="#github-protection" class="transition hover:text-indigo-300">Branch Rules</a>
+                <a href="#cli-cheatsheet" class="transition hover:text-indigo-300">Git CLI</a>
+                <a href="#cicd-pipelines" class="transition hover:text-indigo-300">CI/CD</a>
+                <a href="#headers-config" class="transition hover:text-indigo-300">Headers</a>
+                <a href="#rollbacks" class="transition hover:text-indigo-300">Recovery</a>
+            </nav>
+
+            <a href="https://getkit.in"
+                class="flex shrink-0 items-center gap-2 rounded-lg bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-lg shadow-indigo-950/40 transition hover:bg-indigo-500 sm:px-4 sm:text-sm">
+                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                <span>Resource Hub</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section
+        class="relative overflow-hidden border-b border-indigo-950/60 bg-gradient-to-b from-indigo-950/30 via-slate-950 to-slate-950 py-14 sm:py-20">
+        <div class="glow pointer-events-none absolute -left-32 -top-20 h-96 w-96 rounded-full"></div>
+        <div class="glow pointer-events-none absolute -right-24 top-10 h-80 w-80 rounded-full"></div>
+
+        <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
+            <div
+                class="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/25 bg-indigo-500/10 px-3 py-1.5 text-xs font-semibold text-indigo-300">
+                <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+                <span>DEVELOPER PLAYBOOK #05</span>
+            </div>
+
+            <h1 class="mb-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+                Git, GitHub & Automated CI/CD Deployment Workflow
+            </h1>
+
+            <p class="mx-auto mb-8 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
+                A practical production guide to safer Git workflows, protected branches, automated quality checks,
+                Cloudflare Pages and Vercel deployments, HTTP headers, caching, and incident recovery.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-x-5 gap-y-3 text-xs text-slate-400 sm:text-sm">
+                <span class="flex items-center gap-2"><i class="fa-regular fa-clock text-indigo-400"
+                        aria-hidden="true"></i> 15–20 min read</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-layer-group text-indigo-400"
+                        aria-hidden="true"></i> DevOps & Infrastructure</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-400"
+                        aria-hidden="true"></i> Production Safety</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN LAYOUT -->
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-4">
+
+            <!-- SIDEBAR -->
+            <aside class="hidden lg:block lg:col-span-1">
+                <div class="glass sticky top-24 space-y-4 rounded-2xl border border-indigo-950/80 p-5">
+                    <h2 class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-300">
+                        <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+                        Workflow Structure
+                    </h2>
+
+                    <nav class="space-y-1 text-sm text-slate-400" aria-label="Article contents">
+                        <a class="block rounded-lg px-2.5 py-2 transition hover:bg-indigo-950/50 hover:text-indigo-200"
+                            href="#overview">01. Architecture</a>
+                        <a class="block rounded-lg px-2.5 py-2 transition hover:bg-indigo-950/50 hover:text-indigo-200"
+                            href="#github-protection">02. Branch Protection</a>
+                        <a class="block rounded-lg px-2.5 py-2 transition hover:bg-indigo-950/50 hover:text-indigo-200"
+                            href="#cli-cheatsheet">03. CLI Reference</a>
+                        <a class="block rounded-lg px-2.5 py-2 transition hover:bg-indigo-950/50 hover:text-indigo-200"
+                            href="#cicd-pipelines">04. CI/CD Deployment</a>
+                        <a class="block rounded-lg px-2.5 py-2 transition hover:bg-indigo-950/50 hover:text-indigo-200"
+                            href="#headers-config">05. Headers & Caching</a>
+                        <a class="block rounded-lg px-2.5 py-2 transition hover:bg-indigo-950/50 hover:text-indigo-200"
+                            href="#rollbacks">06. Recovery</a>
+                        <a class="block rounded-lg px-2.5 py-2 transition hover:bg-indigo-950/50 hover:text-indigo-200"
+                            href="#checklist">07. Release Checklist</a>
+                    </nav>
+
+                    <div class="space-y-2 border-t border-slate-800 pt-4 text-xs text-slate-500">
+                        <div class="flex items-center justify-between gap-3">
+                            <span>Repository model</span>
+                            <span class="font-mono text-slate-300">PR → main</span>
+                        </div>
+                        <div class="flex items-center justify-between gap-3">
+                            <span>Target domain</span>
+                            <span class="font-mono text-slate-300">getkit.in</span>
+                        </div>
+                        <p class="pt-2 leading-5">Adapt all branch names, build commands, and output paths to your
+                            actual project.</p>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="min-w-0 space-y-14 lg:col-span-3">
+
+                <!-- 01 ARCHITECTURE -->
+                <section id="overview" class="section-anchor space-y-6">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-500/30 bg-indigo-600/15 font-bold text-indigo-300">01</span>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white sm:text-3xl">Development Architecture & Trunk-Based
+                                Delivery</h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-400">Keep changes small, test them early, and
+                                make production deployments repeatable.</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-300 sm:text-base">
+                        Trunk-Based Development keeps the main development branch continuously usable. Developers
+                        integrate small changes frequently instead of maintaining long-lived branches that become
+                        expensive to merge. For a solo developer, a short-lived feature branch and a pull request can
+                        still provide a useful review and deployment checkpoint.
+                    </p>
+
+                    <div class="rounded-2xl border border-indigo-950 bg-slate-900/70 p-5 sm:p-6">
+                        <h3
+                            class="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400">
+                            <i class="fa-solid fa-diagram-project text-indigo-400" aria-hidden="true"></i>
+                            Recommended Delivery Flow
+                        </h3>
+
+                        <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+                            <div class="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                                <div class="mb-3 flex items-center justify-between gap-2">
+                                    <span class="font-mono text-sm font-bold text-indigo-300">feature/...</span>
+                                    <span
+                                        class="rounded bg-indigo-950 px-2 py-1 text-[10px] text-indigo-200">Development</span>
+                                </div>
+                                <p class="text-xs leading-6 text-slate-400">Create a focused branch, edit files, run
+                                    local checks, and commit a small, understandable change.</p>
+                                <code
+                                    class="mt-3 block break-all text-[11px] text-indigo-300">git switch -c feature/update-guide</code>
+                            </div>
+
+                            <div class="rounded-xl border border-amber-900/50 bg-slate-950 p-4">
+                                <div class="mb-3 flex items-center justify-between gap-2">
+                                    <span class="text-sm font-bold text-amber-300">Pull request</span>
+                                    <span
+                                        class="rounded bg-amber-950 px-2 py-1 text-[10px] text-amber-200">Validation</span>
+                                </div>
+                                <p class="text-xs leading-6 text-slate-400">Review the diff, run CI checks, inspect a
+                                    preview deployment when configured, and resolve review feedback.</p>
+                                <span class="mt-3 block text-[11px] text-slate-500">Checks must pass before merge</span>
+                            </div>
+
+                            <div class="rounded-xl border border-emerald-900/50 bg-slate-950 p-4">
+                                <div class="mb-3 flex items-center justify-between gap-2">
+                                    <span class="font-mono text-sm font-bold text-emerald-300">main</span>
+                                    <span
+                                        class="rounded bg-emerald-950 px-2 py-1 text-[10px] text-emerald-200">Production</span>
+                                </div>
+                                <p class="text-xs leading-6 text-slate-400">Merge an approved change. Your connected
+                                    host builds and deploys the configured production branch.</p>
+                                <span class="mt-3 block text-[11px] text-slate-500">Verify the live deployment
+                                    afterward</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 rounded-xl border border-slate-800 bg-slate-950/80 p-4">
+                            <p class="text-xs leading-6 text-slate-400">
+                                <strong class="text-slate-200">Important:</strong> Deployment duration depends on the
+                                project, build queue, provider, and cache state. Do not promise a universal deployment
+                                time. Confirm the provider reports a successful deployment before declaring the release
+                                live.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+                            <h3 class="mb-2 font-bold text-white"><i
+                                    class="fa-solid fa-check-circle mr-2 text-emerald-400"
+                                    aria-hidden="true"></i>Healthy workflow habits</h3>
+                            <ul class="space-y-2 text-sm leading-6 text-slate-400">
+                                <li>• Keep branches focused and short-lived.</li>
+                                <li>• Use meaningful commit messages.</li>
+                                <li>• Review changes before merging.</li>
+                                <li>• Test previews with realistic routes and assets.</li>
+                                <li>• Keep a known-good production deployment available.</li>
+                            </ul>
+                        </div>
+                        <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+                            <h3 class="mb-2 font-bold text-white"><i
+                                    class="fa-solid fa-triangle-exclamation mr-2 text-amber-400"
+                                    aria-hidden="true"></i>Patterns to avoid</h3>
+                            <ul class="space-y-2 text-sm leading-6 text-slate-400">
+                                <li>• Force-pushing shared branches without coordination.</li>
+                                <li>• Committing API keys or credentials.</li>
+                                <li>• Treating a green build as proof that every page works.</li>
+                                <li>• Caching changing HTML as immutable assets.</li>
+                                <li>• Assuming a local hook can enforce server-side policy.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 02 GITHUB PROTECTION -->
+                <section id="github-protection" class="section-anchor space-y-6 border-t border-slate-900 pt-8">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-500/30 bg-indigo-600/15 font-bold text-indigo-300">02</span>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white sm:text-3xl">GitHub Branch Protection & Repository
+                                Rules</h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-400">Enforce the release process on the remote
+                                repository, not just on one developer's machine.</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-300">
+                        A local Git hook can be bypassed, removed, or omitted when someone clones a repository. GitHub
+                        branch protection or repository rulesets are the correct place to enforce pull-request
+                        requirements, status checks, and restrictions on force pushes and branch deletion.
+                    </p>
+
+                    <div class="rounded-2xl border border-indigo-900/50 bg-indigo-950/20 p-5 sm:p-6">
+                        <h3 class="mb-4 font-bold text-white">Recommended rules for <code
+                                class="rounded bg-slate-950 px-2 py-1 text-indigo-300">main</code></h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-check mt-1 text-emerald-400" aria-hidden="true"></i>
+                                <div><strong class="text-slate-200">Require a pull request before merging.</strong>
+                                    <p class="mt-1 leading-6 text-slate-400">Use reviews where practical. For a solo
+                                        project, a pull request can still provide a diff and CI checkpoint; review
+                                        requirements depend on the repository's policy.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-check mt-1 text-emerald-400" aria-hidden="true"></i>
+                                <div><strong class="text-slate-200">Require successful status checks.</strong>
+                                    <p class="mt-1 leading-6 text-slate-400">Select the actual check names produced by
+                                        your CI workflow after it has run at least once.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-check mt-1 text-emerald-400" aria-hidden="true"></i>
+                                <div><strong class="text-slate-200">Block force pushes and branch deletion.</strong>
+                                    <p class="mt-1 leading-6 text-slate-400">This reduces accidental history rewrites
+                                        and deletion of the production branch.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-check mt-1 text-emerald-400" aria-hidden="true"></i>
+                                <div><strong class="text-slate-200">Resolve conversations and restrict bypasses where
+                                        appropriate.</strong>
+                                    <p class="mt-1 leading-6 text-slate-400">Choose rules based on team size and
+                                        recovery needs. Make sure trusted administrators retain an intentional recovery
+                                        path.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="prose-link mt-5 inline-flex items-center gap-2 text-sm"
+                            href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule"
+                            target="_blank" rel="noopener noreferrer">
+                            Read GitHub's branch protection setup guide <i
+                                class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-800 bg-slate-950 p-5">
+                        <h3 class="mb-3 font-bold text-white">Optional local pre-commit guard</h3>
+                        <p class="mb-3 text-sm leading-6 text-slate-400">This hook blocks a normal local commit while
+                            the checked-out branch is named <code class="text-indigo-300">main</code>. It is only a
+                            convenience: it does not prevent direct pushes, API changes, hook removal, or bypassing Git
+                            entirely.</p>
+
+                        <div class="code-panel">
+                            <div
+                                class="flex items-center justify-between border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs text-slate-400">
+                                <span>.git/hooks/pre-commit</span>
+                                <button class="copy-button transition hover:text-white"
+                                    data-copy="hook-code">Copy</button>
+                            </div>
+                            <pre><code id="hook-code">#!/bin/sh
+branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)"
+
+if [ "$branch" = "main" ]; then
+  echo "Blocked: create a feature branch and open a pull request."
+  exit 1
+fi
+
+exit 0</code></pre>
+                        </div>
+
+                        <p class="mt-3 text-xs leading-6 text-slate-500">Save this as <code>.git/hooks/pre-commit</code>
+                            and make it executable on systems that require it, for example with
+                            <code>chmod +x .git/hooks/pre-commit</code>. Git hooks are not normally transferred as
+                            active hooks through a clone.</p>
+                    </div>
+                </section>
+
+                <!-- 03 CLI -->
+                <section id="cli-cheatsheet" class="section-anchor space-y-6 border-t border-slate-900 pt-8">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-500/30 bg-indigo-600/15 font-bold text-indigo-300">03</span>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white sm:text-3xl">Interactive Git CLI Command Reference
+                            </h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-400">Everyday operations, branch management, and
+                                advanced recovery commands.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2" role="tablist" aria-label="Git command categories">
+                            <button id="tab-daily"
+                                class="tab-button rounded-xl border px-3.5 py-2 text-xs font-semibold transition"
+                                role="tab" aria-selected="true" aria-controls="content-daily" data-tab="daily">Daily
+                                Essentials</button>
+                            <button id="tab-branching"
+                                class="tab-button rounded-xl border px-3.5 py-2 text-xs font-semibold transition"
+                                role="tab" aria-selected="false" aria-controls="content-branching" data-tab="branching"
+                                tabindex="-1">Branching & Stash</button>
+                            <button id="tab-advanced"
+                                class="tab-button rounded-xl border px-3.5 py-2 text-xs font-semibold transition"
+                                role="tab" aria-selected="false" aria-controls="content-advanced" data-tab="advanced"
+                                tabindex="-1">Rebase & Bisect</button>
+                            <button id="tab-recovery"
+                                class="tab-button rounded-xl border px-3.5 py-2 text-xs font-semibold transition"
+                                role="tab" aria-selected="false" aria-controls="content-recovery" data-tab="recovery"
+                                tabindex="-1">Recovery</button>
+                        </div>
+
+                        <div id="content-daily" role="tabpanel" aria-labelledby="tab-daily" class="space-y-3">
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Inspect, stage, commit, and push</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-1">Copy</button>
+                                </div>
+                                <pre><code id="cmd-1">git status
+git diff
+git add path/to/changed-file.html
+git diff --staged
+git commit -m "docs: improve deployment workflow guide"
+git push -u origin feature/update-guide</code></pre>
+                            </div>
+
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Inspect history and remotes</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-2">Copy</button>
+                                </div>
+                                <pre><code id="cmd-2">git log --oneline --graph --decorate -n 15
+git remote -v
+git branch -vv
+git show --stat HEAD</code></pre>
+                            </div>
+
+                            <div
+                                class="rounded-xl border border-amber-900/40 bg-amber-950/15 p-4 text-xs leading-6 text-slate-300">
+                                <strong class="text-amber-300">Why not always use <code>git add .</code>?</strong>
+                                Stage only the files you intend to commit. Broad staging can accidentally include
+                                generated files, local configuration, or secrets. Check <code>git diff --staged</code>
+                                before committing.
+                            </div>
+                        </div>
+
+                        <div id="content-branching" role="tabpanel" aria-labelledby="tab-branching"
+                            class="hidden space-y-3" hidden>
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Start a branch and sync with main</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-3">Copy</button>
+                                </div>
+                                <pre><code id="cmd-3">git fetch origin
+git switch main
+git pull --ff-only origin main
+git switch -c feature/update-guide</code></pre>
+                            </div>
+
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Stash work temporarily</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-4">Copy</button>
+                                </div>
+                                <pre><code id="cmd-4">git stash push -m "work in progress"
+git stash list
+git switch main
+git pull --ff-only origin main
+git switch feature/update-guide
+git stash apply
+
+# After checking that the work was restored:
+git stash drop</code></pre>
+                            </div>
+
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Clean up a branch after merging</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-4b">Copy</button>
+                                </div>
+                                <pre><code id="cmd-4b">git switch main
+git pull --ff-only origin main
+git branch -d feature/update-guide
+git fetch --prune</code></pre>
+                            </div>
+                            <p class="text-xs leading-6 text-slate-500">Use <code>git stash apply</code> when you want
+                                to inspect restored changes before deleting the stash. Use <code>git stash pop</code>
+                                only when you're comfortable applying and removing the stash in one operation.</p>
+                        </div>
+
+                        <div id="content-advanced" role="tabpanel" aria-labelledby="tab-advanced"
+                            class="hidden space-y-3" hidden>
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Interactive rebase on a private
+                                        branch</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-5">Copy</button>
+                                </div>
+                                <pre><code id="cmd-5">git status
+git rebase -i HEAD~4
+
+# In the editor, use "squash" or "fixup"
+# for commits you want to combine.
+
+# If a conflict occurs:
+git status
+# Edit the conflicted files, then:
+git add path/to/resolved-file
+git rebase --continue
+
+# To abandon the rebase:
+git rebase --abort</code></pre>
+                            </div>
+
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Find the commit that introduced a
+                                        bug</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-6">Copy</button>
+                                </div>
+                                <pre><code id="cmd-6">git bisect start
+git bisect bad
+git bisect good &lt;known-good-commit&gt;
+
+# Test each commit Git checks out.
+git bisect good
+# or:
+git bisect bad
+
+git bisect reset</code></pre>
+                            </div>
+                            <p class="text-xs leading-6 text-slate-500">Interactive rebase rewrites commit history.
+                                Avoid rebasing shared commits unless your team has agreed on the workflow.</p>
+                        </div>
+
+                        <div id="content-recovery" role="tabpanel" aria-labelledby="tab-recovery"
+                            class="hidden space-y-3" hidden>
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Undo a staged file without deleting its
+                                        edits</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-7">Copy</button>
+                                </div>
+                                <pre><code id="cmd-7">git restore --staged path/to/file.html
+git status</code></pre>
+                            </div>
+
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Discard edits to a tracked file</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-8">Copy</button>
+                                </div>
+                                <pre><code id="cmd-8"># Destructive: discards unstaged edits to this file.
+git diff path/to/file.html
+git restore -- path/to/file.html</code></pre>
+                            </div>
+
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs">
+                                    <span class="font-semibold text-indigo-300">Recover a recent commit reference</span>
+                                    <button class="copy-button shrink-0 text-slate-400 hover:text-white"
+                                        data-copy="cmd-9">Copy</button>
+                                </div>
+                                <pre><code id="cmd-9">git reflog
+# Inspect the list and identify the intended commit.
+git show &lt;commit-hash&gt;
+
+# Create a recovery branch before further changes:
+git switch -c recovery/inspect &lt;commit-hash&gt;</code></pre>
+                            </div>
+                            <p class="text-xs leading-6 text-rose-300">Never run destructive reset or restore commands
+                                blindly. Inspect the working tree and preserve valuable uncommitted work first.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 04 CI/CD -->
+                <section id="cicd-pipelines" class="section-anchor space-y-6 border-t border-slate-900 pt-8">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-500/30 bg-indigo-600/15 font-bold text-indigo-300">04</span>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white sm:text-3xl">Automated Deployment: Cloudflare Pages
+                                & Vercel</h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-400">Connect Git to the host, separate previews
+                                from production, and validate the deployed result.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                        <article class="rounded-2xl border border-orange-900/30 bg-slate-900/60 p-5 sm:p-6">
+                            <div class="mb-4 flex items-center gap-3">
+                                <span
+                                    class="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-500/10 text-xl text-orange-400"><i
+                                        class="fa-solid fa-cloud" aria-hidden="true"></i></span>
+                                <div>
+                                    <h3 class="font-bold text-white">Cloudflare Pages</h3>
+                                    <p class="text-xs text-slate-500">Git-connected static deployments</p>
+                                </div>
+                            </div>
+
+                            <ol class="list-inside list-decimal space-y-3 text-sm leading-6 text-slate-300">
+                                <li>Open Cloudflare Dashboard → Workers & Pages → Create application → Pages → Connect
+                                    to Git.</li>
+                                <li>Authorize the correct GitHub or GitLab repository.</li>
+                                <li>Choose the real production branch, usually <code
+                                        class="text-indigo-300">main</code>.</li>
+                                <li>Set the root directory and build configuration to match your project.</li>
+                                <li>Deploy, then open the generated URL and inspect the build log.</li>
+                            </ol>
+
+                            <div
+                                class="mt-5 space-y-3 rounded-xl border border-slate-800 bg-slate-950 p-4 text-xs leading-6">
+                                <p><strong class="text-slate-200">Plain HTML project</strong><br><span
+                                        class="text-slate-400">Framework preset: None; build command: blank if no build
+                                        is needed; output directory: the folder containing the finished website
+                                        files.</span></p>
+                                <p><strong class="text-slate-200">Built project</strong><br><span
+                                        class="text-slate-400">Use the actual build command and generated output
+                                        directory for your framework. Do not assume <code>/</code>, <code>public</code>,
+                                        or <code>dist</code> is correct without checking.</span></p>
+                            </div>
+
+                            <a class="prose-link mt-4 inline-flex items-center gap-2 text-sm"
+                                href="https://developers.cloudflare.com/pages/get-started/git-integration/"
+                                target="_blank" rel="noopener noreferrer">Official Pages setup guide <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i></a>
+                        </article>
+
+                        <article class="rounded-2xl border border-slate-700 bg-slate-900/60 p-5 sm:p-6">
+                            <div class="mb-4 flex items-center gap-3">
+                                <span
+                                    class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-500/10 text-xl text-indigo-300"><i
+                                        class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></span>
+                                <div>
+                                    <h3 class="font-bold text-white">Vercel</h3>
+                                    <p class="text-xs text-slate-500">Preview and production deployments</p>
+                                </div>
+                            </div>
+
+                            <ol class="list-inside list-decimal space-y-3 text-sm leading-6 text-slate-300">
+                                <li>Open Vercel Dashboard → Add New → Project.</li>
+                                <li>Import the intended repository and authorize access.</li>
+                                <li>Confirm the framework preset, root directory, and build settings.</li>
+                                <li>Add environment variables in the correct environment, if needed.</li>
+                                <li>Deploy, test the preview, and verify the production branch setting.</li>
+                            </ol>
+
+                            <div
+                                class="mt-5 rounded-xl border border-slate-800 bg-slate-950 p-4 text-xs leading-6 text-slate-400">
+                                With Git integration, pushes to branches can generate preview deployments, while changes
+                                to the configured production branch generate production deployments. Exact behavior
+                                depends on project settings and deployment configuration.
+                            </div>
+
+                            <a class="prose-link mt-4 inline-flex items-center gap-2 text-sm"
+                                href="https://vercel.com/docs/git" target="_blank" rel="noopener noreferrer">Official
+                                Vercel Git guide <i class="fa-solid fa-arrow-up-right-from-square text-xs"
+                                    aria-hidden="true"></i></a>
+                        </article>
+                    </div>
+
+                    <div class="rounded-2xl border border-indigo-900/40 bg-indigo-950/20 p-5 sm:p-6">
+                        <h3 class="mb-3 font-bold text-white"><i class="fa-solid fa-code mr-2 text-indigo-300"
+                                aria-hidden="true"></i>Optional GitHub Actions CI workflow</h3>
+                        <p class="mb-4 text-sm leading-7 text-slate-300">
+                            The example below runs a lightweight HTML validation check on pull requests and pushes. It
+                            does not deploy your website; Cloudflare Pages or Vercel can handle deployment separately.
+                            Review third-party action and package versions before adopting this in a production
+                            repository.
+                        </p>
+
+                        <div class="code-panel">
+                            <div
+                                class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs text-slate-400">
+                                <span>.github/workflows/html-check.yml</span>
+                                <button class="copy-button shrink-0 hover:text-white" data-copy="workflow-code">Copy
+                                    workflow</button>
+                            </div>
+                            <pre><code id="workflow-code">name: HTML Quality Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  html-check:
+    name: Validate HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate HTML files
+        run: npx --yes html-validate@latest "**/*.html"</code></pre>
+                        </div>
+
+                        <p class="mt-3 text-xs leading-6 text-slate-500">
+                            This is a starting example, not a guarantee that every existing HTML file passes validation.
+                            Pin and review dependencies for production use, configure validator rules to suit your
+                            markup, and check the action logs. If the project has no HTML files or uses a different
+                            validation tool, adapt the command.
+                        </p>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-800 bg-slate-950 p-5">
+                        <h3 class="mb-3 font-bold text-white">Deployment verification sequence</h3>
+                        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                            <div class="rounded-lg border border-slate-800 p-3 text-sm text-slate-300"><span
+                                    class="mr-2 text-indigo-300">01</span>Confirm the expected commit was built.</div>
+                            <div class="rounded-lg border border-slate-800 p-3 text-sm text-slate-300"><span
+                                    class="mr-2 text-indigo-300">02</span>Inspect build logs and deployment status.
+                            </div>
+                            <div class="rounded-lg border border-slate-800 p-3 text-sm text-slate-300"><span
+                                    class="mr-2 text-indigo-300">03</span>Test navigation, assets, forms, and key
+                                routes.</div>
+                            <div class="rounded-lg border border-slate-800 p-3 text-sm text-slate-300"><span
+                                    class="mr-2 text-indigo-300">04</span>Check the live domain, HTTPS, and browser
+                                console.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 05 HEADERS -->
+                <section id="headers-config" class="section-anchor space-y-6 border-t border-slate-900 pt-8">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-500/30 bg-indigo-600/15 font-bold text-indigo-300">05</span>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white sm:text-3xl">HTTP Security Headers & Edge Caching
+                            </h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-400">Set conservative security defaults and
+                                avoid stale content caused by incorrect cache policies.</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-300">
+                        For Cloudflare Pages, the <code class="text-indigo-300">_headers</code> file must be included in
+                        the deployed output directory. If your build outputs to <code
+                            class="text-indigo-300">dist/</code>, for example, the deployed file typically needs to be
+                        <code class="text-indigo-300">dist/_headers</code>. A source file outside the published output
+                        directory may not be applied.
+                    </p>
+
+                    <div class="code-panel">
+                        <div
+                            class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs text-slate-400">
+                            <span>_headers — static site example</span>
+                            <button class="copy-button shrink-0 hover:text-white" data-copy="headers-code">Copy
+                                config</button>
+                        </div>
+                        <pre><code id="headers-code">/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Long-lived caching is appropriate only for versioned or content-hashed assets.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Revalidate HTML so visitors can receive updated pages.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate</code></pre>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div class="rounded-xl border border-emerald-900/40 bg-emerald-950/10 p-5">
+                            <h3 class="mb-2 font-bold text-emerald-300">Static asset caching</h3>
+                            <p class="text-sm leading-7 text-slate-300">Use a long max-age with <code>immutable</code>
+                                only when the URL changes whenever the file content changes, such as content-hashed
+                                filenames. If you overwrite <code>assets/app.js</code> in place, a year-long immutable
+                                cache can keep old code in users' browsers.</p>
+                        </div>
+                        <div class="rounded-xl border border-amber-900/40 bg-amber-950/10 p-5">
+                            <h3 class="mb-2 font-bold text-amber-300">HTML caching</h3>
+                            <p class="text-sm leading-7 text-slate-300">Revalidation reduces stale-page risk, but it
+                                does not guarantee every intermediary cache behaves identically. Test the actual
+                                response headers and cache behavior on the deployed domain.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-800 bg-slate-950 p-5">
+                        <h3 class="mb-2 font-bold text-white">Security header notes</h3>
+                        <ul class="space-y-2 text-sm leading-7 text-slate-400">
+                            <li><strong class="text-slate-200">Content Security Policy (CSP):</strong> Consider a
+                                carefully tested policy that matches your scripts, styles, images, fonts, and API
+                                connections. A generic strict CSP can break a site that uses CDNs or inline scripts.
+                            </li>
+                            <li><strong class="text-slate-200">HSTS:</strong> Enable only after confirming HTTPS works
+                                correctly across the relevant domain and subdomains. The <code>includeSubDomains</code>
+                                and preload options have wider consequences.</li>
+                            <li><strong class="text-slate-200">Permissions-Policy:</strong> Restrict browser features
+                                your site does not need, but check any embedded functionality before blocking it.</li>
+                            <li><strong class="text-slate-200">Provider support:</strong> Verify the target platform
+                                supports the file and syntax you're using. A static hosting header file is not
+                                automatically honored by every host.</li>
+                        </ul>
+                    </div>
+
+                    <a class="prose-link inline-flex items-center gap-2 text-sm"
+                        href="https://developers.cloudflare.com/pages/configuration/headers/" target="_blank"
+                        rel="noopener noreferrer">Cloudflare Pages headers documentation <i
+                            class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i></a>
+                </section>
+
+                <!-- 06 CONFLICTS AND ROLLBACKS -->
+                <section id="rollbacks" class="section-anchor space-y-6 border-t border-slate-900 pt-8">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-500/30 bg-indigo-600/15 font-bold text-indigo-300">06</span>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white sm:text-3xl">Merge Conflicts & Production Recovery
+                            </h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-400">Recover deliberately, preserve history, and
+                                verify service after the fix.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                        <article class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+                            <h3 class="mb-3 flex items-center gap-2 font-bold text-white"><i
+                                    class="fa-solid fa-code-merge text-amber-400" aria-hidden="true"></i> Resolve a
+                                merge conflict</h3>
+                            <p class="mb-3 text-sm leading-7 text-slate-400">Conflict markers show competing versions.
+                                Edit the file to the intended final content and remove the markers before continuing.
+                            </p>
+
+                            <div class="code-panel">
+                                <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;h1&gt;Current heading&lt;/h1&gt;
+=======
+&lt;h1&gt;Updated heading&lt;/h1&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/update-heading</code></pre>
+                            </div>
+
+                            <div class="mt-4 code-panel">
+                                <div
+                                    class="flex items-center justify-between border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs text-slate-400">
+                                    <span>After editing the file</span>
+                                    <button class="copy-button hover:text-white" data-copy="conflict-code">Copy</button>
+                                </div>
+                                <pre><code id="conflict-code">git status
+# Open and fix each conflicted file.
+git diff
+git add path/to/resolved-file.html
+git diff --staged
+git commit -m "fix: resolve heading merge conflict"
+git push origin feature/update-heading</code></pre>
+                            </div>
+                        </article>
+
+                        <article class="rounded-2xl border border-rose-900/30 bg-slate-900/60 p-5">
+                            <h3 class="mb-3 flex items-center gap-2 font-bold text-white"><i
+                                    class="fa-solid fa-rotate-left text-rose-400" aria-hidden="true"></i> Revert a
+                                faulty Git commit</h3>
+                            <p class="mb-3 text-sm leading-7 text-slate-400">If a bad commit is already on the shared
+                                production branch, <code>git revert</code> creates a new commit that reverses the
+                                selected change. It preserves the existing history.</p>
+
+                            <div class="code-panel">
+                                <div
+                                    class="flex items-center justify-between border-b border-slate-800 bg-slate-900 px-4 py-2 text-xs text-slate-400">
+                                    <span>Git-based recovery</span>
+                                    <button class="copy-button hover:text-white" data-copy="revert-code">Copy</button>
+                                </div>
+                                <pre><code id="revert-code">git switch main
+git pull --ff-only origin main
+git log --oneline -n 10
+
+# Replace &lt;bad-commit-hash&gt; with the actual commit.
+git revert &lt;bad-commit-hash&gt;
+git push origin main</code></pre>
+                            </div>
+
+                            <p class="mt-3 text-xs leading-6 text-slate-500">For a merge commit, reverting requires
+                                additional care because Git needs to know which parent is the mainline. Inspect the
+                                merge and confirm the intended result before using a mainline option.</p>
+                        </article>
+                    </div>
+
+                    <div class="rounded-2xl border border-rose-900/40 bg-rose-950/10 p-5 sm:p-6">
+                        <h3 class="mb-3 font-bold text-rose-300">Emergency production rollback is a separate operation
+                        </h3>
+                        <p class="mb-4 text-sm leading-7 text-slate-300">
+                            If the current live deployment is broken, restoring a previously successful deployment may
+                            be faster than rebuilding a Git revert. A hosting-platform rollback changes what is serving
+                            traffic; a Git revert changes repository history and normally triggers a new deployment when
+                            pushed.
+                        </p>
+
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div class="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                                <h4 class="mb-2 font-semibold text-white">Vercel</h4>
+                                <p class="mb-3 text-sm leading-6 text-slate-400">Use the project's deployment controls
+                                    to roll back to a known-good deployment. The CLI also provides rollback
+                                    functionality for linked projects.</p>
+                                <div class="code-panel">
+                                    <pre><code>vercel rollback
+vercel rollback status</code></pre>
+                                </div>
+                                <a class="prose-link mt-3 inline-block text-sm"
+                                    href="https://vercel.com/docs/deployments/rollback-production-deployment"
+                                    target="_blank" rel="noopener noreferrer">Vercel rollback guide</a>
+                            </div>
+
+                            <div class="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                                <h4 class="mb-2 font-semibold text-white">Cloudflare Pages</h4>
+                                <p class="text-sm leading-6 text-slate-400">Open the Pages project and inspect its
+                                    deployment history. Follow the current platform controls for restoring a prior
+                                    version or redeploying a known-good commit. Available options depend on the
+                                    project's deployment method.</p>
+                                <a class="prose-link mt-3 inline-block text-sm"
+                                    href="https://developers.cloudflare.com/pages/" target="_blank"
+                                    rel="noopener noreferrer">Cloudflare Pages documentation</a>
+                            </div>
+                        </div>
+
+                        <p class="mt-4 text-xs leading-6 text-slate-500">After recovery, verify the production URL, key
+                            routes, browser console, assets, and service behavior. Then identify the cause and prepare a
+                            reviewed permanent fix. A rollback can restore application code but may not reverse database
+                            changes, external side effects, or incompatible data migrations.</p>
+                    </div>
+                </section>
+
+                <!-- 07 CHECKLIST -->
+                <section id="checklist" class="section-anchor space-y-6 border-t border-slate-900 pt-8">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-500/30 bg-indigo-600/15 font-bold text-indigo-300">07</span>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white sm:text-3xl">Production Release Checklist</h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-400">Use this list before and after a release.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-indigo-950 bg-slate-900/60 p-5 sm:p-6">
+                        <div class="mb-5 flex items-center justify-between gap-4">
+                            <h3 class="font-bold text-white">Release readiness</h3>
+                            <span id="check-count"
+                                class="rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-xs text-indigo-300">0
+                                of 12 complete</span>
+                        </div>
+
+                        <div id="release-checklist" class="space-y-3">
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">The correct feature branch and target
+                                    files were selected.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">The staged diff was reviewed and contains
+                                    no secrets or unintended files.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">The commit message explains the change
+                                    clearly.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">Required automated checks passed
+                                    successfully.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">Branch protection rules are configured as
+                                    intended.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">The preview deployment was tested when
+                                    available.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">Build output and root directory match the
+                                    hosting configuration.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">No API keys, private tokens, or
+                                    credentials were committed.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">Caching and response headers were checked
+                                    on the deployed site.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">Navigation, images, scripts, forms, and
+                                    important routes work.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">The production deployment corresponds to
+                                    the expected commit.</span>
+                            </label>
+                            <label
+                                class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-800 p-3 transition hover:border-indigo-900">
+                                <input class="mt-1 accent-indigo-500" type="checkbox">
+                                <span class="text-sm leading-6 text-slate-300">A recovery path and a known-good
+                                    deployment or commit are identified.</span>
+                            </label>
+                        </div>
+
+                        <div class="mt-5 flex flex-wrap gap-3">
+                            <button id="reset-checklist" type="button"
+                                class="rounded-lg border border-slate-700 px-4 py-2 text-xs font-semibold text-slate-300 transition hover:border-indigo-500 hover:text-white">Reset
+                                checklist</button>
+                            <button id="copy-checklist" type="button"
+                                class="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-indigo-500">Copy
+                                checklist</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- REFERENCES -->
+                <section class="space-y-4 border-t border-slate-900 pt-8">
+                    <h2 class="text-xl font-bold text-white">Official Documentation & Further Reading</h2>
+                    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        <a href="https://git-scm.com/docs" target="_blank" rel="noopener noreferrer"
+                            class="rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-700">
+                            <span class="block font-semibold text-slate-200">Git Documentation</span>
+                            <span class="mt-1 block text-xs leading-5 text-slate-500">Commands, branching, history,
+                                stash, and recovery.</span>
+                        </a>
+                        <a href="https://docs.github.com/en/pull-requests" target="_blank" rel="noopener noreferrer"
+                            class="rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-700">
+                            <span class="block font-semibold text-slate-200">GitHub Pull Requests</span>
+                            <span class="mt-1 block text-xs leading-5 text-slate-500">Review changes and manage
+                                collaboration.</span>
+                        </a>
+                        <a href="https://developers.cloudflare.com/pages/" target="_blank" rel="noopener noreferrer"
+                            class="rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-700">
+                            <span class="block font-semibold text-slate-200">Cloudflare Pages</span>
+                            <span class="mt-1 block text-xs leading-5 text-slate-500">Git integration, builds, previews,
+                                and configuration.</span>
+                        </a>
+                        <a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer"
+                            class="rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-700">
+                            <span class="block font-semibold text-slate-200">Vercel Documentation</span>
+                            <span class="mt-1 block text-xs leading-5 text-slate-500">Git deployments, environments, and
+                                rollbacks.</span>
+                        </a>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-12 border-t border-indigo-950/70 bg-slate-950 py-8 sm:py-10">
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 text-center sm:px-6 md:flex-row md:text-left lg:px-8">
+            <div class="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
+                <span class="rounded bg-indigo-600 px-2 py-1 font-bold text-white">GETKIT</span>
+                <span>© <span id="current-year">2026</span> getkit.in — Developer Resources</span>
+            </div>
+            <div class="flex items-center gap-5 text-xs text-slate-400">
+                <a href="https://getkit.in" class="transition hover:text-indigo-300">Resource Hub</a>
+                <a href="#overview" class="transition hover:text-indigo-300">Back to Top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIONS -->
+    <script>
+        (() => {
+            "use strict";
+
+            // Accessible command tabs.
+            const tabButtons = [...document.querySelectorAll("[data-tab]")];
+            const tabPanels = {
+                daily: document.getElementById("content-daily"),
+                branching: document.getElementById("content-branching"),
+                advanced: document.getElementById("content-advanced"),
+                recovery: document.getElementById("content-recovery")
+            };
+
+            function activateTab(name, focusButton = false) {
+                tabButtons.forEach(button => {
+                    const active = button.dataset.tab === name;
+                    button.setAttribute("aria-selected", String(active));
+                    button.tabIndex = active ? 0 : -1;
+
+                    if (active && focusButton) button.focus();
+                });
+
+                Object.entries(tabPanels).forEach(([key, panel]) => {
+                    const active = key === name;
+                    panel.hidden = !active;
+                    panel.classList.toggle("hidden", !active);
+                });
+            }
+
+            tabButtons.forEach((button, index) => {
+                button.addEventListener("click", () => activateTab(button.dataset.tab));
+
+                button.addEventListener("keydown", event => {
+                    let nextIndex = index;
+
+                    if (event.key === "ArrowRight") nextIndex = (index + 1) % tabButtons.length;
+                    else if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+                    else if (event.key === "Home") nextIndex = 0;
+                    else if (event.key === "End") nextIndex = tabButtons.length - 1;
+                    else return;
+
+                    event.preventDefault();
+                    activateTab(tabButtons[nextIndex].dataset.tab, true);
+                });
+            });
+
+            // Copy buttons: Clipboard API with a legacy fallback.
+            async function copyText(value) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(value);
+                    return;
+                }
+
+                const textarea = document.createElement("textarea");
+                textarea.value = value;
+                textarea.setAttribute("readonly", "");
+                textarea.style.position = "fixed";
+                textarea.style.opacity = "0";
+                document.body.appendChild(textarea);
+                textarea.select();
+
+                const successful = document.execCommand("copy");
+                textarea.remove();
+
+                if (!successful) {
+                    throw new Error("Clipboard copy is unavailable in this browser.");
+                }
+            }
+
+            document.querySelectorAll("[data-copy]").forEach(button => {
+                button.addEventListener("click", async () => {
+                    const code = document.getElementById(button.dataset.copy);
+                    if (!code) return;
+
+                    const originalText = button.textContent;
+                    button.disabled = true;
+
+                    try {
+                        await copyText(code.innerText);
+                        button.textContent = "Copied!";
+                        button.classList.add("text-emerald-400");
+                    } catch (error) {
+                        button.textContent = "Copy failed";
+                        console.error(error);
+                    }
+
+                    window.setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove("text-emerald-400");
+                        button.disabled = false;
+                    }, 1800);
+                });
+            });
+
+            // Interactive release checklist. State stays in this page only.
+            const checklist = document.getElementById("release-checklist");
+            const checkboxes = [...checklist.querySelectorAll('input[type="checkbox"]')];
+            const count = document.getElementById("check-count");
+
+            function updateChecklist() {
+                const complete = checkboxes.filter(input => input.checked).length;
+                count.textContent = `${complete} of ${checkboxes.length} complete`;
+                count.classList.toggle("text-emerald-300", complete === checkboxes.length);
+                count.classList.toggle("text-indigo-300", complete !== checkboxes.length);
+            }
+
+            checkboxes.forEach(input => input.addEventListener("change", updateChecklist));
+
+            document.getElementById("reset-checklist").addEventListener("click", () => {
+                checkboxes.forEach(input => { input.checked = false; });
+                updateChecklist();
+            });
+
+            document.getElementById("copy-checklist").addEventListener("click", async event => {
+                const lines = checkboxes.map(input =>
+                    `${input.checked ? "[x]" : "[ ]"} ${input.nextElementSibling.textContent.trim()}`
+                );
+
+                const button = event.currentTarget;
+                const originalText = button.textContent;
+
+                try {
+                    await copyText("Production Release Checklist\n\n" + lines.join("\n"));
+                    button.textContent = "Copied!";
+                } catch (error) {
+                    button.textContent = "Copy failed";
+                    console.error(error);
+                }
+
+                window.setTimeout(() => { button.textContent = originalText; }, 1800);
+            });
+
+            document.getElementById("current-year").textContent = new Date().getFullYear();
+            updateChecklist();
+        })();
+    </script>
+</body>
+
+</html>

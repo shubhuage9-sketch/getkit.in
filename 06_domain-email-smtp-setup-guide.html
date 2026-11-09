@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Custom Domain DNS, Email Routing & SMTP Guide | GetKit</title>
+    <meta name="description"
+        content="A practical guide to custom domain DNS, Cloudflare Email Routing, SPF, DKIM, DMARC, Gmail Send mail as, SMTP configuration, and email troubleshooting.">
+    <meta name="theme-color" content="#090d16">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://getkit.in/06-custom-domain-dns-email-smtp-guide.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Custom Domain DNS, Email Routing & SMTP Setup">
+    <meta property="og:description"
+        content="Understand domain DNS, email forwarding, authentication, and custom-domain sending with this practical GetKit guide.">
+    <meta property="og:url" content="https://getkit.in/06-custom-domain-dns-email-smtp-guide.html">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: "#eef2ff",
+                            100: "#e0e7ff",
+                            300: "#a5b4fc",
+                            400: "#818cf8",
+                            500: "#6366f1",
+                            600: "#4f46e5",
+                            700: "#4338ca",
+                            800: "#3730a3",
+                            900: "#312e81"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["Fira Code", "monospace"]
+                    },
+                    boxShadow: {
+                        glow: "0 0 40px rgba(99,102,241,.12)"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --page: #090d16;
+            --panel: #101625;
+            --panel-deep: #0b1120;
+            --line: rgba(129, 140, 248, .15);
+            --muted: #94a3b8;
+        }
+
+        html {
+            scroll-padding-top: 96px;
+        }
+
+        body {
+            font-family: Inter, sans-serif;
+            background:
+                radial-gradient(ellipse at 15% 0%, rgba(79, 70, 229, .11), transparent 34rem),
+                radial-gradient(ellipse at 90% 15%, rgba(124, 58, 237, .08), transparent 32rem),
+                var(--page);
+        }
+
+        ::selection {
+            background: #4f46e5;
+            color: #fff;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #27334b;
+            border-radius: 999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        .glass {
+            background: rgba(16, 22, 37, .78);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(16px);
+        }
+
+        .panel {
+            background: linear-gradient(145deg, rgba(18, 25, 43, .94), rgba(11, 17, 32, .94));
+            border: 1px solid var(--line);
+        }
+
+        .section-anchor {
+            scroll-margin-top: 100px;
+        }
+
+        .toc-link.active {
+            color: #c7d2fe;
+            background: rgba(99, 102, 241, .12);
+            border-color: rgba(129, 140, 248, .2);
+        }
+
+        .code-box {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        .focus-ring:focus-visible {
+            outline: 2px solid #818cf8;
+            outline-offset: 3px;
+        }
+
+        .progress-bar {
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-slate-100 antialiased">
+
+    <!-- Reading progress -->
+    <div class="fixed inset-x-0 top-0 z-[70] h-0.5 bg-slate-900">
+        <div id="reading-progress" class="progress-bar h-full bg-gradient-to-r from-indigo-500 to-violet-400"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-indigo-950/70 bg-[#090d16]/85 backdrop-blur-xl">
+        <div class="mx-auto flex h-[68px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+            <a href="https://getkit.in" class="flex shrink-0 items-center gap-2.5 focus-ring rounded-lg">
+                <span
+                    class="rounded-lg bg-gradient-to-br from-indigo-500 to-violet-700 px-2.5 py-1.5 text-lg font-extrabold tracking-wide text-white shadow-glow">
+                    GETKIT
+                </span>
+                <span
+                    class="hidden rounded-md border border-indigo-400/20 bg-indigo-400/10 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-indigo-300 sm:inline">
+                    Guides
+                </span>
+            </a>
+
+            <nav class="hidden items-center gap-5 text-xs font-medium text-slate-400 xl:flex">
+                <a href="#architecture" class="hover:text-indigo-300">Architecture</a>
+                <a href="#dns-records" class="hover:text-indigo-300">DNS records</a>
+                <a href="#generator" class="hover:text-indigo-300">Generator</a>
+                <a href="#authentication" class="hover:text-indigo-300">SPF / DKIM / DMARC</a>
+                <a href="#routing" class="hover:text-indigo-300">Email routing</a>
+                <a href="#sending" class="hover:text-indigo-300">Sending email</a>
+                <a href="#troubleshooting" class="hover:text-indigo-300">Troubleshooting</a>
+            </nav>
+
+            <a href="https://getkit.in"
+                class="focus-ring inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2.5 text-xs font-semibold text-white transition hover:bg-indigo-500 sm:px-4 sm:text-sm">
+                <i class="fa-solid fa-house"></i>
+                <span>GetKit Home</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden border-b border-indigo-950/70">
+        <div class="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-indigo-600/10 blur-[100px]">
+        </div>
+        <div class="pointer-events-none absolute -right-24 top-20 h-72 w-72 rounded-full bg-violet-600/10 blur-[100px]">
+        </div>
+
+        <div class="relative mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
+            <div
+                class="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-400/20 bg-indigo-400/[0.07] px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-indigo-300">
+                <i class="fa-solid fa-envelope-circle-check"></i>
+                <span>Developer Infrastructure Guide · #06</span>
+            </div>
+
+            <h1
+                class="mx-auto max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Custom Domain DNS,
+                <span
+                    class="bg-gradient-to-r from-indigo-300 via-violet-300 to-indigo-400 bg-clip-text text-transparent">
+                    Email Routing & SMTP
+                </span>
+            </h1>
+
+            <p class="mx-auto mt-6 max-w-3xl text-sm leading-7 text-slate-400 sm:text-lg">
+                Learn how domain records work, receive mail at a custom address, configure email authentication,
+                and understand the limitations of sending through a personal Gmail account.
+            </p>
+
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400">
+                <span
+                    class="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2">
+                    <i class="fa-regular fa-clock text-indigo-400"></i> 15–20 min read
+                </span>
+                <span
+                    class="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2">
+                    <i class="fa-solid fa-shield-halved text-emerald-400"></i> Email security
+                </span>
+                <span
+                    class="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2">
+                    <i class="fa-solid fa-screwdriver-wrench text-violet-400"></i> Practical examples
+                </span>
+            </div>
+
+            <div
+                class="mx-auto mt-9 max-w-3xl rounded-2xl border border-amber-400/20 bg-amber-400/[0.06] p-4 text-left sm:p-5">
+                <div class="flex items-start gap-3">
+                    <i class="fa-solid fa-triangle-exclamation mt-0.5 text-amber-300"></i>
+                    <div>
+                        <p class="text-sm font-bold text-amber-200">Before editing DNS</p>
+                        <p class="mt-1 text-xs leading-6 text-slate-300 sm:text-sm">
+                            DNS values depend on your actual web host and email provider. Examples in this guide are
+                            templates, not a universal production configuration. Back up existing records and do not
+                            replace live MX, SPF, or DKIM records until you know which services use them.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main layout -->
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-10">
+
+            <!-- Sidebar -->
+            <aside class="hidden lg:col-span-1 lg:block">
+                <div class="glass sticky top-24 rounded-2xl p-4 shadow-glow">
+                    <div
+                        class="mb-4 flex items-center gap-2 px-2 text-[10px] font-bold uppercase tracking-[.18em] text-indigo-300">
+                        <i class="fa-solid fa-list-ul"></i>
+                        Guide contents
+                    </div>
+
+                    <nav id="toc" class="space-y-1 text-xs">
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#architecture">01 · Architecture</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#dns-records">02 · DNS records</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#generator">03 · Record generator</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#authentication">04 · Email authentication</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#routing">05 · Cloudflare routing</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#sending">06 · Sending email</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#verification">07 · Verification</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#troubleshooting">08 · Troubleshooting</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#checklist">09 · Final checklist</a>
+                        <a class="toc-link block rounded-lg border border-transparent px-3 py-2.5 text-slate-400 transition hover:text-white"
+                            href="#references">10 · Official references</a>
+                    </nav>
+
+                    <div class="mt-5 border-t border-slate-800 pt-4">
+                        <p class="text-[10px] uppercase tracking-wider text-slate-500">Example domain</p>
+                        <p class="mt-1 font-mono text-sm text-indigo-300">getkit.in</p>
+                        <p class="mt-2 text-[11px] leading-5 text-slate-500">
+                            Replace example values with records supplied by your provider.
+                        </p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Article -->
+            <main class="min-w-0 space-y-14 lg:col-span-3">
+
+                <!-- 01 Architecture -->
+                <section id="architecture" class="section-anchor space-y-6">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">01</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">The fundamentals
+                            </p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Understand the email architecture
+                            </h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400 sm:text-base">
+                        A custom email address such as <code
+                            class="rounded bg-slate-900 px-1.5 py-0.5 text-indigo-300">support@getkit.in</code>
+                        is an address under your domain. It does not automatically include an inbox, storage, or the
+                        ability to send mail. DNS tells other systems where to deliver mail and which services are
+                        authorized to send it.
+                    </p>
+
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div class="panel rounded-2xl p-5">
+                            <div class="flex items-center gap-2 text-sm font-bold text-emerald-300">
+                                <i class="fa-solid fa-inbox"></i> Incoming email
+                            </div>
+                            <div class="mt-4 space-y-2 text-xs">
+                                <div class="rounded-lg border border-slate-800 bg-slate-950/80 p-3 text-slate-300">
+                                    Sender sends to support@yourdomain.com</div>
+                                <div class="text-center text-slate-600"><i class="fa-solid fa-arrow-down"></i></div>
+                                <div class="rounded-lg border border-slate-800 bg-slate-950/80 p-3 text-slate-300">
+                                    Domain MX records identify the receiving mail service</div>
+                                <div class="text-center text-slate-600"><i class="fa-solid fa-arrow-down"></i></div>
+                                <div
+                                    class="rounded-lg border border-emerald-900/50 bg-emerald-950/20 p-3 text-emerald-200">
+                                    Mail provider receives, forwards, or stores the message</div>
+                            </div>
+                        </div>
+
+                        <div class="panel rounded-2xl p-5">
+                            <div class="flex items-center gap-2 text-sm font-bold text-indigo-300">
+                                <i class="fa-solid fa-paper-plane"></i> Outgoing email
+                            </div>
+                            <div class="mt-4 space-y-2 text-xs">
+                                <div class="rounded-lg border border-slate-800 bg-slate-950/80 p-3 text-slate-300">You
+                                    compose a message using a mail client</div>
+                                <div class="text-center text-slate-600"><i class="fa-solid fa-arrow-down"></i></div>
+                                <div class="rounded-lg border border-slate-800 bg-slate-950/80 p-3 text-slate-300">An
+                                    SMTP provider sends the message</div>
+                                <div class="text-center text-slate-600"><i class="fa-solid fa-arrow-down"></i></div>
+                                <div
+                                    class="rounded-lg border border-indigo-900/50 bg-indigo-950/20 p-3 text-indigo-200">
+                                    Recipient checks SPF, DKIM, DMARC, reputation, and content</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-3 sm:grid-cols-3">
+                        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <i class="fa-solid fa-globe text-indigo-300"></i>
+                            <h3 class="mt-3 text-sm font-bold text-white">DNS</h3>
+                            <p class="mt-1 text-xs leading-5 text-slate-400">Publishes the records that direct web and
+                                mail traffic.</p>
+                        </div>
+                        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <i class="fa-solid fa-envelope text-emerald-300"></i>
+                            <h3 class="mt-3 text-sm font-bold text-white">Mail service</h3>
+                            <p class="mt-1 text-xs leading-5 text-slate-400">Receives, forwards, stores, or sends
+                                messages.</p>
+                        </div>
+                        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <i class="fa-solid fa-shield-halved text-violet-300"></i>
+                            <h3 class="mt-3 text-sm font-bold text-white">Authentication</h3>
+                            <p class="mt-1 text-xs leading-5 text-slate-400">Helps receiving systems verify the sender's
+                                domain.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="rounded-xl border border-amber-400/20 bg-amber-400/[0.05] p-4 text-xs leading-6 text-slate-300">
+                        <strong class="text-amber-200">Key distinction:</strong> Cloudflare Email Routing can forward
+                        incoming messages to an existing inbox. It is not, by itself, a conventional hosted mailbox
+                        with inbox storage and a general-purpose SMTP submission service.
+                        <a class="text-indigo-300 underline underline-offset-4"
+                            href="https://developers.cloudflare.com/email-service/get-started/route-emails/"
+                            target="_blank" rel="noopener noreferrer">Read Cloudflare's routing documentation.</a>
+                    </div>
+                </section>
+
+                <!-- 02 DNS -->
+                <section id="dns-records" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">02</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">DNS configuration
+                            </p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">DNS record architecture matrix
+                            </h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">
+                        The exact values depend on your hosting and email providers. Use the table as a reference for
+                        what each record does—not as a list to paste blindly into a live DNS zone.
+                    </p>
+
+                    <div class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/70">
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-[700px] text-left text-xs">
+                                <thead
+                                    class="border-b border-slate-800 bg-slate-900 text-[10px] uppercase tracking-wider text-slate-400">
+                                    <tr>
+                                        <th class="p-4">Type</th>
+                                        <th class="p-4">Name</th>
+                                        <th class="p-4">Purpose / example</th>
+                                        <th class="p-4">Proxy</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800/80 text-slate-300">
+                                    <tr>
+                                        <td class="p-4 font-mono font-bold text-indigo-300">A / AAAA</td>
+                                        <td class="p-4 font-mono">@</td>
+                                        <td class="p-4 leading-5">Points the root domain to the IPv4/IPv6 address
+                                            supplied by your web host.</td>
+                                        <td class="p-4 text-amber-300">Provider-dependent</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-mono font-bold text-indigo-300">CNAME</td>
+                                        <td class="p-4 font-mono">www</td>
+                                        <td class="p-4 leading-5">Aliases a hostname to the canonical hostname supplied
+                                            by your host.</td>
+                                        <td class="p-4 text-amber-300">Provider-dependent</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-mono font-bold text-amber-300">MX</td>
+                                        <td class="p-4 font-mono">@</td>
+                                        <td class="p-4 leading-5">Identifies the mail servers that receive email for
+                                            your domain. Use your chosen provider's targets and priorities.</td>
+                                        <td class="p-4 text-slate-400">DNS only</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-mono font-bold text-emerald-300">TXT</td>
+                                        <td class="p-4 font-mono">@</td>
+                                        <td class="p-4 leading-5">May contain your root-domain SPF policy, depending on
+                                            the mail services you actually use.</td>
+                                        <td class="p-4 text-slate-400">DNS only</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-mono font-bold text-emerald-300">TXT</td>
+                                        <td class="p-4 font-mono">selector._domainkey</td>
+                                        <td class="p-4 leading-5">Publishes a DKIM public key supplied by the email
+                                            sender. The selector is provider-specific.</td>
+                                        <td class="p-4 text-slate-400">DNS only</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-mono font-bold text-violet-300">TXT</td>
+                                        <td class="p-4 font-mono">_dmarc</td>
+                                        <td class="p-4 leading-5">Defines your DMARC policy and optionally the address
+                                            for aggregate reports.</td>
+                                        <td class="p-4 text-slate-400">DNS only</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div class="rounded-xl border border-rose-400/20 bg-rose-400/[0.04] p-4">
+                            <div class="flex items-center gap-2 text-sm font-bold text-rose-300">
+                                <i class="fa-solid fa-ban"></i> Avoid placeholder IPs
+                            </div>
+                            <p class="mt-2 text-xs leading-6 text-slate-400">
+                                Do not use <code class="text-rose-200">192.0.2.1</code> as your real website origin.
+                                This address belongs to a documentation range. Obtain the correct target from your
+                                hosting provider.
+                            </p>
+                        </div>
+                        <div class="rounded-xl border border-amber-400/20 bg-amber-400/[0.04] p-4">
+                            <div class="flex items-center gap-2 text-sm font-bold text-amber-200">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Avoid duplicate SPF records
+                            </div>
+                            <p class="mt-2 text-xs leading-6 text-slate-400">
+                                A domain should have one SPF policy at a given hostname. If multiple services send
+                                mail, merge their verified mechanisms into a single policy instead of publishing
+                                multiple independent SPF TXT records.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+                        <h3 class="text-sm font-bold text-white">Which DNS service should be authoritative?</h3>
+                        <ol class="mt-3 space-y-2 text-xs leading-6 text-slate-400">
+                            <li><span class="mr-2 font-bold text-indigo-300">1.</span>Check which nameservers are active
+                                at your domain registrar.</li>
+                            <li><span class="mr-2 font-bold text-indigo-300">2.</span>Make DNS changes at the provider
+                                that hosts your authoritative DNS zone.</li>
+                            <li><span class="mr-2 font-bold text-indigo-300">3.</span>If you use Cloudflare nameservers,
+                                manage the applicable records in the Cloudflare dashboard.</li>
+                            <li><span class="mr-2 font-bold text-indigo-300">4.</span>Keep web records and mail records
+                                consistent with the services you have enabled.</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- 03 Generator -->
+                <section id="generator" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">03</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">Interactive
+                                utility</p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">DNS record helper</h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">
+                        Generate a starter DMARC record and a clearly labeled SPF example. The helper does not inspect
+                        your live DNS, discover your sending providers, or verify that a record is safe to publish.
+                    </p>
+
+                    <div class="glass rounded-2xl p-5 sm:p-6">
+                        <div class="grid gap-4 md:grid-cols-2">
+                            <div>
+                                <label for="gen-domain" class="mb-2 block text-xs font-semibold text-slate-300">Your
+                                    domain</label>
+                                <input id="gen-domain" type="text" value="getkit.in" autocomplete="off"
+                                    spellcheck="false" placeholder="example.com"
+                                    class="focus-ring w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-3 font-mono text-sm text-indigo-200 outline-none transition focus:border-indigo-400">
+                                <p class="mt-1.5 text-[10px] leading-5 text-slate-500">Enter the domain only, without
+                                    https:// or a mailbox name.</p>
+                            </div>
+                            <div>
+                                <label for="gen-policy" class="mb-2 block text-xs font-semibold text-slate-300">DMARC
+                                    policy</label>
+                                <select id="gen-policy"
+                                    class="focus-ring w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-3 text-sm text-slate-200 outline-none focus:border-indigo-400">
+                                    <option value="none">p=none — monitor first</option>
+                                    <option value="quarantine">p=quarantine — quarantine failures</option>
+                                    <option value="reject">p=reject — reject failures</option>
+                                </select>
+                                <p class="mt-1.5 text-[10px] leading-5 text-slate-500">Start with monitoring until
+                                    legitimate senders are authenticated.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 rounded-xl border border-amber-400/20 bg-amber-400/[0.05] p-3.5">
+                            <p class="text-xs leading-6 text-slate-300">
+                                <i class="fa-solid fa-circle-info mr-1 text-amber-300"></i>
+                                <strong class="text-amber-200">SPF is provider-specific.</strong>
+                                There is no universally correct SPF string for every domain. The example below is
+                                illustrative; only include services that are authorized and actually send mail for you.
+                            </p>
+                        </div>
+
+                        <div class="mt-5 space-y-4">
+                            <div class="overflow-hidden rounded-xl border border-slate-800 bg-slate-950">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 px-4 py-3">
+                                    <div>
+                                        <p class="text-xs font-bold text-emerald-300">Example SPF TXT</p>
+                                        <p class="mt-1 text-[10px] text-slate-500">Name: @ · Use only if applicable</p>
+                                    </div>
+                                    <button type="button" data-copy="out-spf"
+                                        class="focus-ring rounded-lg border border-slate-700 px-3 py-2 text-xs text-slate-300 transition hover:border-indigo-400 hover:text-white">
+                                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                                    </button>
+                                </div>
+                                <pre
+                                    class="code-box whitespace-pre-wrap p-4 text-xs leading-6 text-indigo-200"><code id="out-spf">v=spf1 include:_spf.mx.cloudflare.net ~all</code></pre>
+                            </div>
+
+                            <div class="overflow-hidden rounded-xl border border-slate-800 bg-slate-950">
+                                <div
+                                    class="flex items-center justify-between gap-3 border-b border-slate-800 px-4 py-3">
+                                    <div>
+                                        <p class="text-xs font-bold text-violet-300">Generated DMARC TXT</p>
+                                        <p class="mt-1 text-[10px] text-slate-500">Name: _dmarc</p>
+                                    </div>
+                                    <button type="button" data-copy="out-dmarc"
+                                        class="focus-ring rounded-lg border border-slate-700 px-3 py-2 text-xs text-slate-300 transition hover:border-indigo-400 hover:text-white">
+                                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                                    </button>
+                                </div>
+                                <pre
+                                    class="code-box whitespace-pre-wrap p-4 text-xs leading-6 text-indigo-200"><code id="out-dmarc">v=DMARC1; p=none; rua=mailto:dmarc-reports@getkit.in; pct=100</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 flex flex-wrap gap-3">
+                            <button id="generate-records" type="button"
+                                class="focus-ring rounded-xl bg-indigo-600 px-4 py-3 text-xs font-bold text-white transition hover:bg-indigo-500">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Generate records
+                            </button>
+                            <button id="reset-records" type="button"
+                                class="focus-ring rounded-xl border border-slate-700 px-4 py-3 text-xs font-semibold text-slate-300 transition hover:border-slate-500 hover:text-white">
+                                Reset example
+                            </button>
+                        </div>
+                        <p id="generator-status" aria-live="polite" class="mt-3 text-xs text-slate-500">
+                            Review each record with your provider before publishing.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 04 Authentication -->
+                <section id="authentication" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">04</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">Sender identity
+                            </p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">SPF, DKIM & DMARC explained</h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">
+                        These protocols work together, but they solve different problems. Publishing records is only
+                        one part of the setup: the sending service must also sign or transmit messages correctly, and
+                        the authenticated domain must align with the visible From domain for DMARC to pass.
+                    </p>
+
+                    <div class="space-y-4">
+                        <article class="panel rounded-2xl p-5 sm:p-6">
+                            <div class="flex items-start gap-3">
+                                <span
+                                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300"><i
+                                        class="fa-solid fa-list-check"></i></span>
+                                <div class="min-w-0">
+                                    <h3 class="text-base font-bold text-white">SPF — Sender Policy Framework</h3>
+                                    <p class="mt-2 text-sm leading-7 text-slate-400">
+                                        SPF specifies which sending systems are authorized for a domain used in the
+                                        SMTP envelope identity. It does not directly authenticate the visible From
+                                        address by itself.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-4 rounded-xl border border-slate-800 bg-slate-950 p-4">
+                                <p class="mb-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                                    Illustrative syntax</p>
+                                <code
+                                    class="block break-all text-xs text-emerald-200">v=spf1 include:PROVIDER-SUPPLIED-DOMAIN ~all</code>
+                                <p class="mt-3 text-xs leading-6 text-slate-500">
+                                    Replace the placeholder with a real mechanism provided by your email service.
+                                    Never publish the literal placeholder.
+                                </p>
+                            </div>
+                            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-3">
+                                    <p class="text-xs font-bold text-amber-200">~all · SoftFail</p>
+                                    <p class="mt-1 text-xs leading-5 text-slate-400">Signals that other senders are not
+                                        authorized, without explicitly requesting a hard fail from SPF alone.</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-3">
+                                    <p class="text-xs font-bold text-rose-200">-all · Fail</p>
+                                    <p class="mt-1 text-xs leading-5 text-slate-400">Marks other senders as
+                                        unauthorized. Use only after validating the full sending setup.</p>
+                                </div>
+                            </div>
+                            <p class="mt-4 text-xs leading-6 text-slate-400">
+                                <strong class="text-white">Lookup limit:</strong> SPF permits at most 10 DNS-querying
+                                mechanisms during evaluation. Nested includes count too. Exceeding the limit can cause
+                                SPF evaluation errors.
+                            </p>
+                        </article>
+
+                        <article class="panel rounded-2xl p-5 sm:p-6">
+                            <div class="flex items-start gap-3">
+                                <span
+                                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-300"><i
+                                        class="fa-solid fa-key"></i></span>
+                                <div>
+                                    <h3 class="text-base font-bold text-white">DKIM — DomainKeys Identified Mail</h3>
+                                    <p class="mt-2 text-sm leading-7 text-slate-400">
+                                        DKIM adds a cryptographic signature to outgoing messages. The recipient
+                                        retrieves the corresponding public key from DNS using the signature's selector
+                                        and verifies the signature. Your email provider generates the private/public
+                                        key pair and gives you the DNS record to publish.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-4 rounded-xl border border-slate-800 bg-slate-950 p-4">
+                                <p class="mb-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">Typical
+                                    record structure</p>
+                                <code class="block break-all text-xs leading-6 text-indigo-200">Name: selector._domainkey
+Value: v=DKIM1; k=rsa; p=PROVIDER_GENERATED_PUBLIC_KEY</code>
+                                <p class="mt-3 text-xs leading-6 text-slate-500">
+                                    This is a schematic example, not a usable key. Do not invent a selector or
+                                    publish a fake public key. Different providers may use different selectors and
+                                    record formats.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="panel rounded-2xl p-5 sm:p-6">
+                            <div class="flex items-start gap-3">
+                                <span
+                                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-violet-300"><i
+                                        class="fa-solid fa-shield-halved"></i></span>
+                                <div>
+                                    <h3 class="text-base font-bold text-white">DMARC — Domain-based Message
+                                        Authentication</h3>
+                                    <p class="mt-2 text-sm leading-7 text-slate-400">
+                                        DMARC evaluates whether SPF or DKIM passes with alignment to the domain in the
+                                        visible From header. It then publishes a policy for handling messages that
+                                        fail DMARC and can direct aggregate reports to a reporting address.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 grid gap-3 md:grid-cols-3">
+                                <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Stage
+                                        1</span>
+                                    <p class="mt-1 font-mono text-sm font-bold text-slate-200">p=none</p>
+                                    <p class="mt-2 text-xs leading-5 text-slate-400">Monitor authentication results
+                                        without requesting quarantine or rejection.</p>
+                                </div>
+                                <div class="rounded-xl border border-amber-400/15 bg-amber-400/[0.03] p-4">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-300">Stage
+                                        2</span>
+                                    <p class="mt-1 font-mono text-sm font-bold text-amber-200">p=quarantine</p>
+                                    <p class="mt-2 text-xs leading-5 text-slate-400">Ask receiving systems to treat
+                                        failing messages as suspicious.</p>
+                                </div>
+                                <div class="rounded-xl border border-rose-400/15 bg-rose-400/[0.03] p-4">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-rose-300">Stage
+                                        3</span>
+                                    <p class="mt-1 font-mono text-sm font-bold text-rose-200">p=reject</p>
+                                    <p class="mt-2 text-xs leading-5 text-slate-400">Ask receiving systems to reject
+                                        messages that fail DMARC.</p>
+                                </div>
+                            </div>
+
+                            <p class="mt-4 text-xs leading-6 text-slate-400">
+                                Move from monitoring to enforcement only after reviewing reports and confirming that
+                                legitimate services—including website forms, payment receipts, newsletters, and support
+                                systems—are correctly authenticated.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div
+                        class="rounded-xl border border-indigo-400/20 bg-indigo-400/[0.05] p-4 text-xs leading-6 text-slate-300">
+                        <strong class="text-indigo-200">Alignment matters:</strong> passing SPF for an unrelated
+                        provider domain or passing DKIM with an unrelated signing domain may not satisfy DMARC for
+                        your visible From domain. Test the actual messages you send.
+                    </div>
+                </section>
+
+                <!-- 05 Cloudflare routing -->
+                <section id="routing" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">05</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">Incoming messages
+                            </p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Set up Cloudflare Email Routing
+                            </h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">
+                        Email Routing is useful when you want addresses such as
+                        <code class="text-indigo-300">support@getkit.in</code> or
+                        <code class="text-indigo-300">contact@getkit.in</code> to forward to an existing inbox.
+                        You do not get a separate mailbox merely by creating a routing rule.
+                    </p>
+
+                    <div class="space-y-3">
+                        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+                            <div class="flex gap-3">
+                                <span
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-xs font-bold text-indigo-300">01</span>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Confirm your DNS is on Cloudflare</h3>
+                                    <p class="mt-2 text-xs leading-6 text-slate-400">
+                                        Your domain must use Cloudflare DNS for Cloudflare Email Routing. Verify the
+                                        active nameservers and select the correct domain in your account.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+                            <div class="flex gap-3">
+                                <span
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-xs font-bold text-indigo-300">02</span>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Enable Email Routing</h3>
+                                    <p class="mt-2 text-xs leading-6 text-slate-400">
+                                        Open the Cloudflare dashboard and navigate to
+                                        <strong class="text-slate-200">Compute → Email Service → Email Routing</strong>.
+                                        Onboard the domain and review the DNS records Cloudflare proposes to add.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+                            <div class="flex gap-3">
+                                <span
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-xs font-bold text-indigo-300">03</span>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Add and verify a destination address</h3>
+                                    <p class="mt-2 text-xs leading-6 text-slate-400">
+                                        Add an existing inbox, such as a Gmail address, as a destination. Open the
+                                        verification email and complete verification before creating routing rules.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+                            <div class="flex gap-3">
+                                <span
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-xs font-bold text-indigo-300">04</span>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Create your custom address</h3>
+                                    <p class="mt-2 text-xs leading-6 text-slate-400">
+                                        Add a rule for <code class="text-indigo-300">support</code>, choose the verified
+                                        destination, and save it. Repeat for other addresses if needed.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5">
+                            <div class="flex gap-3">
+                                <span
+                                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 text-xs font-bold text-indigo-300">05</span>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">Test from an independent account</h3>
+                                    <p class="mt-2 text-xs leading-6 text-slate-400">
+                                        Send a message from a different email account to the new address. Check the
+                                        destination inbox and spam folder. Confirm that the message arrives before
+                                        relying on the address for customer support.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-xl border border-amber-400/20 bg-amber-400/[0.05] p-4">
+                        <p class="text-xs leading-6 text-slate-300">
+                            <strong class="text-amber-200">MX conflict warning:</strong> Email Routing manages the
+                            incoming mail records it needs. If you already use Google Workspace or another hosted
+                            email provider for incoming mail, do not switch to Cloudflare's MX records without
+                            planning the migration. A domain generally cannot use conflicting inbound routing
+                            configurations as if they were one mailbox service.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 06 Sending -->
+                <section id="sending" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">06</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">Outgoing messages
+                            </p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Sending from your custom address
+                            </h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">
+                        Receiving and forwarding mail does not automatically give you a way to send from the same
+                        custom address. Choose an outbound method separately.
+                    </p>
+
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div class="panel rounded-2xl p-5">
+                            <div class="flex items-center gap-2 text-emerald-300">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span class="text-sm font-bold">Option A · Personal Gmail</span>
+                            </div>
+                            <p class="mt-3 text-xs leading-6 text-slate-400">
+                                Gmail may allow you to configure a custom From address through
+                                <strong class="text-slate-200">Settings → Accounts and Import → Send mail as</strong>.
+                                The available configuration and sending behavior depend on the address and account.
+                            </p>
+                            <p class="mt-3 text-xs leading-6 text-amber-200">
+                                Important: a forwarding service alone is not an SMTP server. Gmail's interface also
+                                does not guarantee that outbound messages will authenticate and align with your domain.
+                            </p>
+                        </div>
+                        <div class="panel rounded-2xl p-5">
+                            <div class="flex items-center gap-2 text-indigo-300">
+                                <i class="fa-solid fa-server"></i>
+                                <span class="text-sm font-bold">Option B · Dedicated mail provider</span>
+                            </div>
+                            <p class="mt-3 text-xs leading-6 text-slate-400">
+                                Use a provider that supports custom-domain sending and supplies SMTP or another
+                                supported sending method, along with domain verification and DKIM instructions.
+                                This is generally the more predictable approach for business support mail.
+                            </p>
+                            <p class="mt-3 text-xs leading-6 text-slate-400">
+                                Check whether the service is free, has sending limits, requires a paid plan, or
+                                separates inbound mail from outbound delivery.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-amber-400/20 bg-amber-400/[0.05] p-5">
+                        <h3 class="flex items-center gap-2 text-sm font-bold text-amber-200">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            Do not copy a generic Gmail SMTP recipe blindly
+                        </h3>
+                        <p class="mt-2 text-xs leading-6 text-slate-300">
+                            A common example for a Gmail SMTP client is
+                            <code class="text-amber-100">smtp.gmail.com</code> on port
+                            <code class="text-amber-100">587</code> with STARTTLS. However, this is not a universal
+                            SMTP solution for every custom domain. A personal Gmail account, a Google Workspace
+                            account, and a third-party SMTP service have different authentication and sending rules.
+                            Use the server, username, authentication method, and port documented for the account
+                            you actually use.
+                        </p>
+                    </div>
+
+                    <div class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950">
+                        <div class="flex items-center gap-2 border-b border-slate-800 bg-slate-900 px-4 py-3">
+                            <i class="fa-solid fa-terminal text-indigo-300"></i>
+                            <span class="text-xs font-bold text-slate-300">SMTP configuration worksheet</span>
+                        </div>
+                        <pre class="whitespace-pre-wrap p-5 font-mono text-xs leading-7 text-indigo-200"><code id="smtp-config">SMTP host:       PROVIDER-SUPPLIED-HOST
+Port:            PROVIDER-SUPPLIED-PORT
+Encryption:      TLS / STARTTLS as documented
+Username:        PROVIDER-SUPPLIED-USERNAME
+Password:        Provider-issued credential or app password
+From address:    support@yourdomain.com
+DKIM:            Enable and publish the provider's DNS record
+SPF:             Authorize the actual sending service
+DMARC:           Publish a policy after validating alignment</code></pre>
+                        <div class="border-t border-slate-800 p-3">
+                            <button type="button" data-copy="smtp-config"
+                                class="focus-ring rounded-lg border border-slate-700 px-3 py-2 text-xs text-slate-300 transition hover:border-indigo-400 hover:text-white">
+                                <i class="fa-regular fa-copy mr-1"></i> Copy worksheet
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-bold text-white">If your provider supports SMTP submission</h3>
+                        <ol class="list-inside list-decimal space-y-2 text-xs leading-6 text-slate-400">
+                            <li>Confirm the provider supports your custom From domain.</li>
+                            <li>Verify the domain using the provider's requested DNS records.</li>
+                            <li>Enable DKIM and publish the exact record supplied by the provider.</li>
+                            <li>Configure SPF according to the provider's instructions, merging it with existing
+                                authorized senders.</li>
+                            <li>Create or review DMARC in monitoring mode before enforcing a policy.</li>
+                            <li>Send test messages to accounts at more than one provider and inspect the authentication
+                                results.</li>
+                        </ol>
+                    </div>
+
+                    <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                        <p class="text-xs leading-6 text-slate-400">
+                            <strong class="text-white">Security rule:</strong> Never paste your Gmail password,
+                            app password, SMTP token, or private DKIM key into this guide, a public repository, a
+                            frontend HTML file, or a client-side JavaScript application. Use provider-approved
+                            authentication and keep credentials private.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 07 Verification -->
+                <section id="verification" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">07</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">Testing &
+                                diagnostics</p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Verify your DNS records</h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">
+                        After publishing records, verify that public DNS returns the values you expect. DNS propagation
+                        time varies; a record appearing in your dashboard does not by itself prove that every receiver
+                        can resolve it or that messages authenticate successfully.
+                    </p>
+
+                    <div class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950">
+                        <div
+                            class="flex items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-3">
+                            <div>
+                                <p class="text-xs font-bold text-white">DNS inspection commands</p>
+                                <p class="mt-1 text-[10px] text-slate-500">Run in a terminal with dig installed</p>
+                            </div>
+                            <button type="button" data-copy="dns-commands"
+                                class="focus-ring rounded-lg border border-slate-700 px-3 py-2 text-xs text-slate-300 transition hover:border-indigo-400 hover:text-white">
+                                <i class="fa-regular fa-copy mr-1"></i> Copy
+                            </button>
+                        </div>
+                        <pre class="whitespace-pre-wrap p-4 font-mono text-xs leading-7 text-emerald-200"><code id="dns-commands"># Replace example.com with your domain
+dig example.com A +short
+dig example.com AAAA +short
+dig example.com MX +short
+dig example.com TXT +short
+dig _dmarc.example.com TXT +short
+
+# Replace the selector with the one your provider supplied
+dig selector._domainkey.example.com TXT +short</code></pre>
+                    </div>
+
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <h3 class="text-xs font-bold text-white"><i
+                                    class="fa-solid fa-check mr-2 text-emerald-300"></i>DNS checks</h3>
+                            <ul class="mt-3 space-y-2 text-xs leading-5 text-slate-400">
+                                <li>• MX targets match your receiving provider.</li>
+                                <li>• Only one applicable SPF policy exists per hostname.</li>
+                                <li>• DKIM selector and public key match provider instructions.</li>
+                                <li>• DMARC is published at _dmarc.yourdomain.</li>
+                            </ul>
+                        </div>
+                        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <h3 class="text-xs font-bold text-white"><i
+                                    class="fa-solid fa-envelope-circle-check mr-2 text-indigo-300"></i>Message checks
+                            </h3>
+                            <ul class="mt-3 space-y-2 text-xs leading-5 text-slate-400">
+                                <li>• Test mail reaches the expected destination.</li>
+                                <li>• Outbound mail uses the intended From address.</li>
+                                <li>• Inspect SPF, DKIM, and DMARC results in message headers.</li>
+                                <li>• Check spam placement and any bounce response.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div
+                        class="rounded-xl border border-indigo-400/20 bg-indigo-400/[0.05] p-4 text-xs leading-6 text-slate-300">
+                        <strong class="text-indigo-200">Tip:</strong> In Gmail, open a received test message and
+                        inspect its message details or original headers for authentication results. Look for
+                        <code class="text-indigo-200">SPF</code>, <code class="text-indigo-200">DKIM</code>, and
+                        <code class="text-indigo-200">DMARC</code> pass/fail indicators. A DNS lookup alone cannot
+                        establish that your outbound mail is correctly aligned.
+                    </div>
+                </section>
+
+                <!-- 08 Troubleshooting -->
+                <section id="troubleshooting" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">08</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">Common failures
+                            </p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Troubleshooting email issues</h2>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <details class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <summary class="focus-ring cursor-pointer list-none text-sm font-semibold text-slate-200">
+                                <span class="flex items-center justify-between gap-4">
+                                    Email does not arrive at my forwarded inbox
+                                    <i
+                                        class="fa-solid fa-chevron-down text-xs text-slate-500 transition group-open:rotate-180"></i>
+                                </span>
+                            </summary>
+                            <div class="mt-3 border-t border-slate-800 pt-3 text-xs leading-6 text-slate-400">
+                                Verify that the destination address has been confirmed, the routing rule is enabled,
+                                the domain's MX records point to the intended receiving service, and the message
+                                was not filtered into spam. Test from an unrelated email account.
+                            </div>
+                        </details>
+
+                        <details class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <summary class="focus-ring cursor-pointer list-none text-sm font-semibold text-slate-200">
+                                <span class="flex items-center justify-between gap-4">
+                                    My email goes to spam
+                                    <i
+                                        class="fa-solid fa-chevron-down text-xs text-slate-500 transition group-open:rotate-180"></i>
+                                </span>
+                            </summary>
+                            <div class="mt-3 border-t border-slate-800 pt-3 text-xs leading-6 text-slate-400">
+                                Check SPF, DKIM, and DMARC alignment in actual message headers. Confirm that the
+                                service sending the message is authorized, use a consistent From domain, review
+                                bounces and message content, and build sending volume gradually. Authentication helps
+                                but cannot guarantee inbox placement.
+                            </div>
+                        </details>
+
+                        <details class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <summary class="focus-ring cursor-pointer list-none text-sm font-semibold text-slate-200">
+                                <span class="flex items-center justify-between gap-4">
+                                    SPF reports PermError or multiple SPF records
+                                    <i
+                                        class="fa-solid fa-chevron-down text-xs text-slate-500 transition group-open:rotate-180"></i>
+                                </span>
+                            </summary>
+                            <div class="mt-3 border-t border-slate-800 pt-3 text-xs leading-6 text-slate-400">
+                                Remove duplicate SPF policies at the same hostname and merge legitimate sending
+                                services into one record. Review nested includes and keep DNS-querying mechanisms
+                                within the SPF lookup limit. Do not delete a service's authorization until you
+                                confirm it no longer sends mail for your domain.
+                            </div>
+                        </details>
+
+                        <details class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <summary class="focus-ring cursor-pointer list-none text-sm font-semibold text-slate-200">
+                                <span class="flex items-center justify-between gap-4">
+                                    Gmail sends from the wrong address or shows “on behalf of”
+                                    <i
+                                        class="fa-solid fa-chevron-down text-xs text-slate-500 transition group-open:rotate-180"></i>
+                                </span>
+                            </summary>
+                            <div class="mt-3 border-t border-slate-800 pt-3 text-xs leading-6 text-slate-400">
+                                Recheck the address verification and the exact Gmail Send mail as settings. Some
+                                sending configurations may expose the underlying Gmail address. If you require
+                                reliable custom-domain authentication, use a supported outbound provider and configure
+                                the SPF and DKIM records it supplies.
+                            </div>
+                        </details>
+
+                        <details class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <summary class="focus-ring cursor-pointer list-none text-sm font-semibold text-slate-200">
+                                <span class="flex items-center justify-between gap-4">
+                                    Email stopped after changing MX records
+                                    <i
+                                        class="fa-solid fa-chevron-down text-xs text-slate-500 transition group-open:rotate-180"></i>
+                                </span>
+                            </summary>
+                            <div class="mt-3 border-t border-slate-800 pt-3 text-xs leading-6 text-slate-400">
+                                Compare the current MX records with the active mail provider's required values.
+                                Changing MX records changes where new incoming messages are delivered. Restore the
+                                correct provider configuration if a change interrupted an existing mailbox service.
+                            </div>
+                        </details>
+
+                        <details class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+                            <summary class="focus-ring cursor-pointer list-none text-sm font-semibold text-slate-200">
+                                <span class="flex items-center justify-between gap-4">
+                                    DKIM fails even though the TXT record exists
+                                    <i
+                                        class="fa-solid fa-chevron-down text-xs text-slate-500 transition group-open:rotate-180"></i>
+                                </span>
+                            </summary>
+                            <div class="mt-3 border-t border-slate-800 pt-3 text-xs leading-6 text-slate-400">
+                                Check the exact selector from the message signature, record name, key value, and
+                                provider status. A valid key under a different selector will not verify that message.
+                                Some DNS dashboards automatically append the domain to record names, so check for
+                                accidental duplication.
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- 09 Checklist -->
+                <section id="checklist" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">09</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">Ready for
+                                production</p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Final deployment checklist</h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">
+                        Use this checklist to track your setup. Progress is stored only in this page while it remains
+                        open; refreshing the page resets the checkboxes.
+                    </p>
+
+                    <div class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50">
+                        <div class="flex items-center justify-between gap-4 border-b border-slate-800 p-4">
+                            <div>
+                                <h3 class="text-sm font-bold text-white">Configuration progress</h3>
+                                <p id="check-count" class="mt-1 text-xs text-slate-500">0 of 12 completed</p>
+                            </div>
+                            <span id="check-percent" class="font-mono text-sm font-bold text-indigo-300">0%</span>
+                        </div>
+                        <div class="h-1.5 bg-slate-950">
+                            <div id="check-progress"
+                                class="h-full w-0 bg-gradient-to-r from-indigo-500 to-violet-400 transition-all"></div>
+                        </div>
+                        <div id="checklist-items" class="space-y-0 divide-y divide-slate-800">
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Confirmed authoritative DNS provider and
+                                    saved the existing records.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Verified website A, AAAA, or CNAME
+                                    records against the hosting provider's instructions.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Confirmed the intended inbound email
+                                    provider and its MX records.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Verified routing destination addresses
+                                    and tested incoming mail.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Identified every service that
+                                    legitimately sends mail for the domain.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Published one valid SPF policy per
+                                    applicable hostname and checked the lookup limit.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Published the exact DKIM record supplied
+                                    by the sending provider.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Published a DMARC monitoring policy and
+                                    configured a suitable report destination if needed.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Confirmed SPF, DKIM, and DMARC results
+                                    from real test messages.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Checked bounce messages, spam placement,
+                                    and the visible From address.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Stored mail credentials securely and kept
+                                    secrets out of frontend code.</span>
+                            </label>
+                            <label class="flex cursor-pointer items-start gap-3 p-4 hover:bg-slate-800/30">
+                                <input type="checkbox" class="check-item mt-1 accent-indigo-500">
+                                <span class="text-xs leading-6 text-slate-300">Reviewed authentication reports before
+                                    considering DMARC enforcement.</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 10 References -->
+                <section id="references" class="section-anchor space-y-6 border-t border-slate-800/80 pt-10">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 font-bold text-indigo-300">10</span>
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">Further reading
+                            </p>
+                            <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Official documentation</h2>
+                        </div>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">
+                        Use the official provider documentation as the source of truth for current record values,
+                        account eligibility, setup screens, and sending limits.
+                    </p>
+
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        <a href="https://developers.cloudflare.com/email-service/get-started/route-emails/"
+                            target="_blank" rel="noopener noreferrer"
+                            class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-400/40 hover:bg-slate-900">
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-sm font-bold text-white">Cloudflare Email Routing</span>
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-indigo-300"></i>
+                            </div>
+                            <p class="mt-2 text-xs leading-5 text-slate-400">Domain onboarding, destination addresses,
+                                routing rules, and tests.</p>
+                        </a>
+
+                        <a href="https://developers.cloudflare.com/dns/manage-dns-records/how-to/email-records/"
+                            target="_blank" rel="noopener noreferrer"
+                            class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-400/40 hover:bg-slate-900">
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-sm font-bold text-white">Cloudflare DNS email records</span>
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-indigo-300"></i>
+                            </div>
+                            <p class="mt-2 text-xs leading-5 text-slate-400">MX, SPF, DKIM, DMARC, and provider-specific
+                                DNS configuration.</p>
+                        </a>
+
+                        <a href="https://developers.cloudflare.com/dmarc-management/dns-lookup-limits/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-400/40 hover:bg-slate-900">
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-sm font-bold text-white">SPF lookup limits</span>
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-indigo-300"></i>
+                            </div>
+                            <p class="mt-2 text-xs leading-5 text-slate-400">Understand the DNS lookup limit and nested
+                                SPF mechanisms.</p>
+                        </a>
+
+                        <a href="https://support.google.com/mail/answer/22370" target="_blank" rel="noopener noreferrer"
+                            class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-400/40 hover:bg-slate-900">
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-sm font-bold text-white">Gmail · Send mail as</span>
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-indigo-300"></i>
+                            </div>
+                            <p class="mt-2 text-xs leading-5 text-slate-400">Add and verify another sender address in
+                                Gmail.</p>
+                        </a>
+
+                        <a href="https://support.google.com/mail/answer/81126" target="_blank" rel="noopener noreferrer"
+                            class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-400/40 hover:bg-slate-900">
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-sm font-bold text-white">Google email sender guidelines</span>
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-indigo-300"></i>
+                            </div>
+                            <p class="mt-2 text-xs leading-5 text-slate-400">Authentication recommendations and
+                                deliverability guidance.</p>
+                        </a>
+
+                        <a href="https://developers.cloudflare.com/dns/troubleshooting/email-issues/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="group rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-indigo-400/40 hover:bg-slate-900">
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-sm font-bold text-white">Email troubleshooting</span>
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-indigo-300"></i>
+                            </div>
+                            <p class="mt-2 text-xs leading-5 text-slate-400">Diagnose MX, SPF, DKIM, proxy, and DNS
+                                configuration problems.</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Disclaimer -->
+                <section class="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 sm:p-6">
+                    <h2 class="text-sm font-bold text-white">
+                        <i class="fa-solid fa-circle-info mr-2 text-indigo-300"></i>Scope and disclaimer
+                    </h2>
+                    <p class="mt-3 text-xs leading-6 text-slate-400">
+                        This guide is educational and provides configuration examples, not a guarantee of email
+                        deliverability or uninterrupted service. Provider interfaces, features, limits, and policies
+                        may change. Review your current provider documentation before changing production DNS.
+                        Authentication records reduce spoofing risk, but they cannot guarantee that every legitimate
+                        email reaches the inbox.
+                    </p>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-10 border-t border-indigo-950/70 bg-[#080b13]">
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 text-center sm:px-6 md:flex-row md:text-left lg:px-8">
+            <div>
+                <a href="https://getkit.in"
+                    class="inline-flex items-center gap-2 rounded-md bg-gradient-to-br from-indigo-500 to-violet-700 px-2 py-1 text-sm font-extrabold tracking-wide text-white">
+                    GETKIT
+                </a>
+                <p class="mt-2 text-[11px] text-slate-500">
+                    © <span id="current-year">2026</span> GetKit · Practical digital resources for builders.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-5 text-xs text-slate-400">
+                <a href="https://getkit.in" class="transition hover:text-indigo-300">Resource Hub</a>
+                <a href="https://getkit.in" class="transition hover:text-indigo-300">Explore Guides</a>
+                <a href="#architecture" class="transition hover:text-indigo-300">Back to Top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        (() => {
+            "use strict";
+
+            const $ = (selector, root = document) => root.querySelector(selector);
+            const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+            // Reading progress and current year.
+            const progress = $("#reading-progress");
+            const updateProgress = () => {
+                const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+                const fraction = scrollable > 0 ? window.scrollY / scrollable : 0;
+                progress.style.transform = `scaleX(${Math.min(1, Math.max(0, fraction))})`;
+            };
+
+            window.addEventListener("scroll", updateProgress, { passive: true });
+            window.addEventListener("resize", updateProgress);
+            updateProgress();
+
+            $("#current-year").textContent = new Date().getFullYear();
+
+            // Clipboard utility with a fallback for browsers that block the Clipboard API.
+            async function copyText(text) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                    return;
+                }
+
+                const area = document.createElement("textarea");
+                area.value = text;
+                area.setAttribute("readonly", "");
+                area.style.position = "fixed";
+                area.style.opacity = "0";
+                document.body.appendChild(area);
+                area.select();
+
+                const success = document.execCommand("copy");
+                area.remove();
+
+                if (!success) {
+                    throw new Error("Copy is not supported in this browser context.");
+                }
+            }
+
+            $$("[data-copy]").forEach(button => {
+                button.addEventListener("click", async () => {
+                    const target = document.getElementById(button.dataset.copy);
+                    if (!target) return;
+
+                    const original = button.innerHTML;
+                    try {
+                        await copyText(target.innerText.trim());
+                        button.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Copied';
+                        button.classList.add("text-emerald-300");
+                    } catch (error) {
+                        button.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> Copy failed';
+                    }
+
+                    window.setTimeout(() => {
+                        button.innerHTML = original;
+                        button.classList.remove("text-emerald-300");
+                    }, 1800);
+                });
+            });
+
+            // Basic domain normalization and validation for the illustrative record helper.
+            function normalizeDomain(value) {
+                return value
+                    .trim()
+                    .replace(/^https?:\/\//i, "")
+                    .replace(/\/.*$/, "")
+                    .replace(/\.$/, "")
+                    .toLowerCase();
+            }
+
+            function isValidDomain(domain) {
+                if (!domain || domain.length > 253 || domain.includes(" ")) return false;
+                if (!domain.includes(".") || domain.startsWith(".") || domain.endsWith(".")) return false;
+
+                const labels = domain.split(".");
+                return labels.every(label =>
+                    label.length > 0 &&
+                    label.length <= 63 &&
+                    /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(label)
+                );
+            }
+
+            const domainInput = $("#gen-domain");
+            const policyInput = $("#gen-policy");
+            const spfOutput = $("#out-spf");
+            const dmarcOutput = $("#out-dmarc");
+            const status = $("#generator-status");
+
+            function generateRecords() {
+                const domain = normalizeDomain(domainInput.value);
+                const policy = policyInput.value;
+
+                if (!isValidDomain(domain)) {
+                    status.textContent = "Enter a valid domain, such as example.com.";
+                    status.className = "mt-3 text-xs text-rose-300";
+                    domainInput.setAttribute("aria-invalid", "true");
+                    return;
+                }
+
+                domainInput.removeAttribute("aria-invalid");
+
+                // This is intentionally labeled as an example, not a universal SPF policy.
+                spfOutput.textContent = "v=spf1 include:_spf.mx.cloudflare.net ~all";
+                dmarcOutput.textContent =
+                    `v=DMARC1; p=${policy}; rua=mailto:dmarc-reports@${domain}; pct=100`;
+
+                status.textContent =
+                    `Generated a DMARC example for ${domain}. Confirm that the reporting address exists and that your actual mail services require these values before publishing.`;
+                status.className = "mt-3 text-xs leading-6 text-emerald-300";
+            }
+
+            $("#generate-records").addEventListener("click", generateRecords);
+
+            $("#reset-records").addEventListener("click", () => {
+                domainInput.value = "getkit.in";
+                policyInput.value = "none";
+                generateRecords();
+                status.textContent = "Example reset. Verify provider-specific records before publishing.";
+                status.className = "mt-3 text-xs leading-6 text-slate-400";
+            });
+
+            domainInput.addEventListener("keydown", event => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    generateRecords();
+                }
+            });
+
+            policyInput.addEventListener("change", generateRecords);
+            generateRecords();
+
+            // Interactive checklist. Progress is intentionally session/page-only.
+            const checkboxes = $$(".check-item");
+            const count = $("#check-count");
+            const percent = $("#check-percent");
+            const bar = $("#check-progress");
+
+            function updateChecklist() {
+                const completed = checkboxes.filter(item => item.checked).length;
+                const total = checkboxes.length;
+                const value = total ? Math.round((completed / total) * 100) : 0;
+
+                count.textContent = `${completed} of ${total} completed`;
+                percent.textContent = `${value}%`;
+                bar.style.width = `${value}%`;
+
+                checkboxes.forEach(item => {
+                    const label = item.closest("label");
+                    const text = $("span", label);
+                    text.classList.toggle("text-emerald-200", item.checked);
+                    text.classList.toggle("text-slate-300", !item.checked);
+                });
+            }
+
+            checkboxes.forEach(item => item.addEventListener("change", updateChecklist));
+            updateChecklist();
+
+            // Highlight the current table-of-contents item.
+            const tocLinks = $$(".toc-link");
+            const sections = tocLinks
+                .map(link => document.querySelector(link.getAttribute("href")))
+                .filter(Boolean);
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+
+                        tocLinks.forEach(link => {
+                            const active = link.getAttribute("href") === `#${entry.target.id}`;
+                            link.classList.toggle("active", active);
+                            if (active) {
+                                link.setAttribute("aria-current", "location");
+                            } else {
+                                link.removeAttribute("aria-current");
+                            }
+                        });
+                    });
+                }, {
+                    rootMargin: "-20% 0px -65% 0px",
+                    threshold: 0
+                });
+
+                sections.forEach(section => observer.observe(section));
+            }
+        })();
+    </script>
+</body>
+
+</html>

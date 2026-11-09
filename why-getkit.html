@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090611">
+    <meta name="description"
+        content="Discover why GetKit offers affordable digital templates, bundles, tools, deals, games, and practical resources for students, creators, freelancers, and businesses.">
+    <title>Why GetKit? | More Value, Less Cost</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: "#090611",
+                        panel: "#120d20",
+                        purple: "#8b5cf6",
+                        violet: "#a78bfa"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(ellipse at 15% 0%, rgba(124, 58, 237, .18), transparent 35%),
+                radial-gradient(ellipse at 95% 30%, rgba(91, 33, 182, .11), transparent 32%),
+                #090611;
+        }
+
+        .glass {
+            background: rgba(20, 14, 34, .76);
+            border: 1px solid rgba(167, 139, 250, .15);
+            backdrop-filter: blur(16px);
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(27, 19, 46, .95), rgba(15, 11, 26, .94));
+            border: 1px solid rgba(167, 139, 250, .14);
+            transition: transform .25s ease, border-color .25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(167, 139, 250, .38);
+        }
+
+        .gradient-text {
+            background: linear-gradient(100deg, #ddd6fe, #a78bfa, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .soft-glow {
+            box-shadow: 0 0 70px rgba(124, 58, 237, .13);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-white antialiased">
+
+    <!-- NAVIGATION -->
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-[#090611]/85 backdrop-blur-xl">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+
+            <a href="index.html" class="flex items-center gap-3" aria-label="GetKit home">
+                <span
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-800 text-lg font-black shadow-lg shadow-purple-900/30">G</span>
+                <span class="text-xl font-extrabold tracking-tight">GetKit<span class="text-violet-400">.</span></span>
+            </a>
+
+            <div class="hidden items-center gap-6 text-sm text-gray-300 md:flex">
+                <a href="index.html" class="hover:text-violet-300">Home</a>
+                <a href="templates.html" class="hover:text-violet-300">Templates</a>
+                <a href="deals.html" class="hover:text-violet-300">Best Deals</a>
+                <a href="bundles.html" class="hover:text-violet-300">Bundles</a>
+                <a href="tools.html" class="hover:text-violet-300">Tools</a>
+                <a href="games.html" class="hover:text-violet-300">Games</a>
+            </div>
+
+            <a href="contact.html"
+                class="rounded-xl border border-violet-400/30 bg-violet-500/10 px-4 py-2.5 text-sm font-semibold text-violet-200 transition hover:bg-violet-500/20">
+                Contact Us
+            </a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="relative overflow-hidden">
+            <div class="absolute left-1/2 top-16 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-700/15 blur-3xl">
+            </div>
+
+            <div class="relative mx-auto max-w-7xl px-5 pb-20 pt-20 sm:pb-28 sm:pt-28 lg:px-8">
+                <div class="mx-auto max-w-4xl text-center">
+
+                    <div
+                        class="mb-7 inline-flex items-center gap-2 rounded-full border border-violet-300/20 bg-violet-400/[0.08] px-4 py-2 text-xs font-bold uppercase tracking-[.18em] text-violet-200">
+                        <span class="h-2 w-2 rounded-full bg-violet-400"></span>
+                        Useful resources. Thoughtful pricing.
+                    </div>
+
+                    <h1 class="text-5xl font-black leading-[1.08] tracking-tight sm:text-7xl lg:text-8xl">
+                        More value.
+                        <br>
+                        <span class="gradient-text">Less spending.</span>
+                    </h1>
+
+                    <p class="mx-auto mt-7 max-w-2xl text-base leading-8 text-gray-300 sm:text-lg">
+                        Quality digital resources shouldn't always come with expensive price tags. GetKit brings
+                        templates, bundles, tools, deals, games, and practical guides together at accessible prices.
+                    </p>
+
+                    <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-400">
+                        Built for students, creators, freelancers, developers, entrepreneurs, and anyone looking for
+                        useful digital resources without unnecessary expense.
+                    </p>
+
+                    <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+                        <a href="deals.html"
+                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-violet-500 px-6 py-4 font-bold text-white shadow-xl shadow-purple-950/40 transition hover:bg-violet-400">
+                            Explore Best Deals <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a href="templates.html"
+                            class="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] px-6 py-4 font-semibold text-gray-200 transition hover:border-violet-400/30 hover:bg-white/[0.07]">
+                            Explore Templates
+                        </a>
+                    </div>
+
+                    <div class="mt-12 flex flex-wrap justify-center gap-x-7 gap-y-3 text-sm text-gray-400">
+                        <span>✓ Affordable options</span>
+                        <span>✓ Free resources available</span>
+                        <span>✓ Clear product details</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AFFORDABILITY BANNER -->
+        <section class="mx-auto max-w-7xl px-5 lg:px-8">
+            <div
+                class="soft-glow relative overflow-hidden rounded-3xl border border-violet-400/20 bg-gradient-to-br from-violet-950/70 via-[#1a1030] to-[#100b1c] p-7 sm:p-10 lg:p-12">
+                <div class="absolute -right-10 -top-16 h-64 w-64 rounded-full bg-violet-500/15 blur-3xl"></div>
+
+                <div class="relative grid items-center gap-8 lg:grid-cols-[1.2fr_.8fr]">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-[.2em] text-violet-300">Our pricing
+                            philosophy</span>
+                        <h2 class="mt-4 max-w-2xl text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+                            Useful digital resources.
+                            <span class="text-violet-300">Without the unnecessary cost.</span>
+                        </h2>
+                        <p class="mt-5 max-w-2xl leading-8 text-gray-300">
+                            We aim to keep many GetKit products at low, accessible prices so you can explore useful
+                            resources without committing to expensive purchases. Our goal is simple: give people
+                            practical options that make sense for their budget.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-white/10 bg-black/20 p-6 sm:p-7">
+                        <div class="flex items-start gap-4">
+                            <span
+                                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">₹</span>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Designed with affordability in mind</h3>
+                                <p class="mt-2 text-sm leading-7 text-gray-400">
+                                    Many products are priced to be accessible. Actual prices vary by product and are
+                                    displayed on the relevant listing or at checkout.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="my-6 border-t border-white/10"></div>
+
+                        <div class="flex items-start gap-4">
+                            <span
+                                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">✦</span>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Start with free resources</h3>
+                                <p class="mt-2 text-sm leading-7 text-gray-400">
+                                    Explore available free resources first, then choose paid products when they fit your
+                                    needs and budget.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY GETKIT -->
+        <section class="mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8">
+            <div class="max-w-2xl">
+                <span class="text-xs font-bold uppercase tracking-[.2em] text-violet-300">Why GetKit?</span>
+                <h2 class="mt-4 text-3xl font-black tracking-tight sm:text-5xl">
+                    Built around what you <span class="gradient-text">actually need.</span>
+                </h2>
+                <p class="mt-5 leading-8 text-gray-400">
+                    Finding the right digital resource can take time and money. GetKit brings different types of
+                    resources together, making it easier to discover options that fit your work, learning, and personal
+                    projects.
+                </p>
+            </div>
+
+            <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+                <article class="feature-card rounded-2xl p-6 sm:p-7">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">₹
+                    </div>
+                    <h3 class="text-xl font-bold">Affordable by design</h3>
+                    <p class="mt-3 text-sm leading-7 text-gray-400">
+                        We aim to keep products accessible, especially for people who want useful resources without
+                        spending more than necessary.
+                    </p>
+                </article>
+
+                <article class="feature-card rounded-2xl p-6 sm:p-7">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">◇
+                    </div>
+                    <h3 class="text-xl font-bold">Free and paid options</h3>
+                    <p class="mt-3 text-sm leading-7 text-gray-400">
+                        Explore free resources where available and decide whether a paid template, bundle, or other
+                        product is worth it for you.
+                    </p>
+                </article>
+
+                <article class="feature-card rounded-2xl p-6 sm:p-7">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">▦
+                    </div>
+                    <h3 class="text-xl font-bold">Different resources in one place</h3>
+                    <p class="mt-3 text-sm leading-7 text-gray-400">
+                        Discover templates, bundles, tools, deals, games, and practical guides without treating every
+                        need as a separate search.
+                    </p>
+                </article>
+
+                <article class="feature-card rounded-2xl p-6 sm:p-7">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">↗
+                    </div>
+                    <h3 class="text-xl font-bold">For real projects</h3>
+                    <p class="mt-3 text-sm leading-7 text-gray-400">
+                        Find resources that can support your learning, creative work, business tasks, productivity, and
+                        personal projects.
+                    </p>
+                </article>
+
+                <article class="feature-card rounded-2xl p-6 sm:p-7">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">◷
+                    </div>
+                    <h3 class="text-xl font-bold">Straightforward purchases</h3>
+                    <p class="mt-3 text-sm leading-7 text-gray-400">
+                        Product pages explain what is included, while checkout provides the applicable price and payment
+                        details before you buy.
+                    </p>
+                </article>
+
+                <article class="feature-card rounded-2xl p-6 sm:p-7">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">♡
+                    </div>
+                    <h3 class="text-xl font-bold">Support when you need it</h3>
+                    <p class="mt-3 text-sm leading-7 text-gray-400">
+                        Have trouble with a purchase or download? Our support team is available at support@getkit.in to
+                        help investigate.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ONE-TIME PURCHASE EXPLANATION -->
+        <section class="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
+            <div class="grid gap-6 lg:grid-cols-2">
+
+                <div class="glass rounded-3xl p-7 sm:p-9">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">✓
+                    </div>
+                    <h2 class="text-2xl font-extrabold">Pay for the product you choose</h2>
+                    <p class="mt-4 leading-8 text-gray-400">
+                        GetKit offers products with one-time purchase pricing where specified. You pay the displayed
+                        price for that product rather than signing up for a recurring GetKit subscription for that
+                        purchase.
+                    </p>
+                    <p class="mt-3 text-sm leading-7 text-gray-500">
+                        A purchase includes the files, usage rights, and access stated on its product page. It does not
+                        automatically include future updates, additional products, or ongoing services.
+                    </p>
+                </div>
+
+                <div class="glass rounded-3xl p-7 sm:p-9">
+                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-2xl">∞
+                    </div>
+                    <h2 class="text-2xl font-extrabold">Clear expectations, no confusion</h2>
+                    <p class="mt-4 leading-8 text-gray-400">
+                        We want you to understand what you're buying before you pay. Check each listing for product
+                        contents, compatibility, licence terms, delivery details, and any limitations.
+                    </p>
+                    <p class="mt-3 text-sm leading-7 text-gray-500">
+                        One-time payment does not mean lifetime access or unlimited future services. Access and usage
+                        rights are defined by the individual product's terms.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RESOURCE CATEGORIES -->
+        <section class="border-y border-white/[0.07] bg-white/[0.015]">
+            <div class="mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <span class="text-xs font-bold uppercase tracking-[.2em] text-violet-300">Explore GetKit</span>
+                    <h2 class="mt-4 text-3xl font-black tracking-tight sm:text-5xl">
+                        One place. <span class="gradient-text">More possibilities.</span>
+                    </h2>
+                    <p class="mt-5 leading-8 text-gray-400">
+                        Browse different categories and choose resources that make sense for your goals and budget.
+                    </p>
+                </div>
+
+                <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+                    <a href="templates.html" class="feature-card group rounded-2xl p-6">
+                        <div class="text-2xl">▤</div>
+                        <h3 class="mt-4 font-bold">Digital Templates</h3>
+                        <p class="mt-2 text-sm leading-6 text-gray-400">Ready-to-use starting points for websites,
+                            projects, work, and creativity.</p>
+                        <span
+                            class="mt-5 inline-flex text-sm font-semibold text-violet-300 group-hover:text-violet-200">Explore
+                            templates →</span>
+                    </a>
+
+                    <a href="deals.html" class="feature-card group rounded-2xl p-6">
+                        <div class="text-2xl">✦</div>
+                        <h3 class="mt-4 font-bold">Best Deals</h3>
+                        <p class="mt-2 text-sm leading-6 text-gray-400">Discover selected deals and offers. Review
+                            provider terms before purchasing.</p>
+                        <span
+                            class="mt-5 inline-flex text-sm font-semibold text-violet-300 group-hover:text-violet-200">Find
+                            deals →</span>
+                    </a>
+
+                    <a href="bundles.html" class="feature-card group rounded-2xl p-6">
+                        <div class="text-2xl">▦</div>
+                        <h3 class="mt-4 font-bold">Bundles</h3>
+                        <p class="mt-2 text-sm leading-6 text-gray-400">Explore grouped resources offered together in a
+                            single product.</p>
+                        <span
+                            class="mt-5 inline-flex text-sm font-semibold text-violet-300 group-hover:text-violet-200">View
+                            bundles →</span>
+                    </a>
+
+                    <a href="tools.html" class="feature-card group rounded-2xl p-6">
+                        <div class="text-2xl">⚙</div>
+                        <h3 class="mt-4 font-bold">Tools</h3>
+                        <p class="mt-2 text-sm leading-6 text-gray-400">Find useful tools and resources for different
+                            tasks and workflows.</p>
+                        <span
+                            class="mt-5 inline-flex text-sm font-semibold text-violet-300 group-hover:text-violet-200">Explore
+                            tools →</span>
+                    </a>
+
+                    <a href="games.html" class="feature-card group rounded-2xl p-6">
+                        <div class="text-2xl">◇</div>
+                        <h3 class="mt-4 font-bold">Games</h3>
+                        <p class="mt-2 text-sm leading-6 text-gray-400">Browse available games and related digital
+                            entertainment resources.</p>
+                        <span
+                            class="mt-5 inline-flex text-sm font-semibold text-violet-300 group-hover:text-violet-200">Browse
+                            games →</span>
+                    </a>
+
+                    <a href="support.html" class="feature-card group rounded-2xl p-6">
+                        <div class="text-2xl">↗</div>
+                        <h3 class="mt-4 font-bold">Help & Support</h3>
+                        <p class="mt-2 text-sm leading-6 text-gray-400">Get help with purchase confirmation, missing
+                            emails, and downloads.</p>
+                        <span
+                            class="mt-5 inline-flex text-sm font-semibold text-violet-300 group-hover:text-violet-200">Get
+                            support →</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST SECTION -->
+        <section class="mx-auto max-w-5xl px-5 py-20 sm:py-24 lg:px-8">
+            <div
+                class="relative overflow-hidden rounded-3xl border border-violet-400/20 bg-gradient-to-br from-[#21133c] via-[#160f28] to-[#100b1b] p-7 text-center sm:p-12">
+                <div class="absolute left-1/2 top-0 h-48 w-72 -translate-x-1/2 rounded-full bg-purple-600/15 blur-3xl">
+                </div>
+
+                <div class="relative">
+                    <div
+                        class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-300/20 bg-violet-400/10 text-2xl">
+                        ✦</div>
+
+                    <h2 class="mt-6 text-3xl font-black tracking-tight sm:text-4xl">
+                        Spend thoughtfully. <span class="gradient-text">Build confidently.</span>
+                    </h2>
+
+                    <p class="mx-auto mt-5 max-w-2xl leading-8 text-gray-300">
+                        We want GetKit to be a useful place to discover affordable digital resources. Explore what's
+                        available, compare your options, and purchase only what makes sense for you.
+                    </p>
+
+                    <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                        <a href="index.html"
+                            class="rounded-xl bg-violet-500 px-6 py-3.5 font-bold text-white transition hover:bg-violet-400">
+                            Explore GetKit
+                        </a>
+                        <a href="contact.html"
+                            class="rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 font-semibold text-gray-200 transition hover:bg-white/[0.08]">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-black/20">
+        <div
+            class="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-9 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+            <div>
+                <a href="index.html" class="text-xl font-extrabold">GetKit<span class="text-violet-400">.</span></a>
+                <p class="mt-2 text-sm text-gray-500">Useful digital resources. One place.</p>
+            </div>
+
+            <div class="flex flex-wrap gap-x-5 gap-y-3 text-sm text-gray-400">
+                <a href="about.html" class="hover:text-violet-300">About</a>
+                <a href="why-getkit.html" class="text-violet-300">Why GetKit?</a>
+                <a href="contact.html" class="hover:text-violet-300">Contact</a>
+                <a href="support.html" class="hover:text-violet-300">Support</a>
+                <a href="faq.html" class="hover:text-violet-300">FAQ</a>
+                <a href="privacy.html" class="hover:text-violet-300">Privacy</a>
+                <a href="terms.html" class="hover:text-violet-300">Terms</a>
+                <a href="refund-policy.html" class="hover:text-violet-300">Refunds</a>
+            </div>
+        </div>
+
+        <div class="border-t border-white/5 px-5 py-4 text-center text-xs text-gray-600">
+            © <span id="year"></span> GetKit.in. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>

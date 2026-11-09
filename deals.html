@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0817">
+  <meta name="description"
+    content="GetKit Deals: curated developer tools, hosting deals, workstation hardware, and SaaS offers for developers, indie hackers, and founders.">
+  <title>Deals — GetKit | Developer Tools, Hosting & Workstation Gear</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="getkit.jpg" type="image/jpeg">
+  
+  <!-- Cuelinks Tracking Script -->
+  <script type='text/javascript'>
+    var cId = '310016';
+
+    (function(d, t) {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = (document.location.protocol == 'https:' ? 'https://cdn0.cuelinks.com/js/' : 'http://cdn0.cuelinks.com/js/') + 'cuelinksv2.js';
+      document.getElementsByTagName('body')[0].appendChild(s);
+    }());
+  </script>
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { ink: "#0b0817", panel: "#141025", muted: "#a49bbd" }, boxShadow: { glow: "0 0 35px rgba(117,71,245,.19)" } } } }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0817;
+      --border: rgba(174, 148, 255, .17);
+      --muted: #a49bbd
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #f6f3ff;
+      font-family: "DM Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand {
+      font-family: "Space Grotesk", "DM Sans", sans-serif
+    }
+
+    a,
+    button,
+    input {
+      -webkit-tap-highlight-color: transparent
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid #b69aff;
+      outline-offset: 3px
+    }
+
+    /* GetKit Image Logo Styling */
+    .logo-mark {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid rgba(174, 148, 255, 0.25);
+      background: #0b0817;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin-inline: auto
+    }
+
+    .glass {
+      background: linear-gradient(145deg, rgba(33, 25, 59, .92), rgba(17, 13, 32, .96));
+      border: 1px solid var(--border)
+    }
+
+    .surface {
+      background: rgba(20, 16, 37, .85);
+      border: 1px solid var(--border)
+    }
+
+    .btn {
+      background: linear-gradient(110deg, #7848fa, #6030df);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18);
+      transition: transform .15s, box-shadow .15s
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2), 0 10px 28px rgba(117, 71, 245, .3)
+    }
+
+    .btn:active {
+      transform: scale(.98)
+    }
+
+    .btn-o {
+      border: 1px solid rgba(190, 169, 255, .35);
+      background: rgba(255, 255, 255, .03);
+      transition: background .2s, border-color .2s, transform .15s
+    }
+
+    .btn-o:hover {
+      background: rgba(117, 71, 245, .14);
+      border-color: #9773ff
+    }
+
+    .btn-o:active {
+      transform: scale(.98)
+    }
+
+    .line {
+      border-bottom: 1px solid rgba(174, 148, 255, .12)
+    }
+
+    .hero-bg {
+      background: radial-gradient(ellipse at 77% 36%, rgba(102, 45, 233, .22), transparent 40%), radial-gradient(ellipse at 14% 10%, rgba(72, 35, 143, .14), transparent 40%)
+    }
+
+    .card {
+      transition: transform .2s, border-color .2s, box-shadow .2s
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(165, 130, 255, .55);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .25)
+    }
+
+    .ico {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #875aff, #582bd6);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18);
+      font-size: 17px
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #b69aff
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      color: #34d399;
+      background: rgba(16, 185, 129, .1);
+      border: 1px solid rgba(16, 185, 129, .22)
+    }
+
+    .pill-v {
+      color: #c4b5fd;
+      background: rgba(117, 71, 245, .12);
+      border-color: rgba(165, 130, 255, .3)
+    }
+
+    .search-box {
+      background: rgba(27, 21, 49, .95);
+      border: 1px solid rgba(174, 148, 255, .2);
+      transition: border-color .2s, box-shadow .2s
+    }
+
+    .search-box:focus-within {
+      border-color: #9270ff;
+      box-shadow: 0 0 0 3px rgba(117, 71, 245, .18)
+    }
+
+    .field {
+      background: rgba(0, 0, 0, .25);
+      border: 1px solid rgba(255, 255, 255, .1);
+      transition: border-color .2s, box-shadow .2s
+    }
+
+    .field:focus {
+      border-color: rgba(129, 140, 248, .8);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, .25);
+      outline: none
+    }
+
+    .tab {
+      border: 1px solid rgba(174, 148, 255, .17);
+      background: rgba(20, 16, 37, .85);
+      color: #a49bbd;
+      transition: all .2s
+    }
+
+    .tab:hover {
+      color: #fff;
+      border-color: rgba(165, 130, 255, .5)
+    }
+
+    .tab[aria-pressed="true"] {
+      background: linear-gradient(110deg, #7848fa, #6030df);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 22px rgba(117, 71, 245, .3)
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none
+    }
+
+    .clamp-2 {
+      display: -webkit-box;
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden
+    }
+
+    [hidden] {
+      display: none !important
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#0b0817]/90 backdrop-blur-xl">
+    <div class="wrap flex h-[68px] items-center gap-4">
+      <a href="index.html" class="flex shrink-0 items-center gap-2.5" aria-label="GetKit home">
+        <img src="getkit.jpg" alt="GetKit logo" class="logo-mark shrink-0">
+        <span class="brand text-xl font-bold tracking-tight text-white">GetKit<span
+            class="text-violet-400">.</span></span>
+      </a>
+      <nav class="ml-4 hidden flex-1 items-center gap-1 lg:flex" aria-label="Main navigation">
+        <a class="rounded-full bg-white/5 px-3 py-2 text-sm text-white transition-colors" href="deals.html"
+          aria-current="page">Deals</a>
+        <a class="rounded-full px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-white/5 hover:text-white"
+          href="templates.html">Templates</a>
+        <a class="rounded-full px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-white/5 hover:text-white"
+          href="index.html#pro">Pro</a>
+        <a class="rounded-full px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-white/5 hover:text-white"
+          href="pro_toolkits_and_accelerator.html">Pro Toolkits &amp; Accelerators</a>
+        <a class="rounded-full px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-white/5 hover:text-white"
+          href="b2b.html">B2B</a>
+        <a class="rounded-full px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-white/5 hover:text-white"
+          href="tools.html">Tools</a>
+        <a class="rounded-full px-3 py-2 text-sm text-gray-300 transition-colors hover:bg-white/5 hover:text-white"
+          href="games.html">Games</a>
+      </nav>
+      <form id="searchForm"
+        class="search-box ml-auto hidden max-w-[220px] flex-1 items-center gap-2 rounded-full px-3 py-2 md:flex"
+        role="search">
+        <i class="fa-solid fa-magnifying-glass text-xs text-gray-500" aria-hidden="true"></i>
+        <input id="productSearch" type="search" aria-label="Search deals" placeholder="Search deals..."
+          class="w-full min-w-0 bg-transparent text-xs outline-none placeholder:text-zinc-500">
+        <button type="submit" aria-label="Submit search" class="text-violet-300"><i
+            class="fa-solid fa-arrow-right text-xs"></i></button>
+      </form>
+      <a href="help_center.html" class="hidden text-sm text-gray-300 hover:text-white xl:block">Help</a>
+      <button id="menuBtn"
+        class="ml-auto rounded-xl border border-white/10 px-3 py-2 text-base transition-colors hover:bg-white/5 lg:hidden"
+        aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation"><i
+          class="fa-solid fa-bars"></i></button>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-white/10 bg-[#100c20] p-4 lg:hidden">
+      <form id="mobileSearchForm" class="search-box mb-4 flex items-center gap-2 rounded-xl px-3 py-3" role="search">
+        <i class="fa-solid fa-magnifying-glass text-sm text-gray-500" aria-hidden="true"></i>
+        <input id="mobileSearch" type="search" aria-label="Search deals" placeholder="Find a deal..."
+          class="w-full min-w-0 bg-transparent text-sm outline-none placeholder:text-zinc-500">
+        <button type="submit" aria-label="Search" class="text-violet-300"><i
+            class="fa-solid fa-arrow-right"></i></button>
+      </form>
+      <nav class="grid grid-cols-2 gap-2 text-sm" aria-label="Mobile navigation">
+        <a class="rounded-xl bg-white/5 p-3" href="deals.html">Deals</a>
+        <a class="rounded-xl p-3 hover:bg-white/5" href="templates.html">Templates</a>
+        <a class="rounded-xl p-3 hover:bg-white/5" href="pro-templates.html">Pro Templates</a>
+        <a class="rounded-xl p-3 hover:bg-white/5" href="pro_toolkits_and_accelerator.html">Pro Toolkits</a>
+        <a class="rounded-xl p-3 hover:bg-white/5" href="b2b.html">B2B</a>
+        <a class="rounded-xl p-3 hover:bg-white/5" href="tools.html">Tools</a>
+        <a class="rounded-xl p-3 hover:bg-white/5" href="games.html">Games</a>
+        <a class="rounded-xl p-3 hover:bg-white/5" href="help_center.html">Help Center</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+
+    <!-- HERO -->
+    <section class="hero-bg line overflow-hidden">
+      <div class="wrap py-14 text-center md:py-20">
+        <span class="pill pill-v mb-6"><i class="fa-solid fa-bolt text-[10px]"></i> Verified deals &amp; partner
+          offers</span>
+        <h1
+          class="mx-auto max-w-3xl text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[56px]">
+          Handpicked tools &amp; gear for
+          <span
+            class="mt-1 block bg-gradient-to-r from-violet-300 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">developers
+            &amp; founders.</span>
+        </h1>
+        <p class="muted mx-auto mt-6 max-w-2xl text-base leading-7 sm:text-lg">Developer infrastructure, workstation
+          hardware and SaaS utilities with exclusive discounts to help you launch and scale your projects.</p>
+        <div class="mx-auto mt-8 flex max-w-lg flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs">
+          <span class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-tag text-violet-300"></i> Clear
+            pricing</span>
+          <span class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-arrows-rotate text-violet-300"></i>
+            Updated weekly</span>
+          <span class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-handshake text-violet-300"></i>
+            Transparent affiliate links</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEALS -->
+    <section id="deals" class="line py-12 sm:py-14">
+      <div class="wrap">
+        <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p class="eyebrow mb-2">Worth a look</p>
+            <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">All deals</h2>
+            <p class="muted mt-2 text-sm">Filter by category or search by name, tool or use case.</p>
+          </div>
+          <p id="resultCount" class="muted text-xs" aria-live="polite"></p>
+        </div>
+
+        <!-- Category tabs -->
+        <div id="tabs" class="no-scrollbar mb-8 flex items-center gap-2 overflow-x-auto pb-2" role="group"
+          aria-label="Filter deals by category"></div>
+
+        <!-- Product grid -->
+        <div id="productGrid" class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"></div>
+
+        <!-- Empty state -->
+        <div id="noResults" class="surface my-6 rounded-2xl py-16 text-center" hidden>
+          <div class="ico mx-auto mb-4"><i class="fa-solid fa-ghost"></i></div>
+          <h3 class="text-lg font-bold text-white">No matching deals found</h3>
+          <p class="muted mt-1 text-sm">Try different search terms or pick another category.</p>
+          <button id="resetBtn" class="btn mt-5 rounded-xl px-5 py-2.5 text-sm font-semibold">Reset filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCLOSURE -->
+    <section id="disclosure" class="line py-12">
+      <div class="wrap">
+        <div class="glass flex flex-col items-start gap-5 rounded-2xl p-6 sm:flex-row sm:items-center sm:p-8">
+          <span class="ico shrink-0"><i class="fa-solid fa-handshake"></i></span>
+          <div>
+            <h2 class="text-lg font-bold tracking-tight text-white">Transparency &amp; affiliate disclosure</h2>
+            <p class="muted mt-2 text-sm leading-6">Some links on this page are monetised through referral networks
+              such as Cuelinks and direct merchant affiliate programs. If you buy through these links, GetKit may earn
+              a commission at <strong class="text-white">no extra cost to you</strong>. We only list tools, hosting and
+              hardware we believe offer genuine value. Always verify current prices, terms and availability with the
+              merchant.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUPPORT + NEWSLETTER -->
+    <section id="help" class="line py-12">
+      <div class="wrap grid gap-4 lg:grid-cols-2">
+        <div class="glass flex items-start gap-4 rounded-2xl p-6">
+          <span class="ico shrink-0"><i class="fa-solid fa-circle-question"></i></span>
+          <div>
+            <h2 class="text-lg font-bold tracking-tight text-white">Need a hand?</h2>
+            <p class="muted mt-2 text-sm leading-6">Having trouble finding a product or accessing a purchase? Visit our
+              help center or contact our support team.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <a href="help.html" class="btn-o inline-block rounded-lg px-4 py-2.5 text-sm font-semibold">Visit
+                Help Center</a>
+              <a href="contact.html" class="btn-o inline-block rounded-lg px-4 py-2.5 text-sm font-semibold">Contact
+                Us</a>
+            </div>
+            <p class="muted mt-3 text-xs">Email: <a class="text-violet-300 hover:text-white"
+                href="mailto:support@getkit.in">support@getkit.in</a></p>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="flex items-start gap-4">
+            <span class="ico shrink-0"><i class="fa-regular fa-envelope"></i></span>
+            <div>
+              <h2 class="text-lg font-bold tracking-tight text-white">Get useful updates</h2>
+              <p class="muted mt-2 text-sm leading-6">Hear about new resources, practical guides and offers from
+                GetKit.</p>
+            </div>
+          </div>
+          <!-- Demo form only: connect to a mailing-list service before launch. -->
+          <form id="newsletterForm" class="mt-5">
+            <label for="newsletterEmail" class="mb-2 block text-xs font-medium text-gray-300">Email address</label>
+            <div class="flex flex-col gap-2 sm:flex-row">
+              <input id="newsletterEmail" type="email" required autocomplete="email" placeholder="you@example.com"
+                class="field min-w-0 flex-1 rounded-xl px-4 py-3 text-sm text-white placeholder:text-zinc-500">
+              <button type="submit" class="btn rounded-xl px-5 py-3 text-sm font-semibold">Subscribe</button>
+            </div>
+            <p id="newsletterMessage" class="muted mt-3 text-xs" aria-live="polite">Only subscribe if you want to
+              receive updates. You can unsubscribe at any time.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#080612]" role="contentinfo">
+    <div class="wrap grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="lg:col-span-2">
+        <a href="index.html" class="inline-flex items-center gap-2.5" aria-label="GetKit home">
+          <img src="getkit.jpg" alt="GetKit logo" class="logo-mark shrink-0">
+          <span class="brand text-xl font-bold text-white">GetKit<span class="text-violet-400">.</span></span>
+        </a>
+        <p class="muted mt-4 max-w-xs text-sm leading-6">
+          Professional digital resources for work, learning, creativity and everyday projects.
+        </p>
+        <a href="mailto:support@getkit.in"
+          class="mt-4 inline-block text-sm text-violet-300 hover:text-white">support@getkit.in</a>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+            class="btn-o grid h-9 w-9 place-items-center rounded-lg text-sm"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+            class="btn-o grid h-9 w-9 place-items-center rounded-lg text-sm"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+            class="btn-o grid h-9 w-9 place-items-center rounded-lg text-sm"><i
+              class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <nav aria-label="Explore">
+        <h2 class="mb-4 text-sm font-bold text-white">Explore</h2>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a class="hover:text-violet-300" href="deals.html">Best Deals</a></li>
+          <li><a class="hover:text-violet-300" href="templates.html">Templates</a></li>
+          <li><a class="hover:text-violet-300" href="pro-templates.html">Pro Templates</a></li>
+          <li><a class="hover:text-violet-300" href="pro_toolkits_and_accelerator.html">Pro Toolkits &amp;
+              Accelerators</a></li>
+          <li><a class="hover:text-violet-300" href="b2b.html">B2B</a></li>
+          <li><a class="hover:text-violet-300" href="tools.html">Tools</a></li>
+          <li><a class="hover:text-violet-300" href="games.html">Games</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Customer support">
+        <h2 class="mb-4 text-sm font-bold text-white">Customer Support</h2>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a class="hover:text-violet-300" href="help.html">Help Center</a></li>
+          <li><a class="hover:text-violet-300" href="faq.html">FAQs</a></li>
+          <li><a class="hover:text-violet-300" href="purchase-and-download.html">Purchase &amp; Downloads</a></li>
+          <li><a class="hover:text-violet-300" href="support.html">Support</a></li>
+          <li><a class="hover:text-violet-300" href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Legal and about">
+        <h2 class="mb-4 text-sm font-bold text-white">Legal &amp; About</h2>
+        <ul class="space-y-3 text-sm text-gray-400">
+          <li><a class="hover:text-violet-300" href="privacy.html">Privacy Policy</a></li>
+          <li><a class="hover:text-violet-300" href="terms.html">Terms</a></li>
+          <li><a class="hover:text-violet-300" href="refund-policy.html">Refund Policy</a></li>
+          <li><a class="hover:text-violet-300" href="licensing.html">Licensing &amp; Usage</a></li>
+          <li><a class="hover:text-violet-300" href="why-getkit.html">Why GetKit?</a></li>
+          <li><a class="hover:text-violet-300" href="about.html">About GetKit</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="border-t border-white/10">
+      <div class="wrap flex flex-col gap-3 py-5 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+        <p>© <span id="currentYear"></span> GetKit. All rights reserved.</p>
+        <p class="flex flex-wrap gap-x-4 gap-y-2">
+          <a class="hover:text-white" href="privacy.html">Privacy</a>
+          <a class="hover:text-white" href="terms.html">Terms</a>
+          <a class="hover:text-white" href="refund-policy.html">Refunds</a>
+          <a class="hover:text-white" href="contact.html">Contact</a>
+          <a class="hover:text-white" href="#disclosure">Affiliate Terms</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ---------- Data ---------- */
+    const AFF = "YOUR_CUELINKS_URL_HERE"; // default affiliate link; override per product with `url`
+    const IMG = id => "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=600&q=80";
+
+    const CATEGORIES = [
+      { id: "all", label: "All Products", icon: "" },
+      { id: "hosting", label: "Hosting & Cloud", icon: "fa-server" },
+      { id: "hardware", label: "Workstation Gear", icon: "fa-keyboard" },
+      { id: "embedded", label: "Hardware & Embedded", icon: "fa-microchip" },
+      { id: "nocode", label: "No-Code & Design", icon: "fa-layer-group" },
+      { id: "seo", label: "SEO & Marketing", icon: "fa-chart-line" },
+      { id: "productivity", label: "Utilities & Productivity", icon: "fa-sliders" }
+    ];
+
+    // badge color classes use full Tailwind class names so the CDN picks them up
+    const C = {
+      green: "bg-emerald-500 text-black", blue: "bg-blue-500 text-white", yellow: "bg-yellow-500 text-black",
+      purple: "bg-purple-500 text-white", red: "bg-red-500 text-white", orange: "bg-orange-500 text-white",
+      indigo: "bg-indigo-500 text-white", teal: "bg-teal-500 text-black", pink: "bg-pink-500 text-white",
+      cyan: "bg-cyan-500 text-black", amber: "bg-amber-500 text-black"
+    };
+
+    const PRODUCTS = [
+      // HOSTING
+      { cat: "hosting", name: "Hostinger", tag: "Top Seller", star: true, badge: "Up to 75% OFF", bc: "green", type: "Hosting", img: IMG("1558494949-ef010cbdcc31"), keys: "hostinger web hosting cloud vps", desc: "High-performance SSD web hosting, NVMe VPS, and managed Cloud hosting with free SSL & domain.", pts: ["99.9% Uptime SLA & LiteSpeed Acceleration", "Free Automated Daily/Weekly Backups"], cta: "Claim Hostinger Deal" },
+      { cat: "hosting", name: "Bluehost", tag: "Popular", badge: "Free Domain 1-Yr", bc: "blue", type: "Hosting", img: IMG("1544197150-b99a580bb7a8"), keys: "bluehost wordpress hosting nodejs", desc: "Reliable WordPress & shared hosting platform with built-in CDN, 24/7 dev support, and 1-click deployments.", pts: ["Officially Recommended by WordPress", "Free Cloudflare CDN integration"], cta: "Get Bluehost Deal" },
+      { cat: "hosting", name: "HostGator", tag: "Scalable", badge: "Save 65%", bc: "yellow", type: "Hosting", img: IMG("1563986768609-322da13575f3"), keys: "hostgator vps cloud dedicated servers", desc: "Flexible web hosting with unmetered bandwidth, dedicated IPs, and powerful cPanel management.", pts: ["Unmetered Disk Space & Bandwidth", "45-Day Money-Back Guarantee"], cta: "Get HostGator Deal" },
+      { cat: "hosting", name: "GoDaddy", tag: "Domains & SSL", badge: "Domains from ₹199", bc: "green", type: "Domains", img: IMG("1526374965328-7f61d4dc18c5"), keys: "godaddy domain registrar ssl web hosting", desc: "World's largest domain registrar offering domain registration, managed SSL certificates, and web infrastructure.", pts: ["Instant DNS management & privacy", "Corporate domain protection options"], cta: "Claim GoDaddy Offer" },
+      { cat: "hosting", name: "UltaHost", tag: "High Speed", badge: "Fast NVMe SSD", bc: "purple", type: "VPS", img: IMG("1558494949-ef010cbdcc31"), keys: "ultahost nvme vps linux windows hosting", desc: "Managed ultra-fast NVMe VPS hosting built for heavy developer workloads, Node, Python, and Docker.", pts: ["10x faster NVMe storage servers", "Free BitNinja security shield included"], cta: "View UltaHost Plans" },
+      { cat: "hosting", name: "A2 Hosting", tag: "Developer-Friendly", badge: "20X Faster Turbo", bc: "red", type: "Hosting", img: IMG("1520869578617-557561d7b114"), keys: "a2 hosting turbo nvme speed developer", desc: "Speed-optimized web hosting equipped with Turbo Servers, Git integration, and pre-installed dev tools.", pts: ["Preconfigured Node.js, Python, PHP, Ruby", "Free site migration assistance"], cta: "Get A2 Hosting Deal" },
+      { cat: "hosting", name: "Namecheap", tag: "Best Value", badge: "Free Whois Privacy", bc: "orange", type: "Domains", img: IMG("1451187580459-43490279c0fa"), keys: "namecheap domain registration cheap dns", desc: "Budget-friendly domain registration with free lifetime domain privacy and fast PremiumDNS service.", pts: ["Free PrivacyGuard for lifetime", "Affordable SSL & EasyWP options"], cta: "Search Namecheap Domains" },
+
+      // WORKSTATION GEAR
+      { cat: "hardware", name: "Logitech MX Mechanical", tag: "Wireless", badge: "Top Dev Choice", bc: "indigo", type: "Hardware", img: IMG("1587829741301-dc798b83add3"), keys: "logitech mx mechanical wireless low profile keyboard developer", desc: "Low-profile tactile quiet switches with smart backlighting and seamless multi-device Bluetooth switching.", pts: ["Quiet tactile mechanical switches", "Pair up to 3 Mac/PC devices"], cta: "Check Price on Amazon" },
+      { cat: "hardware", name: "Keychron K2 Pro / K5 Max", tag: "Customizable", badge: "QMK/VIA Ready", bc: "green", type: "Hardware", img: IMG("1618384887929-16ec33fab9ef"), keys: "keychron k2 pro k5 max mechanical keyboard qmk via programmable", desc: "Wireless hot-swappable custom mechanical keyboard with open-source QMK/VIA macro key remapping.", pts: ["Full QMK & VIA web keymap support", "Double-shot OSA PBT Keycaps"], cta: "View Keychron Deal" },
+      { cat: "hardware", name: "NuPhy Air75 V2", tag: "75% Layout", badge: "Ultra Portable", bc: "purple", type: "Hardware", img: IMG("1595225476474-87563907a212"), keys: "nuphy air75 v2 portable low profile mechanical keyboard", desc: "Ultra-slim low-profile wireless mechanical keyboard designed for remote coders and MacBook setups.", pts: ["1000Hz polling rate via 2.4G wireless", "Ultra-thin aluminum frame"], cta: "View NuPhy Offer" },
+      { cat: "hardware", name: "EPOMAKER x AULA F75", tag: "Gasket Mount", badge: "Thocky Acoustic", bc: "teal", type: "Hardware", img: IMG("1541140596904-508d6258b071"), keys: "epomaker aula f75 gasket mechanical keyboard acoustic code", desc: "5-layer sound-dampened gasket structure providing smooth typing acoustic feedback for coding sessions.", pts: ["Pre-lubed linear switches & stabilizers", "Multi-device Bluetooth & 2.4G dongle"], cta: "Check Price on Amazon" },
+      { cat: "hardware", name: "Logitech Lift Vertical", tag: "Anti-Strain", badge: "Ergonomic 57°", bc: "indigo", type: "Mouse", img: IMG("1615663245857-ac93bb7c39e7"), keys: "logitech lift vertical ergonomic mouse wrist strain coder", desc: "Natural 57° handshake angle vertical mouse designed to eliminate forearm & wrist fatigue during long coding hours.", pts: ["Whisper-quiet click switches", "Up to 2-year battery life on 1 AA"], cta: "Check Price on Amazon" },
+      { cat: "hardware", name: "ProtoArc EM11 Vertical", tag: "Budget Ergo", badge: "Rechargeable", bc: "green", type: "Mouse", img: IMG("1527864550417-7fd91fc51a46"), keys: "protoarc em11 vertical wireless mouse ergonomic", desc: "Multi-device rechargeable ergonomic vertical mouse with RGB rim lighting and adjustable DPI steps.", pts: ["Connects 3 devices (Bluetooth + 2.4G)", "USB-C fast charging built-in"], cta: "View ProtoArc Deal" },
+      { cat: "hardware", name: "Dual Monitor Desk Arm", tag: "VESA 75/100", badge: "Heavy Duty", bc: "blue", type: "Desk Mount", img: IMG("1593640408182-31c70c8268f5"), keys: "dual monitor desk arm gas spring mount workstation", desc: "Full-motion gas spring dual monitor mount for 17\"-32\" screens with integrated cable management channels.", pts: ["360° screen rotation for portrait coding", "Cleans up desk real estate completely"], cta: "Check Price on Amazon" },
+
+      // EMBEDDED
+      { cat: "embedded", name: "XGecu T48 Programmer", tag: "IC Programmer", badge: "TL866-3G Next-Gen", bc: "amber", type: "Embedded", img: IMG("1518770660439-4636190af475"), keys: "xgecu t48 eeprom programmer bios spi flash mcu", desc: "High-speed universal programmer supporting 31,000+ ICs for EEPROM, NAND Flash, MCU, and BIOS programming.", pts: ["40-Pin industrial zif socket", "High-speed USB 2.0 interface"], cta: "View Hardware Deal" },
+      { cat: "embedded", name: "SLogic Combo 8 Dev Tool", tag: "Analyzer/Debugger", badge: "4-in-1 Tool", bc: "purple", type: "Embedded", img: IMG("1555680202-c86f0e12f086"), keys: "slogic combo 8 dev tool logic analyzer debugger uart", desc: "Compact logic analyzer, CKLink/DAP-Link debugger, and serial UART module for hardware prototyping.", pts: ["8-Channel 80MS/s logic sampling", "Multi-mode physical switch selection"], cta: "View SLogic Offer" },
+      { cat: "embedded", name: "CH341A EEPROM Programmer", tag: "SPI Flash", badge: "Budget Essential", bc: "green", type: "Flasher", img: IMG("1608564697071-ddf911d81370"), keys: "ch341a eeprom flash usb programmer sop8 clip", desc: "Standard USB flasher kit bundled with SOP8 IC test clip for motherboard BIOS flashing and router repair.", pts: ["Supports 24/25 series SPI Flash ICs", "Includes SOP8 spring test clip"], cta: "Buy CH341A Kit" },
+      { cat: "embedded", name: "Seeed XIAO ESP32-S3", tag: "Wi-Fi + BLE 5.0", badge: "Thumb Size", bc: "indigo", type: "IoT Board", img: IMG("1550745165-9bc0b252726f"), keys: "seeed studio xiao esp32-s3 wifi bluetooth dev board micro", desc: "Tiny dual-core Xtensa MCU board with Wi-Fi/Bluetooth, mesh networking, and PSRAM for AIoT microprojects.", pts: ["2.4GHz Wi-Fi & BLE 5.0 Dual Mode", "Compact surface mount castellated holes"], cta: "View Seeed Deal" },
+      { cat: "embedded", name: "Raspberry Pi 4 / Pi 5", tag: "Dev Server", badge: "Home Server", bc: "red", type: "Single Board", img: IMG("1629654297299-c8506221ca97"), keys: "raspberry pi 4 pi 5 single board computer self hosting home lab", desc: "The ultimate compact credit-card sized computer for running self-hosted Docker containers, Home Assistant & staging servers.", pts: ["Up to 8GB LPDDR4X RAM", "Dual 4K display outputs & PCIe 2.0"], cta: "Check Pi Availability" },
+
+      // NO-CODE & DESIGN
+      { cat: "nocode", name: "Framer", tag: "Web Builder", badge: "30% Recurring", bc: "pink", type: "No-Code", img: IMG("1507238691740-187a5b1d37b8"), keys: "framer website builder web templates saas landing pages", desc: "The fastest website builder for designing and shipping high-converting startup landing pages directly from canvas.", pts: ["React-level interactive components", "Instant global CDN publishing"], cta: "Try Framer Free" },
+      { cat: "nocode", name: "Webflow", tag: "Visual CMS", badge: "Enterprise CMS", bc: "blue", type: "No-Code", img: IMG("1460925895917-afdab827c52f"), keys: "webflow visual builder cms digital marketing", desc: "Build production-ready visual websites with clean semantic HTML, CSS flexbox/grid control, and managed hosting.", pts: ["Powerful visual CMS database engine", "Built-in micro-interactions & animations"], cta: "Start Webflow Free" },
+      { cat: "nocode", name: "Canva Pro", tag: "Social Assets", badge: "30-Day Free Trial", bc: "cyan", type: "Design", img: IMG("1618005182384-a83a8bd57fbe"), keys: "canva pro graphics design social banners templates", desc: "Create social graphics, OpenGraph preview cards, presentation slides, and marketing banners in minutes.", pts: ["100M+ stock photos & premium vectors", "1-Click AI Background remover"], cta: "Claim Canva Trial" },
+      { cat: "nocode", name: "Figma", tag: "UI/UX Tool", badge: "Industry Standard", bc: "purple", type: "UI Design", img: IMG("1581291518857-4e27b48ff24e"), keys: "figma ui ux interface design wireframing design system", desc: "Collaborative visual design and wireframing tool for building UI design systems, web app layouts, and vector components.", pts: ["Real-time multi-user canvas collaboration", "Dev Mode CSS/Tailwind code inspection"], cta: "Get Figma Free" },
+      { cat: "nocode", name: "Strikingly", tag: "One-Page Site", badge: "Fast MVP", bc: "green", type: "No-Code", img: IMG("1467232004584-a241de8bcf5d"), keys: "strikingly single page website builder portfolio landing page", desc: "Build stylish single-page websites, launch micro-portfolios, and test product MVPs in less than 30 minutes.", pts: ["Built-in sign-up forms & analytics", "Zero coding required"], cta: "Launch Strikingly Site" },
+
+      // SEO & MARKETING
+      { cat: "seo", name: "Semrush", tag: "SEO & Traffic", badge: "High Bounty Deal", bc: "orange", type: "SEO", img: IMG("1551288049-bebda4e38f71"), keys: "semrush seo keyword research competitor audit traffic analytics", desc: "All-in-one digital marketing suite for backlink analysis, organic keyword tracking, and site audit technical fixes.", pts: ["25+ Billion keyword database", "Deep technical SEO site crawler"], cta: "Start 14-Day Free Trial" },
+      { cat: "seo", name: "Plausible Analytics", tag: "GDPR Compliant", badge: "Cookie-Free", bc: "green", type: "Analytics", img: IMG("1504868584819-f8e8b4b6d7e3"), keys: "plausible analytics privacy lightweight tracking website traffic", desc: "Lightweight (< 1KB script) open-source web analytics without invasive tracking cookies or banner popups.", pts: ["45x smaller than Google Analytics script", "GDPR, CCPA, and PECR compliant"], cta: "Try Plausible Analytics" },
+      { cat: "seo", name: "ConvertKit (Kit)", tag: "Newsletters", badge: "30% Recurring", bc: "pink", type: "Email", img: IMG("1563986768494-4dee2763ff3f"), keys: "convertkit kit email marketing newsletter broadcast creators", desc: "Creator newsletter software for building automated sequence workflows, paid product subscriptions, and landing pages.", pts: ["99.8% high inbox deliverability rate", "Free up to 1,000 subscribers"], cta: "Start Free Newsletter" },
+      { cat: "seo", name: "Brevo (Sendinblue)", tag: "SMTP API", badge: "300 Emails/Day Free", bc: "blue", type: "SMTP API", img: IMG("1526374965328-7f61d4dc18c5"), keys: "brevo sendinblue transactional email api smtp marketing automation", desc: "Reliable developer transactional email SMTP server, REST API triggers, and SMS marketing automation.", pts: ["Quick Node.js, Python, & PHP API SDKs", "Dedicated IP options available"], cta: "Get Brevo SMTP Account" },
+
+      // PRODUCTIVITY
+      { cat: "productivity", name: "NordVPN / ExpressVPN", tag: "Dev Security", badge: "Save 68% + 3 Mo", bc: "indigo", type: "Security", img: IMG("1563986768609-322da13575f3"), keys: "nordvpn expressvpn secure vpn remote testing encryption ip", desc: "Encrypted network VPN for secure public Wi-Fi coding, geo-targeted web testing, and IP location masking.", pts: ["WireGuard NordLynx ultra-fast protocol", "Strict audited zero-logs security policy"], cta: "Claim VPN Discount" },
+      { cat: "productivity", name: "CleanMyMac", tag: "Disk Cleanup", badge: "Mac Utility", bc: "pink", type: "Utility", img: IMG("1517336714731-489689fd1ca8"), keys: "cleanmymac mac system cleaner disk space developer cache", desc: "System optimizer that clears gigabytes of developer node_modules build caches, Xcode logs, and RAM garbage.", pts: ["1-Click developer junk cache remover", "Real-time RAM & CPU status monitor"], cta: "Download CleanMyMac" },
+      { cat: "productivity", name: "Setapp", tag: "7-Day Free Trial", badge: "240+ Mac Apps", bc: "green", type: "Subscription", img: IMG("1551288049-bebda4e38f71"), keys: "setapp mac app suite subscription developer tools", desc: "All-in-one subscription unlocking 240+ curated premium macOS & iOS productivity apps including TablePlus & GitFox.", pts: ["Access TablePlus, CleanMyMac, CodeRunner", "Single fixed low monthly fee"], cta: "Start Setapp Free Trial" }
+    ];
+
+    /* ---------- Helpers ---------- */
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const grid = document.getElementById("productGrid");
+    const tabsEl = document.getElementById("tabs");
+    const noResults = document.getElementById("noResults");
+    const resultCount = document.getElementById("resultCount");
+    const searchInput = document.getElementById("productSearch");
+    const mobileSearch = document.getElementById("mobileSearch");
+    let currentCategory = "all";
+    let query = "";
+
+    /* ---------- Render ---------- */
+    function renderTabs() {
+      tabsEl.innerHTML = CATEGORIES.map(c => {
+        const count = c.id === "all" ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === c.id).length;
+        const icon = c.icon ? '<i class="fa-solid ' + c.icon + ' mr-1.5 text-violet-300"></i>' : "";
+        return '<button type="button" class="tab whitespace-nowrap rounded-xl px-4 py-2.5 text-xs font-semibold sm:text-sm" data-cat="' +
+          c.id + '" aria-pressed="' + (c.id === currentCategory) + '">' + icon + esc(c.label) + " (" + count + ")</button>";
+      }).join("");
+    }
+
+    function cardHTML(p) {
+      const star = p.star ? '<i class="fa-solid fa-star mr-1 text-amber-400"></i>' : "";
+      const points = p.pts.map(t =>
+        '<li class="flex items-start gap-2"><i class="fa-solid fa-circle-check mt-0.5 text-[11px] text-emerald-400"></i><span>' + esc(t) + "</span></li>"
+      ).join("");
+      return '<article class="card surface flex flex-col justify-between overflow-hidden rounded-2xl" data-cat="' + p.cat +
+        '" data-search="' + esc(p.keys) + '">' +
+        '<div class="p-4">' +
+        '<div class="relative mb-4 h-44 overflow-hidden rounded-xl bg-black/30">' +
+        '<img src="' + p.img + '" alt="' + esc(p.name) + '" loading="lazy" class="h-full w-full object-cover">' +
+        '<span class="absolute left-3 top-3 rounded-md px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider shadow-md ' + C[p.bc] + '">' + esc(p.badge) + "</span>" +
+        '<span class="absolute right-3 top-3 rounded-md border border-white/15 bg-[#0b0817]/85 px-2.5 py-1 text-xs font-semibold text-gray-200">' + esc(p.type) + "</span>" +
+        "</div>" +
+        '<div class="mb-2 flex items-center justify-between gap-3">' +
+        '<h3 class="text-lg font-bold text-white">' + esc(p.name) + "</h3>" +
+        '<span class="muted shrink-0 text-xs font-semibold">' + star + esc(p.tag) + "</span></div>" +
+        '<p class="muted clamp-2 mb-4 text-sm leading-6">' + esc(p.desc) + "</p>" +
+        '<ul class="mb-1 space-y-1.5 text-xs text-gray-300">' + points + "</ul>" +
+        "</div>" +
+        '<div class="p-4 pt-0">' +
+        '<a href="' + (p.url || AFF) + '" target="_blank" rel="noopener sponsored" class="btn flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold">' +
+        esc(p.cta) + ' <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>' +
+        "</div></article>";
+    }
+
+    function renderProducts() {
+      grid.innerHTML = PRODUCTS.map(cardHTML).join("");
+    }
+
+    /* ---------- Filtering ---------- */
+    function applyFilters() {
+      const q = query.trim().toLowerCase();
+      let visible = 0;
+      grid.querySelectorAll("article").forEach(card => {
+        const catOk = currentCategory === "all" || card.dataset.cat === currentCategory;
+        const text = (card.dataset.search + " " + card.innerText).toLowerCase();
+        const show = catOk && (!q || text.includes(q));
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      noResults.hidden = visible !== 0;
+      resultCount.textContent = visible + (visible === 1 ? " deal" : " deals") + " shown";
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      tabsEl.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.cat === cat)));
+      applyFilters();
+    }
+
+    function setQuery(val, scroll) {
+      query = val;
+      searchInput.value = val;
+      mobileSearch.value = val;
+      applyFilters();
+      if (scroll && val.trim()) document.getElementById("deals").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    tabsEl.addEventListener("click", e => {
+      const btn = e.target.closest(".tab");
+      if (btn) setCategory(btn.dataset.cat);
+    });
+    searchInput.addEventListener("input", e => setQuery(e.target.value, false));
+    mobileSearch.addEventListener("input", e => setQuery(e.target.value, false));
+    document.getElementById("searchForm").addEventListener("submit", e => {
+      e.preventDefault();
+      setQuery(searchInput.value, true);
+    });
+    document.getElementById("mobileSearchForm").addEventListener("submit", e => {
+      e.preventDefault();
+      setQuery(mobileSearch.value, true);
+      closeMenu();
+    });
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      setQuery("", false);
+      setCategory("all");
+    });
+
+    /* ---------- Mobile navigation ---------- */
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    function closeMenu() {
+      mobileMenu.classList.add("hidden");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.setAttribute("aria-label", "Open navigation");
+    }
+    menuBtn.addEventListener("click", () => {
+      const open = menuBtn.getAttribute("aria-expanded") === "true";
+      mobileMenu.classList.toggle("hidden", open);
+      menuBtn.setAttribute("aria-expanded", String(!open));
+      menuBtn.setAttribute("aria-label", open ? "Open navigation" : "Close navigation");
+    });
+    mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+    /* ---------- Demo newsletter ---------- */
+    document.getElementById("newsletterForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const msg = document.getElementById("newsletterMessage");
+      msg.textContent = "Demo only: connect a mailing-list service to enable subscriptions.";
+      msg.className = "mt-3 text-xs text-amber-300";
+    });
+
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+    /* ---------- Init ---------- */
+    renderTabs();
+    renderProducts();
+    applyFilters();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0718">
+    <meta name="description"
+        content="Contact GetKit for general inquiries, business partnerships, collaborations, feedback, and other questions.">
+    <title>Contact Us | GetKit</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #0b0718;
+            color: #f5f3ff;
+            font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .muted {
+            color: #aaa0c0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ddd6fe, #a78bfa, #c4b5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .panel {
+            background: linear-gradient(145deg, rgba(28, 19, 52, .95), rgba(17, 12, 34, .96));
+            border: 1px solid rgba(167, 139, 250, .16);
+        }
+
+        .contact-card {
+            background: rgba(23, 15, 43, .78);
+            border: 1px solid rgba(167, 139, 250, .15);
+            transition: border-color .2s, transform .2s;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(167, 139, 250, .4);
+            transform: translateY(-3px);
+        }
+
+        .field {
+            width: 100%;
+            background: #0e091d;
+            border: 1px solid rgba(167, 139, 250, .22);
+            border-radius: 12px;
+            padding: 13px 14px;
+            color: #f5f3ff;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .field:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, .14);
+        }
+
+        .field::placeholder {
+            color: #827796;
+        }
+
+        .field option {
+            background: #120d24;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Announcement bar -->
+    <div
+        class="border-b border-violet-400/10 bg-violet-500/[0.06] px-4 py-2 text-center text-xs text-violet-200 sm:text-sm">
+        Have a question, idea, or opportunity? We'd love to hear from you.
+    </div>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 border-b border-white/[0.06] bg-[#0b0718]/95 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+            <a href="index.html" class="flex shrink-0 items-center gap-3" aria-label="GetKit homepage">
+                <div
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 font-black text-white shadow-lg shadow-violet-950/40">
+                    G
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight">GetKit<span
+                            class="text-violet-400">.</span></span>
+                    <span class="block text-[10px] uppercase tracking-[.2em] text-violet-300/70">Digital
+                        resources</span>
+                </div>
+            </a>
+
+            <nav class="hidden items-center gap-6 text-sm text-slate-300 lg:flex" aria-label="Main navigation">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <a href="templates.html" class="hover:text-white">Templates</a>
+                <a href="deals.html" class="hover:text-white">Best Deals</a>
+                <a href="bundles.html" class="hover:text-white">Bundles</a>
+                <a href="tools.html" class="hover:text-white">Tools</a>
+                <a href="games.html" class="hover:text-white">Games</a>
+            </nav>
+
+            <a href="#contact-form"
+                class="rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-violet-500">
+                Contact Us
+            </a>
+        </div>
+
+        <nav class="flex gap-5 overflow-x-auto border-t border-white/[0.04] px-4 py-3 text-xs text-slate-300 lg:hidden"
+            aria-label="Mobile navigation">
+            <a href="index.html">Home</a>
+            <a href="templates.html">Templates</a>
+            <a href="deals.html">Best Deals</a>
+            <a href="bundles.html">Bundles</a>
+            <a href="tools.html">Tools</a>
+            <a href="games.html">Games</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <section class="relative overflow-hidden px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8">
+            <div
+                class="pointer-events-none absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-violet-600/15 blur-[110px]">
+            </div>
+
+            <div class="relative mx-auto max-w-4xl text-center">
+                <div
+                    class="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-2 text-xs font-semibold text-violet-200 sm:text-sm">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                    We're Here to Listen
+                </div>
+
+                <h1 class="text-4xl font-black leading-tight tracking-tight sm:text-6xl">
+                    Let's start a
+                    <span class="gradient-text block">conversation.</span>
+                </h1>
+
+                <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+                    Have a question about GetKit, an idea to share, or an opportunity to work together? Reach out to us.
+                    We're always happy to hear from our community.
+                </p>
+
+                <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+                    <a href="#contact-form"
+                        class="rounded-xl bg-violet-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-violet-950/30 transition hover:bg-violet-500">
+                        Send Us a Message →
+                    </a>
+                    <a href="faq.html"
+                        class="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold transition hover:bg-white/[0.07]">
+                        Browse FAQs
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact reasons -->
+        <section class="px-4 py-12 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-9 text-center">
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-violet-300">How Can We Help?</p>
+                    <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Let's talk about it.</h2>
+                    <p class="muted mx-auto mt-3 max-w-2xl leading-7">Choose the type of inquiry that best describes
+                        your message.</p>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="contact-card rounded-2xl p-6">
+                        <div
+                            class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/15 text-2xl">
+                            💡</div>
+                        <h3 class="font-bold">General Inquiries</h3>
+                        <p class="muted mt-2 text-sm leading-6">Questions about GetKit, our website, resources, or how
+                            things work.</p>
+                    </div>
+
+                    <div class="contact-card rounded-2xl p-6">
+                        <div
+                            class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-500/15 text-2xl">
+                            🤝</div>
+                        <h3 class="font-bold">Partnerships</h3>
+                        <p class="muted mt-2 text-sm leading-6">Interested in collaborating, featuring a resource, or
+                            exploring a business opportunity?</p>
+                    </div>
+
+                    <div class="contact-card rounded-2xl p-6">
+                        <div
+                            class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-500/15 text-2xl">
+                            💬</div>
+                        <h3 class="font-bold">Feedback & Ideas</h3>
+                        <p class="muted mt-2 text-sm leading-6">Share suggestions, website improvements, or ideas for
+                            future resources.</p>
+                    </div>
+
+                    <div class="contact-card rounded-2xl p-6">
+                        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-500/15 text-2xl">
+                            📣</div>
+                        <h3 class="font-bold">Other Inquiries</h3>
+                        <p class="muted mt-2 text-sm leading-6">Something else on your mind? Send us a message and
+                            explain how we can help.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main contact section -->
+        <section id="contact-form" class="scroll-mt-28 px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.8fr_1.2fr]">
+
+                <!-- Contact details -->
+                <div class="flex flex-col justify-center">
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-violet-300">Get in Touch</p>
+                    <h2 class="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
+                        Good conversations
+                        <span class="gradient-text">start here.</span>
+                    </h2>
+                    <p class="muted mt-5 leading-7">
+                        Whether you're reaching out with a question, feedback, or a potential collaboration, tell us a
+                        little about it and we'll know where to start.
+                    </p>
+
+                    <div class="mt-8 rounded-2xl border border-violet-400/15 bg-violet-500/[0.06] p-5">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-xl">
+                                ✉️</div>
+                            <div>
+                                <h3 class="font-bold">Email Us</h3>
+                                <p class="muted mt-1 text-sm leading-6">The best place to reach our team for general
+                                    inquiries.</p>
+                                <a href="mailto:support@getkit.in"
+                                    class="mt-2 inline-block break-all font-semibold text-violet-300 hover:text-violet-200">support@getkit.in</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-500/15 text-xl">
+                                📦</div>
+                            <div>
+                                <h3 class="font-bold">Need Purchase Help?</h3>
+                                <p class="muted mt-1 text-sm leading-6">For missing order emails, payment confirmation,
+                                    or download issues, use our dedicated purchase support page.</p>
+                                <a href="support.html"
+                                    class="mt-3 inline-flex text-sm font-semibold text-violet-300 hover:text-violet-200">Purchase
+                                    & Download Support →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="muted mt-6 text-sm leading-6">
+                        Please include enough information to understand your question. Avoid sending passwords, OTPs, or
+                        payment card details.
+                    </p>
+                </div>
+
+                <!-- Contact form -->
+                <form id="contactForm" class="panel rounded-2xl p-6 sm:p-8">
+                    <div class="mb-7">
+                        <h3 class="text-2xl font-extrabold">Send us a message</h3>
+                        <p class="muted mt-2 text-sm leading-6">Fill out the form below and your email application will
+                            prepare a message for GetKit.</p>
+                    </div>
+
+                    <div class="grid gap-5 sm:grid-cols-2">
+                        <div>
+                            <label for="name" class="mb-2 block text-sm font-medium text-slate-200">Your Name</label>
+                            <input id="name" name="name" class="field" type="text"
+                                placeholder="How should we address you?" required>
+                        </div>
+
+                        <div>
+                            <label for="email" class="mb-2 block text-sm font-medium text-slate-200">Your Email</label>
+                            <input id="email" name="email" class="field" type="email" placeholder="you@example.com"
+                                required>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label for="category" class="mb-2 block text-sm font-medium text-slate-200">What is your
+                                message about?</label>
+                            <select id="category" name="category" class="field" required>
+                                <option value="">Choose a topic</option>
+                                <option>General Inquiry</option>
+                                <option>Business Partnership</option>
+                                <option>Collaboration</option>
+                                <option>Feedback or Suggestion</option>
+                                <option>Website Issue</option>
+                                <option>Product or Resource Question</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label for="subject" class="mb-2 block text-sm font-medium text-slate-200">Subject</label>
+                            <input id="subject" name="subject" class="field" type="text"
+                                placeholder="A short title for your message" required>
+                        </div>
+
+                        <div class="sm:col-span-2">
+                            <label for="message" class="mb-2 block text-sm font-medium text-slate-200">Your
+                                Message</label>
+                            <textarea id="message" name="message" rows="6" class="field resize-y"
+                                placeholder="Tell us a little more about your question, idea, or proposal..."
+                                required></textarea>
+                        </div>
+                    </div>
+
+                    <label class="mt-5 flex items-start gap-3 text-sm leading-6 text-slate-300">
+                        <input id="consent" type="checkbox" required class="mt-1 accent-violet-500">
+                        <span>I agree to have the information above included in an email to GetKit for the purpose of
+                            responding to my inquiry.</span>
+                    </label>
+
+                    <button type="submit"
+                        class="mt-6 w-full rounded-xl bg-violet-600 px-5 py-3.5 font-bold text-white shadow-lg shadow-violet-950/30 transition hover:bg-violet-500">
+                        Prepare Email →
+                    </button>
+
+                    <p id="formStatus" role="status" class="muted mt-4 text-center text-xs leading-5">
+                        Your message is not sent automatically. Your email application will open so you can review and
+                        send it.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Closing CTA -->
+        <section class="px-4 pb-20 sm:px-6 lg:px-8">
+            <div
+                class="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-violet-400/15 bg-gradient-to-br from-violet-600/15 via-[#17102c] to-indigo-600/10 px-6 py-12 text-center sm:px-12 sm:py-16">
+                <p class="text-xs font-bold uppercase tracking-[.22em] text-violet-300">Before You Go</p>
+                <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">Looking for a quick answer?</h2>
+                <p class="muted mx-auto mt-4 max-w-xl leading-7">You might find what you need in our frequently asked
+                    questions or Help Center.</p>
+                <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+                    <a href="faq.html"
+                        class="rounded-xl bg-violet-600 px-6 py-3 font-bold text-white transition hover:bg-violet-500">Explore
+                        FAQs</a>
+                    <a href="help.html"
+                        class="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3 font-semibold transition hover:bg-white/[0.07]">Visit
+                        Help Center</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/[0.06] bg-[#080512] px-4 py-10 sm:px-6 lg:px-8">
+        <div class="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row">
+            <div class="max-w-sm">
+                <a href="index.html" class="text-xl font-extrabold">GetKit<span class="text-violet-400">.</span></a>
+                <p class="muted mt-3 text-sm leading-6">Useful digital resources, templates, tools, deals, and bundles
+                    to help you do more.</p>
+                <a href="mailto:support@getkit.in"
+                    class="mt-3 inline-block text-sm text-violet-300 hover:text-violet-200">support@getkit.in</a>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-bold">Get Help</h3>
+                <div class="muted mt-4 flex flex-col gap-3 text-sm">
+                    <a href="contact.html" class="text-violet-300">Contact Us</a>
+                    <a href="support.html" class="hover:text-white">Purchase & Download Support</a>
+                    <a href="faq.html" class="hover:text-white">FAQs</a>
+                    <a href="help.html" class="hover:text-white">Help Center</a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-bold">Information</h3>
+                <div class="muted mt-4 flex flex-col gap-3 text-sm">
+                    <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white">Terms & Conditions</a>
+                    <a href="templates.html" class="hover:text-white">Templates</a>
+                    <a href="deals.html" class="hover:text-white">Best Deals</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto mt-8 max-w-7xl border-t border-white/[0.06] pt-6 text-xs text-slate-500">
+            <p>© <span id="year"></span> GetKit. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const category = document.getElementById("category").value;
+            const subjectText = document.getElementById("subject").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            const subject = encodeURIComponent("[GetKit Contact] " + category + ": " + subjectText);
+            const body = encodeURIComponent(
+                "Hello GetKit Team,\n\n" +
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n" +
+                "Inquiry type: " + category + "\n" +
+                "Subject: " + subjectText + "\n\n" +
+                "Message:\n" + message + "\n\n" +
+                "Regards,\n" + name
+            );
+
+            document.getElementById("formStatus").textContent =
+                "Your email application should open with your message prepared. Review the details and press Send.";
+
+            window.location.href =
+                "mailto:support@getkit.in?subject=" + subject + "&body=" + body;
+        });
+    </script>
+
+</body>
+
+</html>

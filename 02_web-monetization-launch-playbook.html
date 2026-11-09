@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090d16">
+
+    <title>Zero-Cost Web Hosting Guide: Build, Deploy & Scale — GetKit</title>
+    <meta name="description"
+        content="Learn how to host websites for free using Cloudflare Pages, Workers, KV and Neon Postgres. Compare free hosting platforms, deploy a site, secure your backend and understand real-world limits.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://getkit.in/01_zero-cost-web-hosting-guide.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="GetKit">
+    <meta property="og:title" content="The Zero-Cost Web Hosting Guide">
+    <meta property="og:description"
+        content="A practical blueprint for building, deploying and operating a website on free hosting tiers.">
+    <meta property="og:url" content="https://getkit.in/01_zero-cost-web-hosting-guide.html">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Zero-Cost Web Hosting Guide — GetKit">
+    <meta name="twitter:description"
+        content="Build and deploy smarter with free hosting, serverless functions and managed databases.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #090d16;
+            --panel: #101727;
+            --panel-soft: #0c1320;
+            --border: #263249;
+            --text: #e6edf7;
+            --muted: #a0aec2;
+            --cyan: #67e8f9;
+            --purple: #a78bfa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(ellipse at 10% 0%, rgba(124, 58, 237, .14), transparent 32rem),
+                radial-gradient(ellipse at 90% 20%, rgba(6, 182, 212, .08), transparent 28rem),
+                var(--bg);
+            color: var(--text);
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        ::selection {
+            background: #67e8f9;
+            color: #07111b;
+        }
+
+        a {
+            text-underline-offset: 4px;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 2px solid var(--cyan);
+            outline-offset: 4px;
+        }
+
+        .glass {
+            background: rgba(16, 23, 39, .82);
+            border: 1px solid rgba(71, 85, 105, .55);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, .15);
+            backdrop-filter: blur(14px);
+        }
+
+        .eyebrow {
+            color: var(--cyan);
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .heading {
+            color: #f8fafc;
+            font-size: clamp(1.5rem, 3vw, 2.15rem);
+            font-weight: 850;
+            letter-spacing: -.045em;
+            line-height: 1.2;
+        }
+
+        .subheading {
+            color: #f1f5f9;
+            font-size: 1.1rem;
+            font-weight: 750;
+            letter-spacing: -.02em;
+        }
+
+        .copy {
+            color: #bdc9da;
+            line-height: 1.9;
+        }
+
+        .copy a,
+        .source-link {
+            color: var(--cyan);
+            text-decoration: underline;
+            text-decoration-color: rgba(103, 232, 249, .4);
+        }
+
+        .copy a:hover,
+        .source-link:hover {
+            color: white;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #34425a;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, .75);
+            color: #cbd5e1;
+            padding: .4rem .75rem;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .callout {
+            border: 1px solid;
+            border-radius: 14px;
+            padding: 1rem 1.15rem;
+        }
+
+        .info {
+            border-color: rgba(34, 211, 238, .28);
+            background: rgba(34, 211, 238, .065);
+        }
+
+        .warning {
+            border-color: rgba(251, 191, 36, .3);
+            background: rgba(251, 191, 36, .06);
+        }
+
+        .success {
+            border-color: rgba(52, 211, 153, .28);
+            background: rgba(52, 211, 153, .06);
+        }
+
+        .toc-link {
+            display: block;
+            border-radius: 9px;
+            padding: .55rem .7rem;
+            color: #b9c5d7;
+            font-size: .86rem;
+            transition: background .2s, color .2s;
+        }
+
+        .toc-link:hover,
+        .toc-link.active {
+            background: #17243a;
+            color: var(--cyan);
+        }
+
+        .code-wrap {
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        pre {
+            overflow: auto;
+            max-width: 100%;
+            border: 1px solid #29364c;
+            border-radius: 12px;
+            background: #070b12;
+            padding: 1rem;
+            color: #c8e6ff;
+            font-size: .82rem;
+            line-height: 1.8;
+            white-space: pre;
+        }
+
+        code:not(pre code) {
+            border-radius: 5px;
+            background: #172337;
+            padding: .15rem .35rem;
+            color: #a5f3fc;
+            overflow-wrap: anywhere;
+            font-size: .9em;
+        }
+
+        .copy-code {
+            position: absolute;
+            right: .6rem;
+            top: .6rem;
+            z-index: 2;
+            border: 1px solid #35435a;
+            border-radius: 8px;
+            background: #172337;
+            color: #dbeafe;
+            padding: .4rem .65rem;
+            font-size: .75rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .copy-code:hover {
+            background: #25344d;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        table {
+            width: 100%;
+            min-width: 690px;
+            border-collapse: collapse;
+            font-size: .85rem;
+        }
+
+        th {
+            background: #151f31;
+            color: #f1f5f9;
+            text-align: left;
+            font-size: .73rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        td,
+        th {
+            padding: .9rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        td {
+            color: #bdc9da;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        details {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(16, 23, 39, .7);
+            padding: 1rem;
+        }
+
+        details+details {
+            margin-top: .75rem;
+        }
+
+        summary {
+            color: #f1f5f9;
+            cursor: pointer;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        .check-row {
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+            padding: .85rem 0;
+            border-bottom: 1px solid rgba(51, 65, 85, .5);
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        .check-row input {
+            flex: none;
+            margin-top: .35rem;
+            accent-color: var(--cyan);
+        }
+
+        .number {
+            display: grid;
+            place-items: center;
+            width: 2.1rem;
+            height: 2.1rem;
+            flex: none;
+            border: 1px solid rgba(103, 232, 249, .25);
+            border-radius: 10px;
+            background: rgba(103, 232, 249, .08);
+            color: var(--cyan);
+            font-weight: 800;
+        }
+
+        .gradient-text {
+            background: linear-gradient(100deg, #67e8f9, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .progress-track {
+            height: 8px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: #202b3d;
+        }
+
+        #progress-bar {
+            width: 0;
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #67e8f9, #a78bfa);
+            transition: width .2s;
+        }
+
+        .section {
+            scroll-margin-top: 100px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #111827;
+            }
+
+            header,
+            aside,
+            footer,
+            .no-print,
+            .copy-code {
+                display: none !important;
+            }
+
+            .glass,
+            details,
+            pre {
+                background: white;
+                color: #111827;
+                box-shadow: none;
+            }
+
+            .copy,
+            td,
+            .check-row {
+                color: #1f2937;
+            }
+
+            .heading,
+            .subheading {
+                color: #111827;
+            }
+
+            main {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            article {
+                gap: 2rem !important;
+            }
+
+            a {
+                color: #111827 !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Zero-Cost Web Hosting Guide",
+    "description": "A practical guide to free hosting, serverless functions, databases, deployment, security and usage limits.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "GetKit",
+      "url": "https://getkit.in/"
+    },
+    "mainEntityOfPage": "https://getkit.in/01_zero-cost-web-hosting-guide.html"
+  }
+  </script>
+</head>
+
+<body class="antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-800/90 bg-[#090d16]/90 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+            <a href="/" class="shrink-0">
+                <span class="text-xl font-black tracking-tight text-white">getkit<span
+                        class="text-cyan-300">.</span></span>
+                <span class="ml-2 hidden text-xs text-slate-400 sm:inline">Practical guides for builders</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <span
+                    class="hidden rounded-full border border-violet-400/25 bg-violet-400/10 px-3 py-1.5 text-xs font-semibold text-violet-200 sm:inline-block">Developer
+                    Playbook</span>
+                <a href="/" class="text-sm font-semibold text-cyan-300 hover:text-white">GetKit Home →</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
+
+        <!-- HERO -->
+        <section
+            class="relative overflow-hidden rounded-3xl border border-slate-700/70 bg-slate-900/55 p-6 sm:p-10 lg:p-14">
+            <div
+                class="pointer-events-none absolute -right-16 -top-20 h-72 w-72 rounded-full bg-violet-500/10 blur-3xl">
+            </div>
+            <div class="relative max-w-4xl">
+                <p class="eyebrow">HOSTING · DEPLOYMENT · SERVERLESS</p>
+                <h1 class="mt-5 text-4xl font-black leading-tight tracking-[-.05em] text-white sm:text-5xl lg:text-6xl">
+                    The Zero-Cost <span class="gradient-text">Web Hosting Guide</span>
+                </h1>
+                <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+                    Build and deploy a useful website without paying an upfront hosting bill. Learn how free hosting,
+                    serverless functions, key-value storage and managed databases fit together—and how to avoid common
+                    security mistakes, technical limits and unexpected costs.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="tag">Beginner-friendly</span>
+                    <span class="tag">Practical examples</span>
+                    <span class="tag">Deployment guide</span>
+                    <span class="tag">Security checklist</span>
+                </div>
+                <div class="mt-9 grid gap-3 sm:grid-cols-3">
+                    <div class="rounded-2xl border border-slate-700/70 bg-[#090d16]/70 p-5">
+                        <p class="text-sm text-slate-400">Start here</p>
+                        <p class="mt-2 text-lg font-bold text-white">Static hosting</p>
+                        <p class="mt-2 text-sm leading-6 text-slate-400">HTML, CSS, JavaScript, landing pages and
+                            guides.</p>
+                    </div>
+                    <div class="rounded-2xl border border-slate-700/70 bg-[#090d16]/70 p-5">
+                        <p class="text-sm text-slate-400">Add logic</p>
+                        <p class="mt-2 text-lg font-bold text-white">Serverless APIs</p>
+                        <p class="mt-2 text-sm leading-6 text-slate-400">Forms, integrations and server-side validation.
+                        </p>
+                    </div>
+                    <div class="rounded-2xl border border-slate-700/70 bg-[#090d16]/70 p-5">
+                        <p class="text-sm text-slate-400">Store information</p>
+                        <p class="mt-2 text-lg font-bold text-white">Managed databases</p>
+                        <p class="mt-2 text-sm leading-6 text-slate-400">Accounts, records, application state and
+                            content.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="mt-9 grid gap-8 lg:grid-cols-[250px_minmax(0,1fr)]">
+
+            <!-- TABLE OF CONTENTS -->
+            <aside class="self-start lg:sticky lg:top-24">
+                <nav class="glass rounded-2xl p-4" aria-label="Table of contents">
+                    <p class="eyebrow mb-3 px-2">On this page</p>
+                    <a class="toc-link" href="#quick-answer">1. Quick answer</a>
+                    <a class="toc-link" href="#choose">2. Choose your stack</a>
+                    <a class="toc-link" href="#providers">3. Platform comparison</a>
+                    <a class="toc-link" href="#architecture">4. Architecture basics</a>
+                    <a class="toc-link" href="#static-deploy">5. Deploy a static site</a>
+                    <a class="toc-link" href="#workers">6. Cloudflare Workers</a>
+                    <a class="toc-link" href="#kv">7. Cloudflare KV</a>
+                    <a class="toc-link" href="#database">8. Neon Postgres</a>
+                    <a class="toc-link" href="#security">9. Security essentials</a>
+                    <a class="toc-link" href="#limits">10. Costs and limits</a>
+                    <a class="toc-link" href="#troubleshooting">11. Troubleshooting</a>
+                    <a class="toc-link" href="#checklist">12. Launch checklist</a>
+                    <a class="toc-link" href="#faq">13. FAQ</a>
+                    <a class="toc-link" href="#sources">Official resources</a>
+                </nav>
+                <div class="callout info mt-4">
+                    <p class="font-bold text-cyan-200">The core principle</p>
+                    <p class="mt-2 text-sm leading-6 text-slate-300">Start with the smallest architecture that solves
+                        your actual problem. Extra services add complexity even when their initial price is zero.</p>
+                </div>
+            </aside>
+
+            <article class="min-w-0 space-y-14">
+
+                <!-- 1 -->
+                <section id="quick-answer" class="section space-y-5">
+                    <p class="eyebrow">Start here</p>
+                    <h2 class="heading">1. Can you host a website for free?</h2>
+                    <p class="copy">
+                        Yes. Many websites can be hosted for $0 in hosting charges by using a provider's free tier. A
+                        static site—one served as files rather than generated by a continuously running application—is
+                        usually the easiest and most predictable place to start.
+                    </p>
+                    <p class="copy">
+                        The important distinction is that <strong class="text-white">free hosting is not the same as a
+                            free, unlimited production system.</strong> Requests, compute time, storage, bandwidth,
+                        builds, database activity and account eligibility may all be limited. A domain name, email
+                        delivery, paid APIs or other services may also cost money.
+                    </p>
+
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="font-bold text-emerald-200">Good candidates for free hosting</h3>
+                            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
+                                <li>Portfolios and personal websites</li>
+                                <li>Documentation and learning resources</li>
+                                <li>Landing pages and small business websites</li>
+                                <li>Browser-based calculators and utilities</li>
+                                <li>Prototypes, demos and small applications</li>
+                                <li>Low-traffic projects within published quotas</li>
+                            </ul>
+                        </div>
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="font-bold text-amber-200">Requires additional planning</h3>
+                            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
+                                <li>Payment processing and sensitive customer data</li>
+                                <li>Large video, image or download libraries</li>
+                                <li>Long-running jobs and heavy computation</li>
+                                <li>High-volume email or notification delivery</li>
+                                <li>Strict uptime, compliance or support requirements</li>
+                                <li>Commercial use restricted by a provider's plan</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="callout warning">
+                        <p class="font-bold text-amber-200">Important distinction</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">A free tier is an allowance defined by a
+                            provider, not a guarantee that every project will remain free indefinitely. Always review
+                            current pricing, overage rules, acceptable-use policies and commercial restrictions before
+                            launching.</p>
+                    </div>
+                </section>
+
+                <!-- 2 -->
+                <section id="choose" class="section space-y-5">
+                    <p class="eyebrow">Make the right choice</p>
+                    <h2 class="heading">2. Choose a hosting stack for your project</h2>
+                    <p class="copy">Do not start by signing up for every platform in this guide. Identify the features
+                        your project needs, then select the minimum number of services required to provide them.</p>
+
+                    <div class="space-y-3">
+                        <div class="glass flex gap-4 rounded-2xl p-5">
+                            <span class="number">A</span>
+                            <div>
+                                <h3 class="subheading">Static website</h3>
+                                <p class="copy mt-2 text-sm">For HTML, CSS, JavaScript, documentation, blogs built as
+                                    static files and marketing pages. Files are delivered directly to visitors, so no
+                                    application server or database is necessary.</p>
+                                <p class="mt-3 text-sm text-cyan-200">Consider: Cloudflare Pages or GitHub Pages.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass flex gap-4 rounded-2xl p-5">
+                            <span class="number">B</span>
+                            <div>
+                                <h3 class="subheading">Website with a small API</h3>
+                                <p class="copy mt-2 text-sm">For form processing, private API calls, input validation,
+                                    simple integrations or request-based business logic. Run sensitive operations on a
+                                    server instead of trusting browser JavaScript.</p>
+                                <p class="mt-3 text-sm text-cyan-200">Consider: Static hosting + Cloudflare Workers.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass flex gap-4 rounded-2xl p-5">
+                            <span class="number">C</span>
+                            <div>
+                                <h3 class="subheading">Application with persistent data</h3>
+                                <p class="copy mt-2 text-sm">For accounts, orders, structured records, submissions and
+                                    data that must survive beyond a browser session. Choose a database based on query
+                                    patterns, consistency, storage and backup needs.</p>
+                                <p class="mt-3 text-sm text-cyan-200">Consider: Serverless API + Neon Postgres, or a
+                                    suitable key-value store.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass flex gap-4 rounded-2xl p-5">
+                            <span class="number">D</span>
+                            <div>
+                                <h3 class="subheading">Full-stack framework application</h3>
+                                <p class="copy mt-2 text-sm">For server-side rendering, framework-specific routing,
+                                    image processing or server components. Verify that the selected platform supports
+                                    the exact features your framework requires.</p>
+                                <p class="mt-3 text-sm text-cyan-200">Consider: A framework-compatible platform with
+                                    suitable free and paid plans.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="callout success">
+                        <p class="font-bold text-emerald-200">Practical recommendation</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">For a guide page like this GetKit article,
+                            static hosting is enough. You do not need Workers, KV or Postgres simply to display text,
+                            navigation, links and a client-side checklist.</p>
+                    </div>
+                </section>
+
+                <!-- 3 -->
+                <section id="providers" class="section space-y-5">
+                    <p class="eyebrow">Compare options</p>
+                    <h2 class="heading">3. Free hosting platform comparison</h2>
+                    <p class="copy">These services solve different problems. A frontend host, serverless runtime and
+                        database are complementary components, not interchangeable products.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Platform</th>
+                                    <th>Best suited for</th>
+                                    <th>What to verify</th>
+                                    <th>Key consideration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong class="text-white">Cloudflare Pages</strong></td>
+                                    <td>Static websites, frontend assets and Git-based deployment</td>
+                                    <td>Build quotas, file limits and applicable Functions limits</td>
+                                    <td>Strong starting point for static sites</td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-white">Cloudflare Workers</strong></td>
+                                    <td>Request handlers, APIs and server-side logic</td>
+                                    <td>Request allowance, CPU time, subrequests and runtime limits</td>
+                                    <td>Not a general-purpose unlimited server</td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-white">GitHub Pages</strong></td>
+                                    <td>Project pages, documentation and static websites</td>
+                                    <td>Publishing limits, repository rules and intended use</td>
+                                    <td>Static hosting; no traditional server-side runtime</td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-white">Vercel Hobby</strong></td>
+                                    <td>Personal projects and supported framework deployments</td>
+                                    <td>Usage quotas, current plan terms and fair-use requirements</td>
+                                    <td>Hobby is intended for personal, non-commercial use under current terms</td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-white">Neon</strong></td>
+                                    <td>Managed PostgreSQL databases</td>
+                                    <td>Compute, storage, transfer, connections and project allowances</td>
+                                    <td>Database availability and compute are separate from frontend hosting</td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-white">Turso</strong></td>
+                                    <td>SQLite/libSQL-style database workloads</td>
+                                    <td>Current database, storage, row and transfer limits</td>
+                                    <td>Evaluate database compatibility and query requirements</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="text-sm leading-7 text-slate-400">This comparison is a decision aid, not a promise of
+                        current quotas or eligibility. Provider pricing and terms change; consult the official
+                        documentation linked at the end of this guide.</p>
+                </section>
+
+                <!-- 4 -->
+                <section id="architecture" class="section space-y-5">
+                    <p class="eyebrow">Understand the pieces</p>
+                    <h2 class="heading">4. How a zero-cost web architecture works</h2>
+                    <p class="copy">A typical web application has three separate responsibilities: displaying the
+                        interface, executing trusted server-side logic and storing persistent information. Keeping these
+                        responsibilities separate helps you secure and maintain the application.</p>
+
+                    <div class="glass rounded-2xl p-5 sm:p-7">
+                        <div class="mx-auto max-w-md space-y-3 text-center">
+                            <div class="rounded-xl border border-violet-400/30 bg-violet-400/10 p-4">
+                                <p class="font-bold text-violet-200">Visitor's browser</p>
+                                <p class="mt-1 text-sm text-slate-400">HTML · CSS · JavaScript</p>
+                            </div>
+                            <div class="text-xl text-slate-500" aria-hidden="true">↓ HTTPS request</div>
+                            <div class="rounded-xl border border-cyan-400/30 bg-cyan-400/10 p-4">
+                                <p class="font-bold text-cyan-200">Static host / CDN</p>
+                                <p class="mt-1 text-sm text-slate-400">Serves pages and public assets</p>
+                            </div>
+                            <div class="text-xl text-slate-500" aria-hidden="true">↓ When dynamic logic is needed</div>
+                            <div class="rounded-xl border border-indigo-400/30 bg-indigo-400/10 p-4">
+                                <p class="font-bold text-indigo-200">Serverless API</p>
+                                <p class="mt-1 text-sm text-slate-400">Authentication · Validation · Business logic</p>
+                            </div>
+                            <div class="grid gap-3 sm:grid-cols-2">
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/60 p-4">
+                                    <p class="font-bold text-white">KV storage</p>
+                                    <p class="mt-1 text-sm text-slate-400">Suitable for key-value data and cache-like
+                                        use cases</p>
+                                </div>
+                                <div class="rounded-xl border border-slate-700 bg-slate-950/60 p-4">
+                                    <p class="font-bold text-white">Postgres database</p>
+                                    <p class="mt-1 text-sm text-slate-400">Relational records, constraints and
+                                        transactions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="subheading">What each component does</h3>
+                    <ul class="list-disc space-y-3 pl-5 text-sm leading-7 text-slate-300">
+                        <li><strong class="text-white">Browser:</strong> Displays the interface and runs public
+                            client-side code. Anything delivered to the browser should be considered visible to users.
+                        </li>
+                        <li><strong class="text-white">Static host/CDN:</strong> Delivers HTML, CSS, JavaScript, images
+                            and other assets, often from a nearby edge location.</li>
+                        <li><strong class="text-white">Serverless function:</strong> Runs request-based logic without
+                            requiring you to administer a conventional always-on server.</li>
+                        <li><strong class="text-white">KV store:</strong> Stores values associated with keys. It is
+                            useful for suitable lookup and configuration workloads, but not a direct replacement for
+                            every relational database.</li>
+                        <li><strong class="text-white">Postgres:</strong> Stores structured data and supports
+                            relationships, constraints, transactions and SQL queries.</li>
+                    </ul>
+
+                    <div class="callout info">
+                        <p class="font-bold text-cyan-200">Security rule</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">The browser should never receive database
+                            passwords, private API keys or privileged tokens. Put secrets in server-side environment
+                            variables or the provider's secret-management system.</p>
+                    </div>
+                </section>
+
+                <!-- 5 -->
+                <section id="static-deploy" class="section space-y-5">
+                    <p class="eyebrow">First deployment</p>
+                    <h2 class="heading">5. Deploy a static website with Cloudflare Pages</h2>
+                    <p class="copy">A static site is the easiest place to start because it avoids database setup, server
+                        maintenance and backend security concerns. You can use a Git-based workflow or a supported
+                        direct-upload method, depending on your project and the platform's current options.</p>
+
+                    <h3 class="subheading">Step 1 — Prepare your files</h3>
+                    <p class="copy">A simple project might look like this:</p>
+
+                    <div class="code-wrap">
+                        <button class="copy-code" type="button">Copy code</button>
+                        <pre><code>my-website/
+├── index.html
+├── about.html
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── main.js
+│   └── images/
+└── README.md</code></pre>
+                    </div>
+
+                    <p class="copy">Make sure your home page is named <code>index.html</code> when using a standard
+                        static-file setup. Use relative paths for assets when appropriate, and test internal links
+                        before publishing.</p>
+
+                    <h3 class="subheading">Step 2 — Test locally</h3>
+                    <p class="copy">Open the page in your browser and inspect it at desktop and mobile widths. If the
+                        project relies on JavaScript modules, fetch requests or routing behavior, use a local
+                        development server rather than assuming opening the file directly will reproduce production
+                        behavior.</p>
+
+                    <h3 class="subheading">Step 3 — Create a deployment</h3>
+                    <ol class="list-decimal space-y-3 pl-5 text-sm leading-7 text-slate-300">
+                        <li>Create or sign in to your Cloudflare account.</li>
+                        <li>Open the Pages area in the dashboard.</li>
+                        <li>Choose the currently supported deployment method for your project, such as connecting a Git
+                            repository.</li>
+                        <li>For plain HTML and CSS, configure the build settings according to the current Pages
+                            documentation. A build command may not be required for a simple static project.</li>
+                        <li>Deploy and open the generated URL.</li>
+                        <li>Check the published page, links, browser console and mobile layout.</li>
+                    </ol>
+
+                    <h3 class="subheading">Step 4 — Connect a custom domain if needed</h3>
+                    <p class="copy">A platform-provided subdomain may be sufficient for testing. A custom domain usually
+                        requires a separate domain registration or renewal fee. Follow the platform's DNS instructions
+                        carefully and allow time for DNS changes to propagate.</p>
+
+                    <div class="callout warning">
+                        <p class="font-bold text-amber-200">Before publishing</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">Do not upload private environment files, API
+                            keys, database exports or confidential documents into a public repository or static hosting
+                            directory. A file is not private merely because you do not link to it.</p>
+                    </div>
+
+                    <p class="copy">Official instructions: <a class="source-link"
+                            href="https://developers.cloudflare.com/pages/" target="_blank"
+                            rel="noopener noreferrer">Cloudflare Pages documentation</a>.</p>
+                </section>
+
+                <!-- 6 -->
+                <section id="workers" class="section space-y-5">
+                    <p class="eyebrow">Add backend functionality</p>
+                    <h2 class="heading">6. Use Cloudflare Workers for serverless APIs</h2>
+                    <p class="copy">A serverless function lets your website perform trusted operations on the server
+                        side. Typical examples include validating form submissions, calling an external API with a
+                        private credential, processing small requests or checking access permissions.</p>
+
+                    <h3 class="subheading">Example: a minimal Worker endpoint</h3>
+                    <p class="copy">The following example returns JSON for a simple health-check route. It is
+                        deliberately small: it demonstrates request handling, not a complete authenticated application.
+                    </p>
+
+                    <div class="code-wrap">
+                        <button class="copy-code" type="button">Copy code</button>
+                        <pre><code>export default {
+  async fetch(request) {
+    const url = new URL(request.url);
+
+    if (request.method === "GET" && url.pathname === "/health") {
+      return Response.json({
+        ok: true,
+        service: "getkit-api"
+      });
+    }
+
+    return Response.json(
+      { error: "Not found" },
+      { status: 404 }
+    );
+  }
+};</code></pre>
+                    </div>
+
+                    <p class="copy">This example uses the Workers module syntax. Save it in the format required by your
+                        chosen deployment workflow, configure the entry point and deploy according to the official
+                        documentation.</p>
+
+                    <h3 class="subheading">When adding a real endpoint</h3>
+                    <ul class="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
+                        <li>Allow only the HTTP methods your route needs.</li>
+                        <li>Validate request bodies, content types and input lengths.</li>
+                        <li>Return appropriate HTTP status codes.</li>
+                        <li>Keep credentials in server-side secrets, never in frontend JavaScript.</li>
+                        <li>Protect sensitive routes with authentication and authorization.</li>
+                        <li>Use rate limiting or other abuse controls when exposed publicly.</li>
+                        <li>Do not return raw stack traces, internal configuration or database errors to users.</li>
+                    </ul>
+
+                    <div class="callout info">
+                        <p class="font-bold text-cyan-200">Understand the free-tier trade-off</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">Workers Free has documented request and CPU
+                            limits. The published allowance has included 100,000 requests per day and 10 milliseconds of
+                            CPU time per invocation; confirm the current pricing and limits before relying on these
+                            numbers for a live application. External network waits and CPU execution are different parts
+                            of request behavior.</p>
+                    </div>
+
+                    <p class="copy">Official documentation: <a class="source-link"
+                            href="https://developers.cloudflare.com/workers/" target="_blank"
+                            rel="noopener noreferrer">Cloudflare Workers</a> · <a class="source-link"
+                            href="https://developers.cloudflare.com/workers/platform/pricing/" target="_blank"
+                            rel="noopener noreferrer">Pricing and usage</a>.</p>
+                </section>
+
+                <!-- 7 -->
+                <section id="kv" class="section space-y-5">
+                    <p class="eyebrow">Key-value storage</p>
+                    <h2 class="heading">7. Cloudflare KV: what it is and when to use it</h2>
+                    <p class="copy">Cloudflare Workers KV is a key-value storage service designed for globally
+                        distributed reads. An application stores a value under a key and retrieves it later. It is
+                        useful for some configuration, lookup, cached content and other workloads that tolerate its
+                        consistency characteristics.</p>
+
+                    <h3 class="subheading">Good uses for KV</h3>
+                    <ul class="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
+                        <li>Public or non-sensitive configuration values.</li>
+                        <li>Cached content that can be regenerated.</li>
+                        <li>Simple key-based lookup data.</li>
+                        <li>Small pieces of application state that fit KV's data model.</li>
+                    </ul>
+
+                    <h3 class="subheading">When KV is the wrong tool</h3>
+                    <p class="copy">Do not choose KV just because it sounds easy or is available on a free plan.
+                        Relational transactions, complex queries, uniqueness constraints and tightly consistent
+                        read-after-write workflows may require a different storage system.</p>
+
+                    <div class="callout warning">
+                        <p class="font-bold text-amber-200">Do not store passwords as plain values</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">Authentication data, sensitive personal
+                            information and authorization state require careful design. A key-value store does not
+                            automatically provide a secure user-management system. Use established authentication
+                            patterns and appropriate access controls.</p>
+                    </div>
+
+                    <h3 class="subheading">A conceptual example</h3>
+                    <div class="code-wrap">
+                        <button class="copy-code" type="button">Copy code</button>
+                        <pre><code>// Conceptual Workers KV example.
+// Bind a KV namespace as SETTINGS in your Worker configuration.
+
+export default {
+  async fetch(request, env) {
+    const value = await env.SETTINGS.get("site-message");
+
+    return Response.json({
+      message: value ?? "Welcome to GetKit"
+    });
+  }
+};</code></pre>
+                    </div>
+
+                    <p class="copy">This snippet assumes a KV namespace binding named <code>SETTINGS</code> has already
+                        been configured. The code alone does not create the namespace or configure permissions.</p>
+
+                    <p class="copy">Official documentation: <a class="source-link"
+                            href="https://developers.cloudflare.com/kv/" target="_blank"
+                            rel="noopener noreferrer">Cloudflare Workers KV</a>.</p>
+                </section>
+
+                <!-- 8 -->
+                <section id="database" class="section space-y-5">
+                    <p class="eyebrow">Persistent application data</p>
+                    <h2 class="heading">8. Neon Postgres: managed relational databases</h2>
+                    <p class="copy">A relational database becomes useful when your application needs persistent records,
+                        relationships, structured queries or transactions. Neon provides managed PostgreSQL with
+                        serverless-oriented features. The database is a separate component from the site that displays
+                        it.</p>
+
+                    <h3 class="subheading">When Postgres makes sense</h3>
+                    <ul class="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
+                        <li>User profiles and application records.</li>
+                        <li>Orders, product metadata and structured content.</li>
+                        <li>Relationships between users, projects and other entities.</li>
+                        <li>Queries that need joins, indexes or transactions.</li>
+                        <li>Data integrity enforced by database constraints.</li>
+                    </ul>
+
+                    <h3 class="subheading">Plan a simple schema first</h3>
+                    <p class="copy">For example, a basic notes application might use a table like this. This is schema
+                        illustration only; an actual application must also implement access control and server-side
+                        validation.</p>
+
+                    <div class="code-wrap">
+                        <button class="copy-code" type="button">Copy code</button>
+                        <pre><code>CREATE TABLE notes (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title TEXT NOT NULL,
+  body TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX notes_created_at_idx
+ON notes (created_at DESC);</code></pre>
+                    </div>
+
+                    <h3 class="subheading">Safe database integration principles</h3>
+                    <ol class="list-decimal space-y-2 pl-5 text-sm leading-7 text-slate-300">
+                        <li>Connect through a server-side function or backend designed for your runtime.</li>
+                        <li>Store the database connection string in a protected secret, not in browser code.</li>
+                        <li>Use parameterized queries instead of constructing SQL by concatenating user input.</li>
+                        <li>Give the application only the database privileges it needs.</li>
+                        <li>Validate and authorize every read or write operation.</li>
+                        <li>Review connection limits, pooling, compute suspension, storage and backup options.</li>
+                        <li>Test restore procedures for important production data.</li>
+                    </ol>
+
+                    <div class="callout info">
+                        <p class="font-bold text-cyan-200">Do not connect a static page directly to a private database
+                        </p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">A browser is an untrusted environment. If a
+                            database password or privileged connection string appears in HTML or JavaScript delivered to
+                            visitors, assume it has been exposed. Use a backend boundary to control access.</p>
+                    </div>
+
+                    <p class="copy">Official documentation: <a class="source-link" href="https://neon.com/docs"
+                            target="_blank" rel="noopener noreferrer">Neon documentation</a> · <a class="source-link"
+                            href="https://neon.com/pricing" target="_blank" rel="noopener noreferrer">Neon pricing</a>.
+                    </p>
+                </section>
+
+                <!-- 9 -->
+                <section id="security" class="section space-y-5">
+                    <p class="eyebrow">Protect your project</p>
+                    <h2 class="heading">9. Security essentials for free-hosted websites</h2>
+                    <p class="copy">A free hosting plan does not remove the need for security. Many serious
+                        vulnerabilities come from application design, exposed secrets, overly broad permissions or
+                        missing validation rather than the hosting provider itself.</p>
+
+                    <div class="space-y-3">
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="subheading">1. Protect secrets</h3>
+                            <p class="copy mt-2 text-sm">Use environment variables or a provider's secret store for
+                                private API keys, database URLs and signing keys. Never commit secrets to Git. Rotate
+                                credentials if they are accidentally exposed.</p>
+                        </div>
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="subheading">2. Validate data on the server</h3>
+                            <p class="copy mt-2 text-sm">Client-side checks improve usability but can be bypassed.
+                                Re-check input type, length, format and business rules on the server before processing
+                                or storing it.</p>
+                        </div>
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="subheading">3. Use parameterized database queries</h3>
+                            <p class="copy mt-2 text-sm">Do not build SQL by inserting raw user input into a query
+                                string. Use the database driver's parameter-binding mechanism and grant only necessary
+                                database privileges.</p>
+                        </div>
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="subheading">4. Implement real authorization</h3>
+                            <p class="copy mt-2 text-sm">Knowing a URL or record ID must not be enough to access private
+                                information. Verify the current user's permissions on every protected operation.</p>
+                        </div>
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="subheading">5. Control abuse</h3>
+                            <p class="copy mt-2 text-sm">Public APIs and forms may be abused by automated clients.
+                                Consider rate limits, request-size limits, quotas, bot controls and appropriate
+                                anti-spam measures.</p>
+                        </div>
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="subheading">6. Plan backups and recovery</h3>
+                            <p class="copy mt-2 text-sm">A deployment rollback is not the same as a database backup.
+                                Maintain recoverable copies of important data and verify that you can restore them.</p>
+                        </div>
+                        <div class="glass rounded-2xl p-5">
+                            <h3 class="subheading">7. Keep dependencies under control</h3>
+                            <p class="copy mt-2 text-sm">Use maintained packages, remove unnecessary dependencies,
+                                review updates and monitor security advisories for the frameworks and libraries your
+                                project relies on.</p>
+                        </div>
+                    </div>
+
+                    <div class="callout warning">
+                        <p class="font-bold text-amber-200">A practical warning</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">Do not store payment card details yourself
+                            unless you have the expertise and compliance controls required. Prefer established payment
+                            providers and follow their integration guidance.</p>
+                    </div>
+                </section>
+
+                <!-- 10 -->
+                <section id="limits" class="section space-y-5">
+                    <p class="eyebrow">Know the trade-offs</p>
+                    <h2 class="heading">10. Free-tier limits, hidden costs and upgrade signals</h2>
+                    <p class="copy">The goal is not to avoid every future expense at any cost. The goal is to understand
+                        what you are getting, operate within the plan and know when paying for reliability or capacity
+                        becomes sensible.</p>
+
+                    <h3 class="subheading">What can consume your allowance?</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Resource</th>
+                                    <th>Why it matters</th>
+                                    <th>What to monitor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Requests</td>
+                                    <td>Each page asset or API call may contribute to usage under the relevant service's
+                                        rules.</td>
+                                    <td>Request volume, repeated polling and bot traffic.</td>
+                                </tr>
+                                <tr>
+                                    <td>CPU / compute</td>
+                                    <td>Expensive processing can exceed execution allowances.</td>
+                                    <td>Function duration, query efficiency and CPU use.</td>
+                                </tr>
+                                <tr>
+                                    <td>Bandwidth / transfer</td>
+                                    <td>Large assets and high traffic can increase transfer usage.</td>
+                                    <td>Image sizes, video delivery and downloads.</td>
+                                </tr>
+                                <tr>
+                                    <td>Database storage</td>
+                                    <td>Persistent data grows as records and indexes accumulate.</td>
+                                    <td>Storage, index growth and unused records.</td>
+                                </tr>
+                                <tr>
+                                    <td>Database compute</td>
+                                    <td>Queries, connections and active workloads consume resources.</td>
+                                    <td>Query latency, connection usage and compute consumption.</td>
+                                </tr>
+                                <tr>
+                                    <td>Builds</td>
+                                    <td>Frequent deployments can use build minutes or other allowances.</td>
+                                    <td>Build frequency, failures and build duration.</td>
+                                </tr>
+                                <tr>
+                                    <td>External services</td>
+                                    <td>Email, APIs, media and monitoring may have separate pricing.</td>
+                                    <td>Vendor quotas, usage caps and renewal costs.</td>
+                                </tr>
+                                <tr>
+                                    <td>Domain</td>
+                                    <td>A custom domain usually requires registration and renewal.</td>
+                                    <td>Annual renewal price and DNS configuration.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="subheading">How to estimate whether a free plan is enough</h3>
+                    <p class="copy">Do not estimate capacity using visitor counts alone. Visitors behave differently:
+                        one may load a single cached page, while another may trigger multiple API calls and database
+                        queries.</p>
+
+                    <div class="glass rounded-2xl p-5">
+                        <p class="font-bold text-white">Illustrative workload calculation</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">Suppose a site receives 10,000 visits in a
+                            month. If each visit causes 8 requests to a particular service, that is approximately 80,000
+                            requests for that service over the month. If each visit triggers 3 API calls, that is
+                            approximately 30,000 API calls. These are estimates, not provider billing predictions.</p>
+                        <p class="mt-3 text-sm leading-7 text-slate-400">Real usage depends on caching, retries,
+                            prefetching, asset delivery, bot traffic, service-specific counting rules and actual visitor
+                            behavior.</p>
+                    </div>
+
+                    <h3 class="subheading">When should you consider upgrading?</h3>
+                    <ul class="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-300">
+                        <li>You repeatedly approach published limits during normal usage.</li>
+                        <li>Your app needs more compute, storage or throughput.</li>
+                        <li>You need a plan with commercial rights or additional contractual terms.</li>
+                        <li>You need stronger support, observability, backups or operational controls.</li>
+                        <li>The cost of an outage or exhausted quota is greater than the plan's price.</li>
+                        <li>Your product's revenue or business model justifies predictable infrastructure spending.</li>
+                    </ul>
+
+                    <div class="callout success">
+                        <p class="font-bold text-emerald-200">Avoid surprise bills</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-300">Before deploying, determine whether exceeding
+                            an allowance causes a hard limit, temporary restriction, service degradation or billable
+                            usage. Enable usage alerts and spending controls wherever available, and review the
+                            dashboard after launch.</p>
+                    </div>
+                </section>
+
+                <!-- 11 -->
+                <section id="troubleshooting" class="section space-y-5">
+                    <p class="eyebrow">Fix common problems</p>
+                    <h2 class="heading">11. Troubleshooting free-hosted websites</h2>
+
+                    <details>
+                        <summary>The website displays a 404 page after deployment</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Check the published output directory,
+                            entry-point filename, route configuration and asset paths. A static deployment may not
+                            automatically support application-style routes. Review the platform's deployment logs and
+                            routing documentation.</p>
+                    </details>
+
+                    <details>
+                        <summary>CSS or images work locally but not online</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Check file-name capitalization, relative paths,
+                            missing files and browser network errors. Some local environments tolerate path differences
+                            that fail on case-sensitive production systems. Confirm that each asset was included in the
+                            deployed output.</p>
+                    </details>
+
+                    <details>
+                        <summary>The API works locally but fails in production</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Verify production environment variables,
+                            runtime compatibility, route paths, HTTP methods, authentication, CORS policy and external
+                            service availability. Inspect server-side logs without exposing secrets to the browser.</p>
+                    </details>
+
+                    <details>
+                        <summary>The database connection fails intermittently</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Check connection limits, credentials, network
+                            access, compute availability, pooling configuration and provider status. Review query
+                            timeouts and database errors in protected server-side logs.</p>
+                    </details>
+
+                    <details>
+                        <summary>Requests fail after a traffic spike</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Inspect usage dashboards and logs. Look for
+                            bots, retry loops, repeated polling, large uncached responses and expensive queries. Add
+                            caching where appropriate and enforce suitable limits on public endpoints.</p>
+                    </details>
+
+                    <details>
+                        <summary>The deployment succeeds but the app is slow</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Measure before changing architecture. Inspect
+                            image size, JavaScript bundles, network requests, cache headers, database queries and
+                            third-party scripts. A geographically distant database or a cold-starting service may
+                            contribute to latency.</p>
+                    </details>
+
+                    <details>
+                        <summary>A third-party API rejects requests</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Check the API key, account permissions, quota,
+                            endpoint URL, request schema and provider status. If the key is private, call the service
+                            from a backend function rather than embedding the key in public JavaScript.</p>
+                    </details>
+                </section>
+
+                <!-- 12 -->
+                <section id="checklist" class="section space-y-5">
+                    <p class="eyebrow">Ready to launch?</p>
+                    <h2 class="heading">12. Interactive pre-launch checklist</h2>
+                    <p class="copy">Use this checklist to review your project before publishing. Your selections stay in
+                        the current page session; they are not sent to a server or permanently saved.</p>
+
+                    <div class="glass rounded-2xl p-5 sm:p-7">
+                        <div class="mb-4 flex items-center justify-between gap-4">
+                            <p class="font-bold text-white">Launch readiness</p>
+                            <p id="progress-label" class="text-sm font-semibold text-cyan-200">0 of 12 complete</p>
+                        </div>
+                        <div class="progress-track" role="progressbar" aria-label="Checklist completion"
+                            aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
+                            <div id="progress-bar"></div>
+                        </div>
+
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Domain and HTTPS:</strong> Verify the published URL, certificate
+                                and redirects.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Responsive layout:</strong> Test mobile, tablet and desktop
+                                screens.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Navigation and links:</strong> Check internal links, external
+                                destinations and 404 behavior.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">SEO metadata:</strong> Review title, description, canonical URL
+                                and social previews.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Accessibility:</strong> Check keyboard navigation, labels,
+                                contrast and readable text.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Secrets:</strong> Ensure credentials are absent from public files
+                                and Git history.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Validation:</strong> Validate all important inputs on the
+                                server.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Abuse protection:</strong> Review authentication, authorization
+                                and rate limits.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Usage limits:</strong> Confirm request, compute, build, storage
+                                and transfer allowances.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Monitoring:</strong> Know where deployment logs and provider
+                                status updates are available.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Recovery:</strong> Back up important data and verify a restore
+                                procedure.</span></label>
+                        <label class="check-row"><input type="checkbox" class="launch-check"><span><strong
+                                    class="text-white">Pricing and terms:</strong> Confirm commercial-use rights, paid
+                                add-ons and overage behavior.</span></label>
+
+                        <div class="mt-5 flex flex-wrap gap-3 no-print">
+                            <button id="reset-checklist" type="button"
+                                class="rounded-xl border border-slate-600 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:bg-slate-800">Reset
+                                checklist</button>
+                            <button id="print-page" type="button"
+                                class="rounded-xl bg-cyan-300 px-4 py-2.5 text-sm font-bold text-slate-950 hover:bg-cyan-200">Print
+                                / Save PDF</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 13 -->
+                <section id="faq" class="section space-y-5">
+                    <p class="eyebrow">Common questions</p>
+                    <h2 class="heading">13. Frequently asked questions</h2>
+
+                    <details>
+                        <summary>Can I host a website for free forever?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">You may be able to keep a project on a free
+                            plan while the plan exists and your usage remains eligible. However, providers can change
+                            their features, quotas and terms. Keep backups and understand how you would migrate.</p>
+                    </details>
+
+                    <details>
+                        <summary>Can I use free hosting for a business website?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">It depends on the provider and the specific
+                            plan. Some plans restrict commercial use. Check the applicable terms before using a free
+                            plan for a monetized or business-critical project.</p>
+                    </details>
+
+                    <details>
+                        <summary>Do I need a database for a normal website?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">No. A static website can display pages without
+                            a database. A database becomes useful when you need to store and query persistent
+                            information such as user profiles, submissions, orders or editable content.</p>
+                    </details>
+
+                    <details>
+                        <summary>Can a free host handle 100,000 visitors?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Possibly for some workloads, but visitor count
+                            alone is not enough to estimate capacity. File sizes, cache hit rate, API calls, database
+                            queries, bot traffic and plan rules all affect resource consumption.</p>
+                    </details>
+
+                    <details>
+                        <summary>Is Cloudflare Pages the same as Cloudflare Workers?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">No. Pages is commonly used to publish websites
+                            and static assets. Workers runs code in response to requests. They can be used together, but
+                            the limits and capabilities of the feature you use still matter.</p>
+                    </details>
+
+                    <details>
+                        <summary>Is KV a replacement for Postgres?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Not generally. KV is a key-value store suited
+                            to particular lookup and distributed-read patterns. Postgres provides relational tables, SQL
+                            queries, transactions and constraints. Choose based on the data model and consistency
+                            requirements.</p>
+                    </details>
+
+                    <details>
+                        <summary>Does a free hosting plan include a custom domain?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Some providers offer a free platform subdomain
+                            and allow you to connect a domain you already own. Domain registration and renewal usually
+                            cost extra.</p>
+                    </details>
+
+                    <details>
+                        <summary>What is the safest way to avoid unexpected charges?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">Read the pricing page, identify billable
+                            overages, configure usage alerts or limits where available, protect public endpoints and
+                            monitor consumption after launch.</p>
+                    </details>
+
+                    <details>
+                        <summary>Should I use a VPS instead?</summary>
+                        <p class="mt-3 text-sm leading-7 text-slate-300">A VPS can provide more control and support
+                            workloads that do not fit a serverless model. However, you become responsible for
+                            operating-system updates, server security, monitoring, backups and maintenance. Compare the
+                            total workload, not only the advertised price.</p>
+                    </details>
+                </section>
+
+                <!-- SOURCES -->
+                <section id="sources" class="section space-y-5">
+                    <p class="eyebrow">Verify before deploying</p>
+                    <h2 class="heading">Official documentation and resources</h2>
+                    <p class="copy">Use official documentation as the final authority for quotas, supported features,
+                        eligibility, pricing and service terms. Free-plan details change, so verify them again before
+                        production use.</p>
+
+                    <div class="glass space-y-5 rounded-2xl p-5 sm:p-7">
+                        <div>
+                            <h3 class="font-bold text-white">Cloudflare</h3>
+                            <ul class="mt-3 space-y-3 text-sm leading-6">
+                                <li><a class="source-link" href="https://developers.cloudflare.com/pages/"
+                                        target="_blank" rel="noopener noreferrer">Cloudflare Pages documentation</a>
+                                    <p class="text-slate-400">Static hosting, deployments and configuration.</p>
+                                </li>
+                                <li><a class="source-link"
+                                        href="https://developers.cloudflare.com/pages/platform/limits/" target="_blank"
+                                        rel="noopener noreferrer">Cloudflare Pages limits</a>
+                                    <p class="text-slate-400">Platform and deployment restrictions.</p>
+                                </li>
+                                <li><a class="source-link" href="https://developers.cloudflare.com/workers/"
+                                        target="_blank" rel="noopener noreferrer">Cloudflare Workers documentation</a>
+                                    <p class="text-slate-400">Runtime, routing, APIs and deployment concepts.</p>
+                                </li>
+                                <li><a class="source-link"
+                                        href="https://developers.cloudflare.com/workers/platform/pricing/"
+                                        target="_blank" rel="noopener noreferrer">Workers pricing</a>
+                                    <p class="text-slate-400">Current pricing and included usage.</p>
+                                </li>
+                                <li><a class="source-link"
+                                        href="https://developers.cloudflare.com/workers/platform/limits/"
+                                        target="_blank" rel="noopener noreferrer">Workers limits</a>
+                                    <p class="text-slate-400">Runtime and plan-specific constraints.</p>
+                                </li>
+                                <li><a class="source-link" href="https://developers.cloudflare.com/kv/" target="_blank"
+                                        rel="noopener noreferrer">Workers KV documentation</a>
+                                    <p class="text-slate-400">Key-value storage, bindings and behavior.</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="border-t border-slate-700 pt-5">
+                            <h3 class="font-bold text-white">Databases and other hosting options</h3>
+                            <ul class="mt-3 space-y-3 text-sm leading-6">
+                                <li><a class="source-link" href="https://neon.com/docs" target="_blank"
+                                        rel="noopener noreferrer">Neon documentation</a>
+                                    <p class="text-slate-400">Postgres setup, connections and database operations.</p>
+                                </li>
+                                <li><a class="source-link" href="https://neon.com/pricing" target="_blank"
+                                        rel="noopener noreferrer">Neon pricing</a>
+                                    <p class="text-slate-400">Current compute and storage plan details.</p>
+                                </li>
+                                <li><a class="source-link"
+                                        href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages"
+                                        target="_blank" rel="noopener noreferrer">GitHub Pages overview</a>
+                                    <p class="text-slate-400">Static publishing model and usage guidance.</p>
+                                </li>
+                                <li><a class="source-link" href="https://vercel.com/docs/plans/hobby" target="_blank"
+                                        rel="noopener noreferrer">Vercel Hobby plan</a>
+                                    <p class="text-slate-400">Current plan eligibility and restrictions.</p>
+                                </li>
+                                <li><a class="source-link" href="https://turso.tech/pricing" target="_blank"
+                                        rel="noopener noreferrer">Turso pricing</a>
+                                    <p class="text-slate-400">Current database plan information.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p class="text-xs leading-6 text-slate-500">Editorial disclaimer: This guide is educational. It does
+                        not guarantee uninterrupted availability, unlimited capacity, security, or continued free
+                        access. Confirm provider documentation and terms before making production decisions.</p>
+                </section>
+
+            </article>
+        </div>
+    </main>
+
+    <footer class="mt-12 border-t border-slate-800 bg-[#070a11]/80">
+        <div
+            class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-9 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div>
+                <a href="/" class="text-xl font-black text-white">getkit<span class="text-cyan-300">.</span></a>
+                <p class="mt-2 text-sm text-slate-500">Useful resources, tools and practical playbooks.</p>
+            </div>
+            <nav class="flex flex-wrap gap-5 text-sm" aria-label="Footer">
+                <a href="/" class="text-slate-400 hover:text-cyan-200">Home</a>
+                <a href="/help" class="text-slate-400 hover:text-cyan-200">Help Center</a>
+                <a href="mailto:support@getkit.in" class="text-slate-400 hover:text-cyan-200">Contact</a>
+            </nav>
+            <p class="text-xs text-slate-600">© <span id="year"></span> GetKit</p>
+        </div>
+    </footer>
+
+    <script>
+        // Footer year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Copy buttons for code examples
+        document.querySelectorAll(".copy-code").forEach((button) => {
+            button.addEventListener("click", async () => {
+                const code = button.parentElement.querySelector("code");
+                const originalText = button.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(code.innerText);
+                    button.textContent = "Copied!";
+                } catch (error) {
+                    button.textContent = "Select code";
+                }
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 1600);
+            });
+        });
+
+        // Interactive launch checklist
+        const checks = Array.from(document.querySelectorAll(".launch-check"));
+        const progressBar = document.getElementById("progress-bar");
+        const progressLabel = document.getElementById("progress-label");
+        const progressTrack = document.getElementById("progress-track");
+
+        function updateProgress() {
+            const completed = checks.filter((checkbox) => checkbox.checked).length;
+            const percentage = checks.length
+                ? Math.round((completed / checks.length) * 100)
+                : 0;
+
+            progressLabel.textContent = `${completed} of ${checks.length} complete`;
+            progressBar.style.width = `${percentage}%`;
+            progressTrack.setAttribute("aria-valuenow", String(percentage));
+        }
+
+        checks.forEach((checkbox) => {
+            checkbox.addEventListener("change", updateProgress);
+        });
+
+        document.getElementById("reset-checklist").addEventListener("click", () => {
+            checks.forEach((checkbox) => {
+                checkbox.checked = false;
+            });
+            updateProgress();
+        });
+
+        document.getElementById("print-page").addEventListener("click", () => {
+            window.print();
+        });
+
+        // Highlight the current section in the table of contents
+        const sections = Array.from(document.querySelectorAll("article section[id]"));
+        const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+
+                        tocLinks.forEach((link) => {
+                            const isActive = link.getAttribute("href") === `#${entry.target.id}`;
+                            link.classList.toggle("active", isActive);
+                        });
+                    });
+                },
+                { rootMargin: "-15% 0px -70% 0px" }
+            );
+
+            sections.forEach((section) => observer.observe(section));
+        }
+    </script>
+</body>
+
+</html>

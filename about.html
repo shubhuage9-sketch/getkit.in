@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About GetKit | Useful Digital Resources at Fair Prices</title>
+    <meta name="description"
+        content="GetKit is a digital resource hub with templates, tools, bundles and games, built in India by Shubham Thakur. Useful resources without the crazy price.">
+    <link rel="canonical" href="https://getkit.in/about.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg: #0b0817;
+            --panel: #130f24;
+            --line: rgba(255, 255, 255, .09);
+            --text: #e9e6f5;
+            --mute: #a29cbd;
+            --accent: #a78bfa;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', system-ui, sans-serif;
+            line-height: 1.7;
+        }
+
+        h1,
+        h2,
+        h3,
+        .brand {
+            font-family: 'Bricolage Grotesque', 'DM Sans', system-ui, sans-serif;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+
+        .muted {
+            color: var(--mute);
+        }
+
+        .prose-w {
+            max-width: 40rem;
+        }
+
+        .logo-mark {
+            display: inline-block;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #7c3aed, #c4b5fd);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border-radius: .75rem;
+            padding: .8rem 1.4rem;
+            font-weight: 700;
+            background: #7c3aed;
+            color: #fff;
+            transition: background .2s;
+        }
+
+        .btn:hover {
+            background: #6d28d9;
+        }
+
+        .btn-o {
+            border: 1px solid var(--line);
+            color: var(--text);
+            border-radius: .75rem;
+            transition: border-color .2s, color .2s;
+        }
+
+        .btn-o:hover {
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .ico {
+            font-size: 1.75rem;
+            line-height: 1;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        section {
+            padding-top: 4.5rem;
+            padding-bottom: 4.5rem;
+        }
+
+        .quote {
+            border-left: 3px solid #7c3aed;
+            padding-left: 1.25rem;
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0b0817]/90 backdrop-blur">
+        <div class="wrap flex h-16 items-center justify-between">
+            <a href="/index.html" class="inline-flex items-center gap-2.5" aria-label="GetKit home">
+                <span class="logo-mark h-9 w-9 shrink-0" role="img" aria-label="GetKit logo"></span>
+                <span class="brand text-xl font-bold text-white">GetKit<span class="text-violet-400">.</span></span>
+            </a>
+            <nav class="hidden items-center gap-7 text-sm md:flex" aria-label="Main">
+                <a class="text-gray-300 hover:text-white" href="/index.html">Home</a>
+                <a class="text-gray-300 hover:text-white" href="/tools.html">Tools</a>
+                <a class="text-gray-300 hover:text-white" href="/deals.html">Deals</a>
+                <a class="font-bold text-white" href="/about.html" aria-current="page">About</a>
+                <a class="btn !py-2 !px-4 text-sm" href="/templates.html">Explore GetKit</a>
+            </nav>
+            <button id="menuBtn" class="btn-o grid h-10 w-10 place-items-center md:hidden" aria-expanded="false"
+                aria-controls="mobileMenu" aria-label="Open navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <nav id="mobileMenu" class="hidden border-t border-white/10 md:hidden" aria-label="Mobile">
+            <div class="wrap flex flex-col gap-4 py-4 text-sm">
+                <a class="text-gray-300" href="/index.html">Home</a>
+                <a class="text-gray-300" href="/tools.html">Tools</a>
+                <a class="text-gray-300" href="/deals.html">Deals</a>
+                <a class="font-bold text-white" href="/about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="!pt-20 !pb-16 sm:!pt-28"
+            style="background:radial-gradient(60% 50% at 80% 0%,rgba(124,58,237,.22),transparent)">
+            <div class="wrap">
+                <p class="text-sm font-medium text-violet-300">Built in India. Made for people everywhere.</p>
+                <h1 class="mt-4 max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-6xl">Useful
+                    resources. Without the crazy price.</h1>
+                <p class="muted prose-w mt-6 text-lg">GetKit.in is a digital resource hub built for creators, designers,
+                    developers, freelancers, entrepreneurs, businesses &mdash; and honestly, anyone who finds useful
+                    digital resources helpful.</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="/templates.html" class="btn">Explore Resources <i
+                            class="fa-solid fa-arrow-right text-sm"></i></a>
+                    <a href="#feedback" class="btn-o px-5 py-3 font-medium">Share feedback</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT IS GETKIT + WHY I STARTED -->
+        <section class="border-t border-white/10">
+            <div class="wrap grid gap-14 lg:grid-cols-2">
+                <div>
+                    <p class="text-sm font-medium text-violet-300">Our story</p>
+                    <h2 class="mt-2 text-3xl font-bold text-white">What is GetKit?</h2>
+                    <p class="mt-4 text-xl font-medium text-white">A growing library of things you can actually use.</p>
+                    <p class="muted mt-4">GetKit brings different kinds of digital resources together in one place,
+                        including templates, bundles, tools, software resources, games, and other practical things you
+                        can actually use.</p>
+                    <p class="muted mt-4">Our goal is simple: make useful digital resources easier to find and
+                        affordable enough for more people to try.</p>
+                    <p class="muted mt-4">Some resources are made specifically for creators, developers and businesses.
+                        Others are simply useful for everyday users.</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-violet-300">The beginning</p>
+                    <h2 class="mt-2 text-3xl font-bold text-white">Why I started GetKit</h2>
+                    <p class="mt-4 text-xl font-medium text-white">It started with a pretty simple idea.</p>
+                    <p class="muted mt-4">There are countless templates, tools, resources and digital products online.
+                        But finding the right ones isn&rsquo;t always easy. And for someone who is just starting out,
+                        spending a lot of money on resources isn&rsquo;t always an option.</p>
+                    <p class="muted mt-4">I wanted to create something different &mdash; a place where you could find
+                        useful digital resources, explore different kinds of products, try some things for free, and buy
+                        what you actually need without having to spend a huge amount.</p>
+                    <p class="mt-4 font-medium text-white">That&rsquo;s how GetKit started.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT'S INSIDE -->
+        <section class="border-t border-white/10 bg-[#0e0a1d]">
+            <div class="wrap">
+                <p class="text-sm font-medium text-violet-300">What&rsquo;s inside</p>
+                <h2 class="mt-2 text-3xl font-bold text-white">More than just templates.</h2>
+                <p class="muted prose-w mt-3">We&rsquo;re building a collection of different resources for different
+                    kinds of people.</p>
+                <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    <article class="card">
+                        <div class="ico" aria-hidden="true">📦</div>
+                        <h3 class="mt-4 text-lg font-bold text-white">Digital Bundles</h3>
+                        <p class="muted mt-2 text-sm">Collections of multiple resources brought together into one
+                            package, giving you more things to work with in a single purchase.</p>
+                    </article>
+                    <article class="card">
+                        <div class="ico" aria-hidden="true">🎨</div>
+                        <h3 class="mt-4 text-lg font-bold text-white">Templates</h3>
+                        <p class="muted mt-2 text-sm">Ready-to-use templates that can help you start projects faster
+                            instead of creating everything from scratch.</p>
+                    </article>
+                    <article class="card">
+                        <div class="ico" aria-hidden="true">🛠️</div>
+                        <h3 class="mt-4 text-lg font-bold text-white">Tools &amp; Software Resources</h3>
+                        <p class="muted mt-2 text-sm">Useful digital tools and software-related resources for creators,
+                            developers, businesses and everyday users.</p>
+                    </article>
+                    <article class="card">
+                        <div class="ico" aria-hidden="true">🎮</div>
+                        <h3 class="mt-4 text-lg font-bold text-white">Games &amp; Other Digital Stuff</h3>
+                        <p class="muted mt-2 text-sm">Not everything has to be about work. You&rsquo;ll also find games
+                            and other interesting digital resources on GetKit.</p>
+                    </article>
+                    <article class="card">
+                        <div class="ico" aria-hidden="true">💡</div>
+                        <h3 class="mt-4 text-lg font-bold text-white">Practical Resources</h3>
+                        <p class="muted mt-2 text-sm">Things that can help you create, design, plan, build and work more
+                            efficiently.</p>
+                    </article>
+                    <article class="card">
+                        <div class="ico" aria-hidden="true">🆓</div>
+                        <h3 class="mt-4 text-lg font-bold text-white">Free Resources</h3>
+                        <p class="muted mt-2 text-sm">Try something first, explore GetKit, see whether you find it
+                            useful, and then decide whether you want to explore paid resources.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY GETKIT -->
+        <section class="border-t border-white/10">
+            <div class="wrap">
+                <h2 class="text-3xl font-bold text-white">Why GetKit?</h2>
+                <p class="mt-3 text-xl font-medium text-white prose-w">Built around affordability, simplicity and
+                    feedback.</p>
+                <p class="muted prose-w mt-3">We&rsquo;re trying to keep useful resources accessible, especially for
+                    people who are starting out and don&rsquo;t have a large budget for digital products.</p>
+                <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="card">
+                        <div class="ico" aria-hidden="true">💰</div>
+                        <h3 class="mt-4 font-bold text-white">Affordable Pricing</h3>
+                        <p class="muted mt-2 text-sm">Resources are intentionally kept at accessible prices.</p>
+                    </div>
+                    <div class="card">
+                        <div class="ico" aria-hidden="true">⚡</div>
+                        <h3 class="mt-4 font-bold text-white">Simple Purchases</h3>
+                        <p class="muted mt-2 text-sm">Choose what you need, purchase it and download your digital
+                            resource.</p>
+                    </div>
+                    <div class="card">
+                        <div class="ico" aria-hidden="true">🌍</div>
+                        <h3 class="mt-4 font-bold text-white">Built for Everyone</h3>
+                        <p class="muted mt-2 text-sm">Resources for creators, businesses and everyday users.</p>
+                    </div>
+                    <div class="card">
+                        <div class="ico" aria-hidden="true">💬</div>
+                        <h3 class="mt-4 font-bold text-white">Your Feedback Matters</h3>
+                        <p class="muted mt-2 text-sm">Tell us what you liked, what could improve and what you&rsquo;d
+                            like us to add.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOUNDER -->
+        <section class="border-t border-white/10 bg-[#0e0a1d]">
+            <div class="wrap grid gap-12 lg:grid-cols-5">
+                <aside class="lg:col-span-2">
+                    <div class="card">
+                        <div class="grid h-16 w-16 place-items-center rounded-full bg-violet-600 text-xl font-bold text-white"
+                            aria-hidden="true">ST</div>
+                        <p class="mt-5 text-sm font-medium text-violet-300">Founder</p>
+                        <h2 class="text-2xl font-bold text-white">Shubham Thakur</h2>
+                        <p class="muted text-sm">Creator &amp; Developer &middot; India</p>
+                        <blockquote class="quote mt-6 text-white">&ldquo;I wanted to build something where people could
+                            find useful digital resources without needing a huge budget.&rdquo;</blockquote>
+                    </div>
+                </aside>
+                <div class="lg:col-span-3">
+                    <p class="text-sm font-medium text-violet-300">The story behind GetKit</p>
+                    <h2 class="mt-2 text-3xl font-bold text-white">I&rsquo;m building GetKit one step at a time.</h2>
+                    <p class="muted mt-5">Hi, I&rsquo;m Shubham, the founder of GetKit. I&rsquo;m a creator and
+                        developer from India, and GetKit started from something I personally wanted to see.</p>
+                    <p class="muted mt-4">I&rsquo;ve seen how many useful templates, tools, resources and digital
+                        products are available online, but finding the right ones &mdash; and being able to afford them
+                        &mdash; isn&rsquo;t always easy.</p>
+                    <p class="muted mt-4">So I started building GetKit as a place where useful things could be collected
+                        and offered at prices that don&rsquo;t make people think twice about trying them.</p>
+                    <p class="muted mt-4">It&rsquo;s currently a small, independently built project, and I&rsquo;m the
+                        person behind it. I&rsquo;m building it, improving it, adding resources and learning along the
+                        way.</p>
+                    <p class="muted mt-4">GetKit is still growing. We&rsquo;re not trying to pretend that everything is
+                        perfect today. We&rsquo;re building, learning, improving and adding better resources over time.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HONEST NOTE -->
+        <section class="border-t border-white/10">
+            <div class="wrap">
+                <div class="card prose-w !max-w-3xl border-violet-500/30">
+                    <div class="ico text-violet-300" aria-hidden="true">✦</div>
+                    <h2 class="mt-3 text-2xl font-bold text-white">We&rsquo;re not perfect &mdash; and we&rsquo;re okay
+                        saying that.</h2>
+                    <p class="muted mt-4">GetKit is still growing. We aren&rsquo;t going to tell you that everything on
+                        the website is already the best resource you&rsquo;ll ever find. We&rsquo;re building this step
+                        by step.</p>
+                    <p class="muted mt-4">Some resources will be better than others. Some things will improve over time.
+                        And as GetKit grows, we want to add more useful, better-made and higher-value resources.</p>
+                    <p class="mt-4 text-white">If you support GetKit today, you&rsquo;re supporting something
+                        that&rsquo;s still being built. And that&rsquo;s something I genuinely appreciate.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MISSION + FUTURE -->
+        <section class="border-t border-white/10 bg-[#0e0a1d]">
+            <div class="wrap grid gap-14 lg:grid-cols-2">
+                <div>
+                    <p class="text-sm font-medium text-violet-300">Our mission</p>
+                    <h2 class="mt-2 text-3xl font-bold text-white">Make useful digital resources more accessible to more
+                        people.</h2>
+                    <p class="muted mt-5">GetKit started in India, but the idea isn&rsquo;t limited to one country.
+                        There are creators, developers, freelancers, students, entrepreneurs and businesses all over the
+                        world who need useful resources but may not always have a huge budget.</p>
+                    <p class="mt-5 font-medium text-white">Small beginning. Bigger goal.</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-violet-300">What we&rsquo;re building toward</p>
+                    <h2 class="mt-2 text-3xl font-bold text-white">GetKit is just getting started.</h2>
+                    <p class="muted mt-5">Over time, I want to build a much larger collection of useful digital
+                        resources, better bundles, more free resources, better tools and higher-value products.</p>
+                    <p class="muted mt-4">But I don&rsquo;t want to build a website that is simply filled with thousands
+                        of random files.</p>
+                    <p class="muted mt-4">I want GetKit to become a place where you can come looking for something
+                        specific and actually find something worth using.</p>
+                    <p class="mt-4 text-white">That&rsquo;s the direction we&rsquo;re working toward.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEEDBACK -->
+        <section id="feedback" class="border-t border-white/10">
+            <div class="wrap">
+                <div class="card !p-8 sm:!p-10">
+                    <div class="ico" aria-hidden="true">💬</div>
+                    <p class="mt-4 text-sm font-medium text-violet-300">Your feedback helps build GetKit</p>
+                    <h2 class="mt-1 text-3xl font-bold text-white">Tell us what you think.</h2>
+                    <p class="muted prose-w mt-4">If you&rsquo;ve purchased something, downloaded a free resource, used
+                        one of our tools, or simply explored the website, we&rsquo;d love to know what you think.</p>
+                    <p class="muted prose-w mt-4">Tell us what you liked. Tell us what you didn&rsquo;t like. Tell us
+                        what you want us to add. Your feedback helps shape what GetKit becomes next.</p>
+                    <a href="/contact.html" class="btn mt-6">Send feedback</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="border-t border-white/10 text-center"
+            style="background:radial-gradient(50% 80% at 50% 100%,rgba(124,58,237,.25),transparent)">
+            <div class="wrap">
+                <p class="text-sm font-medium text-violet-300">Welcome to GetKit</p>
+                <h2 class="mx-auto mt-2 max-w-2xl text-3xl font-extrabold text-white sm:text-5xl">Find something useful.
+                    Make something great.</h2>
+                <p class="muted mx-auto mt-5 max-w-xl">Explore GetKit, try the free resources, discover something
+                    useful, and let us know what you think.</p>
+                <div class="mt-8 flex flex-wrap justify-center gap-3">
+                    <a href="/templates.html" class="btn">Explore GetKit <i
+                            class="fa-solid fa-arrow-right text-sm"></i></a>
+                    <a href="/free.html" class="btn-o px-5 py-3 font-medium">Browse Free Resources</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#080612]" role="contentinfo">
+        <div class="wrap grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-5">
+            <div class="lg:col-span-2">
+                <a href="/index.html" class="inline-flex items-center gap-2.5" aria-label="GetKit home">
+                    <span class="logo-mark h-9 w-9 shrink-0" role="img" aria-label="GetKit logo"></span>
+                    <span class="brand text-xl font-bold text-white">GetKit<span class="text-violet-400">.</span></span>
+                </a>
+                <p class="muted mt-4 max-w-xs text-sm leading-6">Professional digital resources for work, learning,
+                    creativity and everyday projects.</p>
+                <a href="mailto:support@getkit.in"
+                    class="mt-4 inline-block text-sm text-violet-300 hover:text-white">support@getkit.in</a>
+                <div class="mt-5 flex flex-wrap gap-2">
+                    <!-- Replace these links with your real social profiles. -->
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram" class="btn-o grid h-9 w-9 place-items-center text-sm"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+                        class="btn-o grid h-9 w-9 place-items-center text-sm"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                        class="btn-o grid h-9 w-9 place-items-center text-sm"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <nav aria-label="Explore">
+                <h2 class="mb-4 text-sm font-bold text-white">Explore</h2>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a class="hover:text-violet-300" href="deals.html">Best Deals</a></li>
+                    <li><a class="hover:text-violet-300" href="templates.html">Templates</a></li>
+                    <li><a class="hover:text-violet-300" href="pro-templates.html">Pro Templates</a></li>
+                    <li><a class="hover:text-violet-300" href="pro_toolkits_and_accelerator.html">Pro Toolkits &amp;
+                            Accelerators</a></li>
+                    <li><a class="hover:text-violet-300" href="b2b.html">B2B</a></li>
+                    <li><a class="hover:text-violet-300" href="tools.html">Tools</a></li>
+                    <li><a class="hover:text-violet-300" href="games.html">Games</a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Customer support">
+                <h2 class="mb-4 text-sm font-bold text-white">Customer Support</h2>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a class="hover:text-violet-300" href="help.html">Help Center</a></li>
+                    <li><a class="hover:text-violet-300" href="faq.html">FAQs</a></li>
+                    <li><a class="hover:text-violet-300" href="purchase-and-download.html">Purchase &amp; Downloads</a>
+                    </li>
+                    <li><a class="hover:text-violet-300" href="support.html">Support</a></li>
+                    <li><a class="hover:text-violet-300" href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Legal and about">
+                <h2 class="mb-4 text-sm font-bold text-white">Legal &amp; About</h2>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a class="hover:text-violet-300" href="privacy.html">Privacy Policy</a></li>
+                    <li><a class="hover:text-violet-300" href="terms.html">Terms</a></li>
+                    <li><a class="hover:text-violet-300" href="refund-policy.html">Refund Policy</a></li>
+                    <li><a class="hover:text-violet-300" href="licensing.html">Licensing &amp; Usage</a></li>
+                    <li><a class="hover:text-violet-300" href="why-getkit.html">Why GetKit?</a></li>
+                    <li><a class="hover:text-violet-300" href="about.html">About GetKit</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="border-t border-white/10">
+            <div
+                class="wrap flex flex-col gap-3 py-5 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+                <p>&copy; <span id="currentYear"></span> GetKit. All rights reserved.</p>
+                <p class="flex flex-wrap gap-x-4 gap-y-2">
+                    <a class="hover:text-white" href="privacy.html">Privacy</a>
+                    <a class="hover:text-white" href="terms.html">Terms</a>
+                    <a class="hover:text-white" href="refund-policy.html">Refunds</a>
+                    <a class="hover:text-white" href="contact.html">Contact</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            "use strict";
+            var $ = function (id) { return document.getElementById(id); };
+            var y = $("currentYear");
+            if (y) y.textContent = new Date().getFullYear();
+
+            var btn = $("menuBtn"), menu = $("mobileMenu");
+            function closeMenu() {
+                if (!btn || !menu) return;
+                menu.classList.add("hidden");
+                btn.setAttribute("aria-expanded", "false");
+                btn.setAttribute("aria-label", "Open navigation");
+            }
+            if (btn && menu) {
+                btn.addEventListener("click", function () {
+                    var open = btn.getAttribute("aria-expanded") === "true";
+                    menu.classList.toggle("hidden", open);
+                    btn.setAttribute("aria-expanded", String(!open));
+                    btn.setAttribute("aria-label", open ? "Open navigation" : "Close navigation");
+                });
+                menu.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closeMenu); });
+                document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+            }
+        })();
+    </script>
+</body>
+
+</html>

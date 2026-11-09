@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#100d1b">
+    <meta name="description"
+        content="Get help with GetKit purchases, downloads, digital templates, bundles and tools. Find answers or contact our support team.">
+    <title>Help Center | GetKit</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: '#100D1B',
+                        surface: '#171323',
+                        panel: '#201A30',
+                        violet: '#8B5CF6',
+                        lavender: '#C4B5FD',
+                        muted: '#A49BB7'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    boxShadow: {
+                        glow: '0 0 50px rgba(139,92,246,.12)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #100d1b;
+            color: #f5f3ff;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        ::selection {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .glass {
+            background: rgba(32, 26, 48, .76);
+            border: 1px solid rgba(196, 181, 253, .12);
+            backdrop-filter: blur(18px);
+        }
+
+        .card {
+            background: linear-gradient(145deg, #201a30, #171323);
+            border: 1px solid rgba(196, 181, 253, .12);
+            transition: transform .25s ease, border-color .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(167, 139, 250, .48);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .15);
+        }
+
+        .gradient-text {
+            background: linear-gradient(100deg, #fff 10%, #c4b5fd 55%, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .field {
+            width: 100%;
+            border: 1px solid #39304d;
+            border-radius: 12px;
+            padding: 13px 15px;
+            background: #171323;
+            color: #fff;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .field:focus {
+            border-color: #a78bfa;
+        }
+
+        .field::placeholder {
+            color: #827994;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #302840;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 20px 0;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 0 20px;
+            color: #b8afca;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        .faq-chevron {
+            transition: transform .2s;
+        }
+
+        .category-btn {
+            border: 1px solid #39304d;
+            color: #c8bfd9;
+            transition: .2s;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            color: #fff;
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, .15);
+        }
+
+        .chat-message {
+            max-width: 90%;
+            border-radius: 14px;
+            padding: 11px 13px;
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .chat-bot {
+            background: #292139;
+            color: #eee8ff;
+            align-self: flex-start;
+        }
+
+        .chat-user {
+            background: #6d42d8;
+            color: white;
+            align-self: flex-end;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <header class="sticky top-0 z-40 border-b border-white/5 bg-ink/90 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+            <a href="index.html" class="flex items-center gap-3" aria-label="GetKit home">
+                <span
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-violet text-lg font-extrabold shadow-glow">G</span>
+                <span class="text-xl font-extrabold tracking-tight">GetKit<span class="text-violet">.</span></span>
+            </a>
+
+            <nav class="hidden items-center gap-6 text-sm text-muted lg:flex" aria-label="Main navigation">
+                <a class="hover:text-white" href="index.html">Home</a>
+                <a class="hover:text-white" href="templates.html">Templates</a>
+                <a class="hover:text-white" href="deals.html">Best Deals</a>
+                <a class="hover:text-white" href="bundles.html">Bundles</a>
+                <a class="hover:text-white" href="tools.html">Tools</a>
+                <a class="hover:text-white" href="games.html">Games</a>
+            </nav>
+
+            <a href="contact.html"
+                class="rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-ink transition hover:bg-lavender">
+                Contact us
+
+            </a>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="relative overflow-hidden border-b border-white/5">
+            <div
+                class="pointer-events-none absolute left-1/2 top-0 h-80 w-96 -translate-x-1/2 rounded-full bg-violet/15 blur-[120px]">
+            </div>
+
+            <div class="relative mx-auto max-w-5xl px-5 pb-16 pt-20 text-center sm:pb-20 sm:pt-28">
+                <div
+                    class="mb-6 inline-flex items-center gap-2 rounded-full border border-violet/30 bg-violet/10 px-4 py-2 text-xs font-semibold text-lavender">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                    THE GETKIT SUPPORT EXPERIENCE
+                </div>
+
+                <h1 class="text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
+                    How can we <span class="gradient-text">help you?</span>
+                </h1>
+
+                <p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-muted sm:text-base">
+                    Find answers, resolve download issues and learn more about your
+                    GetKit resources. Everything you need, all in one place.
+                </p>
+
+                <div class="mx-auto mt-9 max-w-2xl">
+                    <label for="helpSearch" class="sr-only">Search help articles and FAQs</label>
+                    <div class="glass flex items-center gap-3 rounded-2xl p-2 shadow-glow">
+                        <svg class="ml-3 h-5 w-5 shrink-0 text-muted" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7" stroke-width="1.8" />
+                            <path d="m16 16 4 4" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                        <input id="helpSearch"
+                            class="min-w-0 flex-1 bg-transparent py-3 text-sm text-white outline-none placeholder:text-muted"
+                            type="search" placeholder="Search orders, downloads, products..." autocomplete="off">
+                        <button id="clearSearch" type="button"
+                            class="hidden rounded-lg px-3 py-2 text-xs text-muted hover:text-white">Clear</button>
+                    </div>
+                    <p class="mt-3 text-xs text-muted">Popular: download my purchase · payment · free templates</p>
+                </div>
+
+                <div class="mt-10 flex flex-wrap justify-center gap-3">
+                    <a href="#categories"
+                        class="rounded-xl bg-violet px-5 py-3 text-sm font-bold transition hover:bg-violet-600">Explore
+                        help topics <span aria-hidden="true">↘</span></a>
+                    <a href="#contact"
+                        class="rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold transition hover:border-violet/60 hover:bg-white/5">Talk
+                        to support</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section id="categories" class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+            <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-lavender">Browse by topic</p>
+                    <h2 class="mt-3 text-2xl font-bold sm:text-3xl">What do you need help with?</h2>
+                    <p class="mt-3 text-sm leading-6 text-muted">Choose a topic to find the right answer faster.</p>
+                </div>
+                <a href="#faqs" class="text-sm font-semibold text-lavender hover:text-white">Browse all FAQs →</a>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <button type="button" data-category="orders" class="card rounded-2xl p-5 text-left">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet/15 text-2xl">⌑</span>
+                    <h3 class="mt-5 font-bold">Orders & Payments</h3>
+                    <p class="mt-2 text-sm leading-6 text-muted">Purchases, receipts and payment questions.</p>
+                    <span class="mt-4 block text-sm font-semibold text-lavender">Find answers ↗</span>
+                </button>
+
+                <button type="button" data-category="downloads" class="card rounded-2xl p-5 text-left">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet/15 text-2xl">↓</span>
+                    <h3 class="mt-5 font-bold">Downloads & Access</h3>
+                    <p class="mt-2 text-sm leading-6 text-muted">Locate purchased files and fix access issues.</p>
+                    <span class="mt-4 block text-sm font-semibold text-lavender">Find answers ↗</span>
+                </button>
+
+                <button type="button" data-category="products" class="card rounded-2xl p-5 text-left">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet/15 text-2xl">◇</span>
+                    <h3 class="mt-5 font-bold">Products & Bundles</h3>
+                    <p class="mt-2 text-sm leading-6 text-muted">Understand templates, tools and digital resources.</p>
+                    <span class="mt-4 block text-sm font-semibold text-lavender">Find answers ↗</span>
+                </button>
+
+                <button type="button" data-category="account" class="card rounded-2xl p-5 text-left">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet/15 text-2xl">✳</span>
+                    <h3 class="mt-5 font-bold">General Questions</h3>
+                    <p class="mt-2 text-sm leading-6 text-muted">Learn how GetKit works and where to get help.</p>
+                    <span class="mt-4 block text-sm font-semibold text-lavender">Find answers ↗</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faqs" class="border-y border-white/5 bg-surface/60">
+            <div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[.75fr_1.25fr] lg:px-8 lg:py-20">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-lavender">Knowledge base</p>
+                    <h2 class="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">Answers to the things that
+                        matter.</h2>
+                    <p class="mt-4 text-sm leading-7 text-muted">
+                        Start here for common questions about buying, accessing and using
+                        GetKit resources.
+                    </p>
+
+                    <div class="mt-7 flex flex-wrap gap-2" aria-label="Filter frequently asked questions">
+                        <button class="category-btn active rounded-full px-4 py-2 text-xs font-semibold"
+                            data-filter="all">All topics</button>
+                        <button class="category-btn rounded-full px-4 py-2 text-xs font-semibold"
+                            data-filter="orders">Orders</button>
+                        <button class="category-btn rounded-full px-4 py-2 text-xs font-semibold"
+                            data-filter="downloads">Downloads</button>
+                        <button class="category-btn rounded-full px-4 py-2 text-xs font-semibold"
+                            data-filter="products">Products</button>
+                        <button class="category-btn rounded-full px-4 py-2 text-xs font-semibold"
+                            data-filter="account">General</button>
+                    </div>
+
+                    <div class="mt-8 rounded-2xl border border-violet/20 bg-violet/5 p-5">
+                        <p class="font-bold">Still need help?</p>
+                        <p class="mt-2 text-sm leading-6 text-muted">Our support team can help with questions that
+                            aren't covered here.</p>
+                        <a href="mailto:support@getkit.in"
+                            class="mt-4 inline-block text-sm font-bold text-lavender hover:text-white">Email GetKit
+                            Support →</a>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="faqList" class="rounded-2xl border border-white/5 bg-ink/40 px-5 sm:px-7">
+                        <article class="faq-item" data-category="downloads"
+                            data-search="where download purchased bundle files email lemon squeezy receipt">
+                            <button class="faq-question" aria-expanded="false">
+                                <span>Where can I find my purchased download?</span>
+                                <svg class="faq-chevron h-5 w-5 shrink-0 text-lavender" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                Check the purchase confirmation email sent to the email address you used at checkout.
+                                Look for the download link or order details from Lemon Squeezy. Also check your spam,
+                                junk and promotions folders. If you still cannot find your purchase, email <a
+                                    class="text-lavender underline"
+                                    href="mailto:support@getkit.in">support@getkit.in</a> with your order details.
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="downloads"
+                            data-search="download link broken missing not working access file error">
+                            <button class="faq-question" aria-expanded="false">
+                                <span>My download link isn't working. What should I do?</span>
+                                <svg class="faq-chevron h-5 w-5 shrink-0 text-lavender" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                Try opening the link in a different browser, checking your internet connection and
+                                downloading the file again. If the link has expired, returns an error or still fails,
+                                contact support@getkit.in. Include the product name and a description of the problem.
+                                Never send your password or full card details.
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="orders"
+                            data-search="payment failed charged twice order receipt confirmation">
+                            <button class="faq-question" aria-expanded="false">
+                                <span>My payment went through, but I received no confirmation.</span>
+                                <svg class="faq-chevron h-5 w-5 shrink-0 text-lavender" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                First, check your email, including spam and junk folders. Check your payment provider's
+                                transaction status before trying to pay again. If money was deducted but your order is
+                                not confirmed, contact support@getkit.in with the product name, approximate purchase
+                                time and any order reference you have. Do not send card numbers, CVV or banking
+                                passwords.
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="orders"
+                            data-search="refund cancellation refund policy return money">
+                            <button class="faq-question" aria-expanded="false">
+                                <span>How do I request a refund?</span>
+                                <svg class="faq-chevron h-5 w-5 shrink-0 text-lavender" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                Refund eligibility depends on the applicable GetKit refund policy and the circumstances
+                                of your purchase. Review the refund terms linked on our website, then contact
+                                support@getkit.in with your order reference and the reason for your request. We will
+                                help you understand the next steps.
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="products"
+                            data-search="what products templates tools bundles games free paid">
+                            <button class="faq-question" aria-expanded="false">
+                                <span>What can I find on GetKit?</span>
+                                <svg class="faq-chevron h-5 w-5 shrink-0 text-lavender" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                GetKit brings together digital templates, bundles, useful tools, deals, games and
+                                practical resources. Some resources are free, while others require a purchase. Review
+                                each product page for its contents, price, compatibility and usage terms before buying.
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="products"
+                            data-search="lifetime access permanent updates one time purchase access">
+                            <button class="faq-question" aria-expanded="false">
+                                <span>Do purchases include lifetime access?</span>
+                                <svg class="faq-chevron h-5 w-5 shrink-0 text-lavender" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                GetKit does not promise lifetime access. A one-time purchase does not automatically
+                                include lifetime updates, ongoing services or permanent hosting. Check the individual
+                                product description and applicable terms for exactly what is included.
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="products"
+                            data-search="free templates download price free resources">
+                            <button class="faq-question" aria-expanded="false">
+                                <span>Are there free resources available?</span>
+                                <svg class="faq-chevron h-5 w-5 shrink-0 text-lavender" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                Yes, GetKit can offer free resources alongside paid products. Browse the Templates and
+                                other resource sections and check each listing for its price and download instructions.
+                            </div>
+                        </article>
+
+                        <article class="faq-item" data-category="account"
+                            data-search="contact customer support email help human">
+                            <button class="faq-question" aria-expanded="false">
+                                <span>How do I contact the GetKit team?</span>
+                                <svg class="faq-chevron h-5 w-5 shrink-0 text-lavender" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path d="m6 9 6 6 6-6" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                Email <a class="text-lavender underline"
+                                    href="mailto:support@getkit.in">support@getkit.in</a>. Explain the issue and include
+                                relevant product or order details. Please do not include passwords, full payment card
+                                information or other unnecessary sensitive information.
+                            </div>
+                        </article>
+
+                        <p id="noResults" class="hidden py-10 text-center text-sm leading-7 text-muted">
+                            No matching answers found. Try another search or contact our support team.
+                        </p>
+                    </div>
+
+                    <p id="resultCount" class="mt-4 text-xs text-muted" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GETKIT AI -->
+        <section id="getkit-ai" class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+            <div class="grid items-center gap-10 lg:grid-cols-2">
+                <div>
+                    <div
+                        class="mb-5 inline-flex items-center gap-2 rounded-full border border-violet/30 bg-violet/10 px-3 py-2 text-xs font-semibold text-lavender">
+                        <span aria-hidden="true">✦</span> GETKIT AI
+                    </div>
+                    <h2 class="text-3xl font-extrabold leading-tight sm:text-4xl">Quick answers.<br><span
+                            class="gradient-text">Less frustration.</span></h2>
+                    <p class="mt-5 max-w-lg text-sm leading-7 text-muted">
+                        GetKit AI is designed to guide customers through common questions
+                        and help them find the right support. Complex or unresolved issues
+                        can be passed to our support team.
+                    </p>
+                    <ul class="mt-6 space-y-3 text-sm text-gray-300">
+                        <li class="flex gap-3"><span class="text-violet">✓</span> Help finding purchased downloads</li>
+                        <li class="flex gap-3"><span class="text-violet">✓</span> Product and bundle guidance</li>
+                        <li class="flex gap-3"><span class="text-violet">✓</span> Clear directions to human support</li>
+                    </ul>
+                    <p class="mt-5 text-xs leading-6 text-muted">The chat shown here is a front-end demonstration, not a
+                        connected AI service.</p>
+                </div>
+
+                <div class="overflow-hidden rounded-3xl border border-white/10 bg-surface shadow-glow">
+                    <div class="flex items-center gap-3 border-b border-white/5 px-5 py-4">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-violet text-xl">✦</div>
+                        <div class="flex-1">
+                            <p class="font-bold">GetKit AI</p>
+                            <p class="mt-1 text-xs text-muted">Support assistant preview</p>
+                        </div>
+                        <span
+                            class="rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-[10px] font-semibold text-amber-200">DEMO</span>
+                    </div>
+
+                    <div id="chatMessages" class="flex min-h-64 max-h-80 flex-col gap-3 overflow-y-auto p-5"
+                        aria-live="polite">
+                        <div class="chat-message chat-bot">
+                            Hi! I'm the GetKit AI demo. What do you need help with?
+                            Choose a topic below to see the guidance available.
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 px-5 pb-4">
+                        <button type="button" data-chat="download"
+                            class="rounded-full border border-white/10 px-3 py-2 text-xs text-gray-300 hover:border-violet/60">Find
+                            my download</button>
+                        <button type="button" data-chat="payment"
+                            class="rounded-full border border-white/10 px-3 py-2 text-xs text-gray-300 hover:border-violet/60">Payment
+                            issue</button>
+                        <button type="button" data-chat="support"
+                            class="rounded-full border border-white/10 px-3 py-2 text-xs text-gray-300 hover:border-violet/60">Contact
+                            support</button>
+                    </div>
+
+                    <form id="chatForm" class="flex gap-2 border-t border-white/5 p-4">
+                        <label for="chatInput" class="sr-only">Ask the demo assistant</label>
+                        <input id="chatInput" class="field min-w-0 flex-1 text-sm"
+                            placeholder="Try asking a question..." maxlength="500" autocomplete="off">
+                        <button class="rounded-xl bg-violet px-4 text-sm font-bold transition hover:bg-violet-600"
+                            type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="border-t border-white/5 bg-surface/60">
+            <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+                <div class="grid gap-10 lg:grid-cols-2">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[.22em] text-lavender">Human support</p>
+                        <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Real help when you need it.</h2>
+                        <p class="mt-4 max-w-lg text-sm leading-7 text-muted">
+                            Can't find your answer? Contact our support team with a clear
+                            explanation so we can better understand your issue.
+                        </p>
+
+                        <div class="card mt-8 rounded-2xl p-5">
+                            <div class="flex items-start gap-4">
+                                <span
+                                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet/15 text-xl">✉</span>
+                                <div>
+                                    <p class="font-bold">Email support</p>
+                                    <a class="mt-2 block text-sm text-lavender hover:text-white"
+                                        href="mailto:support@getkit.in">support@getkit.in</a>
+                                    <p class="mt-2 text-xs leading-6 text-muted">Include your product name and order
+                                        reference if relevant. Never send passwords or full card details.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 rounded-2xl border border-white/5 p-5">
+                            <p class="text-sm font-bold">Help us help you faster</p>
+                            <p class="mt-2 text-sm leading-7 text-muted">
+                                Explain what happened, what you expected to happen and any
+                                error message you received. Attach a screenshot to your email
+                                if it helps explain the issue.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-3xl border border-white/10 bg-ink p-6 sm:p-8">
+                        <h3 class="text-xl font-bold">Prepare a support request</h3>
+                        <p class="mt-2 text-sm leading-6 text-muted">Complete the details below to prepare an email to
+                            our team.</p>
+
+                        <form id="supportForm" class="mt-6 space-y-5">
+                            <div>
+                                <label for="customerName" class="mb-2 block text-sm font-semibold">Your name <span
+                                        class="text-muted">(optional)</span></label>
+                                <input id="customerName" name="name" class="field" maxlength="100"
+                                    placeholder="How should we address you?">
+                            </div>
+
+                            <div>
+                                <label for="customerEmail" class="mb-2 block text-sm font-semibold">Your email
+                                    address</label>
+                                <input id="customerEmail" name="email" type="email" required maxlength="254"
+                                    class="field" placeholder="you@example.com">
+                            </div>
+
+                            <div>
+                                <label for="issueType" class="mb-2 block text-sm font-semibold">What do you need help
+                                    with?</label>
+                                <select id="issueType" name="issue" class="field">
+                                    <option>Purchase or payment</option>
+                                    <option>Download or access</option>
+                                    <option>Product or bundle question</option>
+                                    <option>Refund request</option>
+                                    <option>Website issue</option>
+                                    <option>Other question</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="orderReference" class="mb-2 block text-sm font-semibold">Order reference
+                                    <span class="text-muted">(optional)</span></label>
+                                <input id="orderReference" name="order" class="field" maxlength="150"
+                                    placeholder="If your question is about a purchase">
+                            </div>
+
+                            <div>
+                                <label for="issueDescription" class="mb-2 block text-sm font-semibold">Describe your
+                                    issue</label>
+                                <textarea id="issueDescription" name="description" required minlength="10"
+                                    maxlength="3000" rows="5" class="field resize-y"
+                                    placeholder="Tell us what happened and how we can help..."></textarea>
+                            </div>
+
+                            <p class="text-xs leading-6 text-muted">
+                                Do not include passwords, card numbers, CVV, OTPs or banking credentials.
+                                Submitting opens your email application; it does not send data directly to GetKit.
+                            </p>
+
+                            <button type="submit"
+                                class="w-full rounded-xl bg-violet px-5 py-3.5 text-sm font-bold transition hover:bg-violet-600">
+                                Prepare support email ↗
+                            </button>
+                            <p id="formStatus" class="text-sm text-muted" aria-live="polite"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOTTOM CTA -->
+        <section class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+            <div
+                class="relative overflow-hidden rounded-3xl border border-violet/20 bg-gradient-to-br from-[#25183d] via-[#1b1530] to-[#141020] px-6 py-12 text-center sm:px-12">
+                <div
+                    class="pointer-events-none absolute left-1/2 top-0 h-40 w-72 -translate-x-1/2 rounded-full bg-violet/20 blur-[80px]">
+                </div>
+                <div class="relative">
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-lavender">Keep exploring</p>
+                    <h2 class="mt-4 text-3xl font-extrabold sm:text-4xl">Find your next useful resource.</h2>
+                    <p class="mx-auto mt-4 max-w-xl text-sm leading-7 text-muted">Explore digital resources designed to
+                        help you learn, create and get things done.</p>
+                    <a href="index.html"
+                        class="mt-7 inline-flex rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-ink transition hover:bg-lavender">Explore
+                        GetKit →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 bg-[#0c0a14]">
+        <div class="mx-auto max-w-7xl px-5 py-10 lg:px-8">
+            <div class="flex flex-col justify-between gap-8 sm:flex-row">
+                <div class="max-w-sm">
+                    <a href="index.html" class="text-xl font-extrabold">GetKit<span class="text-violet">.</span></a>
+                    <p class="mt-3 text-sm leading-6 text-muted">Useful digital resources, practical tools and
+                        thoughtfully selected deals in one place.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-x-12 gap-y-4 text-sm">
+                    <div class="space-y-3">
+                        <p class="font-bold">Explore</p>
+                        <a class="block text-muted hover:text-white" href="templates.html">Templates</a>
+                        <a class="block text-muted hover:text-white" href="deals.html">Best Deals</a>
+                        <a class="block text-muted hover:text-white" href="bundles.html">Bundles</a>
+                        <a class="block text-muted hover:text-white" href="tools.html">Tools</a>
+                        <a class="block text-muted hover:text-white" href="games.html">Games</a>
+                    </div>
+                    <div class="space-y-3">
+                        <p class="font-bold">Support & policies</p>
+                        <a class="block text-lavender" href="help.html">Help Center</a>
+                        <a class="block text-muted hover:text-white" href="faq.html">FAQ</a>
+                        <a class="block text-muted hover:text-white" href="privacy.html">Privacy Policy</a>
+                        <a class="block text-muted hover:text-white" href="terms.html">Terms & Conditions</a>
+                        <a class="block text-muted hover:text-white" href="mailto:support@getkit.in">Contact Support</a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mt-10 flex flex-col gap-3 border-t border-white/5 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+                <p>© <span id="year"></span> GetKit. All rights reserved.</p>
+                <p>Made to make digital resources easier to discover.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ SEARCH AND FILTERS
+        const searchInput = document.getElementById('helpSearch');
+        const clearSearch = document.getElementById('clearSearch');
+        const faqItems = [...document.querySelectorAll('.faq-item')];
+        const categoryButtons = [...document.querySelectorAll('[data-filter]')];
+        const noResults = document.getElementById('noResults');
+        const resultCount = document.getElementById('resultCount');
+
+        let activeCategory = 'all';
+
+        function filterFAQs() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visible = 0;
+
+            faqItems.forEach(item => {
+                const searchableText =
+                    (item.innerText + ' ' + (item.dataset.search || '')).toLowerCase();
+
+                const matchesText = !query || searchableText.includes(query);
+                const matchesCategory =
+                    activeCategory === 'all' || item.dataset.category === activeCategory;
+
+                const show = matchesText && matchesCategory;
+                item.hidden = !show;
+
+                if (show) visible++;
+                else {
+                    item.classList.remove('open');
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            noResults.classList.toggle('hidden', visible > 0);
+            resultCount.textContent = `${visible} answer${visible === 1 ? '' : 's'} found`;
+            clearSearch.classList.toggle('hidden', !query);
+        }
+
+        searchInput.addEventListener('input', filterFAQs);
+
+        clearSearch.addEventListener('click', () => {
+            searchInput.value = '';
+            filterFAQs();
+            searchInput.focus();
+        });
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                activeCategory = button.dataset.filter;
+
+                categoryButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn === button);
+                });
+
+                filterFAQs();
+            });
+        });
+
+        document.querySelectorAll('[data-category]').forEach(button => {
+            if (button.tagName !== 'BUTTON' || button.dataset.filter) return;
+
+            button.addEventListener('click', () => {
+                activeCategory = button.dataset.category;
+                categoryButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.filter === activeCategory);
+                });
+
+                document.getElementById('faqs').scrollIntoView({ behavior: 'smooth' });
+                filterFAQs();
+            });
+        });
+
+        faqItems.forEach(item => {
+            const button = item.querySelector('.faq-question');
+
+            button.addEventListener('click', () => {
+                const opening = !item.classList.contains('open');
+
+                item.classList.toggle('open', opening);
+                button.setAttribute('aria-expanded', String(opening));
+            });
+        });
+
+        filterFAQs();
+
+        // SUPPORT EMAIL DRAFT
+        document.getElementById('supportForm').addEventListener('submit', event => {
+            event.preventDefault();
+
+            const form = event.currentTarget;
+            if (!form.reportValidity()) return;
+
+            const name = document.getElementById('customerName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const issue = document.getElementById('issueType').value;
+            const order = document.getElementById('orderReference').value.trim();
+            const description = document.getElementById('issueDescription').value.trim();
+
+            const subject = `GetKit Support: ${issue}`;
+            const body = [
+                `Name: ${name || 'Not provided'}`,
+                `Customer email: ${email}`,
+                `Issue type: ${issue}`,
+                `Order reference: ${order || 'Not provided'}`,
+                '',
+                'Issue description:',
+                description
+            ].join('\n');
+
+            const mailto = 'mailto:support@getkit.in'
+                + '?subject=' + encodeURIComponent(subject)
+                + '&body=' + encodeURIComponent(body);
+
+            document.getElementById('formStatus').textContent =
+                'Opening your email application. Please review and send the prepared message.';
+
+            window.location.href = mailto;
+        });
+
+        // GETKIT AI FRONT-END DEMO ONLY.
+        // Replace these predefined responses with a secure backend AI endpoint
+        // before presenting this chat as a live AI assistant.
+        const chatMessages = document.getElementById('chatMessages');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+
+        const chatReplies = {
+            download:
+                'Check the purchase confirmation email sent to your checkout email address. Look in spam and promotions too. If the link is missing or broken, email support@getkit.in with your order reference. This demo cannot look up purchases.',
+            payment:
+                'Check your payment status and confirmation email before trying again. If you were charged but received no order confirmation, contact support@getkit.in with your order reference. Never share an OTP, password or full card details.',
+            support:
+                'You can reach the GetKit support team at support@getkit.in. Explain your issue and include relevant product or order details, but never send passwords or full payment card details.'
+        };
+
+        function appendMessage(text, type) {
+            const message = document.createElement('div');
+            message.className = `chat-message ${type === 'user' ? 'chat-user' : 'chat-bot'}`;
+            message.textContent = text;
+            chatMessages.appendChild(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function answerDemo(message) {
+            const lower = message.toLowerCase();
+
+            if (/download|access|file|bundle|link/.test(lower)) {
+                return chatReplies.download;
+            }
+            if (/payment|charged|receipt|refund|order|purchase/.test(lower)) {
+                return chatReplies.payment;
+            }
+            if (/human|contact|email|support|person/.test(lower)) {
+                return chatReplies.support;
+            }
+
+            return 'This demo cannot reliably answer that question yet. For an accurate answer, contact support@getkit.in. A connected GetKit AI service will be needed for more flexible answers.';
+        }
+
+        document.querySelectorAll('[data-chat]').forEach(button => {
+            button.addEventListener('click', () => {
+                const topic = button.dataset.chat;
+                const prompts = {
+                    download: 'I need help finding my download.',
+                    payment: 'I have a payment issue.',
+                    support: 'How do I contact support?'
+                };
+
+                appendMessage(prompts[topic], 'user');
+                appendMessage(chatReplies[topic], 'bot');
+            });
+        });
+
+        chatForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            appendMessage(message, 'user');
+            appendMessage(answerDemo(message), 'bot');
+            chatInput.value = '';
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

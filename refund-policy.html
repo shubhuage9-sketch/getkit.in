@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090611">
+  <meta name="description" content="Learn about GetKit's refund policy for digital templates, bundles, tools, and other digital products, including duplicate payments, download issues, and how to request help.">
+  <title>Refund Policy | GetKit</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#090611",
+            panel: "#120d20",
+            purple: "#8b5cf6",
+            violet: "#a78bfa"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+
+    body {
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(124,58,237,.17), transparent 35%),
+        radial-gradient(ellipse at 95% 25%, rgba(91,33,182,.10), transparent 30%),
+        #090611;
+    }
+
+    .glass {
+      background: rgba(20,14,34,.78);
+      border: 1px solid rgba(167,139,250,.15);
+      backdrop-filter: blur(16px);
+    }
+
+    .policy-card {
+      border: 1px solid rgba(167,139,250,.13);
+      background: linear-gradient(145deg, rgba(24,17,41,.94), rgba(15,11,26,.90));
+      border-radius: 22px;
+      padding: 25px;
+    }
+
+    .policy-card h2 {
+      color: #f5f3ff;
+      font-size: 1.2rem;
+      font-weight: 750;
+      letter-spacing: -.02em;
+      margin-bottom: 13px;
+    }
+
+    .policy-card p, .policy-card li {
+      color: #b8b1c9;
+      font-size: .94rem;
+      line-height: 1.85;
+    }
+
+    .policy-card ul {
+      list-style: disc;
+      padding-left: 22px;
+      margin-top: 12px;
+    }
+
+    .policy-card li { padding-left: 4px; margin-bottom: 8px; }
+
+    .policy-card a {
+      color: #c4b5fd;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 9px 0;
+      font-size: .9rem;
+      color: #b8b1c9;
+      transition: color .2s;
+    }
+
+    .toc a:hover { color: #c4b5fd; }
+
+    .scenario {
+      border: 1px solid rgba(167,139,250,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+      padding: 18px;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white antialiased">
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#090611]/85 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="index.html" class="flex items-center gap-3" aria-label="GetKit home">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-800 text-lg font-black shadow-lg shadow-purple-900/30">G</span>
+        <span class="text-xl font-extrabold tracking-tight">GetKit<span class="text-violet-400">.</span></span>
+      </a>
+
+      <div class="hidden items-center gap-6 text-sm text-gray-300 md:flex">
+        <a href="index.html" class="hover:text-violet-300">Home</a>
+        <a href="templates.html" class="hover:text-violet-300">Templates</a>
+        <a href="deals.html" class="hover:text-violet-300">Best Deals</a>
+        <a href="bundles.html" class="hover:text-violet-300">Bundles</a>
+        <a href="tools.html" class="hover:text-violet-300">Tools</a>
+        <a href="games.html" class="hover:text-violet-300">Games</a>
+      </div>
+
+      <a href="contact.html" class="rounded-xl border border-violet-400/30 bg-violet-500/10 px-4 py-2.5 text-sm font-semibold text-violet-200 transition hover:bg-violet-500/20">
+        Contact Us
+      </a>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-5 py-12 sm:py-16 lg:px-8">
+
+    <!-- HERO -->
+    <section class="relative mb-8 overflow-hidden rounded-3xl border border-violet-400/15 bg-gradient-to-br from-violet-950/80 via-[#171027] to-[#100b1b] px-6 py-10 sm:px-10 sm:py-14">
+      <div class="absolute -right-16 -top-20 h-72 w-72 rounded-full bg-purple-600/20 blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 h-40 w-40 rounded-full bg-violet-500/10 blur-3xl"></div>
+
+      <div class="relative max-w-3xl">
+        <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300/20 bg-violet-400/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-violet-200">
+          <span class="h-2 w-2 rounded-full bg-violet-400"></span>
+          Straightforward & transparent
+        </div>
+
+        <h1 class="text-4xl font-black tracking-tight sm:text-6xl">
+          Refund <span class="bg-gradient-to-r from-violet-300 to-purple-500 bg-clip-text text-transparent">Policy</span>
+        </h1>
+
+        <p class="mt-5 max-w-2xl text-base leading-8 text-gray-300 sm:text-lg">
+          Digital purchases should come with clear expectations. Here's how GetKit handles refund requests, payment errors, and problems with accessing purchased resources.
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3 text-sm text-gray-400">
+          <span class="rounded-lg border border-white/10 bg-black/20 px-3 py-2">Last updated: October 23, 2026</span>
+          <span class="rounded-lg border border-white/10 bg-black/20 px-3 py-2">Digital products</span>
+        </div>
+
+        <a href="mailto:support@getkit.in?subject=Refund%20Request" class="mt-8 inline-flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-3.5 font-bold text-white shadow-lg shadow-purple-950/40 transition hover:bg-violet-400">
+          Request refund assistance
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- QUICK SUMMARY -->
+    <section class="mb-12 grid gap-4 sm:grid-cols-3">
+      <div class="glass rounded-2xl p-5">
+        <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/15 text-xl text-violet-300">↻</div>
+        <h2 class="font-bold text-white">Reviewed individually</h2>
+        <p class="mt-2 text-sm leading-6 text-gray-400">Refund requests are assessed based on the circumstances and applicable law.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-5">
+        <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/15 text-xl text-violet-300">↓</div>
+        <h2 class="font-bold text-white">Download problems?</h2>
+        <p class="mt-2 text-sm leading-6 text-gray-400">Contact us first so we can help investigate access and delivery issues.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-5">
+        <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/15 text-xl text-violet-300">✓</div>
+        <h2 class="font-bold text-white">Fair treatment</h2>
+        <p class="mt-2 text-sm leading-6 text-gray-400">Nothing here removes consumer rights that cannot legally be excluded.</p>
+      </div>
+    </section>
+
+    <div class="grid gap-8 lg:grid-cols-[245px_minmax(0,1fr)]">
+
+      <!-- TABLE OF CONTENTS -->
+      <aside class="h-fit lg:sticky lg:top-28">
+        <div class="glass rounded-2xl p-5">
+          <h2 class="mb-3 text-sm font-bold uppercase tracking-wider text-white">On this page</h2>
+          <div class="toc">
+            <a href="#overview">01. Our Approach</a>
+            <a href="#eligible">02. When a Refund May Be Considered</a>
+            <a href="#not-automatic">03. When Refunds Are Not Automatic</a>
+            <a href="#access">04. Download & Access Problems</a>
+            <a href="#request">05. How to Request a Refund</a>
+            <a href="#processing">06. Review & Processing</a>
+            <a href="#third-party">07. Payment Provider</a>
+            <a href="#rights">08. Your Legal Rights</a>
+            <a href="#contact">09. Contact Support</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- POLICY CONTENT -->
+      <div class="space-y-5">
+
+        <section id="overview" class="policy-card">
+          <h2>01. Our Approach to Refunds</h2>
+          <p>
+            GetKit offers digital resources such as templates, bundles, tools, guides, and other downloadable products. Because digital products may be delivered or accessed shortly after purchase, refund requests need to be assessed carefully.
+          </p>
+          <p class="mt-3">
+            We do not offer an unconditional refund guarantee for every purchase. Instead, we review requests individually, consider the facts, and aim to resolve genuine problems fairly.
+          </p>
+          <p class="mt-3">
+            This policy applies to purchases made through GetKit, subject to any specific terms displayed for a product and the requirements of applicable law.
+          </p>
+        </section>
+
+        <section id="eligible" class="policy-card">
+          <h2>02. When a Refund May Be Considered</h2>
+          <p>
+            You can contact us if you believe something went wrong with your order. Depending on the circumstances, a refund may be considered in situations such as:
+          </p>
+
+          <div class="mt-5 grid gap-3 sm:grid-cols-2">
+            <div class="scenario">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15 text-violet-300">01</span>
+                <h3 class="font-semibold text-white">Duplicate payment</h3>
+              </div>
+              <p class="text-sm leading-6 text-gray-400">You were charged more than once for the same order and the additional charge is confirmed.</p>
+            </div>
+
+            <div class="scenario">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15 text-violet-300">02</span>
+                <h3 class="font-semibold text-white">Missing product</h3>
+              </div>
+              <p class="text-sm leading-6 text-gray-400">You paid successfully but did not receive the product you purchased, and delivery cannot be resolved.</p>
+            </div>
+
+            <div class="scenario">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15 text-violet-300">03</span>
+                <h3 class="font-semibold text-white">Defective files</h3>
+              </div>
+              <p class="text-sm leading-6 text-gray-400">A file is corrupted, materially incomplete, or does not work as described, and a reasonable fix is unavailable.</p>
+            </div>
+
+            <div class="scenario">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15 text-violet-300">04</span>
+                <h3 class="font-semibold text-white">Incorrect transaction</h3>
+              </div>
+              <p class="text-sm leading-6 text-gray-400">There is a verified billing or order error that warrants a refund or correction.</p>
+            </div>
+          </div>
+
+          <p class="mt-5">
+            These examples are not an exhaustive list. A refund or another appropriate remedy may also be required under applicable law. Where possible, we may first offer a working download, replacement file, or another suitable solution if you agree and it resolves the issue.
+          </p>
+        </section>
+
+        <section id="not-automatic" class="policy-card">
+          <h2>03. When Refunds Are Not Automatic</h2>
+          <p>
+            The following circumstances do not automatically qualify for a refund, although each request will be considered in context and subject to applicable law:
+          </p>
+          <ul>
+            <li>You changed your mind after receiving or downloading a digital product.</li>
+            <li>You purchased the wrong product or misunderstood details clearly provided in the product listing.</li>
+            <li>You expected a feature, file, update, or service that was not included in the product description.</li>
+            <li>You cannot use a product because your device, software, or system does not meet its stated requirements.</li>
+            <li>You no longer need the product or purchased it by mistake.</li>
+            <li>You have already downloaded or used the product and are requesting a refund without another valid reason.</li>
+          </ul>
+          <p class="mt-3">
+            Please review product descriptions, included files, and compatibility details before purchasing. We will not use this section to deny a remedy that you are legally entitled to receive.
+          </p>
+        </section>
+
+        <section id="access" class="policy-card">
+          <h2>04. Download & Access Problems</h2>
+          <p>
+            If you have purchased a product but cannot find your download, please do not assume that your money is lost. Delivery emails can sometimes end up in spam or promotions folders.
+          </p>
+
+          <div class="mt-5 space-y-3">
+            <div class="flex gap-4 rounded-xl border border-white/10 bg-white/[0.025] p-4">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 font-bold text-violet-300">1</span>
+              <div>
+                <h3 class="font-semibold text-white">Check your email</h3>
+                <p class="mt-1 text-sm leading-6 text-gray-400">Search your inbox, spam, junk, and promotions folders for your Lemon Squeezy receipt or download email.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 rounded-xl border border-white/10 bg-white/[0.025] p-4">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 font-bold text-violet-300">2</span>
+              <div>
+                <h3 class="font-semibold text-white">Check your order confirmation</h3>
+                <p class="mt-1 text-sm leading-6 text-gray-400">Look for download instructions or an order link provided after checkout.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 rounded-xl border border-white/10 bg-white/[0.025] p-4">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 font-bold text-violet-300">3</span>
+              <div>
+                <h3 class="font-semibold text-white">Contact GetKit support</h3>
+                <p class="mt-1 text-sm leading-6 text-gray-400">Email us with your order reference and the email used at checkout. We will help investigate the issue.</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-5">
+            If the problem cannot be resolved, we will review the circumstances and consider any appropriate remedy, including a refund where warranted or legally required.
+          </p>
+
+          <a href="support.html" class="mt-5 inline-flex items-center gap-2 font-semibold text-violet-300 hover:text-violet-200">
+            Visit Purchase & Download Support <span aria-hidden="true">→</span>
+          </a>
+        </section>
+
+        <section id="request" class="policy-card">
+          <h2>05. How to Request a Refund</h2>
+          <p>
+            To request a refund review, email our support team. Providing the details below helps us investigate your order more efficiently.
+          </p>
+
+          <div class="mt-5 rounded-2xl border border-violet-400/20 bg-violet-500/[0.06] p-5 sm:p-6">
+            <h3 class="font-bold text-white">Include these details in your email</h3>
+            <ul>
+              <li>Your order number or transaction reference, if available.</li>
+              <li>The email address used during checkout.</li>
+              <li>The product name you purchased.</li>
+              <li>A clear explanation of the problem and the outcome you are requesting.</li>
+              <li>Relevant screenshots or error messages, if helpful. Hide any sensitive payment details.</li>
+            </ul>
+            <a href="mailto:support@getkit.in?subject=Refund%20Request" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-violet-500 px-5 py-3.5 font-bold text-white transition hover:bg-violet-400 sm:w-auto">
+              Email a Refund Request <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <p class="mt-5">
+            Please contact us using the email associated with your order where possible. We may ask for reasonable information to verify the transaction before discussing account or order details.
+          </p>
+          <p class="mt-3">
+            Never send your password, full payment-card number, card security code, or banking credentials.
+          </p>
+        </section>
+
+        <section id="processing" class="policy-card">
+          <h2>06. Review & Processing</h2>
+          <p>
+            We will review the information you provide and may ask follow-up questions where necessary. We aim to respond within 3–5 business days, although complex cases or periods of high demand may take longer. This is a response target, not a guarantee of a decision within that period.
+          </p>
+          <p class="mt-3">
+            If a refund is approved, it will generally be processed through the original payment method or the applicable checkout provider's refund process, where supported. The time it takes for the funds to appear may depend on the payment provider, bank, card issuer, and payment method.
+          </p>
+          <p class="mt-3">
+            A request does not guarantee approval. If we cannot approve a request, we aim to explain the reason where appropriate. Nothing in this section limits remedies or timelines required by law.
+          </p>
+        </section>
+
+        <section id="third-party" class="policy-card">
+          <h2>07. Payment Provider & Transactions</h2>
+          <p>
+            GetKit uses Lemon Squeezy for checkout and payment processing. Some order, payment, and refund actions may need to be handled through its systems.
+          </p>
+          <p class="mt-3">
+            Contact GetKit at <a href="mailto:support@getkit.in">support@getkit.in</a> first so we can help identify the correct next step. If the checkout provider requires you to follow its own process, we will direct you to the relevant channel where possible.
+          </p>
+          <p class="mt-3">
+            Refund decisions and processing remain subject to applicable law and any relevant checkout-provider requirements. We cannot guarantee a bank's or payment provider's processing speed.
+          </p>
+        </section>
+
+        <section id="rights" class="policy-card">
+          <h2>08. Your Legal Rights</h2>
+          <p>
+            This policy describes GetKit's general approach to refund requests. It does not override mandatory consumer protection laws or other legal rights that apply to your purchase.
+          </p>
+          <p class="mt-3">
+            If applicable law gives you a right to a refund, cancellation, replacement, repair, or another remedy, nothing in this policy is intended to take that right away.
+          </p>
+          <p class="mt-3">
+            We may update this policy when our products, checkout arrangements, or legal obligations change. The version published on this page will include the date of the latest revision.
+          </p>
+        </section>
+
+        <section id="contact" class="policy-card">
+          <h2>09. Need Help? Contact Us</h2>
+          <p>
+            If you have a question about this policy or need assistance with a purchase, please reach out. We would rather help investigate a genuine issue than leave you unsure about your order.
+          </p>
+
+          <div class="mt-5 rounded-2xl border border-violet-400/20 bg-violet-500/[0.07] p-5">
+            <p class="font-bold text-white">GetKit — Customer Support</p>
+            <p class="mt-2">Email: <a href="mailto:support@getkit.in">support@getkit.in</a></p>
+            <p class="mt-2">Website: <a href="https://getkit.in">https://getkit.in</a></p>
+            <p class="mt-3 text-sm text-gray-400">For faster assistance, include your order reference and a short description of the issue.</p>
+          </div>
+        </section>
+
+        <!-- POLICY NOTE -->
+        <div class="rounded-2xl border border-amber-300/15 bg-amber-300/[0.05] p-5">
+          <p class="text-sm leading-7 text-amber-100/80">
+            <strong class="text-amber-100">Important for GetKit:</strong> This is a recommended starting policy, not legal advice. Before publishing, confirm that you can meet the stated 3–5 business day response target and that this approach is compatible with your Lemon Squeezy setup and applicable Indian consumer law. Do not promise a refund process or outcome you cannot actually provide.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-16 border-t border-white/10 bg-black/20">
+    <div class="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-9 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+      <div>
+        <a href="index.html" class="text-xl font-extrabold">GetKit<span class="text-violet-400">.</span></a>
+        <p class="mt-2 text-sm text-gray-500">Useful digital resources. One place.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-x-5 gap-y-3 text-sm text-gray-400">
+        <a href="about.html" class="hover:text-violet-300">About</a>
+        <a href="contact.html" class="hover:text-violet-300">Contact</a>
+        <a href="support.html" class="hover:text-violet-300">Help & Support</a>
+        <a href="faq.html" class="hover:text-violet-300">FAQ</a>
+        <a href="privacy.html" class="hover:text-violet-300">Privacy</a>
+        <a href="terms.html" class="hover:text-violet-300">Terms</a>
+        <a href="refund-policy.html" class="text-violet-300">Refund Policy</a>
+        
+      </div>
+    </div>
+
+    <div class="border-t border-white/5 px-5 py-4 text-center text-xs text-gray-600">
+      © <span id="year"></span> GetKit.in. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

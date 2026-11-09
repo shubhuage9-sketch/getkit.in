@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0718">
+    <meta name="description"
+        content="GetKit purchase and download support. Get help with Lemon Squeezy orders, missing confirmation emails, and digital downloads.">
+    <title>Purchase & Download Help | GetKit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #0b0718;
+            color: #f5f3ff;
+            font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .muted {
+            color: #aaa0c0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ddd6fe, #a78bfa, #c4b5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .panel {
+            background: linear-gradient(145deg, rgba(28, 19, 52, .95), rgba(17, 12, 34, .96));
+            border: 1px solid rgba(167, 139, 250, .16);
+        }
+
+        .field {
+            width: 100%;
+            background: #0e091d;
+            border: 1px solid rgba(167, 139, 250, .22);
+            border-radius: 12px;
+            padding: 13px 14px;
+            color: #f5f3ff;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .field:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, .14);
+        }
+
+        .field::placeholder {
+            color: #827796;
+        }
+
+        .field option {
+            background: #120d24;
+        }
+
+        .issue-card {
+            border: 1px solid rgba(167, 139, 250, .15);
+            background: rgba(23, 15, 43, .8);
+            transition: border-color .2s, transform .2s;
+        }
+
+        .issue-card:hover {
+            border-color: rgba(167, 139, 250, .45);
+            transform: translateY(-3px);
+        }
+
+        details summary {
+            cursor: pointer;
+            list-style: none;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details[open] .plus {
+            transform: rotate(45deg);
+        }
+
+        .plus {
+            transition: transform .2s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Announcement -->
+    <div
+        class="border-b border-violet-400/10 bg-violet-500/[0.06] px-4 py-2 text-center text-xs text-violet-200 sm:text-sm">
+        Purchase or download trouble? Let's help you get your GetKit resources.
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-white/[0.06] bg-[#0b0718]/95 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+            <a href="index.html" class="flex shrink-0 items-center gap-3" aria-label="GetKit homepage">
+                <div
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 font-black text-white shadow-lg shadow-violet-950/40">
+                    G
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight">GetKit<span
+                            class="text-violet-400">.</span></span>
+                    <span class="block text-[10px] uppercase tracking-[.2em] text-violet-300/70">Digital
+                        resources</span>
+                </div>
+            </a>
+
+            <nav class="hidden items-center gap-6 text-sm text-slate-300 lg:flex" aria-label="Main navigation">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <a href="templates.html" class="hover:text-white">Templates</a>
+                <a href="deals.html" class="hover:text-white">Best Deals</a>
+                <a href="bundles.html" class="hover:text-white">Bundles</a>
+                <a href="tools.html" class="hover:text-white">Tools</a>
+                <a href="games.html" class="hover:text-white">Games</a>
+            </nav>
+
+            <a href="#contact"
+                class="rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-violet-500">
+                Contact Support
+            </a>
+        </div>
+
+        <nav class="flex gap-5 overflow-x-auto border-t border-white/[0.04] px-4 py-3 text-xs text-slate-300 lg:hidden"
+            aria-label="Mobile navigation">
+            <a href="index.html">Home</a>
+            <a href="templates.html">Templates</a>
+            <a href="deals.html">Best Deals</a>
+            <a href="bundles.html">Bundles</a>
+            <a href="tools.html">Tools</a>
+            <a href="games.html">Games</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative overflow-hidden px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8">
+            <div
+                class="pointer-events-none absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-violet-600/15 blur-[110px]">
+            </div>
+
+            <div class="relative mx-auto max-w-4xl text-center">
+                <div
+                    class="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-2 text-xs font-semibold text-violet-200 sm:text-sm">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                    GetKit Purchase Assistance
+                </div>
+
+                <h1 class="text-4xl font-black leading-tight tracking-tight sm:text-6xl">
+                    Your purchase.
+                    <span class="gradient-text block">Your download. Sorted.</span>
+                </h1>
+
+                <p class="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+                    Having trouble after buying a GetKit product? Find your order email, troubleshoot a download, or
+                    contact us for help with your Lemon Squeezy purchase.
+                </p>
+
+                <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+                    <a href="#quick-help"
+                        class="rounded-xl bg-violet-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-violet-950/30 hover:bg-violet-500">
+                        Find a solution ↓
+                    </a>
+                    <a href="#contact"
+                        class="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold hover:bg-white/[0.07]">
+                        Contact us
+                    </a>
+                </div>
+
+                <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs text-slate-400 sm:text-sm">
+                    <span>✓ Order email help</span>
+                    <span>✓ Download troubleshooting</span>
+                    <span>✓ Purchase assistance</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick help cards -->
+        <section id="quick-help" class="scroll-mt-28 px-4 py-12 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-8">
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-violet-300">Quick Help</p>
+                    <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">What went wrong?</h2>
+                    <p class="muted mt-3 max-w-2xl leading-7">Choose the problem you're experiencing to see what you can
+                        try first.</p>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <a href="#missing-email" class="issue-card rounded-2xl p-6">
+                        <div
+                            class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/15 text-2xl">
+                            ✉️</div>
+                        <h3 class="text-lg font-bold">I didn't receive my email</h3>
+                        <p class="muted mt-2 text-sm leading-6">Can't find your order confirmation or download email
+                            after purchase?</p>
+                        <span class="mt-5 inline-block text-sm font-semibold text-violet-300">See solution →</span>
+                    </a>
+
+                    <a href="#download-issue" class="issue-card rounded-2xl p-6">
+                        <div
+                            class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-500/15 text-2xl">
+                            📥</div>
+                        <h3 class="text-lg font-bold">My download isn't working</h3>
+                        <p class="muted mt-2 text-sm leading-6">Your link won't open, the file won't download, or you
+                            can't open the file.</p>
+                        <span class="mt-5 inline-block text-sm font-semibold text-violet-300">See solution →</span>
+                    </a>
+
+                    <a href="#order-issue" class="issue-card rounded-2xl p-6">
+                        <div
+                            class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-500/15 text-2xl">
+                            💳</div>
+                        <h3 class="text-lg font-bold">Payment or order problem</h3>
+                        <p class="muted mt-2 text-sm leading-6">Your payment appears completed, but you can't find your
+                            order or access details.</p>
+                        <span class="mt-5 inline-block text-sm font-semibold text-violet-300">See solution →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="border-y border-white/[0.05] bg-white/[0.015] px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-4xl">
+                <div class="mb-8">
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-violet-300">Troubleshooting</p>
+                    <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Let's fix it step by step.</h2>
+                </div>
+
+                <div class="space-y-5">
+
+                    <article id="missing-email" class="scroll-mt-28 panel rounded-2xl p-6 sm:p-8">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-xl">
+                                ✉️</div>
+                            <div>
+                                <h3 class="text-xl font-bold">I purchased a product but didn't receive an email</h3>
+                                <p class="muted mt-3 leading-7">Your order confirmation and download details may be sent
+                                    to the email address you entered during Lemon Squeezy checkout. Try the following:
+                                </p>
+                                <ol class="mt-4 space-y-3 text-sm leading-6 text-slate-300">
+                                    <li><span class="mr-2 font-bold text-violet-300">01</span> Check your Inbox, Spam,
+                                        Junk, and Promotions folders.</li>
+                                    <li><span class="mr-2 font-bold text-violet-300">02</span> Search for “Lemon
+                                        Squeezy”, “GetKit”, or the product name.</li>
+                                    <li><span class="mr-2 font-bold text-violet-300">03</span> Check the email address
+                                        you used when placing the order.</li>
+                                    <li><span class="mr-2 font-bold text-violet-300">04</span> Still can't find it?
+                                        Contact us with your order details so we can help you with the next step.</li>
+                                </ol>
+                                <a href="#contact"
+                                    class="mt-5 inline-flex text-sm font-bold text-violet-300 hover:text-violet-200">Help
+                                    me find my order email →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="download-issue" class="scroll-mt-28 panel rounded-2xl p-6 sm:p-8">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-500/15 text-xl">
+                                📥</div>
+                            <div>
+                                <h3 class="text-xl font-bold">My download link or file isn't working</h3>
+                                <p class="muted mt-3 leading-7">Try opening the download link in an updated browser,
+                                    check your internet connection, and attempt the download again. If the file
+                                    downloads but won't open:</p>
+                                <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-300">
+                                    <li>• Check the file extension and the application needed to open it.</li>
+                                    <li>• If it is a ZIP file, extract it before opening its contents.</li>
+                                    <li>• Review the product description for software requirements.</li>
+                                    <li>• If the download is incomplete, try downloading it again.</li>
+                                </ul>
+                                <p class="muted mt-4 text-sm leading-6">If the problem continues, tell us the product
+                                    name and exact error message. A screenshot of the error can also help; hide any
+                                    personal information first.</p>
+                                <a href="#contact"
+                                    class="mt-5 inline-flex text-sm font-bold text-violet-300 hover:text-violet-200">Get
+                                    download assistance →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="order-issue" class="scroll-mt-28 panel rounded-2xl p-6 sm:p-8">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-fuchsia-500/15 text-xl">
+                                💳</div>
+                            <div>
+                                <h3 class="text-xl font-bold">My payment went through, but I can't find my order</h3>
+                                <p class="muted mt-3 leading-7">Check whether your payment is completed or still
+                                    pending, then look for a Lemon Squeezy confirmation email. If your payment appears
+                                    completed and the order details are missing, contact us with the product name,
+                                    purchase date, checkout email, and any order reference available.</p>
+                                <div
+                                    class="mt-5 rounded-xl border border-amber-400/15 bg-amber-400/[0.06] p-4 text-sm leading-6 text-amber-100/90">
+                                    For your safety, never email your full card number, CVV, banking password, or OTP.
+                                    Check your existing order before attempting another purchase.
+                                </div>
+                                <a href="#contact"
+                                    class="mt-5 inline-flex text-sm font-bold text-violet-300 hover:text-violet-200">Get
+                                    help with my order →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl">
+                <div class="mb-8 text-center">
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-violet-300">Common Questions</p>
+                    <h2 class="mt-3 text-3xl font-extrabold sm:text-4xl">Purchase & download FAQ</h2>
+                </div>
+
+                <div class="space-y-3">
+                    <details class="panel rounded-xl p-5">
+                        <summary class="flex items-center justify-between gap-4 font-semibold">
+                            Where can I find my download?
+                            <span class="plus text-xl text-violet-300">+</span>
+                        </summary>
+                        <p class="muted mt-4 text-sm leading-7">Check the order confirmation or download email sent
+                            after checkout. Follow the download instructions provided for your particular product.</p>
+                    </details>
+
+                    <details class="panel rounded-xl p-5">
+                        <summary class="flex items-center justify-between gap-4 font-semibold">
+                            I entered the wrong email at checkout. What should I do?
+                            <span class="plus text-xl text-violet-300">+</span>
+                        </summary>
+                        <p class="muted mt-4 text-sm leading-7">Contact support and explain the issue. Include the
+                            product name, purchase date, and any order reference you have so we can guide you through
+                            the next step.</p>
+                    </details>
+
+                    <details class="panel rounded-xl p-5">
+                        <summary class="flex items-center justify-between gap-4 font-semibold">
+                            Do I get lifetime access to every purchase?
+                            <span class="plus text-xl text-violet-300">+</span>
+                        </summary>
+                        <p class="muted mt-4 text-sm leading-7">GetKit purchases do not automatically include lifetime
+                            access. Check the individual product description for what is included and the access terms
+                            that apply.</p>
+                    </details>
+
+                    <details class="panel rounded-xl p-5">
+                        <summary class="flex items-center justify-between gap-4 font-semibold">
+                            How do I ask about a refund?
+                            <span class="plus text-xl text-violet-300">+</span>
+                        </summary>
+                        <p class="muted mt-4 text-sm leading-7">Email support@getkit.in with your order details and the
+                            reason for your request. Refund eligibility is subject to the applicable GetKit policies and
+                            the circumstances of the purchase.</p>
+                    </details>
+                </div>
+
+                <p class="muted mt-6 text-center text-sm">
+                    Need answers to other questions?
+                    <a href="faq.html" class="font-semibold text-violet-300 hover:text-violet-200">Visit the FAQ page
+                        →</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact form -->
+        <section id="contact" class="scroll-mt-28 px-4 pb-20 sm:px-6 lg:px-8">
+            <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.85fr_1.15fr]">
+
+                <div class="flex flex-col justify-center">
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-violet-300">Still Need Help?</p>
+                    <h2 class="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
+                        Tell us what happened.
+                        <span class="gradient-text">We'll take it from there.</span>
+                    </h2>
+                    <p class="muted mt-5 leading-7">Send us the details of your purchase or download problem. Clear
+                        information helps us understand the issue and respond more effectively.</p>
+
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/15">
+                                ✉️</div>
+                            <div>
+                                <p class="font-semibold">Email support</p>
+                                <a href="mailto:support@getkit.in"
+                                    class="mt-1 inline-block text-sm text-violet-300 hover:text-violet-200">support@getkit.in</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/15">
+                                🔒</div>
+                            <div>
+                                <p class="font-semibold">Keep your details safe</p>
+                                <p class="muted mt-1 text-sm leading-6">Never share your password, OTP, CVV, or full
+                                    card number.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="supportForm" class="panel rounded-2xl p-6 sm:p-8">
+                    <h3 class="text-xl font-bold">Purchase support request</h3>
+                    <p class="muted mt-2 text-sm leading-6">Fill in the details below. Your email app will open with a
+                        prepared message for our support team.</p>
+
+                    <div class="mt-6 grid gap-5 sm:grid-cols-2">
+                        <div>
+                            <label for="customerName" class="mb-2 block text-sm font-medium text-slate-200">Your
+                                name</label>
+                            <input id="customerName" name="customerName" class="field" type="text"
+                                placeholder="Enter your name" required>
+                        </div>
+                        <div>
+                            <label for="customerEmail" class="mb-2 block text-sm font-medium text-slate-200">Checkout
+                                email</label>
+                            <input id="customerEmail" name="customerEmail" class="field" type="email"
+                                placeholder="Email used for purchase" required>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="issueType" class="mb-2 block text-sm font-medium text-slate-200">What do you
+                                need help with?</label>
+                            <select id="issueType" name="issueType" class="field" required>
+                                <option value="">Select your issue</option>
+                                <option>Order confirmation email missing</option>
+                                <option>Download link not received</option>
+                                <option>Download link not working</option>
+                                <option>Downloaded file won't open</option>
+                                <option>Payment completed but order missing</option>
+                                <option>Incorrect email entered at checkout</option>
+                                <option>Other purchase or download issue</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="productName" class="mb-2 block text-sm font-medium text-slate-200">Product or
+                                bundle name</label>
+                            <input id="productName" name="productName" class="field" type="text"
+                                placeholder="Which GetKit product did you purchase?" required>
+                        </div>
+                        <div>
+                            <label for="purchaseDate" class="mb-2 block text-sm font-medium text-slate-200">Purchase
+                                date</label>
+                            <input id="purchaseDate" name="purchaseDate" class="field" type="date">
+                        </div>
+                        <div>
+                            <label for="orderReference" class="mb-2 block text-sm font-medium text-slate-200">Order
+                                reference (optional)</label>
+                            <input id="orderReference" name="orderReference" class="field" type="text"
+                                placeholder="Order number or reference">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="issueDetails" class="mb-2 block text-sm font-medium text-slate-200">Describe the
+                                problem</label>
+                            <textarea id="issueDetails" name="issueDetails" rows="5" class="field resize-y"
+                                placeholder="Tell us what happened and any error message you saw..."
+                                required></textarea>
+                        </div>
+                    </div>
+
+                    <label class="mt-5 flex items-start gap-3 text-sm leading-6 text-slate-300">
+                        <input id="privacyConsent" type="checkbox" required class="mt-1 accent-violet-500">
+                        <span>I understand that my details will be included in an email to GetKit support so they can
+                            help with my purchase or download issue.</span>
+                    </label>
+
+                    <button type="submit"
+                        class="mt-6 w-full rounded-xl bg-violet-600 px-5 py-3.5 font-bold text-white shadow-lg shadow-violet-950/30 transition hover:bg-violet-500">
+                        Prepare Support Email →
+                    </button>
+
+                    <p id="formMessage" role="status" class="muted mt-4 text-center text-xs leading-5">
+                        This form opens your email application. It does not send or store your request automatically.
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/[0.06] bg-[#080512] px-4 py-10 sm:px-6 lg:px-8">
+        <div class="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row">
+            <div class="max-w-sm">
+                <a href="index.html" class="text-xl font-extrabold">GetKit<span class="text-violet-400">.</span></a>
+                <p class="muted mt-3 text-sm leading-6">Useful digital resources, templates, tools, deals, and bundles
+                    to help you do more.</p>
+                <a href="mailto:support@getkit.in"
+                    class="mt-3 inline-block text-sm text-violet-300 hover:text-violet-200">support@getkit.in</a>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-bold">Customer Help</h3>
+                <div class="muted mt-4 flex flex-col gap-3 text-sm">
+                    <a href="support.html" class="text-violet-300">Purchase & Download Support</a>
+                    <a href="faq.html" class="hover:text-white">Frequently Asked Questions</a>
+                    <a href="help.html" class="hover:text-white">Help Center</a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-bold">GetKit</h3>
+                <div class="muted mt-4 flex flex-col gap-3 text-sm">
+                    <a href="templates.html" class="hover:text-white">Templates</a>
+                    <a href="deals.html" class="hover:text-white">Best Deals</a>
+                    <a href="bundles.html" class="hover:text-white">Bundles</a>
+                    <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto mt-8 max-w-7xl border-t border-white/[0.06] pt-6 text-xs text-slate-500">
+            <p>© <span id="year"></span> GetKit. All rights reserved.</p>
+            <p class="mt-2">Payments are processed through Lemon Squeezy where offered at checkout. GetKit provides
+                purchase and download assistance for its digital products.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        document.getElementById("supportForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("customerName").value.trim();
+            const email = document.getElementById("customerEmail").value.trim();
+            const issue = document.getElementById("issueType").value;
+            const product = document.getElementById("productName").value.trim();
+            const date = document.getElementById("purchaseDate").value || "Not provided";
+            const order = document.getElementById("orderReference").value.trim() || "Not provided";
+            const details = document.getElementById("issueDetails").value.trim();
+
+            const subject = encodeURIComponent("GetKit Purchase Support - " + issue);
+            const body = encodeURIComponent(
+                "Hello GetKit Support,\n\n" +
+                "I need help with a purchase or download.\n\n" +
+                "Name: " + name + "\n" +
+                "Checkout email: " + email + "\n" +
+                "Issue: " + issue + "\n" +
+                "Product: " + product + "\n" +
+                "Purchase date: " + date + "\n" +
+                "Order reference: " + order + "\n\n" +
+                "Problem details:\n" + details + "\n\n" +
+                "Thank you."
+            );
+
+            document.getElementById("formMessage").textContent =
+                "Your email application should open with the support request prepared. Review it and press Send to contact GetKit.";
+
+            window.location.href =
+                "mailto:support@getkit.in?subject=" + subject + "&body=" + body;
+        });
+    </script>
+
+</body>
+
+</html>
