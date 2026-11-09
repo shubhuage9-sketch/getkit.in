@@ -1,1546 +1,1636 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>GetKit Tools — 64 Free Online Tools</title>
-
-<meta name="description"
-content="Use 64 free online tools for PDFs, images, text, calculators, conversions, developers and everyday tasks. Fast, simple and easy to use.">
-
-<meta name="robots" content="index,follow">
-
-<style>
-:root{
-  --bg:#08090d;
-  --panel:#101218;
-  --panel2:#151821;
-  --border:rgba(255,255,255,.09);
-  --text:#f5f7fb;
-  --muted:#9299a8;
-  --purple:#8b5cf6;
-  --blue:#4f7cff;
-  --gradient:linear-gradient(135deg,#8b5cf6,#4f7cff);
-  --danger:#f87171;
-  --success:#5ee6a8;
-  --radius:18px;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
-html{scroll-behavior:smooth}
-
-body{
-  background:
-    radial-gradient(circle at 50% -10%,rgba(104,77,190,.16),transparent 35%),
-    var(--bg);
-  color:var(--text);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-  line-height:1.5;
-}
-
-button,input,textarea,select{font:inherit}
-
-button{cursor:pointer}
-
-a{text-decoration:none;color:inherit}
-
-.container{
-  width:min(1160px,calc(100% - 32px));
-  margin:auto;
-}
-
-/* NAV */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  backdrop-filter:blur(18px);
-  background:rgba(8,9,13,.82);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.nav{
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.logo{
-  font-size:25px;
-  font-weight:850;
-  letter-spacing:-1px;
-}
-
-.logo span{
-  background:var(--gradient);
-  -webkit-background-clip:text;
-  background-clip: text;
-  color: transparent;
-}
-
-.home{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.home:hover{color:#fff}
-
-/* HERO */
-
-.hero{
-  text-align:center;
-  padding:70px 0 35px;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:7px 13px;
-  border-radius:999px;
-  color:#bba8ff;
-  background:rgba(139,92,246,.09);
-  border:1px solid rgba(139,92,246,.2);
-  font-size:12px;
-  font-weight:700;
-}
-
-.dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#9b7aff;
-  box-shadow:0 0 12px #9b7aff;
-}
-
-h1{
-  font-size:clamp(42px,7vw,68px);
-  letter-spacing:-3px;
-  line-height:1;
-  margin:20px auto 14px;
-}
-
-.gradient{
-  background:var(--gradient);
-  -webkit-background-clip:  text;
-  background-clip:  text;
-  color:transparent;
-}
-
-.hero p{
-  max-width:650px;
-  margin:auto;
-  color:var(--muted);
-  font-size:16px;
-}
-
-/* SEARCH */
-
-.search-area{
-  max-width:760px;
-  margin:30px auto 0;
-  position:relative;
-}
-
-.search{
-  display:flex;
-  align-items:center;
-  background:#11131a;
-  border:1px solid rgba(255,255,255,.11);
-  border-radius:16px;
-  padding:6px;
-  transition:.2s;
-}
-
-.search:focus-within{
-  border-color:rgba(139,92,246,.5);
-  box-shadow:0 0 35px rgba(139,92,246,.1);
-}
-
-.search-icon{
-  width:45px;
-  text-align:center;
-  color:#777f90;
-  font-size:20px;
-}
-
-.search input{
-  flex:1;
-  min-width:0;
-  border:0;
-  outline:0;
-  background:none;
-  color:white;
-  padding:13px 5px;
-  font-size:15px;
-}
-
-.search input::placeholder{color:#687082}
-
-.clear{
-  display:none;
-  border:0;
-  background:none;
-  color:#777f90;
-  padding:10px;
-}
-
-.search-results{
-  position:absolute;
-  z-index:50;
-  top:calc(100% + 9px);
-  left:0;
-  right:0;
-  background:#11131a;
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:7px;
-  box-shadow:0 25px 70px rgba(0,0,0,.55);
-  display:none;
-  text-align:left;
-  max-height:360px;
-  overflow:auto;
-}
-
-.search-result{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  padding:11px;
-  border-radius:11px;
-  transition:.15s;
-}
-
-.search-result:hover{
-  background:rgba(255,255,255,.055);
-}
-
-.result-icon{
-  width:38px;
-  height:38px;
-  display:grid;
-  place-items:center;
-  background:rgba(139,92,246,.08);
-  border-radius:10px;
-}
-
-.result-name{font-size:14px;font-weight:700}
-.result-cat{font-size:11px;color:#70788a}
-
-/* QUICK ACTIONS */
-
-.quick{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:14px;
-}
-
-.chip{
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.025);
-  color:#9098a8;
-  border-radius:999px;
-  padding:7px 12px;
-  font-size:12px;
-  transition:.2s;
-}
-
-.chip:hover,.chip.active{
-  color:white;
-  border-color:rgba(139,92,246,.4);
-  background:rgba(139,92,246,.08);
-}
-
-/* TOOLBAR */
-
-.toolbar{
-  margin:28px 0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-.count{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.filters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-}
-
-.filter{
-  border:1px solid var(--border);
-  background:#0e1016;
-  color:#858d9d;
-  padding:8px 12px;
-  border-radius:10px;
-  font-size:12px;
-  transition:.2s;
-}
-
-.filter:hover,.filter.active{
-  color:#fff;
-  border-color:rgba(139,92,246,.4);
-  background:rgba(139,92,246,.09);
-}
-
-/* POPULAR */
-
-.popular{
-  margin:20px 0 40px;
-}
-
-.section-title{
-  font-size:23px;
-  letter-spacing:-.7px;
-  margin-bottom:14px;
-}
-
-.popular-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:11px;
-}
-
-.popular-card{
-  padding:15px;
-  border:1px solid var(--border);
-  background:#101218;
-  border-radius:15px;
-  display:flex;
-  gap:11px;
-  align-items:center;
-  transition:.2s;
-}
-
-.popular-card:hover{
-  transform:translateY(-2px);
-  border-color:rgba(139,92,246,.28);
-}
-
-.small-icon{
-  width:38px;
-  height:38px;
-  border-radius:10px;
-  display:grid;
-  place-items:center;
-  background:rgba(139,92,246,.08);
-  flex:none;
-}
-
-.popular-card strong{
-  font-size:13px;
-}
-
-.popular-card small{
-  display:block;
-  color:#727a8b;
-  font-size:10px;
-  margin-top:2px;
-}
-
-/* TOOLS */
-
-.category-title{
-  margin:38px 0 13px;
-  font-size:19px;
-  letter-spacing:-.4px;
-}
-
-.tool-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-}
-
-.tool{
-  min-height:158px;
-  border:1px solid var(--border);
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.015));
-  border-radius:17px;
-  padding:18px;
-  transition:.22s;
-  cursor:pointer;
-  display:flex;
-  flex-direction:column;
-}
-
-.tool:hover{
-  transform:translateY(-3px);
-  border-color:rgba(139,92,246,.27);
-  background:#131620;
-}
-
-.tool-icon{
-  width:40px;
-  height:40px;
-  display:grid;
-  place-items:center;
-  background:rgba(255,255,255,.045);
-  border-radius:11px;
-  font-size:19px;
-  margin-bottom:15px;
-}
-
-.tool h3{
-  font-size:14px;
-  margin-bottom:5px;
-}
-
-.tool p{
-  color:#7f8797;
-  font-size:11px;
-  line-height:1.5;
-}
-
-.tool-footer{
-  margin-top:auto;
-  padding-top:12px;
-  color:#7e6be0;
-  font-size:11px;
-  font-weight:700;
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:500;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(8px);
-}
-
-.modal.open{display:flex}
-
-.modal-box{
-  width:min(720px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#101218;
-  border:1px solid rgba(255,255,255,.11);
-  border-radius:22px;
-  box-shadow:0 30px 100px rgba(0,0,0,.65);
-}
-
-.modal-head{
-  position:sticky;
-  top:0;
-  z-index:2;
-  background:rgba(16,18,24,.94);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--border);
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.modal-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.modal-title-icon{
-  width:42px;
-  height:42px;
-  display:grid;
-  place-items:center;
-  border-radius:11px;
-  background:rgba(139,92,246,.1);
-  font-size:20px;
-}
-
-.modal-title h2{
-  font-size:17px;
-}
-
-.modal-title p{
-  color:#737b8c;
-  font-size:11px;
-}
-
-.close{
-  width:35px;
-  height:35px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
-  color:#a3aab8;
-  border-radius:9px;
-  font-size:18px;
-}
-
-.close:hover{color:#fff}
-
-.modal-body{
-  padding:20px;
-}
-
-/* TOOL UI */
-
-.tool-description{
-  color:#8b93a3;
-  font-size:13px;
-  margin-bottom:18px;
-}
-
-textarea,
-.tool-input,
-.tool-select{
-  width:100%;
-  border:1px solid rgba(255,255,255,.1);
-  background:#0b0d12;
-  color:#f5f7fb;
-  outline:0;
-  border-radius:12px;
-  padding:12px;
-}
-
-textarea{
-  min-height:180px;
-  resize:vertical;
-}
-
-textarea:focus,
-.tool-input:focus,
-.tool-select:focus{
-  border-color:rgba(139,92,246,.45);
-}
-
-.tool-row{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-bottom:10px;
-}
-
-.tool-row.three{
-  grid-template-columns:repeat(3,1fr);
-}
-
-.field label{
-  display:block;
-  color:#7d8595;
-  font-size:11px;
-  margin-bottom:5px;
-}
-
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:13px;
-}
-
-.primary,
-.secondary,
-.danger{
-  border-radius:10px;
-  padding:10px 15px;
-  border:1px solid var(--border);
-  font-size:12px;
-  font-weight:700;
-}
-
-.primary{
-  color:white;
-  background:var(--gradient);
-  border:0;
-}
-
-.secondary{
-  background:rgba(255,255,255,.045);
-  color:#b4bac6;
-}
-
-.danger{
-  color:#fca5a5;
-  background:rgba(248,113,113,.06);
-}
-
-.primary:hover{filter:brightness(1.08)}
-.secondary:hover{background:rgba(255,255,255,.08)}
-
-.output{
-  margin-top:15px;
-  padding:14px;
-  min-height:50px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#0b0d12;
-  color:#c8ced9;
-  white-space:pre-wrap;
-  overflow:auto;
-  font-size:13px;
-}
-
-.output.success{border-color:rgba(94,230,168,.25)}
-.output.error{border-color:rgba(248,113,113,.3);color:#fca5a5}
-
-.stat-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-top:12px;
-}
-
-.stat{
-  background:#0b0d12;
-  border:1px solid var(--border);
-  border-radius:11px;
-  padding:12px;
-  text-align:center;
-}
-
-.stat strong{
-  display:block;
-  font-size:18px;
-}
-
-.stat small{
-  color:#70788a;
-  font-size:10px;
-}
-
-.dropzone{
-  border:1px dashed rgba(255,255,255,.17);
-  border-radius:14px;
-  padding:32px 18px;
-  text-align:center;
-  background:rgba(255,255,255,.018);
-  cursor:pointer;
-  transition:.2s;
-}
-
-.dropzone:hover,
-.dropzone.drag{
-  border-color:rgba(139,92,246,.55);
-  background:rgba(139,92,246,.05);
-}
-
-.dropzone strong{
-  display:block;
-  font-size:14px;
-}
-
-.dropzone span{
-  display:block;
-  color:#737b8b;
-  font-size:11px;
-  margin-top:5px;
-}
-
-.file-info{
-  margin-top:10px;
-  color:#818999;
-  font-size:11px;
-}
-
-.preview{
-  max-width:100%;
-  max-height:300px;
-  display:block;
-  margin:14px auto 0;
-  border-radius:10px;
-}
-
-.color-result{
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
-.color-swatch{
-  width:80px;
-  height:80px;
-  border-radius:15px;
-  border:1px solid var(--border);
-}
-
-/* FOOTER */
-
-footer{
-  margin-top:70px;
-  padding:38px 0;
-  border-top:1px solid rgba(255,255,255,.06);
-  color:#656d7d;
-  font-size:12px;
-}
-
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1000px){
-  .tool-grid{grid-template-columns:repeat(3,1fr)}
-  .popular-grid{grid-template-columns:repeat(2,1fr)}
-}
-
-@media(max-width:700px){
-  .tool-grid{grid-template-columns:repeat(2,1fr)}
-  .popular-grid{grid-template-columns:1fr}
-  .tool-row,.tool-row.three{grid-template-columns:1fr}
-  .stat-grid{grid-template-columns:repeat(2,1fr)}
-  h1{letter-spacing:-2px}
-}
-
-@media(max-width:500px){
-  .container{width:min(100% - 22px,1160px)}
-  .tool-grid{grid-template-columns:1fr}
-  .hero{padding-top:48px}
-  .hero p{font-size:14px}
-  .toolbar{align-items:flex-start}
-  .filters{width:100%}
-  .filter{flex:1;text-align:center}
-}
-
-/* HIDDEN */
-
-.hidden{display:none!important}
-</style>
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NXS479KN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <title>GetKit Tools — 64 Free Online Tools</title>
+
+  <meta name="description"
+    content="Use 64 free online tools for PDFs, images, text, calculators, conversions, developers and everyday tasks. Fast, simple and easy to use.">
+
+  <meta name="robots" content="index,follow">
+
+  <style>
+    :root {
+      --bg: #08090d;
+      --panel: #101218;
+      --panel2: #151821;
+      --border: rgba(255, 255, 255, .09);
+      --text: #f5f7fb;
+      --muted: #9299a8;
+      --purple: #8b5cf6;
+      --blue: #4f7cff;
+      --gradient: linear-gradient(135deg, #8b5cf6, #4f7cff);
+      --danger: #f87171;
+      --success: #5ee6a8;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 50% -10%, rgba(104, 77, 190, .16), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    /* NAV */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 9, 13, .82);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .nav {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 850;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .home {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .home:hover {
+      color: #fff
+    }
+
+    /* HERO */
+
+    .hero {
+      text-align: center;
+      padding: 70px 0 35px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #bba8ff;
+      background: rgba(139, 92, 246, .09);
+      border: 1px solid rgba(139, 92, 246, .2);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9b7aff;
+      box-shadow: 0 0 12px #9b7aff;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 68px);
+      letter-spacing: -3px;
+      line-height: 1;
+      margin: 20px auto 14px;
+    }
+
+    .gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* SEARCH */
+
+    .search-area {
+      max-width: 760px;
+      margin: 30px auto 0;
+      position: relative;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      background: #11131a;
+      border: 1px solid rgba(255, 255, 255, .11);
+      border-radius: 16px;
+      padding: 6px;
+      transition: .2s;
+    }
+
+    .search:focus-within {
+      border-color: rgba(139, 92, 246, .5);
+      box-shadow: 0 0 35px rgba(139, 92, 246, .1);
+    }
+
+    .search-icon {
+      width: 45px;
+      text-align: center;
+      color: #777f90;
+      font-size: 20px;
+    }
+
+    .search input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: none;
+      color: white;
+      padding: 13px 5px;
+      font-size: 15px;
+    }
+
+    .search input::placeholder {
+      color: #687082
+    }
+
+    .clear {
+      display: none;
+      border: 0;
+      background: none;
+      color: #777f90;
+      padding: 10px;
+    }
+
+    .search-results {
+      position: absolute;
+      z-index: 50;
+      top: calc(100% + 9px);
+      left: 0;
+      right: 0;
+      background: #11131a;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 7px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, .55);
+      display: none;
+      text-align: left;
+      max-height: 360px;
+      overflow: auto;
+    }
+
+    .search-result {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 11px;
+      border-radius: 11px;
+      transition: .15s;
+    }
+
+    .search-result:hover {
+      background: rgba(255, 255, 255, .055);
+    }
+
+    .result-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      background: rgba(139, 92, 246, .08);
+      border-radius: 10px;
+    }
+
+    .result-name {
+      font-size: 14px;
+      font-weight: 700
+    }
+
+    .result-cat {
+      font-size: 11px;
+      color: #70788a
+    }
+
+    /* QUICK ACTIONS */
+
+    .quick {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .025);
+      color: #9098a8;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      transition: .2s;
+    }
+
+    .chip:hover,
+    .chip.active {
+      color: white;
+      border-color: rgba(139, 92, 246, .4);
+      background: rgba(139, 92, 246, .08);
+    }
+
+    /* TOOLBAR */
+
+    .toolbar {
+      margin: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .filter {
+      border: 1px solid var(--border);
+      background: #0e1016;
+      color: #858d9d;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      transition: .2s;
+    }
+
+    .filter:hover,
+    .filter.active {
+      color: #fff;
+      border-color: rgba(139, 92, 246, .4);
+      background: rgba(139, 92, 246, .09);
+    }
+
+    /* POPULAR */
+
+    .popular {
+      margin: 20px 0 40px;
+    }
+
+    .section-title {
+      font-size: 23px;
+      letter-spacing: -.7px;
+      margin-bottom: 14px;
+    }
+
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 11px;
+    }
+
+    .popular-card {
+      padding: 15px;
+      border: 1px solid var(--border);
+      background: #101218;
+      border-radius: 15px;
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      transition: .2s;
+    }
+
+    .popular-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139, 92, 246, .28);
+    }
+
+    .small-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: rgba(139, 92, 246, .08);
+      flex: none;
+    }
+
+    .popular-card strong {
+      font-size: 13px;
+    }
+
+    .popular-card small {
+      display: block;
+      color: #727a8b;
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    /* TOOLS */
+
+    .category-title {
+      margin: 38px 0 13px;
+      font-size: 19px;
+      letter-spacing: -.4px;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .tool {
+      min-height: 158px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .015));
+      border-radius: 17px;
+      padding: 18px;
+      transition: .22s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool:hover {
+      transform: translateY(-3px);
+      border-color: rgba(139, 92, 246, .27);
+      background: #131620;
+    }
+
+    .tool-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, .045);
+      border-radius: 11px;
+      font-size: 19px;
+      margin-bottom: 15px;
+    }
+
+    .tool h3 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .tool p {
+      color: #7f8797;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .tool-footer {
+      margin-top: auto;
+      padding-top: 12px;
+      color: #7e6be0;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, .72);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal.open {
+      display: flex
+    }
+
+    .modal-box {
+      width: min(720px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      background: #101218;
+      border: 1px solid rgba(255, 255, 255, .11);
+      border-radius: 22px;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, .65);
+    }
+
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: rgba(16, 18, 24, .94);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-title-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: rgba(139, 92, 246, .1);
+      font-size: 20px;
+    }
+
+    .modal-title h2 {
+      font-size: 17px;
+    }
+
+    .modal-title p {
+      color: #737b8c;
+      font-size: 11px;
+    }
+
+    .close {
+      width: 35px;
+      height: 35px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .04);
+      color: #a3aab8;
+      border-radius: 9px;
+      font-size: 18px;
+    }
+
+    .close:hover {
+      color: #fff
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    /* TOOL UI */
+
+    .tool-description {
+      color: #8b93a3;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    textarea,
+    .tool-input,
+    .tool-select {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, .1);
+      background: #0b0d12;
+      color: #f5f7fb;
+      outline: 0;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+
+    textarea:focus,
+    .tool-input:focus,
+    .tool-select:focus {
+      border-color: rgba(139, 92, 246, .45);
+    }
+
+    .tool-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .tool-row.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .field label {
+      display: block;
+      color: #7d8595;
+      font-size: 11px;
+      margin-bottom: 5px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .primary,
+    .secondary,
+    .danger {
+      border-radius: 10px;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .primary {
+      color: white;
+      background: var(--gradient);
+      border: 0;
+    }
+
+    .secondary {
+      background: rgba(255, 255, 255, .045);
+      color: #b4bac6;
+    }
+
+    .danger {
+      color: #fca5a5;
+      background: rgba(248, 113, 113, .06);
+    }
+
+    .primary:hover {
+      filter: brightness(1.08)
+    }
+
+    .secondary:hover {
+      background: rgba(255, 255, 255, .08)
+    }
+
+    .output {
+      margin-top: 15px;
+      padding: 14px;
+      min-height: 50px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #0b0d12;
+      color: #c8ced9;
+      white-space: pre-wrap;
+      overflow: auto;
+      font-size: 13px;
+    }
+
+    .output.success {
+      border-color: rgba(94, 230, 168, .25)
+    }
+
+    .output.error {
+      border-color: rgba(248, 113, 113, .3);
+      color: #fca5a5
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      background: #0b0d12;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .stat small {
+      color: #70788a;
+      font-size: 10px;
+    }
+
+    .dropzone {
+      border: 1px dashed rgba(255, 255, 255, .17);
+      border-radius: 14px;
+      padding: 32px 18px;
+      text-align: center;
+      background: rgba(255, 255, 255, .018);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .dropzone:hover,
+    .dropzone.drag {
+      border-color: rgba(139, 92, 246, .55);
+      background: rgba(139, 92, 246, .05);
+    }
+
+    .dropzone strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .dropzone span {
+      display: block;
+      color: #737b8b;
+      font-size: 11px;
+      margin-top: 5px;
+    }
+
+    .file-info {
+      margin-top: 10px;
+      color: #818999;
+      font-size: 11px;
+    }
+
+    .preview {
+      max-width: 100%;
+      max-height: 300px;
+      display: block;
+      margin: 14px auto 0;
+      border-radius: 10px;
+    }
+
+    .color-result {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .color-swatch {
+      width: 80px;
+      height: 80px;
+      border-radius: 15px;
+      border: 1px solid var(--border);
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 70px;
+      padding: 38px 0;
+      border-top: 1px solid rgba(255, 255, 255, .06);
+      color: #656d7d;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1000px) {
+      .tool-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .popular-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:700px) {
+      .tool-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .popular-grid {
+        grid-template-columns: 1fr
+      }
+
+      .tool-row,
+      .tool-row.three {
+        grid-template-columns: 1fr
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      h1 {
+        letter-spacing: -2px
+      }
+    }
+
+    @media(max-width:500px) {
+      .container {
+        width: min(100% - 22px, 1160px)
+      }
+
+      .tool-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero {
+        padding-top: 48px
+      }
+
+      .hero p {
+        font-size: 14px
+      }
+
+      .toolbar {
+        align-items: flex-start
+      }
+
+      .filters {
+        width: 100%
+      }
+
+      .filter {
+        flex: 1;
+        text-align: center
+      }
+    }
+
+    /* HIDDEN */
+
+    .hidden {
+      display: none !important
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container nav">
-    <a class="logo" href="../index.html">Get<span>Kit</span></a>
-    <a class="home" href="../index.html">← Back to GetKit</a>
-  </div>
-</header>
-
-<main>
-
-<section class="hero">
-  <div class="container">
-
-    <div class="badge">
-      <span class="dot"></span>
-      64 free tools
+  <header>
+    <div class="container nav">
+      <a class="logo" href="../index.html">Get<span>Kit</span></a>
+      <a class="home" href="../index.html">← Back to GetKit</a>
     </div>
+  </header>
 
-    <h1>
-      Get things done. <span class="gradient">Faster.</span>
-    </h1>
+  <main>
 
-    <p>
-      Simple tools for PDFs, images, text, calculations,
-      conversions, development and everyday tasks.
-      No complicated setup.
-    </p>
+    <section class="hero">
+      <div class="container">
 
-    <div class="search-area">
+        <div class="badge">
+          <span class="dot"></span>
+          64 free tools
+        </div>
 
-      <div class="search">
-        <div class="search-icon">⌕</div>
+        <h1>
+          Get things done. <span class="gradient">Faster.</span>
+        </h1>
 
-        <input
-          id="search"
-          type="search"
-          placeholder="Search 64 tools..."
-          autocomplete="off"
-          aria-label="Search tools"
-        >
+        <p>
+          Simple tools for PDFs, images, text, calculations,
+          conversions, development and everyday tasks.
+          No complicated setup.
+        </p>
 
-        <button class="clear" id="clearSearch">×</button>
-      </div>
+        <div class="search-area">
 
-      <div class="search-results" id="searchResults"></div>
+          <div class="search">
+            <div class="search-icon">⌕</div>
 
-    </div>
+            <input id="search" type="search" placeholder="Search 64 tools..." autocomplete="off"
+              aria-label="Search tools">
 
-            <!-- Horizontal Ad Container -->
+            <button class="clear" id="clearSearch">×</button>
+          </div>
+
+          <div class="search-results" id="searchResults"></div>
+
+        </div>
+
+        <!-- Horizontal Ad Container -->
         <div
-            style="width: 100%; max-width: 728px; height: 90px; margin: 20px auto; text-align: center; overflow: hidden;">
+          style="width: 100%; max-width: 728px; height: 90px; margin: 20px auto; text-align: center; overflow: hidden;">
 
-            <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
-                crossorigin="anonymous"></script>
-            <!-- getkit_content_infeed -->
-            <ins class="adsbygoogle" style="display:inline-block; width: 100%; height: 90px;"
-                data-ad-client="ca-pub-9695226920600935" data-ad-slot="3167975347" data-ad-format="horizontal"
-                data-full-width-responsive="false"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+          <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+            crossorigin="anonymous"></script>
+          <!-- getkit_content_infeed -->
+          <ins class="adsbygoogle" style="display:inline-block; width: 100%; height: 90px;"
+            data-ad-client="ca-pub-9695226920600935" data-ad-slot="3167975347" data-ad-format="horizontal"
+            data-full-width-responsive="false"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
 
         </div>
 
-    <div class="quick">
-      <button class="chip" data-quick="PDF">PDF</button>
-      <button class="chip" data-quick="Image">Images</button>
-      <button class="chip" data-quick="Text">Text</button>
-      <button class="chip" data-quick="Calculator">Calculators</button>
-      <button class="chip" data-quick="Developer">Developer</button>
-    </div>
+        <div class="quick">
+          <button class="chip" data-quick="PDF">PDF</button>
+          <button class="chip" data-quick="Image">Images</button>
+          <button class="chip" data-quick="Text">Text</button>
+          <button class="chip" data-quick="Calculator">Calculators</button>
+          <button class="chip" data-quick="Developer">Developer</button>
+        </div>
 
-  </div>
-</section>
-
-
-<div class="container">
-
-  <div class="toolbar">
-
-    <div class="count">
-      Showing <strong id="count">64</strong> tools
-    </div>
-
-    <div class="filters">
-      <button class="filter active" data-category="all">All</button>
-      <button class="filter" data-category="PDF & Documents">PDF</button>
-      <button class="filter" data-category="Image Tools">Images</button>
-      <button class="filter" data-category="Text Tools">Text</button>
-      <button class="filter" data-category="Calculators & Converters">Calculators</button>
-      <button class="filter" data-category="Developer & Web">Developer</button>
-    </div>
-
-  </div>
+      </div>
+    </section>
 
 
-  <section class="popular">
+    <div class="container">
 
-    <h2 class="section-title">⭐ Popular Tools</h2>
+      <div class="toolbar">
 
-    <div class="popular-grid" id="popularGrid"></div>
+        <div class="count">
+          Showing <strong id="count">64</strong> tools
+        </div>
 
-  </section>
-
-
-  <section id="directory">
-
-    <div id="toolGroups"></div>
-
-  </section>
-
-</div>
-
-</main>
-
-
-<footer>
-  <div class="container footer-inner">
-    <div>© 2026 GetKit.in</div>
-    <div>Simple tools. Better productivity.</div>
-  </div>
-</footer>
-
-
-<!-- TOOL MODAL -->
-
-<div class="modal" id="modal">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div class="modal-title">
-
-        <div class="modal-title-icon" id="modalIcon">🛠️</div>
-
-        <div>
-          <h2 id="modalTitle">Tool</h2>
-          <p id="modalCategory">GetKit Tool</p>
+        <div class="filters">
+          <button class="filter active" data-category="all">All</button>
+          <button class="filter" data-category="PDF & Documents">PDF</button>
+          <button class="filter" data-category="Image Tools">Images</button>
+          <button class="filter" data-category="Text Tools">Text</button>
+          <button class="filter" data-category="Calculators & Converters">Calculators</button>
+          <button class="filter" data-category="Developer & Web">Developer</button>
         </div>
 
       </div>
 
-      <button class="close" id="closeModal">×</button>
+
+      <section class="popular">
+
+        <h2 class="section-title">⭐ Popular Tools</h2>
+
+        <div class="popular-grid" id="popularGrid"></div>
+
+      </section>
+
+
+      <section id="directory">
+
+        <div id="toolGroups"></div>
+
+      </section>
 
     </div>
 
-    <div class="modal-body" id="modalBody"></div>
+  </main>
+
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 GetKit.in</div>
+      <div>Simple tools. Better productivity.</div>
+    </div>
+  </footer>
+
+
+  <!-- TOOL MODAL -->
+
+  <div class="modal" id="modal">
+
+    <div class="modal-box">
+
+      <div class="modal-head">
+
+        <div class="modal-title">
+
+          <div class="modal-title-icon" id="modalIcon">🛠️</div>
+
+          <div>
+            <h2 id="modalTitle">Tool</h2>
+            <p id="modalCategory">GetKit Tool</p>
+          </div>
+
+        </div>
+
+        <button class="close" id="closeModal">×</button>
+
+      </div>
+
+      <div class="modal-body" id="modalBody"></div>
+
+    </div>
 
   </div>
 
-</div>
-
-
-<!-- PDF LIBRARY -->
-
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-
-<script>
-/* =========================================================
-   GETKIT 64 TOOL DATABASE
-========================================================= */
-
-const tools = [
-
-/* PDF */
-
-{
- id:"pdf-merger",
- name:"PDF Merger",
- icon:"📑",
- category:"PDF & Documents",
- desc:"Combine multiple PDF files into one document.",
- type:"pdf-merger"
-},
-
-{
- id:"pdf-splitter",
- name:"PDF Splitter",
- icon:"✂️",
- category:"PDF & Documents",
- desc:"Extract selected pages from a PDF.",
- type:"pdf-splitter"
-},
-
-{
- id:"pdf-compressor",
- name:"PDF Compressor",
- icon:"📦",
- category:"PDF & Documents",
- desc:"Reduce PDF size using browser-side optimization.",
- type:"pdf-compressor"
-},
-
-{
- id:"pdf-to-jpg",
- name:"PDF to JPG",
- icon:"🖼️",
- category:"PDF & Documents",
- desc:"Convert PDF pages into JPG images.",
- type:"pdf-to-jpg"
-},
-
-{
- id:"jpg-to-pdf",
- name:"JPG to PDF",
- icon:"📄",
- category:"PDF & Documents",
- desc:"Turn JPG images into a PDF document.",
- type:"jpg-to-pdf"
-},
-
-{
- id:"pdf-to-png",
- name:"PDF to PNG",
- icon:"🖼️",
- category:"PDF & Documents",
- desc:"Export PDF pages as PNG images.",
- type:"pdf-to-jpg"
-},
-
-{
- id:"png-to-pdf",
- name:"PNG to PDF",
- icon:"📄",
- category:"PDF & Documents",
- desc:"Turn PNG images into a PDF.",
- type:"jpg-to-pdf"
-},
-
-{
- id:"pdf-page-extractor",
- name:"PDF Page Extractor",
- icon:"📃",
- category:"PDF & Documents",
- desc:"Extract selected pages into a new PDF.",
- type:"pdf-splitter"
-},
-
-{
- id:"pdf-page-rotator",
- name:"PDF Page Rotator",
- icon:"🔄",
- category:"PDF & Documents",
- desc:"Rotate PDF pages and download the result.",
- type:"pdf-rotator"
-},
-
-{
- id:"pdf-page-deleter",
- name:"PDF Page Deleter",
- icon:"🗑️",
- category:"PDF & Documents",
- desc:"Remove selected pages from a PDF.",
- type:"pdf-delete"
-},
-
-{
- id:"pdf-text-extractor",
- name:"PDF Text Extractor",
- icon:"📝",
- category:"PDF & Documents",
- desc:"Extract selectable text from a PDF.",
- type:"pdf-text"
-},
-
-{
- id:"pdf-metadata",
- name:"PDF Metadata Viewer",
- icon:"ℹ️",
- category:"PDF & Documents",
- desc:"Inspect basic PDF document metadata.",
- type:"pdf-metadata"
-},
-
-{
- id:"pdf-word-counter",
- name:"PDF Word Counter",
- icon:"🔢",
- category:"PDF & Documents",
- desc:"Count words and characters in extracted PDF text.",
- type:"pdf-text"
-},
-
-{
- id:"pdf-password",
- name:"PDF Password Generator",
- icon:"🔐",
- category:"PDF & Documents",
- desc:"Generate a strong password for protecting documents.",
- type:"password"
-},
-
-
-/* IMAGE */
-
-{
- id:"image-compressor",
- name:"Image Compressor",
- icon:"🖼️",
- category:"Image Tools",
- desc:"Compress images directly in your browser.",
- type:"image-compressor"
-},
-
-{
- id:"image-resizer",
- name:"Image Resizer",
- icon:"↔️",
- category:"Image Tools",
- desc:"Resize an image to custom dimensions.",
- type:"image-resizer"
-},
-
-{
- id:"image-cropper",
- name:"Image Cropper",
- icon:"✂️",
- category:"Image Tools",
- desc:"Crop an image to your preferred size.",
- type:"image-cropper"
-},
-
-{
- id:"image-rotator",
- name:"Image Rotator",
- icon:"🔄",
- category:"Image Tools",
- desc:"Rotate images by 90, 180 or 270 degrees.",
- type:"image-transform"
-},
-
-{
- id:"image-flipper",
- name:"Image Flipper",
- icon:"↔️",
- category:"Image Tools",
- desc:"Flip images horizontally or vertically.",
- type:"image-transform"
-},
-
-{
- id:"jpg-png",
- name:"JPG to PNG",
- icon:"🔁",
- category:"Image Tools",
- desc:"Convert JPG images into PNG format.",
- type:"image-converter"
-},
-
-{
- id:"png-jpg",
- name:"PNG to JPG",
- icon:"🔁",
- category:"Image Tools",
- desc:"Convert PNG images into JPG format.",
- type:"image-converter"
-},
-
-{
- id:"jpg-webp",
- name:"JPG to WebP",
- icon:"⚡",
- category:"Image Tools",
- desc:"Convert JPG images into efficient WebP images.",
- type:"image-converter"
-},
-
-{
- id:"png-webp",
- name:"PNG to WebP",
- icon:"⚡",
- category:"Image Tools",
- desc:"Convert PNG images into WebP format.",
- type:"image-converter"
-},
-
-{
- id:"webp-jpg",
- name:"WebP to JPG",
- icon:"🔁",
- category:"Image Tools",
- desc:"Convert WebP images into JPG.",
- type:"image-converter"
-},
-
-{
- id:"webp-png",
- name:"WebP to PNG",
- icon:"🔁",
- category:"Image Tools",
- desc:"Convert WebP images into PNG.",
- type:"image-converter"
-},
-
-{
- id:"image-format",
- name:"Image Format Converter",
- icon:"🔄",
- category:"Image Tools",
- desc:"Convert images between common formats.",
- type:"image-converter"
-},
-
-{
- id:"color-picker",
- name:"Image Color Picker",
- icon:"🎨",
- category:"Image Tools",
- desc:"Pick a color directly from an uploaded image.",
- type:"color-picker"
-},
-
-{
- id:"image-base64",
- name:"Image Base64 Converter",
- icon:"🧬",
- category:"Image Tools",
- desc:"Convert an image to a Base64 data string.",
- type:"image-base64"
-},
-
-{
- id:"image-data-uri",
- name:"Image Data URI Generator",
- icon:"🔗",
- category:"Image Tools",
- desc:"Generate a ready-to-use image data URI.",
- type:"image-base64"
-},
-
-
-/* TEXT */
-
-{
- id:"word-counter",
- name:"Word Counter",
- icon:"🔢",
- category:"Text Tools",
- desc:"Count words, characters, sentences and paragraphs.",
- type:"word-counter"
-},
-
-{
- id:"character-counter",
- name:"Character Counter",
- icon:"🔤",
- category:"Text Tools",
- desc:"Count characters with and without spaces.",
- type:"word-counter"
-},
-
-{
- id:"sentence-counter",
- name:"Sentence Counter",
- icon:"📊",
- category:"Text Tools",
- desc:"Count sentences and estimate reading time.",
- type:"word-counter"
-},
-
-{
- id:"case-converter",
- name:"Case Converter",
- icon:"Aa",
- category:"Text Tools",
- desc:"Convert text between common writing cases.",
- type:"case"
-},
-
-{
- id:"uppercase",
- name:"Uppercase Converter",
- icon:"🔠",
- category:"Text Tools",
- desc:"Convert text to uppercase.",
- type:"uppercase"
-},
-
-{
- id:"lowercase",
- name:"Lowercase Converter",
- icon:"🔡",
- category:"Text Tools",
- desc:"Convert text to lowercase.",
- type:"lowercase"
-},
-
-{
- id:"title-case",
- name:"Title Case Converter",
- icon:"📰",
- category:"Text Tools",
- desc:"Convert text into title case.",
- type:"titlecase"
-},
-
-{
- id:"duplicate-lines",
- name:"Remove Duplicate Lines",
- icon:"🧹",
- category:"Text Tools",
- desc:"Remove repeated lines from text.",
- type:"duplicate-lines"
-},
-
-{
- id:"extra-spaces",
- name:"Remove Extra Spaces",
- icon:"✨",
- category:"Text Tools",
- desc:"Clean unnecessary spaces from text.",
- type:"extra-spaces"
-},
-
-{
- id:"text-sorter",
- name:"Text Sorter",
- icon:"↕️",
- category:"Text Tools",
- desc:"Sort lines alphabetically.",
- type:"text-sorter"
-},
-
-{
- id:"text-reverser",
- name:"Text Reverser",
- icon:"🔃",
- category:"Text Tools",
- desc:"Reverse text instantly.",
- type:"text-reverser"
-},
-
-{
- id:"slug-generator",
- name:"Slug Generator",
- icon:"🔗",
- category:"Text Tools",
- desc:"Create clean URL slugs from text.",
- type:"slug"
-},
-
-{
- id:"lorem-generator",
- name:"Lorem Ipsum Generator",
- icon:"📜",
- category:"Text Tools",
- desc:"Generate placeholder text instantly.",
- type:"lorem"
-},
-
-{
- id:"reading-time",
- name:"Reading Time Calculator",
- icon:"⏱️",
- category:"Text Tools",
- desc:"Estimate how long text takes to read.",
- type:"reading"
-},
-
-{
- id:"text-diff",
- name:"Text Diff Checker",
- icon:"🆚",
- category:"Text Tools",
- desc:"Compare two pieces of text.",
- type:"diff"
-},
-
-
-/* CALCULATORS */
-
-{
- id:"percentage",
- name:"Percentage Calculator",
- icon:"％",
- category:"Calculators & Converters",
- desc:"Calculate percentages quickly.",
- type:"percentage"
-},
-
-{
- id:"age",
- name:"Age Calculator",
- icon:"🎂",
- category:"Calculators & Converters",
- desc:"Calculate your exact age.",
- type:"age"
-},
-
-{
- id:"bmi",
- name:"BMI Calculator",
- icon:"⚖️",
- category:"Calculators & Converters",
- desc:"Calculate body mass index.",
- type:"bmi"
-},
-
-{
- id:"discount",
- name:"Discount Calculator",
- icon:"🏷️",
- category:"Calculators & Converters",
- desc:"Calculate discounts and final prices.",
- type:"discount"
-},
-
-{
- id:"tip",
- name:"Tip Calculator",
- icon:"💵",
- category:"Calculators & Converters",
- desc:"Calculate tips and split bills.",
- type:"tip"
-},
-
-{
- id:"loan",
- name:"Loan Calculator",
- icon:"🏦",
- category:"Calculators & Converters",
- desc:"Estimate monthly loan payments.",
- type:"loan"
-},
-
-{
- id:"emi",
- name:"EMI Calculator",
- icon:"💳",
- category:"Calculators & Converters",
- desc:"Calculate estimated monthly EMI.",
- type:"loan"
-},
-
-{
- id:"compound",
- name:"Compound Interest Calculator",
- icon:"📈",
- category:"Calculators & Converters",
- desc:"Calculate compound interest growth.",
- type:"compound"
-},
-
-{
- id:"simple-interest",
- name:"Simple Interest Calculator",
- icon:"📊",
- category:"Calculators & Converters",
- desc:"Calculate simple interest.",
- type:"simple-interest"
-},
-
-{
- id:"date-difference",
- name:"Date Difference Calculator",
- icon:"📅",
- category:"Calculators & Converters",
- desc:"Find the difference between two dates.",
- type:"date-difference"
-},
-
-{
- id:"time-calculator",
- name:"Time Calculator",
- icon:"⏰",
- category:"Calculators & Converters",
- desc:"Add or subtract hours and minutes.",
- type:"time"
-},
-
-{
- id:"unit-converter",
- name:"Unit Converter",
- icon:"📐",
- category:"Calculators & Converters",
- desc:"Convert common measurement units.",
- type:"unit"
-},
-
-
-/* DEVELOPER */
-
-{
- id:"json-formatter",
- name:"JSON Formatter",
- icon:"{}",
- category:"Developer & Web",
- desc:"Format messy JSON into readable JSON.",
- type:"json"
-},
-
-{
- id:"json-validator",
- name:"JSON Validator",
- icon:"✅",
- category:"Developer & Web",
- desc:"Check whether JSON is valid.",
- type:"json"
-},
-
-{
- id:"json-minifier",
- name:"JSON Minifier",
- icon:"🗜️",
- category:"Developer & Web",
- desc:"Minify JSON by removing unnecessary whitespace.",
- type:"json"
-},
-
-{
- id:"base64",
- name:"Base64 Encoder / Decoder",
- icon:"🔐",
- category:"Developer & Web",
- desc:"Encode or decode Base64 text.",
- type:"base64"
-},
-
-{
- id:"url",
- name:"URL Encoder / Decoder",
- icon:"🔗",
- category:"Developer & Web",
- desc:"Encode or decode URL components.",
- type:"url"
-},
-
-{
- id:"uuid",
- name:"UUID Generator",
- icon:"🆔",
- category:"Developer & Web",
- desc:"Generate random UUIDs.",
- type:"uuid"
-},
-
-{
- id:"timestamp",
- name:"Timestamp Converter",
- icon:"🕐",
- category:"Developer & Web",
- desc:"Convert Unix timestamps to dates.",
- type:"timestamp"
-},
-
-{
- id:"color-converter",
- name:"Color Converter",
- icon:"🎨",
- category:"Developer & Web",
- desc:"Convert HEX, RGB and HSL colors.",
- type:"color-converter"
-}
-
-];
-
-
-/* =========================================================
-   STATE
-========================================================= */
-
-let currentCategory="all";
-let currentSearch="";
-
-
-/* =========================================================
-   DIRECTORY
-========================================================= */
-
-const groups=[
-  "PDF & Documents",
-  "Image Tools",
-  "Text Tools",
-  "Calculators & Converters",
-  "Developer & Web"
-];
-
-function filteredTools(){
-
-  return tools.filter(t=>{
-
-    const categoryMatch=
-      currentCategory==="all" ||
-      t.category===currentCategory;
-
-    const q=currentSearch.toLowerCase().trim();
-
-    const searchMatch=!q ||
-      (
-        t.name+
-        " "+
-        t.category+
-        " "+
-        t.desc
-      ).toLowerCase().includes(q);
-
-    return categoryMatch && searchMatch;
-  });
-}
-
-
-function renderPopular(){
-
-  const popularIds=[
-    "pdf-compressor",
-    "image-compressor",
-    "word-counter",
-    "percentage",
-    "age",
-    "json-formatter",
-    "qr-code-generator"
-  ];
-
-  const popular=tools.filter(t=>popularIds.includes(t.id));
-
-  document.getElementById("popularGrid").innerHTML=
-    popular.slice(0,8).map(t=>`
+
+  <!-- PDF LIBRARY -->
+
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <script>
+    /* =========================================================
+       GETKIT 64 TOOL DATABASE
+    ========================================================= */
+
+    const tools = [
+
+      /* PDF */
+
+      {
+        id: "pdf-merger",
+        name: "PDF Merger",
+        icon: "📑",
+        category: "PDF & Documents",
+        desc: "Combine multiple PDF files into one document.",
+        type: "pdf-merger"
+      },
+
+      {
+        id: "pdf-splitter",
+        name: "PDF Splitter",
+        icon: "✂️",
+        category: "PDF & Documents",
+        desc: "Extract selected pages from a PDF.",
+        type: "pdf-splitter"
+      },
+
+      {
+        id: "pdf-compressor",
+        name: "PDF Compressor",
+        icon: "📦",
+        category: "PDF & Documents",
+        desc: "Reduce PDF size using browser-side optimization.",
+        type: "pdf-compressor"
+      },
+
+      {
+        id: "pdf-to-jpg",
+        name: "PDF to JPG",
+        icon: "🖼️",
+        category: "PDF & Documents",
+        desc: "Convert PDF pages into JPG images.",
+        type: "pdf-to-jpg"
+      },
+
+      {
+        id: "jpg-to-pdf",
+        name: "JPG to PDF",
+        icon: "📄",
+        category: "PDF & Documents",
+        desc: "Turn JPG images into a PDF document.",
+        type: "jpg-to-pdf"
+      },
+
+      {
+        id: "pdf-to-png",
+        name: "PDF to PNG",
+        icon: "🖼️",
+        category: "PDF & Documents",
+        desc: "Export PDF pages as PNG images.",
+        type: "pdf-to-jpg"
+      },
+
+      {
+        id: "png-to-pdf",
+        name: "PNG to PDF",
+        icon: "📄",
+        category: "PDF & Documents",
+        desc: "Turn PNG images into a PDF.",
+        type: "jpg-to-pdf"
+      },
+
+      {
+        id: "pdf-page-extractor",
+        name: "PDF Page Extractor",
+        icon: "📃",
+        category: "PDF & Documents",
+        desc: "Extract selected pages into a new PDF.",
+        type: "pdf-splitter"
+      },
+
+      {
+        id: "pdf-page-rotator",
+        name: "PDF Page Rotator",
+        icon: "🔄",
+        category: "PDF & Documents",
+        desc: "Rotate PDF pages and download the result.",
+        type: "pdf-rotator"
+      },
+
+      {
+        id: "pdf-page-deleter",
+        name: "PDF Page Deleter",
+        icon: "🗑️",
+        category: "PDF & Documents",
+        desc: "Remove selected pages from a PDF.",
+        type: "pdf-delete"
+      },
+
+      {
+        id: "pdf-text-extractor",
+        name: "PDF Text Extractor",
+        icon: "📝",
+        category: "PDF & Documents",
+        desc: "Extract selectable text from a PDF.",
+        type: "pdf-text"
+      },
+
+      {
+        id: "pdf-metadata",
+        name: "PDF Metadata Viewer",
+        icon: "ℹ️",
+        category: "PDF & Documents",
+        desc: "Inspect basic PDF document metadata.",
+        type: "pdf-metadata"
+      },
+
+      {
+        id: "pdf-word-counter",
+        name: "PDF Word Counter",
+        icon: "🔢",
+        category: "PDF & Documents",
+        desc: "Count words and characters in extracted PDF text.",
+        type: "pdf-text"
+      },
+
+      {
+        id: "pdf-password",
+        name: "PDF Password Generator",
+        icon: "🔐",
+        category: "PDF & Documents",
+        desc: "Generate a strong password for protecting documents.",
+        type: "password"
+      },
+
+
+      /* IMAGE */
+
+      {
+        id: "image-compressor",
+        name: "Image Compressor",
+        icon: "🖼️",
+        category: "Image Tools",
+        desc: "Compress images directly in your browser.",
+        type: "image-compressor"
+      },
+
+      {
+        id: "image-resizer",
+        name: "Image Resizer",
+        icon: "↔️",
+        category: "Image Tools",
+        desc: "Resize an image to custom dimensions.",
+        type: "image-resizer"
+      },
+
+      {
+        id: "image-cropper",
+        name: "Image Cropper",
+        icon: "✂️",
+        category: "Image Tools",
+        desc: "Crop an image to your preferred size.",
+        type: "image-cropper"
+      },
+
+      {
+        id: "image-rotator",
+        name: "Image Rotator",
+        icon: "🔄",
+        category: "Image Tools",
+        desc: "Rotate images by 90, 180 or 270 degrees.",
+        type: "image-transform"
+      },
+
+      {
+        id: "image-flipper",
+        name: "Image Flipper",
+        icon: "↔️",
+        category: "Image Tools",
+        desc: "Flip images horizontally or vertically.",
+        type: "image-transform"
+      },
+
+      {
+        id: "jpg-png",
+        name: "JPG to PNG",
+        icon: "🔁",
+        category: "Image Tools",
+        desc: "Convert JPG images into PNG format.",
+        type: "image-converter"
+      },
+
+      {
+        id: "png-jpg",
+        name: "PNG to JPG",
+        icon: "🔁",
+        category: "Image Tools",
+        desc: "Convert PNG images into JPG format.",
+        type: "image-converter"
+      },
+
+      {
+        id: "jpg-webp",
+        name: "JPG to WebP",
+        icon: "⚡",
+        category: "Image Tools",
+        desc: "Convert JPG images into efficient WebP images.",
+        type: "image-converter"
+      },
+
+      {
+        id: "png-webp",
+        name: "PNG to WebP",
+        icon: "⚡",
+        category: "Image Tools",
+        desc: "Convert PNG images into WebP format.",
+        type: "image-converter"
+      },
+
+      {
+        id: "webp-jpg",
+        name: "WebP to JPG",
+        icon: "🔁",
+        category: "Image Tools",
+        desc: "Convert WebP images into JPG.",
+        type: "image-converter"
+      },
+
+      {
+        id: "webp-png",
+        name: "WebP to PNG",
+        icon: "🔁",
+        category: "Image Tools",
+        desc: "Convert WebP images into PNG.",
+        type: "image-converter"
+      },
+
+      {
+        id: "image-format",
+        name: "Image Format Converter",
+        icon: "🔄",
+        category: "Image Tools",
+        desc: "Convert images between common formats.",
+        type: "image-converter"
+      },
+
+      {
+        id: "color-picker",
+        name: "Image Color Picker",
+        icon: "🎨",
+        category: "Image Tools",
+        desc: "Pick a color directly from an uploaded image.",
+        type: "color-picker"
+      },
+
+      {
+        id: "image-base64",
+        name: "Image Base64 Converter",
+        icon: "🧬",
+        category: "Image Tools",
+        desc: "Convert an image to a Base64 data string.",
+        type: "image-base64"
+      },
+
+      {
+        id: "image-data-uri",
+        name: "Image Data URI Generator",
+        icon: "🔗",
+        category: "Image Tools",
+        desc: "Generate a ready-to-use image data URI.",
+        type: "image-base64"
+      },
+
+
+      /* TEXT */
+
+      {
+        id: "word-counter",
+        name: "Word Counter",
+        icon: "🔢",
+        category: "Text Tools",
+        desc: "Count words, characters, sentences and paragraphs.",
+        type: "word-counter"
+      },
+
+      {
+        id: "character-counter",
+        name: "Character Counter",
+        icon: "🔤",
+        category: "Text Tools",
+        desc: "Count characters with and without spaces.",
+        type: "word-counter"
+      },
+
+      {
+        id: "sentence-counter",
+        name: "Sentence Counter",
+        icon: "📊",
+        category: "Text Tools",
+        desc: "Count sentences and estimate reading time.",
+        type: "word-counter"
+      },
+
+      {
+        id: "case-converter",
+        name: "Case Converter",
+        icon: "Aa",
+        category: "Text Tools",
+        desc: "Convert text between common writing cases.",
+        type: "case"
+      },
+
+      {
+        id: "uppercase",
+        name: "Uppercase Converter",
+        icon: "🔠",
+        category: "Text Tools",
+        desc: "Convert text to uppercase.",
+        type: "uppercase"
+      },
+
+      {
+        id: "lowercase",
+        name: "Lowercase Converter",
+        icon: "🔡",
+        category: "Text Tools",
+        desc: "Convert text to lowercase.",
+        type: "lowercase"
+      },
+
+      {
+        id: "title-case",
+        name: "Title Case Converter",
+        icon: "📰",
+        category: "Text Tools",
+        desc: "Convert text into title case.",
+        type: "titlecase"
+      },
+
+      {
+        id: "duplicate-lines",
+        name: "Remove Duplicate Lines",
+        icon: "🧹",
+        category: "Text Tools",
+        desc: "Remove repeated lines from text.",
+        type: "duplicate-lines"
+      },
+
+      {
+        id: "extra-spaces",
+        name: "Remove Extra Spaces",
+        icon: "✨",
+        category: "Text Tools",
+        desc: "Clean unnecessary spaces from text.",
+        type: "extra-spaces"
+      },
+
+      {
+        id: "text-sorter",
+        name: "Text Sorter",
+        icon: "↕️",
+        category: "Text Tools",
+        desc: "Sort lines alphabetically.",
+        type: "text-sorter"
+      },
+
+      {
+        id: "text-reverser",
+        name: "Text Reverser",
+        icon: "🔃",
+        category: "Text Tools",
+        desc: "Reverse text instantly.",
+        type: "text-reverser"
+      },
+
+      {
+        id: "slug-generator",
+        name: "Slug Generator",
+        icon: "🔗",
+        category: "Text Tools",
+        desc: "Create clean URL slugs from text.",
+        type: "slug"
+      },
+
+      {
+        id: "lorem-generator",
+        name: "Lorem Ipsum Generator",
+        icon: "📜",
+        category: "Text Tools",
+        desc: "Generate placeholder text instantly.",
+        type: "lorem"
+      },
+
+      {
+        id: "reading-time",
+        name: "Reading Time Calculator",
+        icon: "⏱️",
+        category: "Text Tools",
+        desc: "Estimate how long text takes to read.",
+        type: "reading"
+      },
+
+      {
+        id: "text-diff",
+        name: "Text Diff Checker",
+        icon: "🆚",
+        category: "Text Tools",
+        desc: "Compare two pieces of text.",
+        type: "diff"
+      },
+
+
+      /* CALCULATORS */
+
+      {
+        id: "percentage",
+        name: "Percentage Calculator",
+        icon: "％",
+        category: "Calculators & Converters",
+        desc: "Calculate percentages quickly.",
+        type: "percentage"
+      },
+
+      {
+        id: "age",
+        name: "Age Calculator",
+        icon: "🎂",
+        category: "Calculators & Converters",
+        desc: "Calculate your exact age.",
+        type: "age"
+      },
+
+      {
+        id: "bmi",
+        name: "BMI Calculator",
+        icon: "⚖️",
+        category: "Calculators & Converters",
+        desc: "Calculate body mass index.",
+        type: "bmi"
+      },
+
+      {
+        id: "discount",
+        name: "Discount Calculator",
+        icon: "🏷️",
+        category: "Calculators & Converters",
+        desc: "Calculate discounts and final prices.",
+        type: "discount"
+      },
+
+      {
+        id: "tip",
+        name: "Tip Calculator",
+        icon: "💵",
+        category: "Calculators & Converters",
+        desc: "Calculate tips and split bills.",
+        type: "tip"
+      },
+
+      {
+        id: "loan",
+        name: "Loan Calculator",
+        icon: "🏦",
+        category: "Calculators & Converters",
+        desc: "Estimate monthly loan payments.",
+        type: "loan"
+      },
+
+      {
+        id: "emi",
+        name: "EMI Calculator",
+        icon: "💳",
+        category: "Calculators & Converters",
+        desc: "Calculate estimated monthly EMI.",
+        type: "loan"
+      },
+
+      {
+        id: "compound",
+        name: "Compound Interest Calculator",
+        icon: "📈",
+        category: "Calculators & Converters",
+        desc: "Calculate compound interest growth.",
+        type: "compound"
+      },
+
+      {
+        id: "simple-interest",
+        name: "Simple Interest Calculator",
+        icon: "📊",
+        category: "Calculators & Converters",
+        desc: "Calculate simple interest.",
+        type: "simple-interest"
+      },
+
+      {
+        id: "date-difference",
+        name: "Date Difference Calculator",
+        icon: "📅",
+        category: "Calculators & Converters",
+        desc: "Find the difference between two dates.",
+        type: "date-difference"
+      },
+
+      {
+        id: "time-calculator",
+        name: "Time Calculator",
+        icon: "⏰",
+        category: "Calculators & Converters",
+        desc: "Add or subtract hours and minutes.",
+        type: "time"
+      },
+
+      {
+        id: "unit-converter",
+        name: "Unit Converter",
+        icon: "📐",
+        category: "Calculators & Converters",
+        desc: "Convert common measurement units.",
+        type: "unit"
+      },
+
+
+      /* DEVELOPER */
+
+      {
+        id: "json-formatter",
+        name: "JSON Formatter",
+        icon: "{}",
+        category: "Developer & Web",
+        desc: "Format messy JSON into readable JSON.",
+        type: "json"
+      },
+
+      {
+        id: "json-validator",
+        name: "JSON Validator",
+        icon: "✅",
+        category: "Developer & Web",
+        desc: "Check whether JSON is valid.",
+        type: "json"
+      },
+
+      {
+        id: "json-minifier",
+        name: "JSON Minifier",
+        icon: "🗜️",
+        category: "Developer & Web",
+        desc: "Minify JSON by removing unnecessary whitespace.",
+        type: "json"
+      },
+
+      {
+        id: "base64",
+        name: "Base64 Encoder / Decoder",
+        icon: "🔐",
+        category: "Developer & Web",
+        desc: "Encode or decode Base64 text.",
+        type: "base64"
+      },
+
+      {
+        id: "url",
+        name: "URL Encoder / Decoder",
+        icon: "🔗",
+        category: "Developer & Web",
+        desc: "Encode or decode URL components.",
+        type: "url"
+      },
+
+      {
+        id: "uuid",
+        name: "UUID Generator",
+        icon: "🆔",
+        category: "Developer & Web",
+        desc: "Generate random UUIDs.",
+        type: "uuid"
+      },
+
+      {
+        id: "timestamp",
+        name: "Timestamp Converter",
+        icon: "🕐",
+        category: "Developer & Web",
+        desc: "Convert Unix timestamps to dates.",
+        type: "timestamp"
+      },
+
+      {
+        id: "color-converter",
+        name: "Color Converter",
+        icon: "🎨",
+        category: "Developer & Web",
+        desc: "Convert HEX, RGB and HSL colors.",
+        type: "color-converter"
+      }
+
+    ];
+
+
+    /* =========================================================
+       STATE
+    ========================================================= */
+
+    let currentCategory = "all";
+    let currentSearch = "";
+
+
+    /* =========================================================
+       DIRECTORY
+    ========================================================= */
+
+    const groups = [
+      "PDF & Documents",
+      "Image Tools",
+      "Text Tools",
+      "Calculators & Converters",
+      "Developer & Web"
+    ];
+
+    function filteredTools() {
+
+      return tools.filter(t => {
+
+        const categoryMatch =
+          currentCategory === "all" ||
+          t.category === currentCategory;
+
+        const q = currentSearch.toLowerCase().trim();
+
+        const searchMatch = !q ||
+          (
+            t.name +
+            " " +
+            t.category +
+            " " +
+            t.desc
+          ).toLowerCase().includes(q);
+
+        return categoryMatch && searchMatch;
+      });
+    }
+
+
+    function renderPopular() {
+
+      const popularIds = [
+        "pdf-compressor",
+        "image-compressor",
+        "word-counter",
+        "percentage",
+        "age",
+        "json-formatter",
+        "qr-code-generator"
+      ];
+
+      const popular = tools.filter(t => popularIds.includes(t.id));
+
+      document.getElementById("popularGrid").innerHTML =
+        popular.slice(0, 8).map(t => `
 
       <div class="popular-card" onclick="openTool('${t.id}')">
 
@@ -1554,22 +1644,22 @@ function renderPopular(){
       </div>
 
     `).join("");
-}
+    }
 
 
-function renderTools(){
+    function renderTools() {
 
-  const list=filteredTools();
+      const list = filteredTools();
 
-  document.getElementById("count").textContent=list.length;
+      document.getElementById("count").textContent = list.length;
 
-  const groupsHTML=groups.map(category=>{
+      const groupsHTML = groups.map(category => {
 
-    const items=list.filter(t=>t.category===category);
+        const items = list.filter(t => t.category === category);
 
-    if(!items.length)return "";
+        if (!items.length) return "";
 
-    return `
+        return `
 
       <div class="tool-category">
 
@@ -1579,7 +1669,7 @@ function renderTools(){
 
         <div class="tool-grid">
 
-          ${items.map(t=>`
+          ${items.map(t => `
 
             <article
               class="tool"
@@ -1612,97 +1702,97 @@ function renderTools(){
 
     `;
 
-  }).join("");
+      }).join("");
 
-  document.getElementById("toolGroups").innerHTML=
-    groupsHTML ||
-    `<div style="text-align:center;padding:60px;color:#777">
+      document.getElementById("toolGroups").innerHTML =
+        groupsHTML ||
+        `<div style="text-align:center;padding:60px;color:#777">
       No tools found. Try another search.
     </div>`;
-}
+    }
 
 
-function escapeHTML(value){
+    function escapeHTML(value) {
 
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
 
 
-/* =========================================================
-   FILTERS
-========================================================= */
+    /* =========================================================
+       FILTERS
+    ========================================================= */
 
-document.querySelectorAll(".filter").forEach(button=>{
+    document.querySelectorAll(".filter").forEach(button => {
 
-  button.addEventListener("click",()=>{
+      button.addEventListener("click", () => {
 
-    document
-      .querySelectorAll(".filter")
-      .forEach(b=>b.classList.remove("active"));
+        document
+          .querySelectorAll(".filter")
+          .forEach(b => b.classList.remove("active"));
 
-    button.classList.add("active");
+        button.classList.add("active");
 
-    currentCategory=button.dataset.category;
+        currentCategory = button.dataset.category;
 
-    renderTools();
+        renderTools();
 
-    document
-      .getElementById("directory")
-      .scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+        document
+          .getElementById("directory")
+          .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
       });
 
-  });
-
-});
+    });
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+    /* =========================================================
+       SEARCH
+    ========================================================= */
 
-const search=document.getElementById("search");
-const results=document.getElementById("searchResults");
-const clearSearch=document.getElementById("clearSearch");
+    const search = document.getElementById("search");
+    const results = document.getElementById("searchResults");
+    const clearSearch = document.getElementById("clearSearch");
 
-search.addEventListener("input",()=>{
+    search.addEventListener("input", () => {
 
-  currentSearch=search.value;
+      currentSearch = search.value;
 
-  clearSearch.style.display=
-    currentSearch ? "block":"none";
+      clearSearch.style.display =
+        currentSearch ? "block" : "none";
 
-  renderTools();
+      renderTools();
 
-  const q=currentSearch.toLowerCase().trim();
+      const q = currentSearch.toLowerCase().trim();
 
-  if(!q){
+      if (!q) {
 
-    results.style.display="none";
-    return;
-  }
+        results.style.display = "none";
+        return;
+      }
 
-  const matches=
-    tools
-      .filter(t=>
-        (
-          t.name+
-          " "+
-          t.category+
-          " "+
-          t.desc
-        ).toLowerCase().includes(q)
-      )
-      .slice(0,8);
+      const matches =
+        tools
+          .filter(t =>
+            (
+              t.name +
+              " " +
+              t.category +
+              " " +
+              t.desc
+            ).toLowerCase().includes(q)
+          )
+          .slice(0, 8);
 
-  results.innerHTML=matches.length
-    ? matches.map(t=>`
+      results.innerHTML = matches.length
+        ? matches.map(t => `
 
       <div
         class="search-result"
@@ -1724,121 +1814,121 @@ search.addEventListener("input",()=>{
       </div>
 
     `).join("")
-    :
-    `<div style="padding:15px;color:#777">
+        :
+        `<div style="padding:15px;color:#777">
       No matching tools found.
     </div>`;
 
-  results.style.display="block";
+      results.style.display = "block";
 
-});
-
-
-clearSearch.addEventListener("click",()=>{
-
-  search.value="";
-  currentSearch="";
-  clearSearch.style.display="none";
-  results.style.display="none";
-  renderTools();
-
-  search.focus();
-
-});
+    });
 
 
-document.addEventListener("click",e=>{
+    clearSearch.addEventListener("click", () => {
 
-  if(!e.target.closest(".search-area")){
-    results.style.display="none";
-  }
+      search.value = "";
+      currentSearch = "";
+      clearSearch.style.display = "none";
+      results.style.display = "none";
+      renderTools();
 
-});
+      search.focus();
 
-
-document.querySelectorAll("[data-quick]").forEach(button=>{
-
-  button.addEventListener("click",()=>{
-
-    const value=button.dataset.quick;
-
-    search.value=value;
-    currentSearch=value;
-
-    clearSearch.style.display="block";
-
-    renderTools();
-
-    search.focus();
-
-  });
-
-});
+    });
 
 
-/* =========================================================
-   MODAL
-========================================================= */
+    document.addEventListener("click", e => {
 
-const modal=document.getElementById("modal");
+      if (!e.target.closest(".search-area")) {
+        results.style.display = "none";
+      }
 
-function openTool(id){
-
-  const tool=tools.find(t=>t.id===id);
-
-  if(!tool)return;
-
-  document.getElementById("modalIcon").textContent=tool.icon;
-  document.getElementById("modalTitle").textContent=tool.name;
-  document.getElementById("modalCategory").textContent=tool.category;
-
-  document.getElementById("modalBody").innerHTML=
-    buildToolUI(tool);
-
-  modal.classList.add("open");
-
-  document.body.style.overflow="hidden";
-
-  attachToolEvents(tool);
-
-}
+    });
 
 
-function closeModal(){
+    document.querySelectorAll("[data-quick]").forEach(button => {
 
-  modal.classList.remove("open");
-  document.body.style.overflow="";
+      button.addEventListener("click", () => {
 
-}
+        const value = button.dataset.quick;
 
+        search.value = value;
+        currentSearch = value;
 
-document.getElementById("closeModal")
-  .addEventListener("click",closeModal);
+        clearSearch.style.display = "block";
 
+        renderTools();
 
-modal.addEventListener("click",e=>{
+        search.focus();
 
-  if(e.target===modal)closeModal();
+      });
 
-});
-
-
-document.addEventListener("keydown",e=>{
-
-  if(e.key==="Escape" && modal.classList.contains("open")){
-    closeModal();
-  }
-
-});
+    });
 
 
-/* =========================================================
-   GENERIC UI
-========================================================= */
+    /* =========================================================
+       MODAL
+    ========================================================= */
 
-function buttons(extra=""){
+    const modal = document.getElementById("modal");
 
-  return `
+    function openTool(id) {
+
+      const tool = tools.find(t => t.id === id);
+
+      if (!tool) return;
+
+      document.getElementById("modalIcon").textContent = tool.icon;
+      document.getElementById("modalTitle").textContent = tool.name;
+      document.getElementById("modalCategory").textContent = tool.category;
+
+      document.getElementById("modalBody").innerHTML =
+        buildToolUI(tool);
+
+      modal.classList.add("open");
+
+      document.body.style.overflow = "hidden";
+
+      attachToolEvents(tool);
+
+    }
+
+
+    function closeModal() {
+
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+
+    }
+
+
+    document.getElementById("closeModal")
+      .addEventListener("click", closeModal);
+
+
+    modal.addEventListener("click", e => {
+
+      if (e.target === modal) closeModal();
+
+    });
+
+
+    document.addEventListener("keydown", e => {
+
+      if (e.key === "Escape" && modal.classList.contains("open")) {
+        closeModal();
+      }
+
+    });
+
+
+    /* =========================================================
+       GENERIC UI
+    ========================================================= */
+
+    function buttons(extra = "") {
+
+      return `
     <div class="actions">
       <button class="primary" id="runTool">Run Tool →</button>
       <button class="secondary" id="copyResult">Copy</button>
@@ -1848,31 +1938,31 @@ function buttons(extra=""){
     </div>
     <div class="output" id="output">Your result will appear here.</div>
   `;
-}
+    }
 
 
-function textareaHTML(placeholder="Paste or type here..."){
+    function textareaHTML(placeholder = "Paste or type here...") {
 
-  return `
+      return `
     <textarea
       id="mainText"
       placeholder="${placeholder}"
     ></textarea>
   `;
-}
+    }
 
 
-function buildToolUI(tool){
+    function buildToolUI(tool) {
 
-  const d=
-    `<p class="tool-description">${escapeHTML(tool.desc)}</p>`;
+      const d =
+        `<p class="tool-description">${escapeHTML(tool.desc)}</p>`;
 
-  switch(tool.type){
+      switch (tool.type) {
 
-    case"word-counter":
-      return d+
-      textareaHTML("Paste your text here...")+
-      `
+        case "word-counter":
+          return d +
+            textareaHTML("Paste your text here...") +
+            `
       <div class="actions">
         <button class="primary" id="runTool">Analyze Text →</button>
         <button class="secondary" id="resetTool">Reset</button>
@@ -1890,10 +1980,10 @@ function buildToolUI(tool){
       </div>
       `;
 
-    case"case":
-      return d+
-      textareaHTML()+
-      `
+        case "case":
+          return d +
+            textareaHTML() +
+            `
       <div class="actions">
         <button class="primary" data-case="sentence">Sentence case</button>
         <button class="secondary" data-case="upper">UPPERCASE</button>
@@ -1903,36 +1993,36 @@ function buildToolUI(tool){
       <div class="output" id="output"></div>
       `;
 
-    case"uppercase":
-    case"lowercase":
-    case"titlecase":
-      return d+
-      textareaHTML()+
-      buttons();
+        case "uppercase":
+        case "lowercase":
+        case "titlecase":
+          return d +
+            textareaHTML() +
+            buttons();
 
-    case"duplicate-lines":
-    case"extra-spaces":
-    case"text-sorter":
-    case"text-reverser":
-    case"slug":
-    case"reading":
-      return d+
-      textareaHTML()+
-      buttons();
+        case "duplicate-lines":
+        case "extra-spaces":
+        case "text-sorter":
+        case "text-reverser":
+        case "slug":
+        case "reading":
+          return d +
+            textareaHTML() +
+            buttons();
 
-    case"lorem":
-      return d+
-      `
+        case "lorem":
+          return d +
+            `
       <div class="field">
         <label>Paragraphs</label>
         <input class="tool-input" id="amount" type="number" min="1" max="30" value="3">
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"diff":
-      return d+
-      `
+        case "diff":
+          return d +
+            `
       <div class="tool-row">
         <div>
           <div class="field"><label>Original text</label></div>
@@ -1944,11 +2034,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"percentage":
-      return d+
-      `
+        case "percentage":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Percentage</label>
@@ -1960,21 +2050,21 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"age":
-      return d+
-      `
+        case "age":
+          return d +
+            `
       <div class="field">
         <label>Date of birth</label>
         <input class="tool-input" id="date" type="date">
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"bmi":
-      return d+
-      `
+        case "bmi":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Weight (kg)</label>
@@ -1986,11 +2076,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"discount":
-      return d+
-      `
+        case "discount":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Original price</label>
@@ -2002,11 +2092,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"tip":
-      return d+
-      `
+        case "tip":
+          return d +
+            `
       <div class="tool-row three">
         <div class="field">
           <label>Bill</label>
@@ -2022,11 +2112,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"loan":
-      return d+
-      `
+        case "loan":
+          return d +
+            `
       <div class="tool-row three">
         <div class="field">
           <label>Principal</label>
@@ -2042,11 +2132,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"compound":
-      return d+
-      `
+        case "compound":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Principal</label>
@@ -2066,11 +2156,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"simple-interest":
-      return d+
-      `
+        case "simple-interest":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Principal</label>
@@ -2086,11 +2176,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"date-difference":
-      return d+
-      `
+        case "date-difference":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Start date</label>
@@ -2102,11 +2192,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"time":
-      return d+
-      `
+        case "time":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Hours</label>
@@ -2118,11 +2208,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"unit":
-      return d+
-      `
+        case "unit":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Value</label>
@@ -2152,12 +2242,12 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"json":
-      return d+
-      textareaHTML("Paste JSON here...")+
-      `
+        case "json":
+          return d +
+            textareaHTML("Paste JSON here...") +
+            `
       <div class="actions">
         <button class="primary" id="formatJSON">Format</button>
         <button class="secondary" id="minifyJSON">Minify</button>
@@ -2168,10 +2258,10 @@ function buildToolUI(tool){
       <div class="output" id="output"></div>
       `;
 
-    case"base64":
-      return d+
-      textareaHTML("Enter text...")+
-      `
+        case "base64":
+          return d +
+            textareaHTML("Enter text...") +
+            `
       <div class="actions">
         <button class="primary" id="encode">Encode</button>
         <button class="secondary" id="decode">Decode</button>
@@ -2180,10 +2270,10 @@ function buildToolUI(tool){
       <div class="output" id="output"></div>
       `;
 
-    case"url":
-      return d+
-      textareaHTML("Enter URL or text...")+
-      `
+        case "url":
+          return d +
+            textareaHTML("Enter URL or text...") +
+            `
       <div class="actions">
         <button class="primary" id="encode">Encode</button>
         <button class="secondary" id="decode">Decode</button>
@@ -2192,9 +2282,9 @@ function buildToolUI(tool){
       <div class="output" id="output"></div>
       `;
 
-    case"uuid":
-      return d+
-      `
+        case "uuid":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Number of UUIDs</label>
@@ -2202,11 +2292,11 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"timestamp":
-      return d+
-      `
+        case "timestamp":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Unix timestamp</label>
@@ -2214,23 +2304,23 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons(`
+            buttons(`
         <button class="secondary" id="now">Current Time</button>
       `);
 
-    case"color-converter":
-      return d+
-      `
+        case "color-converter":
+          return d +
+            `
       <div class="field">
         <label>HEX color</label>
         <input class="tool-input" id="hex" value="#8b5cf6">
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"password":
-      return d+
-      `
+        case "password":
+          return d +
+            `
       <div class="tool-row">
         <div class="field">
           <label>Length</label>
@@ -2238,47 +2328,47 @@ function buildToolUI(tool){
         </div>
       </div>
       `+
-      buttons();
+            buttons();
 
-    case"image-compressor":
-    case"image-resizer":
-    case"image-cropper":
-    case"image-transform":
-    case"image-converter":
-    case"color-picker":
-    case"image-base64":
-      return imageUI(tool);
+        case "image-compressor":
+        case "image-resizer":
+        case "image-cropper":
+        case "image-transform":
+        case "image-converter":
+        case "color-picker":
+        case "image-base64":
+          return imageUI(tool);
 
-    case"pdf-merger":
-    case"pdf-splitter":
-    case"pdf-rotator":
-    case"pdf-delete":
-    case"pdf-text":
-    case"pdf-metadata":
-    case"pdf-to-jpg":
-    case"jpg-to-pdf":
-      return pdfUI(tool);
+        case "pdf-merger":
+        case "pdf-splitter":
+        case "pdf-rotator":
+        case "pdf-delete":
+        case "pdf-text":
+        case "pdf-metadata":
+        case "pdf-to-jpg":
+        case "jpg-to-pdf":
+          return pdfUI(tool);
 
-    default:
-      return d+
-      textareaHTML()+
-      buttons();
+        default:
+          return d +
+            textareaHTML() +
+            buttons();
 
-  }
+      }
 
-}
+    }
 
 
-/* =========================================================
-   IMAGE UI
-========================================================= */
+    /* =========================================================
+       IMAGE UI
+    ========================================================= */
 
-function imageUI(tool){
+    function imageUI(tool) {
 
-  let options="";
+      let options = "";
 
-  if(tool.type==="image-resizer"){
-    options=`
+      if (tool.type === "image-resizer") {
+        options = `
       <div class="tool-row">
         <div class="field">
           <label>Width (px)</label>
@@ -2290,10 +2380,10 @@ function imageUI(tool){
         </div>
       </div>
     `;
-  }
+      }
 
-  if(tool.type==="image-transform"){
-    options=`
+      if (tool.type === "image-transform") {
+        options = `
       <div class="actions">
         <button class="secondary" data-transform="rotate90">Rotate 90°</button>
         <button class="secondary" data-transform="rotate180">Rotate 180°</button>
@@ -2301,10 +2391,10 @@ function imageUI(tool){
         <button class="secondary" data-transform="flipV">Flip Vertical</button>
       </div>
     `;
-  }
+      }
 
-  if(tool.type==="image-converter"){
-    options=`
+      if (tool.type === "image-converter") {
+        options = `
       <div class="field">
         <label>Output format</label>
         <select class="tool-select" id="format">
@@ -2314,9 +2404,9 @@ function imageUI(tool){
         </select>
       </div>
     `;
-  }
+      }
 
-  return `
+      return `
     <p class="tool-description">
       ${escapeHTML(tool.desc)}
     </p>
@@ -2349,7 +2439,7 @@ function imageUI(tool){
     <div class="actions">
 
       <button class="primary" id="runTool">
-        ${tool.type==="color-picker"?"Pick Color":"Process Image →"}
+        ${tool.type === "color-picker" ? "Pick Color" : "Process Image →"}
       </button>
 
       <button class="secondary" id="downloadResult">
@@ -2367,33 +2457,33 @@ function imageUI(tool){
     </div>
   `;
 
-}
+    }
 
 
-/* =========================================================
-   PDF UI
-========================================================= */
+    /* =========================================================
+       PDF UI
+    ========================================================= */
 
-function pdfUI(tool){
+    function pdfUI(tool) {
 
-  let text="";
+      let text = "";
 
-  if(tool.type==="pdf-merger")
-    text="Select two or more PDFs to combine.";
+      if (tool.type === "pdf-merger")
+        text = "Select two or more PDFs to combine.";
 
-  else if(tool.type==="pdf-splitter")
-    text="Choose a PDF and enter pages such as 1,3,5.";
+      else if (tool.type === "pdf-splitter")
+        text = "Choose a PDF and enter pages such as 1,3,5.";
 
-  else if(tool.type==="pdf-rotator")
-    text="Choose a PDF and enter page numbers to rotate.";
+      else if (tool.type === "pdf-rotator")
+        text = "Choose a PDF and enter page numbers to rotate.";
 
-  else if(tool.type==="pdf-delete")
-    text="Choose a PDF and enter page numbers to remove.";
+      else if (tool.type === "pdf-delete")
+        text = "Choose a PDF and enter page numbers to remove.";
 
-  else
-    text=tool.desc;
+      else
+        text = tool.desc;
 
-  return `
+      return `
     <p class="tool-description">${escapeHTML(text)}</p>
 
     <div class="dropzone" id="pdfDrop">
@@ -2406,7 +2496,7 @@ function pdfUI(tool){
         hidden
       >
 
-      <strong>📄 Choose PDF file${tool.type==="pdf-merger"?"s":""}</strong>
+      <strong>📄 Choose PDF file${tool.type === "pdf-merger" ? "s" : ""}</strong>
 
       <span>
         Click here or drag and drop
@@ -2416,10 +2506,9 @@ function pdfUI(tool){
 
     <div class="file-info" id="pdfInfo"></div>
 
-    ${
-      ["pdf-splitter","pdf-rotator","pdf-delete"].includes(tool.type)
-      ?
-      `
+    ${["pdf-splitter", "pdf-rotator", "pdf-delete"].includes(tool.type)
+          ?
+          `
       <div class="field" style="margin-top:12px">
         <label>Page numbers</label>
         <input
@@ -2429,8 +2518,8 @@ function pdfUI(tool){
         >
       </div>
       `
-      :""
-    }
+          : ""
+        }
 
     <div class="actions">
 
@@ -2453,418 +2542,418 @@ function pdfUI(tool){
     </div>
   `;
 
-}
+    }
 
 
-/* =========================================================
-   ATTACH TOOL EVENTS
-========================================================= */
+    /* =========================================================
+       ATTACH TOOL EVENTS
+    ========================================================= */
 
-function attachToolEvents(tool){
+    function attachToolEvents(tool) {
 
-  switch(tool.type){
+      switch (tool.type) {
 
-    case"word-counter":
-      attachWordCounter();
-      break;
-
-    case"case":
-      attachCase();
-      break;
-
-    case"uppercase":
-      attachSimpleText("upper");
-      break;
-
-    case"lowercase":
-      attachSimpleText("lower");
-      break;
-
-    case"titlecase":
-      attachSimpleText("title");
-      break;
-
-    case"duplicate-lines":
-      attachSimpleText("duplicates");
-      break;
-
-    case"extra-spaces":
-      attachSimpleText("spaces");
-      break;
-
-    case"text-sorter":
-      attachSimpleText("sort");
-      break;
-
-    case"text-reverser":
-      attachSimpleText("reverse");
-      break;
-
-    case"slug":
-      attachSimpleText("slug");
-      break;
-
-    case"reading":
-      attachSimpleText("reading");
-      break;
-
-    case"lorem":
-      attachLorem();
-      break;
-
-    case"diff":
-      attachDiff();
-      break;
-
-    case"percentage":
-      attachPercentage();
-      break;
-
-    case"age":
-      attachAge();
-      break;
-
-    case"bmi":
-      attachBMI();
-      break;
-
-    case"discount":
-      attachDiscount();
-      break;
-
-    case"tip":
-      attachTip();
-      break;
-
-    case"loan":
-      attachLoan();
-      break;
-
-    case"compound":
-      attachCompound();
-      break;
-
-    case"simple-interest":
-      attachSimpleInterest();
-      break;
-
-    case"date-difference":
-      attachDateDifference();
-      break;
-
-    case"time":
-      attachTime();
-      break;
-
-    case"unit":
-      attachUnit();
-      break;
-
-    case"json":
-      attachJSON();
-      break;
-
-    case"base64":
-      attachBase64();
-      break;
-
-    case"url":
-      attachURL();
-      break;
-
-    case"uuid":
-      attachUUID();
-      break;
-
-    case"timestamp":
-      attachTimestamp();
-      break;
-
-    case"color-converter":
-      attachColor();
-      break;
-
-    case"password":
-      attachPassword();
-      break;
-
-    case"image-compressor":
-    case"image-resizer":
-    case"image-cropper":
-    case"image-transform":
-    case"image-converter":
-    case"color-picker":
-    case"image-base64":
-      attachImage(tool);
-      break;
-
-    case"pdf-merger":
-    case"pdf-splitter":
-    case"pdf-rotator":
-    case"pdf-delete":
-    case"pdf-text":
-    case"pdf-metadata":
-    case"pdf-to-jpg":
-    case"jpg-to-pdf":
-      attachPDF(tool);
-      break;
-
-  }
-
-  attachGenericButtons();
-
-}
-
-
-/* =========================================================
-   GENERIC BUTTONS
-========================================================= */
-
-function attachGenericButtons(){
-
-  const copy=document.getElementById("copyResult");
-
-  if(copy){
-
-    copy.onclick=async()=>{
-
-      const output=document.getElementById("output");
-
-      try{
-
-        await navigator.clipboard.writeText(
-          output.innerText
-        );
-
-        output.classList.add("success");
-
-        const old=copy.textContent;
-        copy.textContent="Copied ✓";
-
-        setTimeout(()=>{
-          copy.textContent=old;
-        },1200);
-
-      }catch{
-
-        alert("Copy is not available in this browser.");
-
-      }
-
-    };
-
-  }
-
-
-  const reset=document.getElementById("resetTool");
-
-  if(reset){
-
-    reset.onclick=()=>{
-
-      const body=document.getElementById("modalBody");
-
-      const tool=tools.find(
-        t=>t.name===document.getElementById("modalTitle").textContent
-      );
-
-      if(tool){
-        body.innerHTML=buildToolUI(tool);
-        attachToolEvents(tool);
-      }
-
-    };
-
-  }
-
-}
-
-
-/* =========================================================
-   TEXT TOOLS
-========================================================= */
-
-function getText(){
-  return document.getElementById("mainText")?.value || "";
-}
-
-
-function attachWordCounter(){
-
-  const text=document.getElementById("mainText");
-
-  function update(){
-
-    const value=text.value.trim();
-
-    const words=value
-      ? value.split(/\s+/).length
-      : 0;
-
-    const chars=text.value.length;
-
-    const noSpaces=text.value
-      .replace(/\s/g,"").length;
-
-    const sentences=value
-      ? (value.match(/[.!?]+(?=\s|$)/g)||[]).length
-      : 0;
-
-    document.getElementById("words").textContent=words;
-    document.getElementById("chars").textContent=chars;
-    document.getElementById("charsNo").textContent=noSpaces;
-    document.getElementById("sentences").textContent=sentences;
-
-    const mins=words
-      ? Math.max(1,Math.ceil(words/200))
-      : 0;
-
-    document.getElementById("output").textContent=
-      `Estimated reading time: ${mins} minute${mins===1?"":"s"}`;
-
-  }
-
-  text.addEventListener("input",update);
-
-  document.getElementById("runTool").onclick=update;
-
-}
-
-
-function attachCase(){
-
-  document.querySelectorAll("[data-case]").forEach(button=>{
-
-    button.onclick=()=>{
-
-      const text=getText();
-
-      let result=text;
-
-      switch(button.dataset.case){
-
-        case"upper":
-          result=text.toUpperCase();
+        case "word-counter":
+          attachWordCounter();
           break;
 
-        case"lower":
-          result=text.toLowerCase();
+        case "case":
+          attachCase();
           break;
 
-        case"title":
-          result=text.toLowerCase()
-            .replace(/\b\w/g,c=>c.toUpperCase());
+        case "uppercase":
+          attachSimpleText("upper");
           break;
 
-        case"sentence":
-          result=text
-            .toLowerCase()
-            .replace(/(^\s*\w|[.!?]\s+\w)/g,
-              m=>m.toUpperCase()
-            );
+        case "lowercase":
+          attachSimpleText("lower");
+          break;
+
+        case "titlecase":
+          attachSimpleText("title");
+          break;
+
+        case "duplicate-lines":
+          attachSimpleText("duplicates");
+          break;
+
+        case "extra-spaces":
+          attachSimpleText("spaces");
+          break;
+
+        case "text-sorter":
+          attachSimpleText("sort");
+          break;
+
+        case "text-reverser":
+          attachSimpleText("reverse");
+          break;
+
+        case "slug":
+          attachSimpleText("slug");
+          break;
+
+        case "reading":
+          attachSimpleText("reading");
+          break;
+
+        case "lorem":
+          attachLorem();
+          break;
+
+        case "diff":
+          attachDiff();
+          break;
+
+        case "percentage":
+          attachPercentage();
+          break;
+
+        case "age":
+          attachAge();
+          break;
+
+        case "bmi":
+          attachBMI();
+          break;
+
+        case "discount":
+          attachDiscount();
+          break;
+
+        case "tip":
+          attachTip();
+          break;
+
+        case "loan":
+          attachLoan();
+          break;
+
+        case "compound":
+          attachCompound();
+          break;
+
+        case "simple-interest":
+          attachSimpleInterest();
+          break;
+
+        case "date-difference":
+          attachDateDifference();
+          break;
+
+        case "time":
+          attachTime();
+          break;
+
+        case "unit":
+          attachUnit();
+          break;
+
+        case "json":
+          attachJSON();
+          break;
+
+        case "base64":
+          attachBase64();
+          break;
+
+        case "url":
+          attachURL();
+          break;
+
+        case "uuid":
+          attachUUID();
+          break;
+
+        case "timestamp":
+          attachTimestamp();
+          break;
+
+        case "color-converter":
+          attachColor();
+          break;
+
+        case "password":
+          attachPassword();
+          break;
+
+        case "image-compressor":
+        case "image-resizer":
+        case "image-cropper":
+        case "image-transform":
+        case "image-converter":
+        case "color-picker":
+        case "image-base64":
+          attachImage(tool);
+          break;
+
+        case "pdf-merger":
+        case "pdf-splitter":
+        case "pdf-rotator":
+        case "pdf-delete":
+        case "pdf-text":
+        case "pdf-metadata":
+        case "pdf-to-jpg":
+        case "jpg-to-pdf":
+          attachPDF(tool);
           break;
 
       }
 
-      document.getElementById("output").textContent=result;
-
-    };
-
-  });
-
-}
-
-
-function attachSimpleText(type){
-
-  const button=document.getElementById("runTool");
-
-  button.onclick=()=>{
-
-    const text=getText();
-
-    let result="";
-
-    switch(type){
-
-      case"upper":
-        result=text.toUpperCase();
-        break;
-
-      case"lower":
-        result=text.toLowerCase();
-        break;
-
-      case"title":
-        result=text.toLowerCase()
-          .replace(/\b\w/g,c=>c.toUpperCase());
-        break;
-
-      case"duplicates":
-        result=[
-          ...new Set(text.split(/\r?\n/))
-        ].join("\n");
-        break;
-
-      case"spaces":
-        result=text.replace(/[ \t]+/g," ").trim();
-        break;
-
-      case"sort":
-        result=text
-          .split(/\r?\n/)
-          .sort((a,b)=>a.localeCompare(b))
-          .join("\n");
-        break;
-
-      case"reverse":
-        result=[...text].reverse().join("");
-        break;
-
-      case"slug":
-        result=text
-          .toLowerCase()
-          .trim()
-          .replace(/[^\w\s-]/g,"")
-          .replace(/[\s_-]+/g,"-")
-          .replace(/^-+|-+$/g,"");
-        break;
-
-      case"reading":
-
-        const words=text.trim()
-          ? text.trim().split(/\s+/).length
-          : 0;
-
-        result=
-          `Words: ${words}\n`+
-          `Estimated reading time: ${Math.max(1,Math.ceil(words/200))} minute(s)`;
-
-        break;
+      attachGenericButtons();
 
     }
 
-    document.getElementById("output").textContent=result;
 
-  };
+    /* =========================================================
+       GENERIC BUTTONS
+    ========================================================= */
 
-}
+    function attachGenericButtons() {
+
+      const copy = document.getElementById("copyResult");
+
+      if (copy) {
+
+        copy.onclick = async () => {
+
+          const output = document.getElementById("output");
+
+          try {
+
+            await navigator.clipboard.writeText(
+              output.innerText
+            );
+
+            output.classList.add("success");
+
+            const old = copy.textContent;
+            copy.textContent = "Copied ✓";
+
+            setTimeout(() => {
+              copy.textContent = old;
+            }, 1200);
+
+          } catch {
+
+            alert("Copy is not available in this browser.");
+
+          }
+
+        };
+
+      }
 
 
-function attachLorem(){
+      const reset = document.getElementById("resetTool");
 
-  document.getElementById("runTool").onclick=()=>{
+      if (reset) {
 
-    const amount=
-      Math.min(
-        30,
-        Math.max(
-          1,
-          Number(document.getElementById("amount").value)||3
-        )
-      );
+        reset.onclick = () => {
 
-    const words=`
+          const body = document.getElementById("modalBody");
+
+          const tool = tools.find(
+            t => t.name === document.getElementById("modalTitle").textContent
+          );
+
+          if (tool) {
+            body.innerHTML = buildToolUI(tool);
+            attachToolEvents(tool);
+          }
+
+        };
+
+      }
+
+    }
+
+
+    /* =========================================================
+       TEXT TOOLS
+    ========================================================= */
+
+    function getText() {
+      return document.getElementById("mainText")?.value || "";
+    }
+
+
+    function attachWordCounter() {
+
+      const text = document.getElementById("mainText");
+
+      function update() {
+
+        const value = text.value.trim();
+
+        const words = value
+          ? value.split(/\s+/).length
+          : 0;
+
+        const chars = text.value.length;
+
+        const noSpaces = text.value
+          .replace(/\s/g, "").length;
+
+        const sentences = value
+          ? (value.match(/[.!?]+(?=\s|$)/g) || []).length
+          : 0;
+
+        document.getElementById("words").textContent = words;
+        document.getElementById("chars").textContent = chars;
+        document.getElementById("charsNo").textContent = noSpaces;
+        document.getElementById("sentences").textContent = sentences;
+
+        const mins = words
+          ? Math.max(1, Math.ceil(words / 200))
+          : 0;
+
+        document.getElementById("output").textContent =
+          `Estimated reading time: ${mins} minute${mins === 1 ? "" : "s"}`;
+
+      }
+
+      text.addEventListener("input", update);
+
+      document.getElementById("runTool").onclick = update;
+
+    }
+
+
+    function attachCase() {
+
+      document.querySelectorAll("[data-case]").forEach(button => {
+
+        button.onclick = () => {
+
+          const text = getText();
+
+          let result = text;
+
+          switch (button.dataset.case) {
+
+            case "upper":
+              result = text.toUpperCase();
+              break;
+
+            case "lower":
+              result = text.toLowerCase();
+              break;
+
+            case "title":
+              result = text.toLowerCase()
+                .replace(/\b\w/g, c => c.toUpperCase());
+              break;
+
+            case "sentence":
+              result = text
+                .toLowerCase()
+                .replace(/(^\s*\w|[.!?]\s+\w)/g,
+                  m => m.toUpperCase()
+                );
+              break;
+
+          }
+
+          document.getElementById("output").textContent = result;
+
+        };
+
+      });
+
+    }
+
+
+    function attachSimpleText(type) {
+
+      const button = document.getElementById("runTool");
+
+      button.onclick = () => {
+
+        const text = getText();
+
+        let result = "";
+
+        switch (type) {
+
+          case "upper":
+            result = text.toUpperCase();
+            break;
+
+          case "lower":
+            result = text.toLowerCase();
+            break;
+
+          case "title":
+            result = text.toLowerCase()
+              .replace(/\b\w/g, c => c.toUpperCase());
+            break;
+
+          case "duplicates":
+            result = [
+              ...new Set(text.split(/\r?\n/))
+            ].join("\n");
+            break;
+
+          case "spaces":
+            result = text.replace(/[ \t]+/g, " ").trim();
+            break;
+
+          case "sort":
+            result = text
+              .split(/\r?\n/)
+              .sort((a, b) => a.localeCompare(b))
+              .join("\n");
+            break;
+
+          case "reverse":
+            result = [...text].reverse().join("");
+            break;
+
+          case "slug":
+            result = text
+              .toLowerCase()
+              .trim()
+              .replace(/[^\w\s-]/g, "")
+              .replace(/[\s_-]+/g, "-")
+              .replace(/^-+|-+$/g, "");
+            break;
+
+          case "reading":
+
+            const words = text.trim()
+              ? text.trim().split(/\s+/).length
+              : 0;
+
+            result =
+              `Words: ${words}\n` +
+              `Estimated reading time: ${Math.max(1, Math.ceil(words / 200))} minute(s)`;
+
+            break;
+
+        }
+
+        document.getElementById("output").textContent = result;
+
+      };
+
+    }
+
+
+    function attachLorem() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const amount =
+          Math.min(
+            30,
+            Math.max(
+              1,
+              Number(document.getElementById("amount").value) || 3
+            )
+          );
+
+        const words = `
       lorem ipsum dolor sit amet consectetur adipiscing elit
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
       enim ad minim veniam quis nostrud exercitation ullamco laboris
@@ -2874,1419 +2963,1418 @@ function attachLorem(){
       sunt in culpa qui officia deserunt mollit anim id est laborum
     `.trim().split(/\s+/);
 
-    let paragraphs=[];
+        let paragraphs = [];
 
-    for(let p=0;p<amount;p++){
+        for (let p = 0; p < amount; p++) {
 
-      let sentence=[];
+          let sentence = [];
 
-      for(let i=0;i<45;i++){
-        sentence.push(
-          words[Math.floor(Math.random()*words.length)]
-        );
-      }
-
-      paragraphs.push(
-        sentence.join(" ")
-          .replace(/^./,c=>c.toUpperCase())+"."
-      );
-
-    }
-
-    document.getElementById("output")
-      .textContent=paragraphs.join("\n\n");
-
-  };
-
-}
-
-
-function attachDiff(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const a=document.getElementById("textA").value;
-    const b=document.getElementById("textB").value;
-
-    const al=a.split(/\s+/);
-    const bl=b.split(/\s+/);
-
-    const max=Math.max(al.length,bl.length);
-
-    let out=[];
-
-    for(let i=0;i<max;i++){
-
-      if(al[i]===bl[i]){
-        out.push(al[i]||"");
-      }else{
-
-        out.push(
-          `[${al[i]||"∅"} → ${bl[i]||"∅"}]`
-        );
-
-      }
-
-    }
-
-    document.getElementById("output").textContent=
-      out.join(" ");
-
-  };
-
-}
-
-
-/* =========================================================
-   CALCULATORS
-========================================================= */
-
-function num(id){
-  return Number(document.getElementById(id)?.value);
-}
-
-
-function attachPercentage(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const a=num("a");
-    const b=num("b");
-
-    if(!Number.isFinite(a)||!Number.isFinite(b)){
-      showError("Enter both numbers.");
-      return;
-    }
-
-    showResult(`${a}% of ${b} = ${(a/100*b).toFixed(4)}`);
-
-  };
-
-}
-
-
-function attachAge(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const input=document.getElementById("date").value;
-
-    if(!input){
-      showError("Choose your date of birth.");
-      return;
-    }
-
-    const dob=new Date(input+"T00:00:00");
-    const now=new Date();
-
-    let age=now.getFullYear()-dob.getFullYear();
-
-    const month=now.getMonth()-dob.getMonth();
-
-    if(
-      month<0 ||
-      (month===0 && now.getDate()<dob.getDate())
-    ){
-      age--;
-    }
-
-    showResult(`Your age is approximately ${age} years.`);
-
-  };
-
-}
-
-
-function attachBMI(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const weight=num("weight");
-    const height=num("height");
-
-    if(weight<=0||height<=0){
-      showError("Enter valid height and weight.");
-      return;
-    }
-
-    const bmi=
-      weight/Math.pow(height/100,2);
-
-    let category=
-      bmi<18.5?"Underweight":
-      bmi<25?"Normal range":
-      bmi<30?"Overweight":
-      "Obesity";
-
-    showResult(
-      `BMI: ${bmi.toFixed(1)}\nCategory: ${category}`
-    );
-
-  };
-
-}
-
-
-function attachDiscount(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const price=num("price");
-    const discount=num("discount");
-
-    if(price<0||discount<0){
-      showError("Enter valid values.");
-      return;
-    }
-
-    const saved=price*discount/100;
-    const final=price-saved;
-
-    showResult(
-      `You save: ${saved.toFixed(2)}\n`+
-      `Final price: ${final.toFixed(2)}`
-    );
-
-  };
-
-}
-
-
-function attachTip(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const bill=num("bill");
-    const tip=num("tip");
-    const people=Math.max(1,num("people")||1);
-
-    if(bill<0||tip<0){
-      showError("Enter valid values.");
-      return;
-    }
-
-    const tipAmount=bill*tip/100;
-    const total=bill+tipAmount;
-
-    showResult(
-      `Tip: ${tipAmount.toFixed(2)}\n`+
-      `Total: ${total.toFixed(2)}\n`+
-      `Per person: ${(total/people).toFixed(2)}`
-    );
-
-  };
-
-}
-
-
-function attachLoan(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const P=num("principal");
-    const annual=num("rate");
-    const years=num("years");
-
-    if(P<=0||annual<0||years<=0){
-      showError("Enter valid loan details.");
-      return;
-    }
-
-    const r=annual/100/12;
-    const n=years*12;
-
-    let payment;
-
-    if(r===0){
-      payment=P/n;
-    }else{
-      payment=
-        P*r*Math.pow(1+r,n)/
-        (Math.pow(1+r,n)-1);
-    }
-
-    showResult(
-      `Estimated monthly payment: ${payment.toFixed(2)}\n`+
-      `Total payments: ${(payment*n).toFixed(2)}`
-    );
-
-  };
-
-}
-
-
-function attachCompound(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const P=num("principal");
-    const r=num("rate")/100;
-    const t=num("years");
-    const n=num("frequency");
-
-    if(P<=0||t<=0||n<=0){
-      showError("Enter valid values.");
-      return;
-    }
-
-    const amount=P*Math.pow(1+r/n,n*t);
-    const interest=amount-P;
-
-    showResult(
-      `Final amount: ${amount.toFixed(2)}\n`+
-      `Interest earned: ${interest.toFixed(2)}`
-    );
-
-  };
-
-}
-
-
-function attachSimpleInterest(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const P=num("principal");
-    const r=num("rate")/100;
-    const t=num("years");
-
-    if(P<=0||t<=0){
-      showError("Enter valid values.");
-      return;
-    }
-
-    const interest=P*r*t;
-
-    showResult(
-      `Interest: ${interest.toFixed(2)}\n`+
-      `Total: ${(P+interest).toFixed(2)}`
-    );
-
-  };
-
-}
-
-
-function attachDateDifference(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const a=new Date(
-      document.getElementById("dateA").value+"T00:00:00"
-    );
-
-    const b=new Date(
-      document.getElementById("dateB").value+"T00:00:00"
-    );
-
-    if(isNaN(a)||isNaN(b)){
-      showError("Choose both dates.");
-      return;
-    }
-
-    const days=Math.abs(
-      Math.round((b-a)/86400000)
-    );
-
-    showResult(
-      `${days} day${days===1?"":"s"} difference.`
-    );
-
-  };
-
-}
-
-
-function attachTime(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const h=num("hours")||0;
-    const m=num("minutes")||0;
-
-    const total=h*60+m;
-
-    showResult(
-      `${Math.floor(total/60)} hours ${total%60} minutes\n`+
-      `Total minutes: ${total}`
-    );
-
-  };
-
-}
-
-
-function attachUnit(){
-
-  const factors={
-    m:1,
-    km:1000,
-    cm:.01,
-    mi:1609.344,
-    ft:.3048,
-    in:.0254
-  };
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const value=num("value");
-
-    const from=document.getElementById("from").value;
-    const to=document.getElementById("to").value;
-
-    if(!Number.isFinite(value)){
-      showError("Enter a value.");
-      return;
-    }
-
-    const result=
-      value*factors[from]/factors[to];
-
-    showResult(
-      `${value} ${from} = ${result.toLocaleString(undefined,{
-        maximumFractionDigits:8
-      })} ${to}`
-    );
-
-  };
-
-}
-
-
-/* =========================================================
-   DEVELOPER
-========================================================= */
-
-function attachJSON(){
-
-  const input=document.getElementById("mainText");
-
-  document.getElementById("formatJSON").onclick=()=>{
-
-    try{
-
-      const parsed=JSON.parse(input.value);
-
-      showResult(
-        JSON.stringify(parsed,null,2)
-      );
-
-    }catch(e){
-      showError("Invalid JSON: "+e.message);
-    }
-
-  };
-
-
-  document.getElementById("minifyJSON").onclick=()=>{
-
-    try{
-
-      const parsed=JSON.parse(input.value);
-
-      showResult(
-        JSON.stringify(parsed)
-      );
-
-    }catch(e){
-      showError("Invalid JSON: "+e.message);
-    }
-
-  };
-
-
-  document.getElementById("validateJSON").onclick=()=>{
-
-    try{
-
-      JSON.parse(input.value);
-
-      showResult("✓ Valid JSON");
-
-    }catch(e){
-
-      showError("✕ Invalid JSON\n"+e.message);
-
-    }
-
-  };
-
-}
-
-
-function attachBase64(){
-
-  document.getElementById("encode").onclick=()=>{
-
-    const text=getText();
-
-    try{
-
-      showResult(
-        btoa(
-          unescape(
-            encodeURIComponent(text)
-          )
-        )
-      );
-
-    }catch{
-      showError("Could not encode this text.");
-    }
-
-  };
-
-
-  document.getElementById("decode").onclick=()=>{
-
-    try{
-
-      showResult(
-        decodeURIComponent(
-          escape(atob(getText()))
-        )
-      );
-
-    }catch{
-      showError("Invalid Base64.");
-    }
-
-  };
-
-}
-
-
-function attachURL(){
-
-  document.getElementById("encode").onclick=()=>{
-
-    showResult(
-      encodeURIComponent(getText())
-    );
-
-  };
-
-  document.getElementById("decode").onclick=()=>{
-
-    try{
-
-      showResult(
-        decodeURIComponent(getText())
-      );
-
-    }catch{
-      showError("Invalid encoded URL.");
-    }
-
-  };
-
-}
-
-
-function attachUUID(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const amount=
-      Math.min(
-        100,
-        Math.max(
-          1,
-          Number(document.getElementById("amount").value)||1
-        )
-      );
-
-    const list=[];
-
-    for(let i=0;i<amount;i++){
-      list.push(crypto.randomUUID());
-    }
-
-    showResult(list.join("\n"));
-
-  };
-
-}
-
-
-function attachTimestamp(){
-
-  document.getElementById("now").onclick=()=>{
-
-    document.getElementById("timestamp").value=
-      Math.floor(Date.now()/1000);
-
-  };
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const value=num("timestamp");
-
-    if(!Number.isFinite(value)){
-      showError("Enter a Unix timestamp.");
-      return;
-    }
-
-    const date=new Date(value*1000);
-
-    showResult(
-      date.toLocaleString(undefined,{
-        dateStyle:"full",
-        timeStyle:"long"
-      })
-    );
-
-  };
-
-}
-
-
-function attachColor(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    let hex=
-      document.getElementById("hex").value.trim();
-
-    if(!/^#?[0-9a-fA-F]{6}$/.test(hex)){
-      showError("Enter a valid 6-digit HEX color.");
-      return;
-    }
-
-    hex=hex.replace("#","");
-
-    const r=parseInt(hex.slice(0,2),16);
-    const g=parseInt(hex.slice(2,4),16);
-    const b=parseInt(hex.slice(4,6),16);
-
-    const max=Math.max(r,g,b)/255;
-    const min=Math.min(r,g,b)/255;
-
-    const l=(max+min)/2;
-
-    let h=0;
-    let s=0;
-
-    if(max!==min){
-
-      const d=max-min;
-
-      s=l>.5
-        ?d/(2-max-min)
-        :d/(max+min);
-
-      switch(max){
-
-        case r/255:
-          h=(g-b)/255/d+
-            (g<b?6:0);
-          break;
-
-        case g/255:
-          h=(b-r)/255/d+2;
-          break;
-
-        case b/255:
-          h=(r-g)/255/d+4;
-          break;
-
-      }
-
-      h/=6;
-
-    }
-
-    showResult(
-      `HEX: #${hex.toUpperCase()}\n`+
-      `RGB: rgb(${r}, ${g}, ${b})\n`+
-      `HSL: hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`
-    );
-
-  };
-
-}
-
-
-function attachPassword(){
-
-  document.getElementById("runTool").onclick=()=>{
-
-    const length=
-      Math.min(
-        128,
-        Math.max(
-          6,
-          Number(document.getElementById("length").value)||18
-        )
-      );
-
-    const chars=
-      "ABCDEFGHJKLMNPQRSTUVWXYZ"+
-      "abcdefghijkmnopqrstuvwxyz"+
-      "23456789!@#$%^&*_-+=";
-
-    let password="";
-
-    const bytes=new Uint32Array(length);
-
-    crypto.getRandomValues(bytes);
-
-    for(let i=0;i<length;i++){
-      password+=chars[bytes[i]%chars.length];
-    }
-
-    showResult(password);
-
-  };
-
-}
-
-
-/* =========================================================
-   IMAGE TOOLS
-========================================================= */
-
-let currentImage=null;
-let currentImageFile=null;
-let currentCanvasData=null;
-
-function attachImage(tool){
-
-  const drop=document.getElementById("dropzone");
-  const input=document.getElementById("file");
-  const info=document.getElementById("fileInfo");
-  const preview=document.getElementById("preview");
-  const canvas=document.getElementById("canvas");
-
-  drop.onclick=()=>input.click();
-
-  drop.ondragover=e=>{
-    e.preventDefault();
-    drop.classList.add("drag");
-  };
-
-  drop.ondragleave=()=>{
-    drop.classList.remove("drag");
-  };
-
-  drop.ondrop=e=>{
-
-    e.preventDefault();
-
-    drop.classList.remove("drag");
-
-    if(e.dataTransfer.files[0]){
-      loadImage(e.dataTransfer.files[0]);
-    }
-
-  };
-
-  input.onchange=()=>{
-    if(input.files[0]){
-      loadImage(input.files[0]);
-    }
-  };
-
-
-  function loadImage(file){
-
-    if(!file.type.startsWith("image/")){
-      showError("Please choose an image.");
-      return;
-    }
-
-    currentImageFile=file;
-
-    const url=URL.createObjectURL(file);
-
-    const img=new Image();
-
-    img.onload=()=>{
-
-      currentImage=img;
-
-      preview.src=url;
-      preview.hidden=false;
-
-      info.textContent=
-        `${file.name} • ${img.width} × ${img.height} • ${formatBytes(file.size)}`;
-
-      if(
-        tool.type==="image-resizer" &&
-        document.getElementById("imgWidth")
-      ){
-
-        document.getElementById("imgWidth").value=img.width;
-        document.getElementById("imgHeight").value=img.height;
-
-      }
-
-    };
-
-    img.src=url;
-
-  }
-
-
-  document.getElementById("runTool").onclick=()=>{
-
-    if(!currentImage){
-
-      showError("Choose an image first.");
-      return;
-
-    }
-
-    if(tool.type==="color-picker"){
-
-      const ctx=canvas.getContext("2d");
-
-      canvas.width=currentImage.width;
-      canvas.height=currentImage.height;
-
-      ctx.drawImage(currentImage,0,0);
-
-      const x=Math.floor(currentImage.width/2);
-      const y=Math.floor(currentImage.height/2);
-
-      const pixel=ctx.getImageData(x,y,1,1).data;
-
-      const hex=
-        "#"+
-        [pixel[0],pixel[1],pixel[2]]
-          .map(v=>v.toString(16).padStart(2,"0"))
-          .join("");
-
-      showResult(
-        `Center pixel color: ${hex.toUpperCase()}\n`+
-        `RGB: rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`
-      );
-
-      return;
-
-    }
-
-
-    processImage();
-
-  };
-
-
-  document
-    .querySelectorAll("[data-transform]")
-    .forEach(btn=>{
-
-      btn.onclick=()=>processImage(btn.dataset.transform);
-
-    });
-
-
-  function processImage(transform){
-
-    let width=currentImage.width;
-    let height=currentImage.height;
-
-    const ctx=canvas.getContext("2d");
-
-    if(
-      transform==="rotate90" ||
-      transform==="rotate270"
-    ){
-      [width,height]=[height,width];
-    }
-
-    canvas.width=width;
-    canvas.height=height;
-
-    ctx.clearRect(0,0,width,height);
-
-    ctx.save();
-
-    if(transform==="rotate90"){
-
-      ctx.translate(width,0);
-      ctx.rotate(Math.PI/2);
-
-    }
-
-    else if(transform==="rotate180"){
-
-      ctx.translate(width,height);
-      ctx.rotate(Math.PI);
-
-    }
-
-    else if(transform==="flipH"){
-
-      ctx.translate(width,0);
-      ctx.scale(-1,1);
-
-    }
-
-    else if(transform==="flipV"){
-
-      ctx.translate(0,height);
-      ctx.scale(1,-1);
-
-    }
-
-    let drawWidth=currentImage.width;
-    let drawHeight=currentImage.height;
-
-    if(tool.type==="image-resizer"){
-
-      drawWidth=
-        Number(document.getElementById("imgWidth").value) ||
-        currentImage.width;
-
-      drawHeight=
-        Number(document.getElementById("imgHeight").value) ||
-        currentImage.height;
-
-      canvas.width=drawWidth;
-      canvas.height=drawHeight;
-
-    }
-
-    ctx.drawImage(
-      currentImage,
-      0,
-      0,
-      drawWidth,
-      drawHeight
-    );
-
-    ctx.restore();
-
-    currentCanvasData=canvas.toDataURL(
-      document.getElementById("format")?.value ||
-      "image/jpeg",
-      tool.type==="image-compressor"?.72:.92
-    );
-
-    preview.src=currentCanvasData;
-
-    showResult(
-      `Processed successfully.\n`+
-      `Output size: ${formatBytes(
-        Math.round(
-          currentCanvasData.length*0.75
-        )
-      )}`
-    );
-
-  }
-
-
-  const download=
-    document.getElementById("downloadResult");
-
-  if(download){
-
-    download.onclick=()=>{
-
-      if(!currentCanvasData){
-
-        if(currentImage){
-          processImage();
-        }else{
-          showError("Process an image first.");
-          return;
-        }
-
-      }
-
-      downloadData(
-        currentCanvasData,
-        "getkit-image."+
-        (
-          document.getElementById("format")?.value==="image/png"
-          ?"png":
-          document.getElementById("format")?.value==="image/webp"
-          ?"webp":"jpg"
-        )
-      );
-
-    };
-
-  }
-
-}
-
-
-/* =========================================================
-   PDF TOOLS
-========================================================= */
-
-let pdfFiles=[];
-
-function attachPDF(tool){
-
-  const drop=document.getElementById("pdfDrop");
-  const input=document.getElementById("pdfFiles");
-  const info=document.getElementById("pdfInfo");
-
-  drop.onclick=()=>input.click();
-
-  drop.ondragover=e=>{
-    e.preventDefault();
-    drop.classList.add("drag");
-  };
-
-  drop.ondragleave=()=>{
-    drop.classList.remove("drag");
-  };
-
-  drop.ondrop=e=>{
-
-    e.preventDefault();
-    drop.classList.remove("drag");
-
-    const files=
-      [...e.dataTransfer.files]
-      .filter(f=>f.type==="application/pdf");
-
-    setPDFs(files);
-
-  };
-
-  input.onchange=()=>{
-    setPDFs([...input.files]);
-  };
-
-
-  function setPDFs(files){
-
-    pdfFiles=files;
-
-    info.textContent=
-      files.length
-      ? files.map(f=>
-          `${f.name} (${formatBytes(f.size)})`
-        ).join(" • ")
-      : "No PDF selected.";
-
-  }
-
-
-  document.getElementById("runTool").onclick=
-    async()=>{
-
-      if(!pdfFiles.length){
-
-        showError("Choose a PDF first.");
-        return;
-
-      }
-
-      try{
-
-        if(tool.type==="pdf-merger"){
-
-          if(pdfFiles.length<2){
-            showError("Choose at least two PDFs.");
-            return;
+          for (let i = 0; i < 45; i++) {
+            sentence.push(
+              words[Math.floor(Math.random() * words.length)]
+            );
           }
 
-          const merged=
-            await PDFLib.PDFDocument.create();
-
-          for(const file of pdfFiles){
-
-            const bytes=
-              await file.arrayBuffer();
-
-            const pdf=
-              await PDFLib.PDFDocument.load(bytes);
-
-            const pages=
-              await merged.copyPages(
-                pdf,
-                pdf.getPageIndices()
-              );
-
-            pages.forEach(p=>merged.addPage(p));
-
-          }
-
-          const bytes=
-            await merged.save();
-
-          currentPDFBytes=bytes;
-
-          showResult(
-            `Merged ${pdfFiles.length} PDFs successfully.\n`+
-            `${merged.getPageCount()} pages total.`
+          paragraphs.push(
+            sentence.join(" ")
+              .replace(/^./, c => c.toUpperCase()) + "."
           );
 
+        }
+
+        document.getElementById("output")
+          .textContent = paragraphs.join("\n\n");
+
+      };
+
+    }
+
+
+    function attachDiff() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const a = document.getElementById("textA").value;
+        const b = document.getElementById("textB").value;
+
+        const al = a.split(/\s+/);
+        const bl = b.split(/\s+/);
+
+        const max = Math.max(al.length, bl.length);
+
+        let out = [];
+
+        for (let i = 0; i < max; i++) {
+
+          if (al[i] === bl[i]) {
+            out.push(al[i] || "");
+          } else {
+
+            out.push(
+              `[${al[i] || "∅"} → ${bl[i] || "∅"}]`
+            );
+
+          }
+
+        }
+
+        document.getElementById("output").textContent =
+          out.join(" ");
+
+      };
+
+    }
+
+
+    /* =========================================================
+       CALCULATORS
+    ========================================================= */
+
+    function num(id) {
+      return Number(document.getElementById(id)?.value);
+    }
+
+
+    function attachPercentage() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const a = num("a");
+        const b = num("b");
+
+        if (!Number.isFinite(a) || !Number.isFinite(b)) {
+          showError("Enter both numbers.");
           return;
-
         }
 
+        showResult(`${a}% of ${b} = ${(a / 100 * b).toFixed(4)}`);
 
-        if(
-          tool.type==="pdf-splitter" ||
-          tool.type==="pdf-delete" ||
-          tool.type==="pdf-rotator"
-        ){
+      };
 
-          const bytes=
-            await pdfFiles[0].arrayBuffer();
-
-          const pdf=
-            await PDFLib.PDFDocument.load(bytes);
-
-          const pageCount=pdf.getPageCount();
-
-          const requested=
-            parsePages(
-              document.getElementById("pages").value,
-              pageCount
-            );
-
-          if(!requested.length){
-
-            showError(
-              `Enter page numbers between 1 and ${pageCount}.`
-            );
-
-            return;
-
-          }
+    }
 
 
-          if(tool.type==="pdf-delete"){
+    function attachAge() {
 
-            const keep=
-              Array.from(
-                {length:pageCount},
-                (_,i)=>i
-              ).filter(i=>!requested.includes(i+1));
+      document.getElementById("runTool").onclick = () => {
 
-            const output=
-              await PDFLib.PDFDocument.create();
+        const input = document.getElementById("date").value;
 
-            const pages=
-              await output.copyPages(pdf,keep);
-
-            pages.forEach(p=>output.addPage(p));
-
-            currentPDFBytes=
-              await output.save();
-
-            showResult(
-              `Removed ${requested.length} page(s).`
-            );
-
-            return;
-
-          }
-
-
-          if(tool.type==="pdf-splitter"){
-
-            const output=
-              await PDFLib.PDFDocument.create();
-
-            const pages=
-              await output.copyPages(
-                pdf,
-                requested.map(p=>p-1)
-              );
-
-            pages.forEach(p=>output.addPage(p));
-
-            currentPDFBytes=
-              await output.save();
-
-            showResult(
-              `Extracted ${requested.length} page(s).`
-            );
-
-            return;
-
-          }
-
-
-          if(tool.type==="pdf-rotator"){
-
-            requested.forEach(pageNumber=>{
-
-              const page=
-                pdf.getPage(pageNumber-1);
-
-              page.setRotation(
-                PDFLib.degrees(
-                  page.getRotation().angle+90
-                )
-              );
-
-            });
-
-            currentPDFBytes=
-              await pdf.save();
-
-            showResult(
-              `Rotated ${requested.length} page(s).`
-            );
-
-            return;
-
-          }
-
-        }
-
-
-        if(tool.type==="pdf-metadata"){
-
-          const bytes=
-            await pdfFiles[0].arrayBuffer();
-
-          const pdf=
-            await PDFLib.PDFDocument.load(bytes);
-
-          showResult(
-            `Pages: ${pdf.getPageCount()}\n`+
-            `Title: ${pdf.getTitle()||"Not set"}\n`+
-            `Author: ${pdf.getAuthor()||"Not set"}\n`+
-            `Subject: ${pdf.getSubject()||"Not set"}\n`+
-            `Creator: ${pdf.getCreator()||"Not set"}\n`+
-            `Producer: ${pdf.getProducer()||"Not set"}`
-          );
-
+        if (!input) {
+          showError("Choose your date of birth.");
           return;
-
         }
 
+        const dob = new Date(input + "T00:00:00");
+        const now = new Date();
 
-        if(
-          tool.type==="jpg-to-pdf"
-        ){
+        let age = now.getFullYear() - dob.getFullYear();
 
-          const output=
-            await PDFLib.PDFDocument.create();
+        const month = now.getMonth() - dob.getMonth();
 
-          for(const file of pdfFiles){
+        if (
+          month < 0 ||
+          (month === 0 && now.getDate() < dob.getDate())
+        ) {
+          age--;
+        }
 
-            const bytes=
-              await file.arrayBuffer();
+        showResult(`Your age is approximately ${age} years.`);
 
-            let image;
+      };
 
-            if(file.type==="image/jpeg"){
-              image=await output.embedJpg(bytes);
-            }else{
-              image=await output.embedPng(bytes);
-            }
+    }
 
-            const page=
-              output.addPage([
-                image.width,
-                image.height
-              ]);
 
-            page.drawImage(image,{
-              x:0,
-              y:0,
-              width:image.width,
-              height:image.height
-            });
+    function attachBMI() {
 
-          }
+      document.getElementById("runTool").onclick = () => {
 
-          currentPDFBytes=
-            await output.save();
+        const weight = num("weight");
+        const height = num("height");
 
-          showResult(
-            `Created PDF from ${pdfFiles.length} image(s).`
-          );
-
+        if (weight <= 0 || height <= 0) {
+          showError("Enter valid height and weight.");
           return;
-
         }
 
+        const bmi =
+          weight / Math.pow(height / 100, 2);
+
+        let category =
+          bmi < 18.5 ? "Underweight" :
+            bmi < 25 ? "Normal range" :
+              bmi < 30 ? "Overweight" :
+                "Obesity";
 
         showResult(
-          "PDF loaded successfully. This operation is ready for the next processing step."
+          `BMI: ${bmi.toFixed(1)}\nCategory: ${category}`
         );
 
-      }catch(error){
+      };
 
-        console.error(error);
+    }
 
-        showError(
-          "Could not process this PDF. Make sure it is a valid, readable PDF."
+
+    function attachDiscount() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const price = num("price");
+        const discount = num("discount");
+
+        if (price < 0 || discount < 0) {
+          showError("Enter valid values.");
+          return;
+        }
+
+        const saved = price * discount / 100;
+        const final = price - saved;
+
+        showResult(
+          `You save: ${saved.toFixed(2)}\n` +
+          `Final price: ${final.toFixed(2)}`
+        );
+
+      };
+
+    }
+
+
+    function attachTip() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const bill = num("bill");
+        const tip = num("tip");
+        const people = Math.max(1, num("people") || 1);
+
+        if (bill < 0 || tip < 0) {
+          showError("Enter valid values.");
+          return;
+        }
+
+        const tipAmount = bill * tip / 100;
+        const total = bill + tipAmount;
+
+        showResult(
+          `Tip: ${tipAmount.toFixed(2)}\n` +
+          `Total: ${total.toFixed(2)}\n` +
+          `Per person: ${(total / people).toFixed(2)}`
+        );
+
+      };
+
+    }
+
+
+    function attachLoan() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const P = num("principal");
+        const annual = num("rate");
+        const years = num("years");
+
+        if (P <= 0 || annual < 0 || years <= 0) {
+          showError("Enter valid loan details.");
+          return;
+        }
+
+        const r = annual / 100 / 12;
+        const n = years * 12;
+
+        let payment;
+
+        if (r === 0) {
+          payment = P / n;
+        } else {
+          payment =
+            P * r * Math.pow(1 + r, n) /
+            (Math.pow(1 + r, n) - 1);
+        }
+
+        showResult(
+          `Estimated monthly payment: ${payment.toFixed(2)}\n` +
+          `Total payments: ${(payment * n).toFixed(2)}`
+        );
+
+      };
+
+    }
+
+
+    function attachCompound() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const P = num("principal");
+        const r = num("rate") / 100;
+        const t = num("years");
+        const n = num("frequency");
+
+        if (P <= 0 || t <= 0 || n <= 0) {
+          showError("Enter valid values.");
+          return;
+        }
+
+        const amount = P * Math.pow(1 + r / n, n * t);
+        const interest = amount - P;
+
+        showResult(
+          `Final amount: ${amount.toFixed(2)}\n` +
+          `Interest earned: ${interest.toFixed(2)}`
+        );
+
+      };
+
+    }
+
+
+    function attachSimpleInterest() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const P = num("principal");
+        const r = num("rate") / 100;
+        const t = num("years");
+
+        if (P <= 0 || t <= 0) {
+          showError("Enter valid values.");
+          return;
+        }
+
+        const interest = P * r * t;
+
+        showResult(
+          `Interest: ${interest.toFixed(2)}\n` +
+          `Total: ${(P + interest).toFixed(2)}`
+        );
+
+      };
+
+    }
+
+
+    function attachDateDifference() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const a = new Date(
+          document.getElementById("dateA").value + "T00:00:00"
+        );
+
+        const b = new Date(
+          document.getElementById("dateB").value + "T00:00:00"
+        );
+
+        if (isNaN(a) || isNaN(b)) {
+          showError("Choose both dates.");
+          return;
+        }
+
+        const days = Math.abs(
+          Math.round((b - a) / 86400000)
+        );
+
+        showResult(
+          `${days} day${days === 1 ? "" : "s"} difference.`
+        );
+
+      };
+
+    }
+
+
+    function attachTime() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const h = num("hours") || 0;
+        const m = num("minutes") || 0;
+
+        const total = h * 60 + m;
+
+        showResult(
+          `${Math.floor(total / 60)} hours ${total % 60} minutes\n` +
+          `Total minutes: ${total}`
+        );
+
+      };
+
+    }
+
+
+    function attachUnit() {
+
+      const factors = {
+        m: 1,
+        km: 1000,
+        cm: .01,
+        mi: 1609.344,
+        ft: .3048,
+        in: .0254
+      };
+
+      document.getElementById("runTool").onclick = () => {
+
+        const value = num("value");
+
+        const from = document.getElementById("from").value;
+        const to = document.getElementById("to").value;
+
+        if (!Number.isFinite(value)) {
+          showError("Enter a value.");
+          return;
+        }
+
+        const result =
+          value * factors[from] / factors[to];
+
+        showResult(
+          `${value} ${from} = ${result.toLocaleString(undefined, {
+            maximumFractionDigits: 8
+          })} ${to}`
+        );
+
+      };
+
+    }
+
+
+    /* =========================================================
+       DEVELOPER
+    ========================================================= */
+
+    function attachJSON() {
+
+      const input = document.getElementById("mainText");
+
+      document.getElementById("formatJSON").onclick = () => {
+
+        try {
+
+          const parsed = JSON.parse(input.value);
+
+          showResult(
+            JSON.stringify(parsed, null, 2)
+          );
+
+        } catch (e) {
+          showError("Invalid JSON: " + e.message);
+        }
+
+      };
+
+
+      document.getElementById("minifyJSON").onclick = () => {
+
+        try {
+
+          const parsed = JSON.parse(input.value);
+
+          showResult(
+            JSON.stringify(parsed)
+          );
+
+        } catch (e) {
+          showError("Invalid JSON: " + e.message);
+        }
+
+      };
+
+
+      document.getElementById("validateJSON").onclick = () => {
+
+        try {
+
+          JSON.parse(input.value);
+
+          showResult("✓ Valid JSON");
+
+        } catch (e) {
+
+          showError("✕ Invalid JSON\n" + e.message);
+
+        }
+
+      };
+
+    }
+
+
+    function attachBase64() {
+
+      document.getElementById("encode").onclick = () => {
+
+        const text = getText();
+
+        try {
+
+          showResult(
+            btoa(
+              unescape(
+                encodeURIComponent(text)
+              )
+            )
+          );
+
+        } catch {
+          showError("Could not encode this text.");
+        }
+
+      };
+
+
+      document.getElementById("decode").onclick = () => {
+
+        try {
+
+          showResult(
+            decodeURIComponent(
+              escape(atob(getText()))
+            )
+          );
+
+        } catch {
+          showError("Invalid Base64.");
+        }
+
+      };
+
+    }
+
+
+    function attachURL() {
+
+      document.getElementById("encode").onclick = () => {
+
+        showResult(
+          encodeURIComponent(getText())
+        );
+
+      };
+
+      document.getElementById("decode").onclick = () => {
+
+        try {
+
+          showResult(
+            decodeURIComponent(getText())
+          );
+
+        } catch {
+          showError("Invalid encoded URL.");
+        }
+
+      };
+
+    }
+
+
+    function attachUUID() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const amount =
+          Math.min(
+            100,
+            Math.max(
+              1,
+              Number(document.getElementById("amount").value) || 1
+            )
+          );
+
+        const list = [];
+
+        for (let i = 0; i < amount; i++) {
+          list.push(crypto.randomUUID());
+        }
+
+        showResult(list.join("\n"));
+
+      };
+
+    }
+
+
+    function attachTimestamp() {
+
+      document.getElementById("now").onclick = () => {
+
+        document.getElementById("timestamp").value =
+          Math.floor(Date.now() / 1000);
+
+      };
+
+      document.getElementById("runTool").onclick = () => {
+
+        const value = num("timestamp");
+
+        if (!Number.isFinite(value)) {
+          showError("Enter a Unix timestamp.");
+          return;
+        }
+
+        const date = new Date(value * 1000);
+
+        showResult(
+          date.toLocaleString(undefined, {
+            dateStyle: "full",
+            timeStyle: "long"
+          })
+        );
+
+      };
+
+    }
+
+
+    function attachColor() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        let hex =
+          document.getElementById("hex").value.trim();
+
+        if (!/^#?[0-9a-fA-F]{6}$/.test(hex)) {
+          showError("Enter a valid 6-digit HEX color.");
+          return;
+        }
+
+        hex = hex.replace("#", "");
+
+        const r = parseInt(hex.slice(0, 2), 16);
+        const g = parseInt(hex.slice(2, 4), 16);
+        const b = parseInt(hex.slice(4, 6), 16);
+
+        const max = Math.max(r, g, b) / 255;
+        const min = Math.min(r, g, b) / 255;
+
+        const l = (max + min) / 2;
+
+        let h = 0;
+        let s = 0;
+
+        if (max !== min) {
+
+          const d = max - min;
+
+          s = l > .5
+            ? d / (2 - max - min)
+            : d / (max + min);
+
+          switch (max) {
+
+            case r / 255:
+              h = (g - b) / 255 / d +
+                (g < b ? 6 : 0);
+              break;
+
+            case g / 255:
+              h = (b - r) / 255 / d + 2;
+              break;
+
+            case b / 255:
+              h = (r - g) / 255 / d + 4;
+              break;
+
+          }
+
+          h /= 6;
+
+        }
+
+        showResult(
+          `HEX: #${hex.toUpperCase()}\n` +
+          `RGB: rgb(${r}, ${g}, ${b})\n` +
+          `HSL: hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`
+        );
+
+      };
+
+    }
+
+
+    function attachPassword() {
+
+      document.getElementById("runTool").onclick = () => {
+
+        const length =
+          Math.min(
+            128,
+            Math.max(
+              6,
+              Number(document.getElementById("length").value) || 18
+            )
+          );
+
+        const chars =
+          "ABCDEFGHJKLMNPQRSTUVWXYZ" +
+          "abcdefghijkmnopqrstuvwxyz" +
+          "23456789!@#$%^&*_-+=";
+
+        let password = "";
+
+        const bytes = new Uint32Array(length);
+
+        crypto.getRandomValues(bytes);
+
+        for (let i = 0; i < length; i++) {
+          password += chars[bytes[i] % chars.length];
+        }
+
+        showResult(password);
+
+      };
+
+    }
+
+
+    /* =========================================================
+       IMAGE TOOLS
+    ========================================================= */
+
+    let currentImage = null;
+    let currentImageFile = null;
+    let currentCanvasData = null;
+
+    function attachImage(tool) {
+
+      const drop = document.getElementById("dropzone");
+      const input = document.getElementById("file");
+      const info = document.getElementById("fileInfo");
+      const preview = document.getElementById("preview");
+      const canvas = document.getElementById("canvas");
+
+      drop.onclick = () => input.click();
+
+      drop.ondragover = e => {
+        e.preventDefault();
+        drop.classList.add("drag");
+      };
+
+      drop.ondragleave = () => {
+        drop.classList.remove("drag");
+      };
+
+      drop.ondrop = e => {
+
+        e.preventDefault();
+
+        drop.classList.remove("drag");
+
+        if (e.dataTransfer.files[0]) {
+          loadImage(e.dataTransfer.files[0]);
+        }
+
+      };
+
+      input.onchange = () => {
+        if (input.files[0]) {
+          loadImage(input.files[0]);
+        }
+      };
+
+
+      function loadImage(file) {
+
+        if (!file.type.startsWith("image/")) {
+          showError("Please choose an image.");
+          return;
+        }
+
+        currentImageFile = file;
+
+        const url = URL.createObjectURL(file);
+
+        const img = new Image();
+
+        img.onload = () => {
+
+          currentImage = img;
+
+          preview.src = url;
+          preview.hidden = false;
+
+          info.textContent =
+            `${file.name} • ${img.width} × ${img.height} • ${formatBytes(file.size)}`;
+
+          if (
+            tool.type === "image-resizer" &&
+            document.getElementById("imgWidth")
+          ) {
+
+            document.getElementById("imgWidth").value = img.width;
+            document.getElementById("imgHeight").value = img.height;
+
+          }
+
+        };
+
+        img.src = url;
+
+      }
+
+
+      document.getElementById("runTool").onclick = () => {
+
+        if (!currentImage) {
+
+          showError("Choose an image first.");
+          return;
+
+        }
+
+        if (tool.type === "color-picker") {
+
+          const ctx = canvas.getContext("2d");
+
+          canvas.width = currentImage.width;
+          canvas.height = currentImage.height;
+
+          ctx.drawImage(currentImage, 0, 0);
+
+          const x = Math.floor(currentImage.width / 2);
+          const y = Math.floor(currentImage.height / 2);
+
+          const pixel = ctx.getImageData(x, y, 1, 1).data;
+
+          const hex =
+            "#" +
+            [pixel[0], pixel[1], pixel[2]]
+              .map(v => v.toString(16).padStart(2, "0"))
+              .join("");
+
+          showResult(
+            `Center pixel color: ${hex.toUpperCase()}\n` +
+            `RGB: rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`
+          );
+
+          return;
+
+        }
+
+
+        processImage();
+
+      };
+
+
+      document
+        .querySelectorAll("[data-transform]")
+        .forEach(btn => {
+
+          btn.onclick = () => processImage(btn.dataset.transform);
+
+        });
+
+
+      function processImage(transform) {
+
+        let width = currentImage.width;
+        let height = currentImage.height;
+
+        const ctx = canvas.getContext("2d");
+
+        if (
+          transform === "rotate90" ||
+          transform === "rotate270"
+        ) {
+          [width, height] = [height, width];
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.clearRect(0, 0, width, height);
+
+        ctx.save();
+
+        if (transform === "rotate90") {
+
+          ctx.translate(width, 0);
+          ctx.rotate(Math.PI / 2);
+
+        }
+
+        else if (transform === "rotate180") {
+
+          ctx.translate(width, height);
+          ctx.rotate(Math.PI);
+
+        }
+
+        else if (transform === "flipH") {
+
+          ctx.translate(width, 0);
+          ctx.scale(-1, 1);
+
+        }
+
+        else if (transform === "flipV") {
+
+          ctx.translate(0, height);
+          ctx.scale(1, -1);
+
+        }
+
+        let drawWidth = currentImage.width;
+        let drawHeight = currentImage.height;
+
+        if (tool.type === "image-resizer") {
+
+          drawWidth =
+            Number(document.getElementById("imgWidth").value) ||
+            currentImage.width;
+
+          drawHeight =
+            Number(document.getElementById("imgHeight").value) ||
+            currentImage.height;
+
+          canvas.width = drawWidth;
+          canvas.height = drawHeight;
+
+        }
+
+        ctx.drawImage(
+          currentImage,
+          0,
+          0,
+          drawWidth,
+          drawHeight
+        );
+
+        ctx.restore();
+
+        currentCanvasData = canvas.toDataURL(
+          document.getElementById("format")?.value ||
+          "image/jpeg",
+          tool.type === "image-compressor" ? .72 : .92
+        );
+
+        preview.src = currentCanvasData;
+
+        showResult(
+          `Processed successfully.\n` +
+          `Output size: ${formatBytes(
+            Math.round(
+              currentCanvasData.length * 0.75
+            )
+          )}`
         );
 
       }
 
-    };
 
+      const download =
+        document.getElementById("downloadResult");
 
-  const download=
-    document.getElementById("downloadResult");
+      if (download) {
 
-  download.onclick=()=>{
+        download.onclick = () => {
 
-    if(!currentPDFBytes){
+          if (!currentCanvasData) {
 
-      showError("Run the PDF operation first.");
-      return;
+            if (currentImage) {
+              processImage();
+            } else {
+              showError("Process an image first.");
+              return;
+            }
+
+          }
+
+          downloadData(
+            currentCanvasData,
+            "getkit-image." +
+            (
+              document.getElementById("format")?.value === "image/png"
+                ? "png" :
+                document.getElementById("format")?.value === "image/webp"
+                  ? "webp" : "jpg"
+            )
+          );
+
+        };
+
+      }
 
     }
 
-    downloadBlob(
-      new Blob(
-        [currentPDFBytes],
-        {type:"application/pdf"}
-      ),
-      "getkit-result.pdf"
-    );
 
-  };
+    /* =========================================================
+       PDF TOOLS
+    ========================================================= */
 
-}
+    let pdfFiles = [];
 
+    function attachPDF(tool) {
 
-/* =========================================================
-   PDF HELPERS
-========================================================= */
+      const drop = document.getElementById("pdfDrop");
+      const input = document.getElementById("pdfFiles");
+      const info = document.getElementById("pdfInfo");
 
-let currentPDFBytes=null;
+      drop.onclick = () => input.click();
 
-function parsePages(value,max){
+      drop.ondragover = e => {
+        e.preventDefault();
+        drop.classList.add("drag");
+      };
 
-  if(!value)return[];
+      drop.ondragleave = () => {
+        drop.classList.remove("drag");
+      };
 
-  return [
-    ...new Set(
-      value
-        .split(",")
-        .map(v=>parseInt(v.trim(),10))
-        .filter(n=>Number.isInteger(n)&&n>=1&&n<=max)
-    )
-  ];
+      drop.ondrop = e => {
 
-}
+        e.preventDefault();
+        drop.classList.remove("drag");
 
+        const files =
+          [...e.dataTransfer.files]
+            .filter(f => f.type === "application/pdf");
 
-/* =========================================================
-   OUTPUT
-========================================================= */
+        setPDFs(files);
 
-function showResult(text){
+      };
 
-  const output=document.getElementById("output");
-
-  if(!output)return;
-
-  output.classList.remove("error");
-  output.classList.add("success");
-
-  output.textContent=text;
-
-}
+      input.onchange = () => {
+        setPDFs([...input.files]);
+      };
 
 
-function showError(text){
+      function setPDFs(files) {
 
-  const output=document.getElementById("output");
+        pdfFiles = files;
 
-  if(!output)return;
+        info.textContent =
+          files.length
+            ? files.map(f =>
+              `${f.name} (${formatBytes(f.size)})`
+            ).join(" • ")
+            : "No PDF selected.";
 
-  output.classList.remove("success");
-  output.classList.add("error");
-
-  output.textContent=text;
-
-}
-
-
-/* =========================================================
-   DOWNLOAD
-========================================================= */
-
-function downloadData(data,name){
-
-  const a=document.createElement("a");
-
-  a.href=data;
-  a.download=name;
-
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-
-}
+      }
 
 
-function downloadBlob(blob,name){
+      document.getElementById("runTool").onclick =
+        async () => {
 
-  const url=
-    URL.createObjectURL(blob);
+          if (!pdfFiles.length) {
 
-  downloadData(url,name);
+            showError("Choose a PDF first.");
+            return;
 
-  setTimeout(
-    ()=>URL.revokeObjectURL(url),
-    1000
-  );
+          }
 
-}
+          try {
+
+            if (tool.type === "pdf-merger") {
+
+              if (pdfFiles.length < 2) {
+                showError("Choose at least two PDFs.");
+                return;
+              }
+
+              const merged =
+                await PDFLib.PDFDocument.create();
+
+              for (const file of pdfFiles) {
+
+                const bytes =
+                  await file.arrayBuffer();
+
+                const pdf =
+                  await PDFLib.PDFDocument.load(bytes);
+
+                const pages =
+                  await merged.copyPages(
+                    pdf,
+                    pdf.getPageIndices()
+                  );
+
+                pages.forEach(p => merged.addPage(p));
+
+              }
+
+              const bytes =
+                await merged.save();
+
+              currentPDFBytes = bytes;
+
+              showResult(
+                `Merged ${pdfFiles.length} PDFs successfully.\n` +
+                `${merged.getPageCount()} pages total.`
+              );
+
+              return;
+
+            }
 
 
-/* =========================================================
-   HELPERS
-========================================================= */
+            if (
+              tool.type === "pdf-splitter" ||
+              tool.type === "pdf-delete" ||
+              tool.type === "pdf-rotator"
+            ) {
 
-function formatBytes(bytes){
+              const bytes =
+                await pdfFiles[0].arrayBuffer();
 
-  if(!bytes)return"0 B";
+              const pdf =
+                await PDFLib.PDFDocument.load(bytes);
 
-  const units=["B","KB","MB","GB"];
+              const pageCount = pdf.getPageCount();
 
-  const i=
-    Math.floor(
-      Math.log(bytes)/Math.log(1024)
-    );
+              const requested =
+                parsePages(
+                  document.getElementById("pages").value,
+                  pageCount
+                );
 
-  return(
-    (bytes/Math.pow(1024,i)).toFixed(
-      i?1:0
-    )+
-    " "+
-    units[i]
-  );
+              if (!requested.length) {
 
-}
+                showError(
+                  `Enter page numbers between 1 and ${pageCount}.`
+                );
+
+                return;
+
+              }
 
 
-/* =========================================================
-   INITIALIZE
-========================================================= */
+              if (tool.type === "pdf-delete") {
 
-renderPopular();
-renderTools();
+                const keep =
+                  Array.from(
+                    { length: pageCount },
+                    (_, i) => i
+                  ).filter(i => !requested.includes(i + 1));
 
-</script>
+                const output =
+                  await PDFLib.PDFDocument.create();
 
-        <!-- Horizontal Ad Container -->
-        <div
-            style="width: 100%; max-width: 728px; height: 90px; margin: 20px auto; text-align: center; overflow: hidden;">
+                const pages =
+                  await output.copyPages(pdf, keep);
 
-            <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
-                crossorigin="anonymous"></script>
-            <!-- getkit_content_infeed -->
-            <ins class="adsbygoogle" style="display:inline-block; width: 100%; height: 90px;"
-                data-ad-client="ca-pub-9695226920600935" data-ad-slot="3167975347" data-ad-format="horizontal"
-                data-full-width-responsive="false"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+                pages.forEach(p => output.addPage(p));
 
-        </div>
+                currentPDFBytes =
+                  await output.save();
+
+                showResult(
+                  `Removed ${requested.length} page(s).`
+                );
+
+                return;
+
+              }
+
+
+              if (tool.type === "pdf-splitter") {
+
+                const output =
+                  await PDFLib.PDFDocument.create();
+
+                const pages =
+                  await output.copyPages(
+                    pdf,
+                    requested.map(p => p - 1)
+                  );
+
+                pages.forEach(p => output.addPage(p));
+
+                currentPDFBytes =
+                  await output.save();
+
+                showResult(
+                  `Extracted ${requested.length} page(s).`
+                );
+
+                return;
+
+              }
+
+
+              if (tool.type === "pdf-rotator") {
+
+                requested.forEach(pageNumber => {
+
+                  const page =
+                    pdf.getPage(pageNumber - 1);
+
+                  page.setRotation(
+                    PDFLib.degrees(
+                      page.getRotation().angle + 90
+                    )
+                  );
+
+                });
+
+                currentPDFBytes =
+                  await pdf.save();
+
+                showResult(
+                  `Rotated ${requested.length} page(s).`
+                );
+
+                return;
+
+              }
+
+            }
+
+
+            if (tool.type === "pdf-metadata") {
+
+              const bytes =
+                await pdfFiles[0].arrayBuffer();
+
+              const pdf =
+                await PDFLib.PDFDocument.load(bytes);
+
+              showResult(
+                `Pages: ${pdf.getPageCount()}\n` +
+                `Title: ${pdf.getTitle() || "Not set"}\n` +
+                `Author: ${pdf.getAuthor() || "Not set"}\n` +
+                `Subject: ${pdf.getSubject() || "Not set"}\n` +
+                `Creator: ${pdf.getCreator() || "Not set"}\n` +
+                `Producer: ${pdf.getProducer() || "Not set"}`
+              );
+
+              return;
+
+            }
+
+
+            if (
+              tool.type === "jpg-to-pdf"
+            ) {
+
+              const output =
+                await PDFLib.PDFDocument.create();
+
+              for (const file of pdfFiles) {
+
+                const bytes =
+                  await file.arrayBuffer();
+
+                let image;
+
+                if (file.type === "image/jpeg") {
+                  image = await output.embedJpg(bytes);
+                } else {
+                  image = await output.embedPng(bytes);
+                }
+
+                const page =
+                  output.addPage([
+                    image.width,
+                    image.height
+                  ]);
+
+                page.drawImage(image, {
+                  x: 0,
+                  y: 0,
+                  width: image.width,
+                  height: image.height
+                });
+
+              }
+
+              currentPDFBytes =
+                await output.save();
+
+              showResult(
+                `Created PDF from ${pdfFiles.length} image(s).`
+              );
+
+              return;
+
+            }
+
+
+            showResult(
+              "PDF loaded successfully. This operation is ready for the next processing step."
+            );
+
+          } catch (error) {
+
+            console.error(error);
+
+            showError(
+              "Could not process this PDF. Make sure it is a valid, readable PDF."
+            );
+
+          }
+
+        };
+
+
+      const download =
+        document.getElementById("downloadResult");
+
+      download.onclick = () => {
+
+        if (!currentPDFBytes) {
+
+          showError("Run the PDF operation first.");
+          return;
+
+        }
+
+        downloadBlob(
+          new Blob(
+            [currentPDFBytes],
+            { type: "application/pdf" }
+          ),
+          "getkit-result.pdf"
+        );
+
+      };
+
+    }
+
+
+    /* =========================================================
+       PDF HELPERS
+    ========================================================= */
+
+    let currentPDFBytes = null;
+
+    function parsePages(value, max) {
+
+      if (!value) return [];
+
+      return [
+        ...new Set(
+          value
+            .split(",")
+            .map(v => parseInt(v.trim(), 10))
+            .filter(n => Number.isInteger(n) && n >= 1 && n <= max)
+        )
+      ];
+
+    }
+
+
+    /* =========================================================
+       OUTPUT
+    ========================================================= */
+
+    function showResult(text) {
+
+      const output = document.getElementById("output");
+
+      if (!output) return;
+
+      output.classList.remove("error");
+      output.classList.add("success");
+
+      output.textContent = text;
+
+    }
+
+
+    function showError(text) {
+
+      const output = document.getElementById("output");
+
+      if (!output) return;
+
+      output.classList.remove("success");
+      output.classList.add("error");
+
+      output.textContent = text;
+
+    }
+
+
+    /* =========================================================
+       DOWNLOAD
+    ========================================================= */
+
+    function downloadData(data, name) {
+
+      const a = document.createElement("a");
+
+      a.href = data;
+      a.download = name;
+
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+    }
+
+
+    function downloadBlob(blob, name) {
+
+      const url =
+        URL.createObjectURL(blob);
+
+      downloadData(url, name);
+
+      setTimeout(
+        () => URL.revokeObjectURL(url),
+        1000
+      );
+
+    }
+
+
+    /* =========================================================
+       HELPERS
+    ========================================================= */
+
+    function formatBytes(bytes) {
+
+      if (!bytes) return "0 B";
+
+      const units = ["B", "KB", "MB", "GB"];
+
+      const i =
+        Math.floor(
+          Math.log(bytes) / Math.log(1024)
+        );
+
+      return (
+        (bytes / Math.pow(1024, i)).toFixed(
+          i ? 1 : 0
+        ) +
+        " " +
+        units[i]
+      );
+
+    }
+
+
+    /* =========================================================
+       INITIALIZE
+    ========================================================= */
+
+    renderPopular();
+    renderTools();
+
+  </script>
+
+  <!-- Horizontal Ad Container -->
+  <div style="width: 100%; max-width: 728px; height: 90px; margin: 20px auto; text-align: center; overflow: hidden;">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9695226920600935"
+      crossorigin="anonymous"></script>
+    <!-- getkit_content_infeed -->
+    <ins class="adsbygoogle" style="display:inline-block; width: 100%; height: 90px;"
+      data-ad-client="ca-pub-9695226920600935" data-ad-slot="3167975347" data-ad-format="horizontal"
+      data-full-width-responsive="false"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+  </div>
 
 
 </body>
+
 </html>
